@@ -1,5 +1,5 @@
 # Lil' Shed's Get Good In
-Goal: A 2D Fighter game with new characters using PyGame and <a href="https://www.youtube.com/watch?v=gprRdqaX9Iw&t=1m9s">GET GOOD IN</a>.
+Goal: A 2D Fighter game with new characters using PyGame and <a href="https://www.youtube.com/watch?v=gprRdqaX9Iw&t=1m8s">GET GOOD IN</a>.
 <hr>
 <h3>Timeline:</h3>
 January:
