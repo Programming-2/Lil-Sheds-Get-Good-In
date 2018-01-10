@@ -9,6 +9,9 @@ RED = (255, 0, 0)
 
 size = (1100, 800)
 screen = pygame.display.set_mode(size)
+pygame.display.set_caption("Test Game")
+
+background_image = pygame.image.load("Test.png").convert()
 
 pygame.display.set_caption("Game")
 
@@ -23,7 +26,7 @@ while not done:
     screen.fill(WHITE)
 
     pygame.display.flip()
-
     clock.tick(60)
+    screen.blit(background_image, [0, 0])
 
 pygame.quit()
