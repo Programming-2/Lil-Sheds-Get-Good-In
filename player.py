@@ -10,4 +10,4 @@ class player(pygame.sprite.Sprite):
         self.damage = damage
         self.win_quote = win_quote
         self.lose_quote = lose_quote
-        self.name = name
+        self.name = 
