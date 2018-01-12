@@ -24,7 +24,7 @@ while not done:
             done = True
 
     screen.fill(WHITE)
-    screen.blit(background_image, [0, 0])
+    screen.blit(background_image, [0, 0])  # Jakob's mistake
 
     clock.tick(60)
     pygame.display.flip()
