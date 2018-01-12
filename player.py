@@ -1,7 +1,7 @@
 import pygame
 
 
-class player(pygame.sprite.Sprite):
+class Player(pygame.sprite.Sprite):
 
     def __init__(self, img, health, damage, win_quote, lose_quote, name):
         super().__init__()
