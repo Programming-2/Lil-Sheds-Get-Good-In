@@ -24,9 +24,9 @@ while not done:
             done = True
 
     screen.fill(WHITE)
-
-    pygame.display.flip()
-    clock.tick(60)
     screen.blit(background_image, [0, 0])
+
+    clock.tick(60)
+    pygame.display.flip()
 
 pygame.quit()
