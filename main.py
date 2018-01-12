@@ -9,6 +9,9 @@ RED = (255, 0, 0)
 
 size = (1100, 800)
 screen = pygame.display.set_mode(size)
+pygame.display.set_caption("Test Game")
+
+background_image = pygame.image.load("media/Test.png").convert()
 
 pygame.display.set_caption("Game")
 
@@ -21,9 +24,9 @@ while not done:
             done = True
 
     screen.fill(WHITE)
-
-    pygame.display.flip()
+    screen.blit(background_image, [0, 0])  # Jakob's mistake
 
     clock.tick(60)
+    pygame.display.flip()
 
 pygame.quit()

@@ -1,12 +1,16 @@
 #Parent Level Class
+from abc import abstractmethod
+
 import pygame
 pygame.init()
+
 
 class Level():
     def __init__(self, screen, back_img):
         self.__screen = screen
         self.__back_img = back_img
 
+<<<<<<< HEAD
 size = (1100, 800)
 screen = pygame.display.set_mode(size)
 pygame.display.set_caption("Test Game")
@@ -36,3 +40,8 @@ while not done:
         screen.blit(background_image1p4, [0, 0])
     print (testlevelchange)
 pygame.quit()
+=======
+    @abstractmethod
+    def update(self):
+        pass
+>>>>>>> 6e4ac37551561c4717791945e2dc25bd1d08bbb4
