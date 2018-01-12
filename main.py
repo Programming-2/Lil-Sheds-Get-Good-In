@@ -11,7 +11,7 @@ size = (1100, 800)
 screen = pygame.display.set_mode(size)
 pygame.display.set_caption("Test Game")
 
-background_image = pygame.image.load("Test.png").convert()
+background_image = pygame.image.load("media/Test.png").convert()
 
 pygame.display.set_caption("Game")
 
