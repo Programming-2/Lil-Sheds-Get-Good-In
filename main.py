@@ -1,5 +1,6 @@
 import pygame
 from player import Player
+from testLevel import TestLevel
 
 pygame.init()
 
@@ -12,7 +13,9 @@ size = (1100, 800)
 screen = pygame.display.set_mode(size)
 pygame.display.set_caption("Test Game")
 
-background_image = pygame.image.load("media/field_map.png").convert()
+level = TestLevel(screen)
+
+background_image = pygame.image.load(level.getBackImg()).convert()
 testSprite = pygame.image.load("media/BaseSprite.png").convert()
 
 player1 = Player(testSprite, 100, 20, "Yes", "No", "Will", 100, 100)
@@ -53,6 +56,9 @@ while not done:
                 pass  # player1.unduck()
             elif event.key == pygame.K_DOWN:
                 pass  # player2.unduck()
+
+    player1.ychange += level.getGravity()
+    player2.ychange += level.getGravity()
 
     screen.fill(WHITE)
     screen.blit(background_image, [0, 0])  # Jakob's mistake
