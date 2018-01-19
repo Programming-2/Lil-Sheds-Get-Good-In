@@ -17,6 +17,6 @@ class Player(pygame.sprite.Sprite):
         self.ychange = 0
 
     def update(self, screen):
-        screen.blit(self.img, [0, 0])
+        screen.blit(self.img, [self.posx, self.posy])
         self.posx += self.xchange
         self.posy += self.ychange
