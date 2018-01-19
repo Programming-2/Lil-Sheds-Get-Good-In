@@ -13,9 +13,10 @@ screen = pygame.display.set_mode(size)
 pygame.display.set_caption("Test Game")
 
 background_image = pygame.image.load("media/field_map.png").convert()
+testSprite = pygame.image.load("media/BaseSprite.png").convert()
 
-player1 = Player(100, 20, "Yes", "No", "Will", 100, 100)
-player2 = Player(100, 20, "Yes", "No", "Jaccob Bonkley", 500, 100)
+player1 = Player(testSprite, 100, 20, "Yes", "No", "Will", 100, 100)
+player2 = Player(testSprite, 100, 20, "Yes", "No", "Jaccob Bonkley", 500, 100)
 
 pygame.display.set_caption("Game")
 
