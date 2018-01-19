@@ -44,7 +44,7 @@ while not done:
                 player2.xchange = 5
             elif event.key == pygame.K_DOWN:
                 pass  # player2.duck()
-        elif pygame.event == pygame.KEYUP:
+        elif event.type == pygame.KEYUP:
             if event.key == pygame.K_a or event.key == pygame.K_d:
                 player1.xchange = 0
             elif event.key == pygame.K_LEFT or event.key == pygame.K_RIGHT:
