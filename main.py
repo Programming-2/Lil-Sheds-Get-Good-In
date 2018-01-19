@@ -14,8 +14,8 @@ pygame.display.set_caption("Test Game")
 
 background_image = pygame.image.load("media/field_map.png").convert()
 
-player1 = Player(100, 20, "Yes", "No", "Will", 100, 100)
-player2 = Player(100, 20, "Yes", "No", "Jaccob Bonkley", 500, 100)
+#player1 = Player(100, 20, "Yes", "No", "Will", 100, 100)
+#player2 = Player(100, 20, "Yes", "No", "Jaccob Bonkley", 500, 100)
 
 pygame.display.set_caption("Game")
 
@@ -56,8 +56,8 @@ while not done:
     screen.fill(WHITE)
     screen.blit(background_image, [0, 0])  # Jakob's mistake
 
-    player1.update()
-    player2.update()
+    #player1.update()
+    #player2.update()
     clock.tick(60)
     pygame.display.flip()
 
