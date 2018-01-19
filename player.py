@@ -3,13 +3,13 @@ import pygame
 
 class Player(pygame.sprite.Sprite):
 
-    def __init__(self, health, damage, win_quote, lose_quote, name, posx, posy):
+    def __init__(self, health, damage, winQuote, loseQuote, name, posx, posy):
         super().__init__()
         # self.img = img
         self.health = health
         self.damage = damage
-        self.win_quote = win_quote
-        self.lose_quote = lose_quote
+        self.winQuote = winQuote
+        self.loseQuote = loseQuote
         self.name = name
         self.posx = posx
         self.posy = posy
