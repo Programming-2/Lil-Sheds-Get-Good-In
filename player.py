@@ -3,9 +3,9 @@ import pygame
 
 class Player(pygame.sprite.Sprite):
 
-    def __init__(self, img, health, damage, winQuote, loseQuote, name, x, y):
+    def __init__(self, sprite, health, damage, winQuote, loseQuote, name, x, y):
         super().__init__()
-        self.img = img
+        self.sprite = sprite
         self.health = health
         self.damage = damage
         self.winQuote = winQuote
