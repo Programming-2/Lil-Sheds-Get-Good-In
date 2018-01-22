@@ -1,6 +1,6 @@
 # Child class of level, serves as a test
 from level import Level
-import Platform
+from platform import Platform
 
 
 class TestLevel(Level):
