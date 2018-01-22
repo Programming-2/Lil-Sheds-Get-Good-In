@@ -57,8 +57,8 @@ while not done:
             elif event.key == pygame.K_DOWN:
                 pass  # player2.unduck()
 
-    player1.ychange += level.getGravity()
-    player2.ychange += level.getGravity()
+    player1.ychange += player1.gravity
+    player2.ychange += player2.gravity
 
     screen.fill(WHITE)
     screen.blit(background_image, [0, 0])  # Jakob's mistake
