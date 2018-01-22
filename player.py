@@ -3,7 +3,7 @@ import pygame
 
 class Player(pygame.sprite.Sprite):
 
-    def __init__(self, img, health, damage, winQuote, loseQuote, name, posx, posy):
+    def __init__(self, img, health, damage, winQuote, loseQuote, name, x, y):
         super().__init__()
         self.img = img
         self.health = health
@@ -11,13 +11,13 @@ class Player(pygame.sprite.Sprite):
         self.winQuote = winQuote
         self.loseQuote = loseQuote
         self.name = name
-        self.posx = posx
-        self.posy = posy
+        self.x = x
+        self.y = y
         self.xchange = 0
         self.ychange = 0
         self.gravity = 0.25
 
     def update(self, screen):
-        screen.blit(self.img, [self.posx, self.posy])
-        self.posx += self.xchange
-        self.posy += self.ychange
+        screen.blit(self.img, [self.x, self.y])
+        self.x += self.xchange
+        self.y += self.ychange

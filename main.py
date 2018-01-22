@@ -21,7 +21,9 @@ testSprite = pygame.image.load("media/BaseSprite.png").convert()
 player1 = Player(testSprite, 100, 20, "Yes", "No", "Will", 100, 100)
 player2 = Player(testSprite, 100, 20, "Yes", "No", "Jaccob Bonkley", 500, 100)
 
-pygame.display.set_caption("Game")
+platformArray = pygame.sprite.Group()
+
+pygame.display.set_caption("Lil' Shed's Get Good In™")
 
 clock = pygame.time.Clock()
 
@@ -62,6 +64,15 @@ while not done:
 
     screen.fill(WHITE)
     screen.blit(background_image, [0, 0])  # Jakob's mistake
+
+    p1HitList = pygame.sprite.spritecollide(player1, platformArray, False)
+    p2HitList = pygame.sprite.spritecollide(player2, platformArray, False)
+
+    for platform in p1HitList:
+        player1.y = platform.y
+
+    for platform in p2HitList:
+        player2.y = platform.y
 
     player1.update(screen)
     player2.update(screen)
