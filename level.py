@@ -1,7 +1,7 @@
 #Parent Level Class
 from abc import abstractmethod
-
 import pygame
+
 pygame.init()
 
 
