@@ -6,3 +6,4 @@ class Attack():
         self.cooldown = cooldown
         self.range = range
         self.sound = sound
+
