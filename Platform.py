@@ -7,3 +7,4 @@ class Platform(pygame.sprite.Sprite):
         self.y = y
         self.len = len
         self.height = height
+        #yes
