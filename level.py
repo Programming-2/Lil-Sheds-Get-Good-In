@@ -10,11 +10,8 @@ class Level():
         self.__screen = screen
         self.__backImg = backImg
 
-
     def getBackImg(self):
         return self.__backImg
-
-
 
     @abstractmethod
     def update(self):
