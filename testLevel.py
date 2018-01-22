@@ -7,3 +7,4 @@ class TestLevel(Level):
         super().__init__(screen, "media/field_map.png")
         self.__ground = 650
         self.__main = main
+
