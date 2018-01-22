@@ -1,4 +1,6 @@
 #Platform class
+import pygame
+
 
 class Platform(pygame.sprite.Sprite):
     def __init__(self, x, y, len, height):
@@ -7,4 +9,3 @@ class Platform(pygame.sprite.Sprite):
         self.y = y
         self.len = len
         self.height = height
-        #yes
