@@ -23,6 +23,8 @@ player2 = Player(testSprite, 100, 20, "Yes", "No", "Jaccob Bonkley", 500, 100)
 
 platformArray = pygame.sprite.Group()
 
+platformArray.add(level.ground)
+
 pygame.display.set_caption("Lil' Shed's Get Good In™")
 
 clock = pygame.time.Clock()
@@ -70,9 +72,11 @@ while not done:
 
     for platform in p1HitList:
         player1.y = platform.y
+        player1.ychange = 0
 
     for platform in p2HitList:
         player2.y = platform.y
+        player2.ychange = 0
 
     player1.update(screen)
     player2.update(screen)
