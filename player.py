@@ -16,8 +16,11 @@ class Player(pygame.sprite.Sprite):
         self.xchange = 0
         self.ychange = 0
         self.gravity = 0.25
+        self.width = sprite.get_width()
+        self.height = sprite.get_height()
+        self.rect = pygame.Rect(x, y, self.width, self.height)
 
     def update(self, screen):
-        screen.blit(self.img, [self.x, self.y])
+        screen.blit(self.sprite, [self.x, self.y])
         self.x += self.xchange
         self.y += self.ychange

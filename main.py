@@ -65,8 +65,8 @@ while not done:
     screen.fill(WHITE)
     screen.blit(background_image, [0, 0])  # Jakob's mistake
 
-    p1HitList = pygame.sprite.spritecollide(player1.sprite, platformArray, False)
-    p2HitList = pygame.sprite.spritecollide(player2.sprite, platformArray, False)
+    p1HitList = pygame.sprite.spritecollide(player1, platformArray, False)
+    p2HitList = pygame.sprite.spritecollide(player2, platformArray, False)
 
     for platform in p1HitList:
         player1.y = platform.y
