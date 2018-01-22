@@ -15,6 +15,7 @@ class Player(pygame.sprite.Sprite):
         self.posy = posy
         self.xchange = 0
         self.ychange = 0
+        self.gravity = 0.25
 
     def update(self, screen):
         screen.blit(self.img, [self.posx, self.posy])
