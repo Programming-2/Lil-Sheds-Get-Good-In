@@ -3,7 +3,7 @@ from level import Level
 
 
 class TestLevel(Level):
-    def __init__(self, screen, main):
+    def __init__(self, screen):
         super().__init__(screen, "media/field_map.png")
         self.__ground = 650
         self.__main = main
