@@ -6,5 +6,6 @@ from platform import Platform
 class TestLevel(Level):
     def __init__(self, screen):
         super().__init__(screen, "media/field_map.png")
-        self.ground = Platform(screen, 0, 650, 1100, 10)
+        super().__init__(screen, "media/field_map.png")
+        self.ground = Platform(screen, 0, 650, 1100, 150)
 
