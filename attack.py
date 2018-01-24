@@ -7,3 +7,7 @@ class Attack():
         self.range = range
         self.sound = sound
 
+    def attack(self):
+        if self.cooldown == 0:
+            self.sound.play()
+            return self.damage
