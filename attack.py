@@ -11,3 +11,6 @@ class Attack():
         if self.cooldown == 0:
             self.sound.play()
             return self.damage
+
+    def update(self):
+        self.cooldown - 1
