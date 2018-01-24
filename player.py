@@ -21,6 +21,7 @@ class Player(pygame.sprite.Sprite):
         self.rect = pygame.Rect(self.x, self.y, self.width, self.height)
 
     def jump(self):
+        self.y += 1
         self.ychange = -10
 
     def update(self, screen):
