@@ -20,7 +20,11 @@ class Player(pygame.sprite.Sprite):
         self.height = sprite.get_height()
         self.rect = pygame.Rect(self.x, self.y, self.width, self.height)
 
+    def jump(self):
+        self.ychange = -10
+
     def update(self, screen):
         screen.blit(self.sprite, [self.x, self.y])
         self.x += self.xchange
         self.y += self.ychange
+        self.rect.topleft = self.x, self.y

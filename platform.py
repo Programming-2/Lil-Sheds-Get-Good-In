@@ -11,7 +11,8 @@ class Platform(pygame.sprite.Sprite):
         self.length = length
         self.height = height
         self.image = pygame.Surface([self.length, self.height])
+        self.image.fill((0, 0, 255))
         self.rect = self.image.get_rect()
 
     def update(self):
-        pygame.draw.rect(self.screen, (255, 0, 0), [self.x, self.y, self.length, self.height])
+        self.rect.topleft = self.x, self.y

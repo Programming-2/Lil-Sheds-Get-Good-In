@@ -29,6 +29,9 @@ pygame.display.set_caption("Lil' Shed's Get Good In™")
 
 clock = pygame.time.Clock()
 
+p1HitList = []
+p2HitList = []
+
 done = False
 while not done:
     for event in pygame.event.get():
@@ -36,7 +39,7 @@ while not done:
             done = True
         elif event.type == pygame.KEYDOWN:
             if event.key == pygame.K_w:
-                pass  # player1.jump()
+                player1.jump()
             elif event.key == pygame.K_a:
                 player1.xchange = -5
             elif event.key == pygame.K_d:
@@ -44,7 +47,7 @@ while not done:
             elif event.key == pygame.K_s:
                 pass  # player1.duck()
             elif event.key == pygame.K_UP:
-                pass  # player2.jump()
+                player2.jump()
             elif event.key == pygame.K_LEFT:
                 player2.xchange = -5
             elif event.key == pygame.K_RIGHT:
