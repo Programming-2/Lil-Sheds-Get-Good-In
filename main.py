@@ -74,10 +74,12 @@ while not done:
     p2HitList = pygame.sprite.spritecollide(player2, platformArray, False)
 
     for platform in p1HitList:
+        player1.resetJump()
         player1.y = platform.y - player1.height
         player1.ychange = 0
 
     for platform in p2HitList:
+        player2.resetJump()
         player2.y = platform.y - player2.height
         player2.ychange = 0
 

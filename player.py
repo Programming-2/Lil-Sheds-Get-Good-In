@@ -19,10 +19,16 @@ class Player(pygame.sprite.Sprite):
         self.width = sprite.get_width()
         self.height = sprite.get_height()
         self.rect = pygame.Rect(self.x, self.y, self.width, self.height)
+        self.jumpCount = 0
 
     def jump(self):
-        self.y += 1
-        self.ychange = -10
+        if self.jumpCount <= 1:
+            self.y += 1
+            self.ychange = -10
+            self.jumpCount += 1
+
+    def resetJump(self):
+        self.jumpCount = 0
 
     def update(self, screen):
         screen.blit(self.sprite, [self.x, self.y])
