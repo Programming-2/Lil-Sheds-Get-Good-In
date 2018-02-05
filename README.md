@@ -25,7 +25,7 @@ April:
 </ul>
 May:
 <ul>
-  <li>DLC ($100 per character)</li>
+  <li>DLC content($100 per character)</li>
   <li>Pay off critics</li>
   <li>Downvote all other fighting games</li>
 </ul>
