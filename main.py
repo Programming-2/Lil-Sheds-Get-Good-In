@@ -74,7 +74,7 @@ while not done:
     screen.blit(background_image, [0, 0])  # Jakob's mistake
 
     y = 0
-    pygame.draw.rect(screen,[player1.x + y, player1.y], [5, 5], 0)
+    pygame.draw.rect(screen, [player1.x + y, player1.y], [5, 5], 0)
     y += 1
 
     p1HitList = pygame.sprite.spritecollide(player1, platformArray, False)
