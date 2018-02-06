@@ -20,6 +20,7 @@ class Player(pygame.sprite.Sprite):
         self.height = sprite.get_height()
         self.rect = pygame.Rect(self.x, self.y, self.width, self.height)
         self.jumpCount = 0
+        self.takenDamage
 
     def jump(self):
         if self.jumpCount <= 1:
@@ -37,6 +38,9 @@ class Player(pygame.sprite.Sprite):
     def WinQuote(self):
         text = (self.winQuote, True, BLACK)
         return text
+
+    def takeDamage(self):
+        self.health -= self.takenDamage
 
     def update(self, screen):
         screen.blit(self.sprite, [self.x, self.y])
