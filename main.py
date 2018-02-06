@@ -3,6 +3,7 @@ from player import Player
 from testLevel import TestLevel
 from attack import Attack
 from healthbar import HealthBar
+from platform import Platform
 
 pygame.init()
 
@@ -23,6 +24,8 @@ testSprite = pygame.image.load("media/BaseSprite.png").convert()
 platformArray = pygame.sprite.Group()
 
 platformArray.add(level.ground)
+
+platformArray.add(Platform(screen, 300, 300, 500, 100))
 
 player1 = Player(testSprite, 100, 20, "Yes", "No", "Will", 200, 100, platformArray)
 player2 = Player(testSprite, 100, 20, "Yes", "No", "Jaccob Bonkley", 850, 100, platformArray)
@@ -77,19 +80,6 @@ while not done:
 
     player1.ychange += player1.gravity
     player2.ychange += player2.gravity
-
-    p1HitList = pygame.sprite.spritecollide(player1, platformArray, False)
-    p2HitList = pygame.sprite.spritecollide(player2, platformArray, False)
-
-    for platform in p1HitList:
-        player1.resetJump()
-        player1.y = platform.y - player1.height
-        player1.ychange = 0
-
-    for platform in p2HitList:
-        player2.resetJump()
-        player2.y = platform.y - player2.height
-        player2.ychange = 0
 
     player1.update(screen)
     player2.update(screen)
