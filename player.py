@@ -30,6 +30,14 @@ class Player(pygame.sprite.Sprite):
     def resetJump(self):
         self.jumpCount = 0
 
+    def LoseQuote(self):
+        text = (self.loseQuote, True, BLACK)
+        return text
+
+    def WinQuote(self):
+        text = (self.winQuote, True, BLACK)
+        return text
+
     def update(self, screen):
         screen.blit(self.sprite, [self.x, self.y])
         self.x += self.xchange
