@@ -28,4 +28,3 @@ class Attack():
             self.cooldown -= 1
         if self.cooldown == 0:
             self.cooldown += self.full_cooldown
-        self.player_x += 1
