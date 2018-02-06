@@ -33,7 +33,7 @@ player2 = Player(testSprite, 100, 20, "Yes", "No", "Jaccob Bonkley", 850, 100, p
 p1hpbar = HealthBar(screen, "topleft", player1.health)
 p2hpbar = HealthBar(screen, "topright", player2.health)
 
-ranged_attack = Attack(player1.x, player1.y, "ranged", 1, 5, 5, screen)
+ranged_attack = Attack(player1.x, player1.y, "ranged", 1, 0, 0, screen)
 
 pygame.display.set_caption("Lil' Shed's Get Good In™")
 
@@ -60,8 +60,6 @@ while not done:
                 pass  # player1.duck()
             elif event.key == pygame.K_e:
                 ranged_attack.ranged_attack()
-                print("yes")
-                print(ranged_attack.player_x, ranged_attack.player_y)
             elif event.key == pygame.K_UP:
                 player2.jump()
             elif event.key == pygame.K_LEFT:
