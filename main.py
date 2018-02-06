@@ -2,6 +2,7 @@ import pygame
 from player import Player
 from testLevel import TestLevel
 from attack import Attack
+from healthbar import HealthBar
 
 pygame.init()
 
@@ -19,20 +20,15 @@ level = TestLevel(screen)
 background_image = pygame.image.load(level.getBackImg()).convert()
 testSprite = pygame.image.load("media/BaseSprite.png").convert()
 
-<<<<<<< HEAD
-player1 = Player(testSprite, 100, 20, "Yes", "No", "Will", 200, 100)
-player2 = Player(testSprite, 100, 20, "Yes", "No", "Jaccob Bonkley", 850, 100)
-
-ranged_attack = Attack(player1.x, player1.y, "ranged", 1, 0, screen)
-
-=======
->>>>>>> 17f5372e98eeeb279aa10f5a1a7067e8abd004d6
 platformArray = pygame.sprite.Group()
 
 platformArray.add(level.ground)
 
 player1 = Player(testSprite, 100, 20, "Yes", "No", "Will", 200, 100, platformArray)
 player2 = Player(testSprite, 100, 20, "Yes", "No", "Jaccob Bonkley", 850, 100, platformArray)
+
+p1hpbar = HealthBar(screen, "topleft", player1.health)
+p2hpbar = HealthBar(screen, "topright", player2.health)
 
 ranged_attack = Attack(player1.x, player1.y, "ranged", 1, 5, screen)
 
@@ -97,6 +93,8 @@ while not done:
 
     player1.update(screen)
     player2.update(screen)
+    p1hpbar.update(50)
+    p2hpbar.update(100)
     ranged_attack.update()
     level.ground.update()
     clock.tick(60)
