@@ -47,3 +47,19 @@ class Player(pygame.sprite.Sprite):
         screen.blit(self.sprite, [self.x, self.y])
         self.rect.topleft = self.x, self.y
         self.hitList = pygame.sprite.spritecollide(self, self.platArray, False)
+        if self.hitList != []:
+            if self.xchange > 0:
+                self.resetJump()
+                self.xchange = 0
+            elif self.xchange < 0:
+                self.resetJump()
+                self.xchange = 0
+            if self.ychange > 0:
+                self.resetJump()
+                self.ychange = 0
+            elif self.ychange < 0:
+                self.resetJump()
+                self.ychange = 0
+        else:
+            self.x += self.xchange
+            self.y += self.ychange
