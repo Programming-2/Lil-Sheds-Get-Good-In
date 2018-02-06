@@ -20,7 +20,7 @@ class Player(pygame.sprite.Sprite):
         self.height = sprite.get_height()
         self.rect = pygame.Rect(self.x, self.y, self.width, self.height)
         self.jumpCount = 0
-        self.takenDamage
+        self.takenDamage = 0
 
     def jump(self):
         if self.jumpCount <= 1:
