@@ -1,5 +1,6 @@
 #Platform class
 import pygame
+import colors
 
 
 class Platform(pygame.sprite.Sprite):
@@ -16,3 +17,4 @@ class Platform(pygame.sprite.Sprite):
 
     def update(self):
         self.rect.topleft = self.x, self.y
+        pygame.draw.rect(self.screen, colors.colors.get("BLUE"), self.rect, 0)
