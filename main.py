@@ -23,6 +23,7 @@ player1 = Player(testSprite, 100, 20, "Yes", "No", "Will", 200, 100)
 player2 = Player(testSprite, 100, 20, "Yes", "No", "Jaccob Bonkley", 850, 100)
 
 ranged_attack = Attack("ranged", 1, 5)
+y = 0
 
 platformArray = pygame.sprite.Group()
 
@@ -73,8 +74,7 @@ while not done:
     screen.fill(WHITE)
     screen.blit(background_image, [0, 0])  # Jakob's mistake
 
-    y = 0
-    pygame.draw.rect(screen,[player1.x + y, player1.y], [5, 5], 0)
+    pygame.draw.rect(screen, RED, [player1.x + y, player1.y, 10, 10], 0)
     y += 1
 
     p1HitList = pygame.sprite.spritecollide(player1, platformArray, False)
