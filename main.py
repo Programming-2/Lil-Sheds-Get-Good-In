@@ -19,14 +19,14 @@ level = TestLevel(screen)
 background_image = pygame.image.load(level.getBackImg()).convert()
 testSprite = pygame.image.load("media/BaseSprite.png").convert()
 
-player1 = Player(testSprite, 100, 20, "Yes", "No", "Will", 200, 100)
-player2 = Player(testSprite, 100, 20, "Yes", "No", "Jaccob Bonkley", 850, 100)
-
-ranged_attack = Attack(player1.x, player1.y, "ranged", 1, 5, screen)
-
 platformArray = pygame.sprite.Group()
 
 platformArray.add(level.ground)
+
+player1 = Player(testSprite, 100, 20, "Yes", "No", "Will", 200, 100, platformArray)
+player2 = Player(testSprite, 100, 20, "Yes", "No", "Jaccob Bonkley", 850, 100, platformArray)
+
+ranged_attack = Attack(player1.x, player1.y, "ranged", 1, 5, screen)
 
 pygame.display.set_caption("Lil' Shed's Get Good In™")
 
