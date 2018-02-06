@@ -1,4 +1,5 @@
 import pygame
+import colors
 
 
 class Player(pygame.sprite.Sprite):
@@ -32,11 +33,11 @@ class Player(pygame.sprite.Sprite):
         self.jumpCount = 0
 
     def LoseQuote(self):
-        text = (self.loseQuote, True, BLACK)
+        text = (self.loseQuote, True, colors.colors.get("BLACK"))
         return text
 
     def WinQuote(self):
-        text = (self.winQuote, True, BLACK)
+        text = (self.winQuote, True, colors.colors.get("BLACK"))
         return text
 
     def takeDamage(self):
