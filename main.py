@@ -22,7 +22,7 @@ testSprite = pygame.image.load("media/BaseSprite.png").convert()
 player1 = Player(testSprite, 100, 20, "Yes", "No", "Will", 200, 100)
 player2 = Player(testSprite, 100, 20, "Yes", "No", "Jaccob Bonkley", 850, 100)
 
-ranged_attack = Attack(player1.x, player1.y, "ranged", 1, 5, screen)
+ranged_attack = Attack(player1.x, player1.y, "ranged", 1, 0, screen)
 
 platformArray = pygame.sprite.Group()
 
@@ -49,6 +49,8 @@ while not done:
                 player1.xchange = 5
             elif event.key == pygame.K_s:
                 pass  # player1.duck()
+            elif event.key == pygame.K_e:
+                ranged_attack.ranged_attack
             elif event.key == pygame.K_UP:
                 player2.jump()
             elif event.key == pygame.K_LEFT:
@@ -70,7 +72,6 @@ while not done:
     player1.ychange += player1.gravity
     player2.ychange += player2.gravity
 
-    screen.fill(WHITE)
     screen.blit(background_image, [0, 0])  # Jakob's mistake
 
     p1HitList = pygame.sprite.spritecollide(player1, platformArray, False)
@@ -88,6 +89,7 @@ while not done:
 
     player1.update(screen)
     player2.update(screen)
+    ranged_attack.update()
     level.ground.update()
     clock.tick(60)
     pygame.display.flip()
