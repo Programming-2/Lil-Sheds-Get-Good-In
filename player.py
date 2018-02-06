@@ -4,7 +4,7 @@ import colors
 
 class Player(pygame.sprite.Sprite):
 
-    def __init__(self, sprite, health, damage, winQuote, loseQuote, name, x, y):
+    def __init__(self, sprite, health, damage, winQuote, loseQuote, name, x, y, platArray):
         super().__init__()
         self.sprite = sprite
         self.health = health
@@ -14,6 +14,7 @@ class Player(pygame.sprite.Sprite):
         self.name = name
         self.x = x
         self.y = y
+        self.platArray = platArray
         self.xchange = 0
         self.ychange = 0
         self.gravity = 0.25
@@ -25,7 +26,6 @@ class Player(pygame.sprite.Sprite):
 
     def jump(self):
         if self.jumpCount <= 1:
-            self.y += 1
             self.ychange = -10
             self.jumpCount += 1
 
@@ -45,6 +45,5 @@ class Player(pygame.sprite.Sprite):
 
     def update(self, screen):
         screen.blit(self.sprite, [self.x, self.y])
-        self.x += self.xchange
-        self.y += self.ychange
         self.rect.topleft = self.x, self.y
+        self.hitList = pygame.sprite.spritecollide(self, self.platArray, False)
