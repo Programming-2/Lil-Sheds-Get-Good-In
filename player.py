@@ -26,7 +26,6 @@ class Player(pygame.sprite.Sprite):
 
     def jump(self):
         if self.jumpCount <= 1:
-            self.y += 1
             self.ychange = -10
             self.jumpCount += 1
 
@@ -48,4 +47,3 @@ class Player(pygame.sprite.Sprite):
         screen.blit(self.sprite, [self.x, self.y])
         self.rect.topleft = self.x, self.y
         self.hitList = pygame.sprite.spritecollide(self, self.platArray, False)
-        
