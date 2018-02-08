@@ -27,7 +27,7 @@ class Player(pygame.sprite.Sprite):
         self.ranged_attack = Attack(self.x, self.y, "ranged", 1, 0, 0, screen, testProjectile)
 
     def jump(self):
-        if self.jumpCount <= 1:
+        if self.jumpCount < 1:
             self.ychange = -10
             self.jumpCount += 1
 
@@ -50,16 +50,19 @@ class Player(pygame.sprite.Sprite):
             self.ychange += self.gravity
         else:
             self.ychange = 0
+            self.resetJump()
 
     def update(self, screen):
         self.hitList = pygame.sprite.spritecollide(self, self.platArray, False)
         for element in self.hitList:
             if self.xchange > 0:
-                self.resetJump()
                 self.rect.right = element.rect.left
+                if self.rect.left > element.rect.left:
+                    self.xchange = 0
             elif self.xchange < 0:
-                self.resetJump()
                 self.rect.left = element.rect.right
+                if self.rect.right < element.rect.right:
+                    self.xchange = 0
             if self.ychange > 0:
                 self.resetJump()
                 self.rect.bottom = element.rect.top
