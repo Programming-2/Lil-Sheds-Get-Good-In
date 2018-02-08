@@ -77,6 +77,10 @@ while not done:
             elif event.key == pygame.K_DOWN:
                 pass  # player2.unduck()
 
+    if player2.health <= 0:
+        player2.GoToSleepForAnExtendedPeriodOfTime()
+    if player1.health <= 0:
+        player1.GoToSleepForAnExtendedPeriodOfTime()
     player1.update(screen)
     player2.update(screen)
     timer.update(screen)
