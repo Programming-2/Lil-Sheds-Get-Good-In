@@ -26,8 +26,8 @@ platformArray = pygame.sprite.Group()
 
 platformArray.add(level.ground)
 
-player1 = Player(testSprite, 100, 20, "Yes", "No", "Will", 200, 100, platformArray)
-player2 = Player(testSprite, 100, 20, "Yes", "No", "Jaccob Bonkley", 850, 100, platformArray)
+player1 = Player(testSprite, 100, 20, "Yes", "No", "Will", 200, 100, platformArray, screen, testProjectile)
+player2 = Player(testSprite, 100, 20, "Yes", "No", "Jaccob Bonkley", 850, 100, platformArray, screen, testProjectile)
 
 p1hpbar = HealthBar(screen, "topleft", player1.health)
 p2hpbar = HealthBar(screen, "topright", player2.health)
@@ -56,7 +56,7 @@ while not done:
             elif event.key == pygame.K_s:
                 pass  # player1.duck()
             elif event.key == pygame.K_e:
-                ranged_attack.ranged_attack(screen)
+                player1.getAttack().ranged_attack(screen)
             elif event.key == pygame.K_UP:
                 player2.jump()
             elif event.key == pygame.K_LEFT:
@@ -82,7 +82,7 @@ while not done:
     player2.update(screen)
     p2hpbar.update(100)
     p1hpbar.update(50)
-    ranged_attack.update()
+    player1.getAttack().update()
     level.ground.update()
     clock.tick(60)
     pygame.display.flip()
