@@ -1,9 +1,7 @@
 import pygame
 from player import Player
 from testLevel import TestLevel
-from attack import Attack
 from healthbar import HealthBar
-from platform import Platform
 
 pygame.init()
 
@@ -76,7 +74,6 @@ while not done:
                 pass  # player1.unduck()
             elif event.key == pygame.K_DOWN:
                 pass  # player2.unduck()
-
 
     player1.update(screen)
     player2.update(screen)
