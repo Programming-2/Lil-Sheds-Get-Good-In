@@ -45,11 +45,13 @@ class Player(pygame.sprite.Sprite):
     def takeDamage(self):
         self.health -= self.takenDamage
 
+    def gravityUpdate(self):
+        if pygame.sprite.spritecollide(self, self.platArray, False) == []:
+            self.ychange += self.gravity
+        else:
+            self.ychange = 0
+
     def update(self, screen):
-        self.ychange += self.gravity
-        self.x += self.xchange
-        self.y += self.ychange
-        screen.blit(self.sprite, [self.x, self.y])
         self.hitList = pygame.sprite.spritecollide(self, self.platArray, False)
         for element in self.hitList:
             if self.xchange > 0:
@@ -61,13 +63,14 @@ class Player(pygame.sprite.Sprite):
             if self.ychange > 0:
                 self.resetJump()
                 self.rect.bottom = element.rect.top
-                self.ychange = 0
             elif self.ychange < 0:
                 self.resetJump()
                 self.rect.top = element.rect.bottom
-                self.ychange = 0
-
+        self.x += self.xchange
+        self.y += self.ychange
+        screen.blit(self.sprite, [self.x, self.y])
         self.rect.topleft = self.x, self.y
+        self.gravityUpdate()
 
         self.ranged_attack.updatePlayerCoords(self.x, self.y)
 
