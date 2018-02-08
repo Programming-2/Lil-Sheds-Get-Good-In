@@ -1,10 +1,11 @@
 import pygame
 import colors
+from attack import Attack
 
 
 class Player(pygame.sprite.Sprite):
 
-    def __init__(self, sprite, health, damage, winQuote, loseQuote, name, x, y, platArray):
+    def __init__(self, sprite, health, damage, winQuote, loseQuote, name, x, y, platArray, screen, testProjectile):
         super().__init__()
         self.sprite = sprite
         self.health = health
@@ -23,6 +24,7 @@ class Player(pygame.sprite.Sprite):
         self.rect = pygame.Rect(self.x, self.y, self.width, self.height)
         self.jumpCount = 0
         self.takenDamage = 0
+        self.ranged_attack = Attack(self.x, self.y, "ranged", 1, 0, 0, screen, testProjectile)
 
     def jump(self):
         if self.jumpCount <= 1:
@@ -66,3 +68,6 @@ class Player(pygame.sprite.Sprite):
         self.y += self.ychange
 
         self.rect.topleft = self.x, self.y
+
+    def getAttack(self):
+        return self.ranged_attack
