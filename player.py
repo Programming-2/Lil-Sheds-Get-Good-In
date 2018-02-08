@@ -46,6 +46,9 @@ class Player(pygame.sprite.Sprite):
         self.health -= self.takenDamage
 
     def update(self, screen):
+        self.ychange += self.gravity
+        self.x += self.xchange
+        self.y += self.ychange
         screen.blit(self.sprite, [self.x, self.y])
         self.hitList = pygame.sprite.spritecollide(self, self.platArray, False)
         for element in self.hitList:
@@ -57,15 +60,12 @@ class Player(pygame.sprite.Sprite):
                 self.rect.left = element.rect.right
             if self.ychange > 0:
                 self.resetJump()
-                self.ychange = 0
                 self.rect.bottom = element.rect.top
+                self.ychange = 0
             elif self.ychange < 0:
                 self.resetJump()
-                self.ychange = 0
                 self.rect.top = element.rect.bottom
-
-        self.x += self.xchange
-        self.y += self.ychange
+                self.ychange = 0
 
         self.rect.topleft = self.x, self.y
 
