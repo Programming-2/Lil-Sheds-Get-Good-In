@@ -6,6 +6,7 @@ from entity import Entity
 class Attack(Entity):
 
     def __init__(self, player_x, player_y, attack_name, damage, full_cooldown, cooldown, screen, image):
+        super().__init__(player_x, player_y, image)
         self.attack_name = attack_name
         self.damage = damage
         self.cooldown = cooldown
