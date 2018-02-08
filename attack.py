@@ -2,6 +2,7 @@ import pygame
 import colors
 from entity import Entity
 
+
 class Attack(Entity):
 
     def __init__(self, player_x, player_y, attack_name, damage, full_cooldown, cooldown, screen, image):

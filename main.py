@@ -20,6 +20,7 @@ level = TestLevel(screen)
 
 background_image = pygame.image.load(level.getBackImg()).convert()
 testSprite = pygame.image.load("media/BaseSprite.png").convert()
+testProjectile = pygame.image.load("media/projectileTest.png").convert()
 
 platformArray = pygame.sprite.Group()
 
@@ -31,7 +32,7 @@ player2 = Player(testSprite, 100, 20, "Yes", "No", "Jaccob Bonkley", 850, 100, p
 p1hpbar = HealthBar(screen, "topleft", player1.health)
 p2hpbar = HealthBar(screen, "topright", player2.health)
 
-ranged_attack = Attack(player1.x, player1.y, "ranged", 1, 0, 0, screen)
+ranged_attack = Attack(player1.x, player1.y, "ranged", 1, 0, 0, screen, testProjectile)
 
 pygame.display.set_caption("Lil' Shed's Get Good In™")
 
