@@ -65,15 +65,15 @@ class Player(pygame.sprite.Sprite):
                     self.xchange = 0
             if self.ychange > 0:
                 self.resetJump()
-                self.rect.bottom = element.rect.top
+                self.y = element.y - (self.height - 1)
             elif self.ychange < 0:
                 self.resetJump()
                 self.rect.top = element.rect.bottom
+        self.gravityUpdate()
         self.x += self.xchange
         self.y += self.ychange
         screen.blit(self.sprite, [self.x, self.y])
         self.rect.topleft = self.x, self.y
-        self.gravityUpdate()
 
         self.ranged_attack.updatePlayerCoords(self.x, self.y)
 
