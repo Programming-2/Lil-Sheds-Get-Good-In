@@ -2,6 +2,7 @@ import pygame
 from player import Player
 from testLevel import TestLevel
 from healthbar import HealthBar
+from timer import Timer
 
 pygame.init()
 
@@ -29,6 +30,7 @@ player2 = Player(testSprite, 100, 20, "Yes", "No", "Jaccob Bonkley", 850, 100, p
 
 p1hpbar = HealthBar(screen, "topleft", player1.health)
 p2hpbar = HealthBar(screen, "topright", player2.health)
+timer = Timer(30, screen)
 
 pygame.display.set_caption("Lil' Shed's Get Good In™")
 
@@ -77,6 +79,7 @@ while not done:
 
     player1.update(screen)
     player2.update(screen)
+    timer.update(screen)
     p2hpbar.update(player2.health)
     p1hpbar.update(player1.health)
     player1.getAttack().update()
