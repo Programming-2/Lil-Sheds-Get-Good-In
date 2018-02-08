@@ -6,11 +6,12 @@ from entity import Entity
 class Attack(Entity):
 
     def __init__(self, player_x, player_y, attack_name, damage, full_cooldown, cooldown, screen, image):
+        super().__init__(player_x, player_y, image)
         self.attack_name = attack_name
         self.damage = damage
         self.cooldown = cooldown
-        self.player_x = player_x
-        self.player_y = player_y
+        self.x = player_x
+        self.y = player_y
         self.screen = screen
         self.full_cooldown = full_cooldown
         self.image = image
@@ -31,3 +32,7 @@ class Attack(Entity):
             self.cooldown -= 1
         if self.cooldown == 0:
             self.cooldown += self.full_cooldown
+
+    def updatePlayerCoords(self, x, y):
+        self.x = x
+        self.y = y

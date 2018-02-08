@@ -69,5 +69,7 @@ class Player(pygame.sprite.Sprite):
 
         self.rect.topleft = self.x, self.y
 
+        self.ranged_attack.updatePlayerCoords(self.x, self.y)
+
     def getAttack(self):
         return self.ranged_attack

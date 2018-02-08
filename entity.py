@@ -3,7 +3,7 @@ import pygame
 
 class Entity(pygame.sprite.Sprite):
 
-    def __init__(startx, starty, image, self):
+    def __init__(self, startx, starty, image):
         self.x = startx
         self.y = starty
         self.changex = 0
@@ -14,6 +14,18 @@ class Entity(pygame.sprite.Sprite):
         self.x += self.changex
         self.y += self.changey
 
-    def render(screen, self):
-        print(self.x, self.y)
+    def render(self, screen):
+        print("draw")
         screen.blit(self.image, [self.x, self.y])
+
+    def getX(self):
+        return self.x
+
+    def getY(self):
+        return self.y
+
+    def setX(self, x):
+        self.x = x
+
+    def setY(self, y):
+        self.y = y
