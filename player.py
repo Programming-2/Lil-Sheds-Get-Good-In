@@ -57,12 +57,12 @@ class Player(pygame.sprite.Sprite):
                 self.xchange = 0
             if self.ychange > 0:
                 self.resetJump()
-                self.y -= self.ychange
                 self.ychange = 0
+                self.y = self.hitList[0].y - self.height
             elif self.ychange < 0:
                 self.resetJump()
-                self.y += self.ychange
                 self.ychange = 0
+                self.y = self.hitList[0].y - self.height
         else:
             self.x += self.xchange
             self.y += self.ychange
