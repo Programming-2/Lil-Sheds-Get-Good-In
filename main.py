@@ -91,11 +91,10 @@ while not done:
     #timer.update(screen)
     p2hpbar.update(player2.health)
     p1hpbar.update(player1.health)
-    player1.getAttack().update()
     level.ground.update()
 
     for e in attackUpdateList:
-        e.render()
+        e.render(screen)
         e.move()
 
     clock.tick(60)
