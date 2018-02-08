@@ -75,8 +75,6 @@ while not done:
             elif event.key == pygame.K_DOWN:
                 pass  # player2.unduck()
 
-    player1.ychange += player1.gravity
-    player2.ychange += player2.gravity
 
     player1.update(screen)
     player2.update(screen)
