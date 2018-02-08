@@ -79,3 +79,6 @@ class Player(pygame.sprite.Sprite):
 
     def getAttack(self):
         return self.ranged_attack
+
+    def GoToSleepForAnExtendedPeriodOfTime(self):
+        self.ychange = -5
