@@ -15,5 +15,17 @@ class Entity(pygame.sprite.Sprite):
         self.y += self.changey
 
     def render(self, screen):
-        print(self.x, self.y)
+        print("draw")
         screen.blit(self.image, [self.x, self.y])
+
+    def getX(self):
+        return self.x
+
+    def getY(self):
+        return self.y
+
+    def setX(self, x):
+        self.x = x
+
+    def setY(self, y):
+        self.y = y
