@@ -25,8 +25,6 @@ platformArray = pygame.sprite.Group()
 
 platformArray.add(level.ground)
 
-platformArray.add(Platform(screen, 300, 300, 500, 100))
-
 player1 = Player(testSprite, 100, 20, "Yes", "No", "Will", 200, 100, platformArray)
 player2 = Player(testSprite, 100, 20, "Yes", "No", "Jaccob Bonkley", 850, 100, platformArray)
 
