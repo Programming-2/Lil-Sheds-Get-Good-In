@@ -24,13 +24,10 @@ class Attack(Entity):
 
     def ranged_attack(self, screen):
         if self.cooldown == 0:
-            self.render(screen)
+            super().render(screen)
 
     def update(self):
         if self.cooldown > 0:
             self.cooldown -= 1
         if self.cooldown == 0:
             self.cooldown += self.full_cooldown
-
-    def render(self, screen):
-        screen.blit(self.image, [self.player_x, self.player_y])
