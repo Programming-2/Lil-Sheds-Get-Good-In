@@ -81,8 +81,8 @@ while not done:
 
     player1.update(screen)
     player2.update(screen)
-    p1hpbar.update(50)
     p2hpbar.update(100)
+    p1hpbar.update(50)
     ranged_attack.update()
     level.ground.update()
     clock.tick(60)
