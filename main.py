@@ -3,6 +3,7 @@ from player import Player
 from testLevel import TestLevel
 from healthbar import HealthBar
 from timer import Timer
+from handler import Handler
 
 pygame.init()
 
@@ -25,19 +26,23 @@ platformArray = pygame.sprite.Group()
 
 platformArray.add(level.ground)
 
-player1 = Player(testSprite, 100, 20, "Yes", "No", "Will", 200, 100, platformArray, screen, testProjectile)
-player2 = Player(testSprite, 100, 20, "Yes", "No", "Jaccob Bonkley", 850, 100, platformArray, screen, testProjectile)
-
-p1hpbar = HealthBar(screen, "topleft", player1.health)
-p2hpbar = HealthBar(screen, "topright", player2.health)
-timer = Timer(30, screen)
-
 pygame.display.set_caption("Lil' Shed's Get Good In™")
 
 clock = pygame.time.Clock()
 
 p1HitList = []
 p2HitList = []
+
+attackUpdateList = []
+
+handler = Handler(attackUpdateList)
+
+player1 = Player(testSprite, 100, 20, "Yes", "No", "Will", 200, 100, platformArray, handler)
+player2 = Player(testSprite, 100, 20, "Yes", "No", "Jaccob Bonkley", 850, 100, platformArray, handler)
+
+p1hpbar = HealthBar(screen, "topleft", player1.health)
+p2hpbar = HealthBar(screen, "topright", player2.health)
+timer = Timer(30, screen)
 
 done = False
 while not done:
@@ -57,7 +62,7 @@ while not done:
                 player1.health -= 10
                 pass  # player1.duck()
             elif event.key == pygame.K_e:
-                player1.getAttack().ranged_attack(screen)
+                player1.attack(testProjectile, screen)
             elif event.key == pygame.K_UP:
                 player2.jump()
             elif event.key == pygame.K_LEFT:
@@ -83,11 +88,16 @@ while not done:
         player1.GoToSleepForAnExtendedPeriodOfTime()
     player1.update(screen)
     player2.update(screen)
-    timer.update(screen)
+    #timer.update(screen)
     p2hpbar.update(player2.health)
     p1hpbar.update(player1.health)
     player1.getAttack().update()
     level.ground.update()
+
+    for e in attackUpdateList:
+        e.render()
+        e.move()
+
     clock.tick(60)
     pygame.display.flip()
 

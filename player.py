@@ -5,7 +5,7 @@ from attack import Attack
 
 class Player(pygame.sprite.Sprite):
 
-    def __init__(self, sprite, health, damage, winQuote, loseQuote, name, x, y, platArray, screen, testProjectile):
+    def __init__(self, sprite, health, damage, winQuote, loseQuote, name, x, y, platArray, handler):
         super().__init__()
         self.sprite = sprite
         self.health = health
@@ -24,7 +24,7 @@ class Player(pygame.sprite.Sprite):
         self.rect = pygame.Rect(self.x, self.y, self.width, self.height)
         self.jumpCount = 0
         self.takenDamage = 0
-        self.ranged_attack = Attack(self.x, self.y, "ranged", 1, 0, 0, screen, testProjectile)
+        self.handler = handler
 
     def jump(self):
         if self.jumpCount < 1:
@@ -75,10 +75,8 @@ class Player(pygame.sprite.Sprite):
         screen.blit(self.sprite, [self.x, self.y])
         self.rect.topleft = self.x, self.y
 
-        self.ranged_attack.updatePlayerCoords(self.x, self.y)
-
-    def getAttack(self):
-        return self.ranged_attack
+    def attack(self, image, screen):
+        self.handler.getAttackList().append(Attack(self.x, self.y, "ranged", 1, 0, 0, screen, image))
 
     def GoToSleepForAnExtendedPeriodOfTime(self):
         self.ychange = -5
