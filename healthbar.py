@@ -27,6 +27,8 @@ class HealthBar(pygame.sprite.Sprite):
 
     def update(self, currenthp):
         pygame.draw.rect(self.screen, self.BLACK, self.borderrect)
+        if currenthp < 0:
+            currenthp = 0
         pct = currenthp / self.health
         pygame.draw.rect(self.screen, self.RED, self.rect)
         self.rect.width = self.width * pct
