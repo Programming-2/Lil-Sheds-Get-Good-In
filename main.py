@@ -54,6 +54,7 @@ while not done:
             elif event.key == pygame.K_d:
                 player1.xchange = 5
             elif event.key == pygame.K_s:
+                player1.health -= 10
                 pass  # player1.duck()
             elif event.key == pygame.K_e:
                 player1.getAttack().ranged_attack(screen)
@@ -64,6 +65,7 @@ while not done:
             elif event.key == pygame.K_RIGHT:
                 player2.xchange = 5
             elif event.key == pygame.K_DOWN:
+                player2.health -= 10
                 pass  # player2.duck()
         elif event.type == pygame.KEYUP:
             if event.key == pygame.K_a or event.key == pygame.K_d:
@@ -78,8 +80,8 @@ while not done:
 
     player1.update(screen)
     player2.update(screen)
-    p2hpbar.update(100)
-    p1hpbar.update(50)
+    p2hpbar.update(player2.health)
+    p1hpbar.update(player1.health)
     player1.getAttack().update()
     level.ground.update()
     clock.tick(60)
