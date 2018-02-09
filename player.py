@@ -75,6 +75,20 @@ class Player(pygame.sprite.Sprite):
         screen.blit(self.sprite, [self.x, self.y])
         self.rect.topleft = self.x, self.y
 
+    def checkEntityCollision(self):
+        return False
+
+    def checkPlatformCollision(self):
+        return False
+
+    def moveX(self):
+        if self.xchange > 0: #Moving right
+            if not(self.checkPlatformCollision()):
+                self.x += self.xchange
+
+    def moveY(self):
+        pass
+
     def attack(self, image, screen):
         self.handler.getAttackList().append(Attack(self.x, self.y, "ranged", 1, 0, 0, screen, image))
 
