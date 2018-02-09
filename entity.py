@@ -6,7 +6,7 @@ class Entity(pygame.sprite.Sprite):
     def __init__(self, startx, starty, image):
         self.x = startx
         self.y = starty
-        self.changex = 0
+        self.changex = 10
         self.changey = 0
         self.image = image
 
