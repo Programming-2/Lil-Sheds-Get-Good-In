@@ -83,9 +83,9 @@ while not done:
                 pass  # player2.unduck()
 
     if player2.health <= 0:
-        player2.GoToSleepForAnExtendedPeriodOfTime()
+        player2.goToSleepForAnExtendedPeriodOfTime()
     if player1.health <= 0:
-        player1.GoToSleepForAnExtendedPeriodOfTime()
+        player1.goToSleepForAnExtendedPeriodOfTime()
     player1.update(screen)
     player2.update(screen)
     timer.update(screen)
