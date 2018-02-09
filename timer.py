@@ -12,8 +12,8 @@ class Timer:
         self.screensize = screen.get_size()
 
     def update(self, screen):
-        #if self.clock.tick_busy_loop() == 1000:
-            #self.current_time -= 1
+        if pygame.time.get_ticks() % 60 == 0:
+            self.current_time -= 1
 
-        text = self.font.render(self.current_time, False, colors.colors.get("BLACK"))
+        text = self.font.render(str(self.current_time), False, colors.colors.get("BLACK"))
         screen.blit(text, (self.screensize[0] / 2, 100))

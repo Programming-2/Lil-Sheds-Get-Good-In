@@ -88,7 +88,7 @@ while not done:
         player1.GoToSleepForAnExtendedPeriodOfTime()
     player1.update(screen)
     player2.update(screen)
-    #timer.update(screen)
+    timer.update(screen)
     p2hpbar.update(player2.health)
     p1hpbar.update(player1.health)
     level.ground.update()
