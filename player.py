@@ -27,7 +27,7 @@ class Player(pygame.sprite.Sprite):
         self.handler = handler
 
     def jump(self):
-        if self.jumpCount < 1:
+        if self.jumpCount < 100:
             self.ychange = -10
             self.jumpCount += 1
 
@@ -46,32 +46,16 @@ class Player(pygame.sprite.Sprite):
         self.health -= self.takenDamage
 
     def gravityUpdate(self):
-        if pygame.sprite.spritecollide(self, self.platArray, False) == []:
+        if not(self.checkPlatformCollision()):
             self.ychange += self.gravity
         else:
             self.ychange = 0
             self.resetJump()
 
     def update(self, screen):
-        self.hitList = pygame.sprite.spritecollide(self, self.platArray, False)
-        for element in self.hitList:
-            if self.xchange > 0:
-                self.rect.right = element.rect.left
-                if self.rect.left > element.rect.left:
-                    self.xchange = 0
-            elif self.xchange < 0:
-                self.rect.left = element.rect.right
-                if self.rect.right < element.rect.right:
-                    self.xchange = 0
-            if self.ychange > 0:
-                self.resetJump()
-                self.y = element.y - (self.height - 1)
-            elif self.ychange < 0:
-                self.resetJump()
-                self.rect.top = element.rect.bottom
         self.gravityUpdate()
-        self.x += self.xchange
-        self.y += self.ychange
+        self.moveX()
+        self.moveY()
         screen.blit(self.sprite, [self.x, self.y])
         self.rect.topleft = self.x, self.y
 
@@ -79,16 +63,32 @@ class Player(pygame.sprite.Sprite):
         return False
 
     def checkPlatformCollision(self):
-        return False
+        return pygame.sprite.spritecollide(self, self.platArray, False) != []
 
     def moveX(self):
         if self.xchange > 0: #Moving right
             if not(self.checkPlatformCollision()):
                 self.x += self.xchange
+            else:
+                pass
+        elif self.xchange < 0: #Moving left:
+            if not(self.checkPlatformCollision()):
+                self.x += self.xchange
+            else:
+                pass
 
     def moveY(self):
-        pass
-
+        if self.ychange > 0: #Moving down
+            if not(self.checkPlatformCollision()):
+                self.y += self.ychange
+            else:
+                self.y = pygame.sprite.spritecollide(self, self.platArray, False)[0].y - self.height
+                print(1)
+        elif self.ychange < 0: #Moving up
+            if not(self.checkPlatformCollision()):
+                self.y += self.ychange
+            else:
+                pass
     def attack(self, image, screen):
         self.handler.getAttackList().append(Attack(self.x, self.y, "ranged", 1, 0, 0, screen, image))
 
