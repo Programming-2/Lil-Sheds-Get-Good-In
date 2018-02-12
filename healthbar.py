@@ -4,6 +4,8 @@ import pygame
 class HealthBar(pygame.sprite.Sprite):
     BLACK = (0, 0, 0)
     RED = (255, 0, 0)
+    GREEN = (0, 255, 0)
+    YELLOW = (255, 255, 0)
 
     def __init__(self, screen, position, health):
         super().__init__()
@@ -30,5 +32,10 @@ class HealthBar(pygame.sprite.Sprite):
         if currenthp < 0:
             currenthp = 0
         pct = currenthp / self.health
-        pygame.draw.rect(self.screen, self.RED, self.rect)
+        if currenthp >= 70:
+            pygame.draw.rect(self.screen, self.GREEN, self.rect)
+        if currenthp >= 30 and currenthp <= 69:
+            pygame.draw.rect(self.screen, self.YELLOW, self.rect)
+        if currenthp <= 29:
+            pygame.draw.rect(self.screen, self.RED, self.rect)
         self.rect.width = self.width * pct
