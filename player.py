@@ -102,15 +102,10 @@ class Player(pygame.sprite.Sprite):
 
     def goToSleepForAnExtendedPeriodOfTime(self):
         self.ychange = -5
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
 
     def getX(self):
         return self.x
 
     def getY(self):
         return self.y
->>>>>>> b9c48e05b60344622dbc743c6d86a37b4a442135
->>>>>>> 1809814452773c297aef6a24caaa34dd7fc522ca
+
