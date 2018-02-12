@@ -71,6 +71,8 @@ while not done:
                 player2.xchange = 5
             elif event.key == pygame.K_DOWN:
                 player2.health -= 10
+            elif event.key == pygame.K_KP0:
+                player2.attack(testProjectile, screen)
                 pass  # player2.duck()
         elif event.type == pygame.KEYUP:
             if event.key == pygame.K_a or event.key == pygame.K_d:
