@@ -53,9 +53,9 @@ class Player(pygame.sprite.Sprite):
             self.resetJump()
 
     def update(self, screen):
-        self.gravityUpdate()
         self.moveX()
         self.moveY()
+        self.gravityUpdate()
         screen.blit(self.sprite, [self.x, self.y])
         self.rect.topleft = self.x, self.y
 
@@ -83,7 +83,6 @@ class Player(pygame.sprite.Sprite):
                 self.y += self.ychange
             else:
                 self.y = pygame.sprite.spritecollide(self, self.platArray, False)[0].y - self.height
-                print(1)
         elif self.ychange < 0: #Moving up
             if not(self.checkPlatformCollision()):
                 self.y += self.ychange
