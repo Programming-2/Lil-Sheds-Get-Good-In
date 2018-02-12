@@ -4,11 +4,13 @@ import pygame
 class Entity(pygame.sprite.Sprite):
 
     def __init__(self, startx, starty, image):
+        super().__init__()
         self.x = startx
         self.y = starty
         self.changex = 10
         self.changey = 0
         self.image = image
+        self.rect = pygame.Rect(image.get_rect())
 
     def move(self):
         self.x += self.changex

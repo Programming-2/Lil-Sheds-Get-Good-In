@@ -4,6 +4,7 @@ from testLevel import TestLevel
 from healthbar import HealthBar
 from timer import Timer
 from handler import Handler
+from attack import Attack
 
 pygame.init()
 
@@ -33,12 +34,17 @@ clock = pygame.time.Clock()
 p1HitList = []
 p2HitList = []
 
-attackUpdateList = []
+attackUpdateList = pygame.sprite.Group()
 
 handler = Handler(attackUpdateList)
 
 player1 = Player(testSprite, 100, 20, "Yes", "No", "Will", 200, 100, platformArray, handler)
 player2 = Player(testSprite, 100, 20, "Yes", "No", "Jaccob Bonkley", 850, 100, platformArray, handler)
+
+handler.setPlayer1(player1)
+handler.setPlayer2(player2)
+
+attack = Attack(player1.x, player1.y, "melee", 5, 2, 2, screen, 0, 10)
 
 p1hpbar = HealthBar(screen, "topleft", player1.health)
 p2hpbar = HealthBar(screen, "topright", player2.health)
@@ -61,6 +67,8 @@ while not done:
             elif event.key == pygame.K_s:
                 player1.health -= 10
                 pass  # player1.duck()
+            elif event.key == pygame.K_r:
+                attack.melee_attack()
             elif event.key == pygame.K_e:
                 player1.attack(testProjectile, screen)
             elif event.key == pygame.K_UP:
@@ -91,13 +99,16 @@ while not done:
     player1.update(screen)
     player2.update(screen)
     timer.update(screen)
-    p2hpbar.update(player2.health)
     p1hpbar.update(player1.health)
+    p2hpbar.update(player2.health)
     level.ground.update()
 
     for e in attackUpdateList:
         e.render(screen)
         e.move()
+
+    pygame.sprite.spritecollide(player1, attackUpdateList, True)
+    pygame.sprite.spritecollide(player2, attackUpdateList, True)
 
     clock.tick(60)
     pygame.display.flip()

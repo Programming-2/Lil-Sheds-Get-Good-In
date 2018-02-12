@@ -42,7 +42,7 @@ class Player(pygame.sprite.Sprite):
         text = (self.winQuote, True, colors.colors.get("BLACK"))
         return text
 
-    def takeDamage(self):
+    def takeDamage(self, takenDamage):
         self.health -= self.takenDamage
 
     def gravityUpdate(self):
@@ -98,7 +98,19 @@ class Player(pygame.sprite.Sprite):
                 self.y += 1
         self.y -= tempYChange
     def attack(self, image, screen):
-        self.handler.getAttackList().append(Attack(self.x, self.y, "ranged", 1, 0, 0, screen, image))
+        self.handler.getAttackList().add(Attack(self.x, self.y, "ranged", 1, 0, 0, screen, image))
 
     def goToSleepForAnExtendedPeriodOfTime(self):
         self.ychange = -5
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+
+    def getX(self):
+        return self.x
+
+    def getY(self):
+        return self.y
+>>>>>>> b9c48e05b60344622dbc743c6d86a37b4a442135
+>>>>>>> 1809814452773c297aef6a24caaa34dd7fc522ca
