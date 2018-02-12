@@ -33,7 +33,7 @@ clock = pygame.time.Clock()
 p1HitList = []
 p2HitList = []
 
-attackUpdateList = []
+attackUpdateList = pygame.sprite.Group()
 
 handler = Handler(attackUpdateList)
 
@@ -91,13 +91,16 @@ while not done:
     player1.update(screen)
     player2.update(screen)
     timer.update(screen)
-    p2hpbar.update(player2.health)
     p1hpbar.update(player1.health)
+    p2hpbar.update(player2.health)
     level.ground.update()
 
     for e in attackUpdateList:
         e.render(screen)
         e.move()
+
+    pygame.sprite.spritecollide(player1, attackUpdateList, True)
+    pygame.sprite.spritecollide(player2, attackUpdateList, True)
 
     clock.tick(60)
     pygame.display.flip()

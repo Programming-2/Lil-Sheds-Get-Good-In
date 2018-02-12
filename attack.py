@@ -15,6 +15,7 @@ class Attack(Entity):
         self.screen = screen
         self.full_cooldown = full_cooldown
         self.image = image
+        self.rect = pygame.Rect(image.get_rect())
         #self.range = range
         #self.sound = sound
 
