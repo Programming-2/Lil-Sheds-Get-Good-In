@@ -42,7 +42,7 @@ class Player(pygame.sprite.Sprite):
         text = (self.winQuote, True, colors.colors.get("BLACK"))
         return text
 
-    def takeDamage(self):
+    def takeDamage(self, takenDamage):
         self.health -= self.takenDamage
 
     def gravityUpdate(self):
@@ -93,3 +93,9 @@ class Player(pygame.sprite.Sprite):
 
     def goToSleepForAnExtendedPeriodOfTime(self):
         self.ychange = -5
+
+    def getX(self):
+        return self.x
+
+    def getY(self):
+        return self.y
