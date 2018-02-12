@@ -12,7 +12,7 @@ class Timer:
         self.screensize = screen.get_size()
 
     def update(self, screen):
-        if pygame.time.get_ticks() % 60 == 0:
+        if pygame.time.get_ticks() % 60 == 0 and self.current_time >= 1:
             self.current_time -= 1
 
         text = self.font.render(str(self.current_time), False, colors.colors.get("BLACK"))
