@@ -88,7 +88,7 @@ class Player(pygame.sprite.Sprite):
             self.resetJump()
 
     def attack(self, image, screen):
-        self.handler.getAttackList().add(Attack(self.x, self.y, "ranged", 1, 0, 0, screen, image, 20))
+        self.handler.getAttackList().add(Attack(self.x, self.y, "ranged", 1, 0, 0, screen, image))
 
     def goToSleepForAnExtendedPeriodOfTime(self):
         self.ychange = -5
