@@ -10,11 +10,14 @@ class Entity(pygame.sprite.Sprite):
         self.changex = 10
         self.changey = 0
         self.image = image
-        self.rect = pygame.Rect(image.get_rect())
+        self.image_width = image.get_size()[0]
+        self.image_height = image.get_size()[1]
+        self.rect = pygame.Rect(self.x, self.y, self.image_width, self.image_height)
 
     def move(self):
         self.x += self.changex
         self.y += self.changey
+        self.rect = pygame.Rect(self.x, self.y, self.image_width, self.image_height)
 
     def render(self, screen):
         screen.blit(self.image, [self.x, self.y])

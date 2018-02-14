@@ -3,7 +3,6 @@ import colors
 from entity import Entity
 
 
-
 class Attack(Entity):
 
     def __init__(self, player_x, player_y, attack_name, damage, full_cooldown, cooldown, screen, image, range, handler):
@@ -16,7 +15,7 @@ class Attack(Entity):
         self.screen = screen
         self.full_cooldown = full_cooldown
         self.image = image
-        self.rect = pygame.Rect(image.get_rect())
+        #self.rect = pygame.Rect(image.get_rect())
         self.range = range
         self.handler = handler
         #self.sound = sound
