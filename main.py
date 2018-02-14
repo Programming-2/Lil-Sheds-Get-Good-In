@@ -46,7 +46,7 @@ player2 = Player(100, 20, "Yes", "No", "Jaccob Bonkley", 850, 100, platformArray
 handler.setPlayer1(player1)
 handler.setPlayer2(player2)
 
-attack = Attack(player1.x, player1.y, "melee", 5, 2, 2, screen, testProjectile, 100, handler)
+attack = Attack(player1.x, player1.y, 10, "melee", 5, 2, 2, screen, testProjectile, 100, handler)
 
 p1hpbar = HealthBar(screen, "topleft", player1.health)
 p2hpbar = HealthBar(screen, "topright", player2.health)
