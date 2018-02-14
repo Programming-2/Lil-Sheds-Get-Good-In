@@ -36,6 +36,11 @@ class HealthBar(pygame.sprite.Sprite):
             pygame.draw.rect(self.screen, self.GREEN, self.rect)
         if currenthp >= 30 and currenthp <= 69:
             pygame.draw.rect(self.screen, self.YELLOW, self.rect)
-        if currenthp <= 29:
+        if currenthp < 30:
             pygame.draw.rect(self.screen, self.RED, self.rect)
-        self.rect.width = self.width * pct
+        if self.position == "topleft":
+            self.rect.width = self.width * pct
+        if self.position == "topright":
+            self.rect.width = self.width * pct
+            self.rect.x = (self.screensize[0] - 10) - self.rect.width
+            print(self.x)
