@@ -82,10 +82,7 @@ while not done:
             elif event.key == pygame.K_RIGHT:
                 player2.xchange = 5
             elif event.key == pygame.K_DOWN:
-<<<<<<< HEAD
                 pass
-=======
->>>>>>> 3cf391325dd82e967d0b52eac5c78bed4ddba971
             elif event.key == pygame.K_KP0:
                 player2.attack(testProjectile, screen)
                 pass  # player2.duck()
