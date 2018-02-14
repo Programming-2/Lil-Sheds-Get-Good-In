@@ -90,12 +90,7 @@ class Player(pygame.sprite.Sprite):
             self.ychange = 0
 
     def attack(self, image, screen):
-<<<<<<< HEAD
         self.handler.getAttackList().add(Attack(self.x + self.width, self.y, "ranged", 1, 0, 0, screen, image, 20, self.handler))
-=======
-        self.handler.getAttackList().add(Attack(self.x, self.y, "ranged", 1, 0, 0, screen, image, 20, self.handler))
-        self.handler.getAttackList().add(Attack(self.x, self.y, "ranged", 1, 0, 0, screen, image, 20, self.handler))
->>>>>>> 94171846dd827c8429814bce9cd5ff943db83ea2
 
     def goToSleepForAnExtendedPeriodOfTime(self):
         self.ychange = -5
