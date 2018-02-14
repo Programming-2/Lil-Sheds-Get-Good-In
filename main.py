@@ -5,6 +5,7 @@ from healthbar import HealthBar
 from timer import Timer
 from handler import Handler
 from attack import Attack
+from platform import Platform
 
 pygame.init()
 
@@ -26,6 +27,8 @@ testProjectile = pygame.image.load("media/projectileTest.png").convert()
 platformArray = pygame.sprite.Group()
 
 platformArray.add(level.ground)
+platformArray.add(Platform(screen, 50, 200, 50, 350))
+platformArray.add(Platform(screen, 1000, 200, 50, 350))
 
 pygame.display.set_caption("Lil' Shed's Get Good In™")
 
@@ -101,7 +104,7 @@ while not done:
     timer.update(screen)
     p1hpbar.update(player1.health)
     p2hpbar.update(player2.health)
-    level.ground.update()
+    platformArray.update()
 
     for e in attackUpdateList:
         e.render(screen)
