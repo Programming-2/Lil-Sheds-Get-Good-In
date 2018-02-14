@@ -51,7 +51,7 @@ attack = Attack(player1.x, player1.y, "melee", 5, 2, 2, screen, testProjectile, 
 
 p1hpbar = HealthBar(screen, "topleft", player1.health)
 p2hpbar = HealthBar(screen, "topright", player2.health)
-timer = Timer(30, screen)
+timer = Timer(300, screen)
 
 done = False
 while not done:
@@ -100,6 +100,8 @@ while not done:
         player2.goToSleepForAnExtendedPeriodOfTime()
     if player1.health <= 0:
         player1.goToSleepForAnExtendedPeriodOfTime()
+    if timer.current_time < 1:
+        platformArray.remove(level.ground)
     player1.update(screen)
     player2.update(screen)
     timer.update(screen)
