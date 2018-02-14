@@ -31,7 +31,7 @@ class Attack(Entity):
             super().render(screen)
 
     def melee_attack(self):
-        if self.handler.getPlayer1().getX() - self.handler.getPlayer2().getX() <= self.range or self.handler.getPlayer1().getY() - self.handler.getPlayer2().GetY() <= self.range:
+        if self.handler.getPlayer1().getX() - self.handler.getPlayer2().getX() <= self.range and self.handler.getPlayer1().getY() - self.handler.getPlayer2().getY() <= self.range:
             self.handler.getPlayer2().takeDamage(self.damage)
 
     def update(self):
