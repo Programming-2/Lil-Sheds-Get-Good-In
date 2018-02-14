@@ -115,9 +115,10 @@ while not done:
     for e in attackUpdateList:
         e.render(screen)
         e.move()
-
-    pygame.sprite.spritecollide(player1, attackUpdateList, True)
-    pygame.sprite.spritecollide(player2, attackUpdateList, True)
+    if pygame.sprite.spritecollide(player1, attackUpdateList, True):
+        player1.takeDamage(player2.damage)
+    if pygame.sprite.spritecollide(player2, attackUpdateList, True):
+        player2.takeDamage(player1.damage)
 
     clock.tick(60)
     pygame.display.flip()
