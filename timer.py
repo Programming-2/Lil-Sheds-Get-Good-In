@@ -18,5 +18,9 @@ class Timer:
             self.current_time -= 1
             print(self.frame_count)
 
-        text = self.font.render(str(self.current_time), False, colors.colors.get("BLACK"))
-        screen.blit(text, (self.screensize[0] / 2, 100))
+        if self.current_time > 10:
+            text = self.font.render(str(self.current_time), False, colors.colors.get("BLACK"))
+            screen.blit(text, (self.screensize[0] / 2, 100))
+        if self.current_time <= 10:
+            text = self.font.render(str(self.current_time), False, colors.colors.get("RED"))
+            screen.blit(text, (self.screensize[0] / 2, 100))

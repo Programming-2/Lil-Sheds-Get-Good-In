@@ -43,7 +43,7 @@ class Player(pygame.sprite.Sprite):
         return text
 
     def takeDamage(self, takenDamage):
-        self.health -= self.takenDamage
+        self.health -= takenDamage
 
     def gravityUpdate(self):
         if self.ychange == 0:
@@ -69,9 +69,10 @@ class Player(pygame.sprite.Sprite):
         platList = pygame.sprite.spritecollide(self, self.platArray, False)
         for platform in platList:
             if self.xchange > 0 and self.rect.right < platform.rect.right:  # Moving right and left of platform
-                self.x = platform.rect.left - self.width
+                self.rect.right = platform.rect.left
             elif self.xchange < 0 and self.rect.left > platform.rect.left:  # Moving left and right of platform
-                self.x = platform.rect.right
+                self.rect.left = platform.rect.right
+            self.x = self.rect.x
             self.xchange = 0
 
     def moveY(self):
@@ -79,16 +80,22 @@ class Player(pygame.sprite.Sprite):
         self.rect.y = self.y
         platList = pygame.sprite.spritecollide(self, self.platArray, False)
         for platform in platList:
-            if self.ychange > 0 and self.rect.bottom < platform.rect.bottom :  # Moving down and over platform
+            if self.ychange > 0 and self.rect.bottom < platform.rect.bottom:  # Moving down and over platform
                 self.rect.bottom = platform.rect.top
+                self.resetJump()
             elif self.ychange < 0 and self.rect.top > platform.rect.top:  # Moving up and under platform
                 self.rect.top = platform.rect.bottom
+                self.resetJump()
             self.y = self.rect.y
             self.ychange = 0
-            self.resetJump()
 
     def attack(self, image, screen):
+<<<<<<< HEAD
         self.handler.getAttackList().add(Attack(self.x + self.width, self.y, "ranged", 1, 0, 0, screen, image, 20, self.handler))
+=======
+        self.handler.getAttackList().add(Attack(self.x, self.y, "ranged", 1, 0, 0, screen, image, 20, self.handler))
+        self.handler.getAttackList().add(Attack(self.x, self.y, "ranged", 1, 0, 0, screen, image, 20, self.handler))
+>>>>>>> 94171846dd827c8429814bce9cd5ff943db83ea2
 
     def goToSleepForAnExtendedPeriodOfTime(self):
         self.ychange = -5

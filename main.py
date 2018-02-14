@@ -5,6 +5,7 @@ from healthbar import HealthBar
 from timer import Timer
 from handler import Handler
 from attack import Attack
+from platform import Platform
 
 pygame.init()
 
@@ -26,6 +27,8 @@ testProjectile = pygame.image.load("media/projectileTest.png").convert()
 platformArray = pygame.sprite.Group()
 
 platformArray.add(level.ground)
+platformArray.add(Platform(screen, 50, 200, 50, 350))
+platformArray.add(Platform(screen, 1000, 200, 50, 350))
 
 pygame.display.set_caption("Lil' Shed's Get Good In™")
 
@@ -44,11 +47,11 @@ player2 = Player(testSprite, 100, 20, "Yes", "No", "Jaccob Bonkley", 850, 100, p
 handler.setPlayer1(player1)
 handler.setPlayer2(player2)
 
-attack = Attack(player1.x, player1.y, "melee", 5, 2, 2, screen, testProjectile, 10, handler)
+attack = Attack(player1.x, player1.y, "melee", 5, 2, 2, screen, testProjectile, 100, handler)
 
 p1hpbar = HealthBar(screen, "topleft", player1.health)
 p2hpbar = HealthBar(screen, "topright", player2.health)
-timer = Timer(30, screen)
+timer = Timer(300, screen)
 
 done = False
 while not done:
@@ -65,10 +68,11 @@ while not done:
             elif event.key == pygame.K_d:
                 player1.xchange = 5
             elif event.key == pygame.K_s:
-                player1.health -= 10
                 pass  # player1.duck()
             elif event.key == pygame.K_r:
-                attack.melee_attack()
+                attack.p1_melee_attack()
+            elif event.key == pygame.K_RCTRL:
+                attack.p2_melee_attack()
             elif event.key == pygame.K_e:
                 player1.attack(testProjectile, screen)
             elif event.key == pygame.K_UP:
@@ -78,7 +82,7 @@ while not done:
             elif event.key == pygame.K_RIGHT:
                 player2.xchange = 5
             elif event.key == pygame.K_DOWN:
-                player2.health -= 10
+                pass
             elif event.key == pygame.K_KP0:
                 player2.attack(testProjectile, screen)
                 pass  # player2.duck()
@@ -96,12 +100,17 @@ while not done:
         player2.goToSleepForAnExtendedPeriodOfTime()
     if player1.health <= 0:
         player1.goToSleepForAnExtendedPeriodOfTime()
+    if timer.current_time < 1:
+        platformArray.remove(level.ground)
     player1.update(screen)
     player2.update(screen)
     timer.update(screen)
     p1hpbar.update(player1.health)
     p2hpbar.update(player2.health)
+    platformArray.update()
     level.ground.update()
+    handler.setPlayer1(player1)
+    handler.setPlayer2(player2)
 
     for e in attackUpdateList:
         e.render(screen)
