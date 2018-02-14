@@ -3,11 +3,11 @@ import pygame
 
 class Entity(pygame.sprite.Sprite):
 
-    def __init__(self, startx, starty, image):
+    def __init__(self, startx, starty, changex, image):
         super().__init__()
         self.x = startx
         self.y = starty
-        self.changex = 10
+        self.changex = changex
         self.changey = 0
         self.image = image
         self.image_width = image.get_size()[0]
@@ -33,3 +33,6 @@ class Entity(pygame.sprite.Sprite):
 
     def setY(self, y):
         self.y = y
+
+    def setChangeX(self, x):
+        self.changex = x
