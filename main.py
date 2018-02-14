@@ -21,7 +21,6 @@ pygame.display.set_caption("Test Game")
 level = TestLevel(screen)
 
 background_image = pygame.image.load(level.getBackImg()).convert()
-testSprite = pygame.image.load("media/BaseSprite.png").convert()
 testProjectile = pygame.image.load("media/projectileTest.png").convert()
 
 platformArray = pygame.sprite.Group()
@@ -41,8 +40,8 @@ attackUpdateList = pygame.sprite.Group()
 
 handler = Handler(attackUpdateList)
 
-player1 = Player(testSprite, 100, 20, "Yes", "No", "Will", 200, 100, platformArray, handler)
-player2 = Player(testSprite, 100, 20, "Yes", "No", "Jaccob Bonkley", 850, 100, platformArray, handler)
+player1 = Player(100, 20, "Yes", "No", "Will", 200, 100, platformArray, handler)
+player2 = Player(100, 20, "Yes", "No", "Jaccob Bonkley", 850, 100, platformArray, handler)
 
 handler.setPlayer1(player1)
 handler.setPlayer2(player2)
@@ -68,7 +67,7 @@ while not done:
             elif event.key == pygame.K_d:
                 player1.xchange = 5
             elif event.key == pygame.K_s:
-                pass  # player1.duck()
+                player1.duck()
             elif event.key == pygame.K_r:
                 attack.p1_melee_attack()
             elif event.key == pygame.K_RCTRL:
@@ -82,19 +81,18 @@ while not done:
             elif event.key == pygame.K_RIGHT:
                 player2.xchange = 5
             elif event.key == pygame.K_DOWN:
-                pass
+                player2.duck()
             elif event.key == pygame.K_KP0:
                 player2.attack(testProjectile, screen)
-                pass  # player2.duck()
         elif event.type == pygame.KEYUP:
             if event.key == pygame.K_a or event.key == pygame.K_d:
                 player1.xchange = 0
             elif event.key == pygame.K_LEFT or event.key == pygame.K_RIGHT:
                 player2.xchange = 0
             elif event.key == pygame.K_s:
-                pass  # player1.unduck()
+                player1.unduck()
             elif event.key == pygame.K_DOWN:
-                pass  # player2.unduck()
+                player2.unduck()
 
     if player2.health <= 0:
         player2.goToSleepForAnExtendedPeriodOfTime()

@@ -5,9 +5,11 @@ from attack import Attack
 
 class Player(pygame.sprite.Sprite):
 
-    def __init__(self, sprite, health, damage, winQuote, loseQuote, name, x, y, platArray, handler):
+    def __init__(self, health, damage, winQuote, loseQuote, name, x, y, platArray, handler):
         super().__init__()
-        self.sprite = sprite
+        self.duckSprite = pygame.image.load("media/TestCrouchSprite.png").convert()
+        self.stanSprite = pygame.image.load("media/BaseSprite.png").convert()
+        self.sprite = self.stanSprite
         self.health = health
         self.damage = damage
         self.winQuote = winQuote
@@ -19,8 +21,8 @@ class Player(pygame.sprite.Sprite):
         self.xchange = 0
         self.ychange = 0
         self.gravity = 0.25
-        self.width = sprite.get_width()
-        self.height = sprite.get_height()
+        self.width = self.sprite.get_width()
+        self.height = self.sprite.get_height()
         self.rect = pygame.Rect(self.x, self.y, self.width, self.height)
         self.jumpCount = 0
         self.takenDamage = 0
@@ -60,8 +62,19 @@ class Player(pygame.sprite.Sprite):
     def checkEntityCollision(self):
         return False
 
-    def checkPlatformCollision(self):
-        return pygame.sprite.spritecollide(self, self.platArray, False) != []
+    def duck(self):
+        self.y += self.stanSprite.get_height() - self.duckSprite.get_height()
+        self.sprite = self.duckSprite
+        self.width = self.sprite.get_width()
+        self.height = self.sprite.get_height()
+        self.rect = pygame.Rect(self.x, self.y, self.width, self.height)
+
+    def unduck(self):
+        self.y -= self.stanSprite.get_height() - self.duckSprite.get_height()
+        self.sprite = self.stanSprite
+        self.width = self.sprite.get_width()
+        self.height = self.sprite.get_height()
+        self.rect = pygame.Rect(self.x, self.y, self.width, self.height)
 
     def moveX(self):
         self.x += self.xchange
