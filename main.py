@@ -68,7 +68,6 @@ while not done:
             elif event.key == pygame.K_d:
                 player1.xchange = 5
             elif event.key == pygame.K_s:
-                player1.health -= 10
                 pass  # player1.duck()
             elif event.key == pygame.K_r:
                 attack.melee_attack()
@@ -81,7 +80,6 @@ while not done:
             elif event.key == pygame.K_RIGHT:
                 player2.xchange = 5
             elif event.key == pygame.K_DOWN:
-                player2.health -= 10
             elif event.key == pygame.K_KP0:
                 player2.attack(testProjectile, screen)
                 pass  # player2.duck()
