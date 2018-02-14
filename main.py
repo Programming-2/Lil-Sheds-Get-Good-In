@@ -47,7 +47,7 @@ player2 = Player(testSprite, 100, 20, "Yes", "No", "Jaccob Bonkley", 850, 100, p
 handler.setPlayer1(player1)
 handler.setPlayer2(player2)
 
-#attack = Attack(player1.x, player1.y, "melee", 5, 2, 2, screen, 0, 10)
+attack = Attack(player1.x, player1.y, "melee", 5, 2, 2, screen, testProjectile, 100, handler)
 
 p1hpbar = HealthBar(screen, "topleft", player1.health)
 p2hpbar = HealthBar(screen, "topright", player2.health)
@@ -104,7 +104,13 @@ while not done:
     timer.update(screen)
     p1hpbar.update(player1.health)
     p2hpbar.update(player2.health)
+<<<<<<< HEAD
     platformArray.update()
+=======
+    level.ground.update()
+    handler.setPlayer1(player1)
+    handler.setPlayer2(player2)
+>>>>>>> e30bcaa7efbe932c879f29ae923b5bddd0544cd9
 
     for e in attackUpdateList:
         e.render(screen)
