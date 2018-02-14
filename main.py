@@ -104,13 +104,10 @@ while not done:
     timer.update(screen)
     p1hpbar.update(player1.health)
     p2hpbar.update(player2.health)
-<<<<<<< HEAD
     platformArray.update()
-=======
     level.ground.update()
     handler.setPlayer1(player1)
     handler.setPlayer2(player2)
->>>>>>> e30bcaa7efbe932c879f29ae923b5bddd0544cd9
 
     for e in attackUpdateList:
         e.render(screen)
