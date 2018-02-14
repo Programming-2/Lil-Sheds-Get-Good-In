@@ -5,6 +5,7 @@ from healthbar import HealthBar
 from timer import Timer
 from handler import Handler
 from attack import Attack
+from platform import Platform
 
 pygame.init()
 
@@ -26,6 +27,8 @@ testProjectile = pygame.image.load("media/projectileTest.png").convert()
 platformArray = pygame.sprite.Group()
 
 platformArray.add(level.ground)
+platformArray.add(Platform(screen, 50, 200, 50, 350))
+platformArray.add(Platform(screen, 1000, 200, 50, 350))
 
 pygame.display.set_caption("Lil' Shed's Get Good In™")
 
@@ -79,7 +82,10 @@ while not done:
             elif event.key == pygame.K_RIGHT:
                 player2.xchange = 5
             elif event.key == pygame.K_DOWN:
+<<<<<<< HEAD
                 pass
+=======
+>>>>>>> 3cf391325dd82e967d0b52eac5c78bed4ddba971
             elif event.key == pygame.K_KP0:
                 player2.attack(testProjectile, screen)
                 pass  # player2.duck()
@@ -102,6 +108,7 @@ while not done:
     timer.update(screen)
     p1hpbar.update(player1.health)
     p2hpbar.update(player2.health)
+    platformArray.update()
     level.ground.update()
     handler.setPlayer1(player1)
     handler.setPlayer2(player2)
