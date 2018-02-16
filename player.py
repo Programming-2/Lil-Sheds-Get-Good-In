@@ -28,6 +28,7 @@ class Player(pygame.sprite.Sprite):
         self.takenDamage = 0
         self.handler = handler
         self.defense = defense
+        self.facing = -1 #-1 for left, 1 for right
 
     def jump(self):
         if self.jumpCount <= 1:
@@ -84,8 +85,10 @@ class Player(pygame.sprite.Sprite):
         for platform in platList:
             if self.xchange > 0 and self.rect.right < platform.rect.right:  # Moving right and left of platform
                 self.rect.right = platform.rect.left
+                self.facing = 1
             elif self.xchange < 0 and self.rect.left > platform.rect.left:  # Moving left and right of platform
                 self.rect.left = platform.rect.right
+                self.facing = -1
             self.x = self.rect.x
             self.xchange = 0
 
@@ -104,7 +107,7 @@ class Player(pygame.sprite.Sprite):
             self.ychange = 0
 
     def attack(self, image, screen):
-        self.handler.getAttackList().add(Attack(self.x + self.width, self.y, 5, "ranged", 1, 3, 5, screen, image, 20, self.handler))
+        self.handler.getAttackList().add(Attack(self.x + self.width, self.y, 5 * self.facing, "ranged", 1, 3, 5, screen, image, 20, self.handler))
 
     def goToSleepForAnExtendedPeriodOfTime(self):
         self.ychange = -5
