@@ -71,9 +71,11 @@ while not done:
             elif event.key == pygame.K_s and not player1.dead:
                 player1.duck()
             elif event.key == pygame.K_r and not player1.dead:
-                attack.p1_melee_attack()
+                pass
+                # attack.p1_melee_attack()
             elif event.key == pygame.K_RCTRL and not player2.dead:
-                attack.p2_melee_attack()
+                pass
+                # attack.p2_melee_attack()
             elif event.key == pygame.K_e and not player1.dead:
                 player1.attack(testProjectile, screen, "1")
             elif event.key == pygame.K_UP and not player2.dead:
