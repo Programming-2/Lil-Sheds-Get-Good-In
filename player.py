@@ -28,6 +28,7 @@ class Player(pygame.sprite.Sprite):
         self.takenDamage = 0
         self.handler = handler
         self.defense = defense
+        self.dead = False
         self.facing = 1 #-1 for left, 1 for right
 
     def jump(self):
@@ -118,6 +119,7 @@ class Player(pygame.sprite.Sprite):
 
     def goToSleepForAnExtendedPeriodOfTime(self):
         self.ychange = -5
+        self.dead = True
 
     def getX(self):
         return self.x
