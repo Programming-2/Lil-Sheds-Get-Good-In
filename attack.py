@@ -4,7 +4,7 @@ from entity import Entity
 
 class Attack(Entity):
 
-    def __init__(self, player_x, player_y, changex, attack_name, damage, full_cooldown, cooldown, screen, image, range, handler):
+    def __init__(self, player_x, player_y, changex, attack_name, damage, full_cooldown, cooldown, screen, image, range, handler, player):
         super().__init__(player_x, player_y, changex, image)
         self.attack_name = attack_name
         self.damage = damage
@@ -17,6 +17,7 @@ class Attack(Entity):
         #self.rect = pygame.Rect(image.get_rect())
         self.range = range
         self.handler = handler
+        self.player = player
         #self.sound = sound
 
     def attack(self):

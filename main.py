@@ -46,7 +46,7 @@ player2 = Player(100, 20, "Yes", "No", "Jaccob Bonkley", 850, 100, platformArray
 handler.setPlayer1(player1)
 handler.setPlayer2(player2)
 
-attack = Attack(player1.x, player1.y, 10, "melee", 5, 2, 2, screen, testProjectile, 100, handler)
+# attack = Attack(player1.x, player1.y, 10, "melee", 5, 2, 2, screen, testProjectile, 100, handler)
 
 p1hpbar = HealthBar(screen, "topleft", player1.health)
 p2hpbar = HealthBar(screen, "topright", player2.health)
@@ -73,7 +73,7 @@ while not done:
             elif event.key == pygame.K_RCTRL:
                 attack.p2_melee_attack()
             elif event.key == pygame.K_e:
-                player1.attack(testProjectile, screen)
+                player1.attack(testProjectile, screen, "1")
             elif event.key == pygame.K_UP:
                 player2.jump()
             elif event.key == pygame.K_LEFT:
@@ -83,7 +83,7 @@ while not done:
             elif event.key == pygame.K_DOWN:
                 player2.duck()
             elif event.key == pygame.K_KP0:
-                player2.attack(testProjectile, screen)
+                player2.attack(testProjectile, screen, "2")
         elif event.type == pygame.KEYUP:
             if event.key == pygame.K_a or event.key == pygame.K_d:
                 player1.xchange = 0
@@ -113,10 +113,12 @@ while not done:
     for e in attackUpdateList:
         e.render(screen)
         e.move()
-    if pygame.sprite.spritecollide(player1, attackUpdateList, True):
-        player1.takeDamage(player2.damage)
-    if pygame.sprite.spritecollide(player2, attackUpdateList, True):
-        player2.takeDamage(player1.damage)
+        if pygame.sprite.spritecollide(player1, attackUpdateList, False) and e.player == "2":
+            pygame.sprite.spritecollide(player1, attackUpdateList, True)
+            player1.takeDamage(player2.damage)
+        if pygame.sprite.spritecollide(player2, attackUpdateList, False) and e.player == "1":
+            pygame.sprite.spritecollide(player2, attackUpdateList, True)
+            player2.takeDamage(player1.damage)
 
     clock.tick(60)
     pygame.display.flip()

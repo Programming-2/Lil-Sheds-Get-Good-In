@@ -109,11 +109,11 @@ class Player(pygame.sprite.Sprite):
             self.y = self.rect.y
             self.ychange = 0
 
-    def attack(self, image, screen):
+    def attack(self, image, screen, player):
         if self.facing == -1:
-            self.handler.getAttackList().add(Attack(self.x - 20, self.y, 5 * self.facing, "ranged", 1, 3, 5, screen, image, 20, self.handler))
+            self.handler.getAttackList().add(Attack(self.x - 20, self.y, 5 * self.facing, "ranged", 1, 3, 5, screen, image, 20, self.handler, player))
         else:
-            self.handler.getAttackList().add(Attack(self.x + self.width, self.y, 5 * self.facing, "ranged", 1, 3, 5, screen, image, 20, self.handler))
+            self.handler.getAttackList().add(Attack(self.x + self.width, self.y, 5 * self.facing, "ranged", 1, 3, 5, screen, image, 20, self.handler, player))
 
 
     def goToSleepForAnExtendedPeriodOfTime(self):
