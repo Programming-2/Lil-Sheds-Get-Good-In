@@ -5,10 +5,17 @@ from attack import Attack
 
 class Player(pygame.sprite.Sprite):
 
-    def __init__(self, health, damage, winQuote, loseQuote, name, x, y, platArray, handler, defense):
+    def __init__(self, health, damage, winQuote, loseQuote, name, x, y, platArray, handler, defense, playNum):
         super().__init__()
-        self.duckSprite = pygame.image.load("media/TestCrouchSprite.png").convert()
-        self.stanSprite = pygame.image.load("media/BaseSprite.png").convert()
+        if playNum == 0:
+            self.duckSprite = pygame.image.load("media/TestCrouchSprite.png").convert()
+            self.stanSprite = pygame.image.load("media/BaseSprite.png").convert()
+        if playNum == 1:
+            self.duckSprite = pygame.image.load("media/TestCrouchSprite2.png").convert()
+            self.stanSprite = pygame.image.load("media/testSprite2.png").convert()
+        if playNum == 2:
+            self.duckSprite = pygame.image.load("media/TestCrouchSprite3.png").convert()
+            self.stanSprite = pygame.image.load("media/testSprite3.png").convert()
         self.sprite = self.stanSprite
         self.health = health
         self.damage = damage
