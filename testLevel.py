@@ -1,10 +1,19 @@
 # Child class of level, serves as a test
 from level import Level
 from platform import Platform
+import pygame
 
 
 class TestLevel(Level):
     def __init__(self, screen):
         super().__init__(screen, "media/field_map.png")
-        self.ground = Platform(screen, 100, 500, 900, 50)
+        self.ground = Platform(screen, 0, 650, 1100, 150)
+        self.lWall = Platform(screen, -100, 0, 100, 800)
+        self.rWall = Platform(screen, 1100, 0, 100, 800)
+        self.cPlat = Platform(screen, 350, 350, 400, 50)
+        self.platformGroup = pygame.sprite.Group()
+        self.platformGroup.add(self.ground)
+        self.platformGroup.add(self.lWall)
+        self.platformGroup.add(self.rWall)
+        self.platformGroup.add(self.cPlat)
 

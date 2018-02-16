@@ -25,11 +25,7 @@ level = TestLevel(screen)
 background_image = pygame.image.load(level.getBackImg()).convert()
 testProjectile = pygame.image.load("media/projectileTest.png").convert()
 
-platformArray = pygame.sprite.Group()
-
-platformArray.add(level.ground)
-platformArray.add(Platform(screen, 50, 200, 50, 350))
-platformArray.add(Platform(screen, 1000, 200, 50, 350))
+platformArray = level.platformGroup
 
 pygame.display.set_caption("Lil' Shed's Get Good In™")
 
