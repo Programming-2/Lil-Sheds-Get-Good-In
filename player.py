@@ -61,7 +61,6 @@ class Player(pygame.sprite.Sprite):
         self.moveY()
         screen.blit(self.sprite, [self.x, self.y])
 
-        print(self.xchange)
         if self.xchange > 0:
             self.facing = 1
         elif self.xchange < 0:
@@ -111,8 +110,11 @@ class Player(pygame.sprite.Sprite):
             self.ychange = 0
 
     def attack(self, image, screen):
-        print(self.facing)
-        self.handler.getAttackList().add(Attack(self.x + self.width, self.y, 5 * self.facing, "ranged", 1, 3, 5, screen, image, 20, self.handler))
+        if self.facing == -1:
+            self.handler.getAttackList().add(Attack(self.x - 20, self.y, 5 * self.facing, "ranged", 1, 3, 5, screen, image, 20, self.handler))
+        else:
+            self.handler.getAttackList().add(Attack(self.x + self.width, self.y, 5 * self.facing, "ranged", 1, 3, 5, screen, image, 20, self.handler))
+
 
     def goToSleepForAnExtendedPeriodOfTime(self):
         self.ychange = -5
