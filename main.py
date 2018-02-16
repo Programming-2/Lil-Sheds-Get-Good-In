@@ -40,8 +40,8 @@ attackUpdateList = pygame.sprite.Group()
 
 handler = Handler(attackUpdateList)
 
-player1 = Player(100, 20, "Yes", "No", "Will", 200, 100, platformArray, handler, 10)
-player2 = Player(100, 20, "Yes", "No", "Jaccob Bonkley", 850, 100, platformArray, handler,10)
+player1 = Player(100, 20, "Yes", "No", "Will", 200, 100, platformArray, handler, .1)
+player2 = Player(100, 20, "Yes", "No", "Jaccob Bonkley", 850, 100, platformArray, handler,.5)
 
 handler.setPlayer1(player1)
 handler.setPlayer2(player2)
