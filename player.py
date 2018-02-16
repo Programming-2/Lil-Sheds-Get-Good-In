@@ -5,7 +5,7 @@ from attack import Attack
 
 class Player(pygame.sprite.Sprite):
 
-    def __init__(self, health, damage, winQuote, loseQuote, name, x, y, platArray, handler):
+    def __init__(self, health, damage, winQuote, loseQuote, name, x, y, platArray, handler, defense):
         super().__init__()
         self.duckSprite = pygame.image.load("media/TestCrouchSprite.png").convert()
         self.stanSprite = pygame.image.load("media/BaseSprite.png").convert()
@@ -27,6 +27,7 @@ class Player(pygame.sprite.Sprite):
         self.jumpCount = 0
         self.takenDamage = 0
         self.handler = handler
+        self.defense = defense
 
     def jump(self):
         if self.jumpCount <= 1:
@@ -45,7 +46,7 @@ class Player(pygame.sprite.Sprite):
         return text
 
     def takeDamage(self, takenDamage):
-        self.health -= takenDamage
+        self.health -= (takenDamage - self.defense)
 
     def gravityUpdate(self):
         if self.ychange == 0:
