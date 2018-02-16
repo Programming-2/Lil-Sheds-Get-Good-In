@@ -16,7 +16,6 @@ class Timer:
         self.frame_count += 1
         if self.frame_count % 60 == 0 and self.current_time >= 1:
             self.current_time -= 1
-            print(self.frame_count)
 
         if self.current_time > 10:
             text = self.font.render(str(self.current_time), False, colors.colors.get("BLACK"))

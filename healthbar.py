@@ -43,4 +43,3 @@ class HealthBar(pygame.sprite.Sprite):
         if self.position == "topright":
             self.rect.width = self.width * pct
             self.rect.x = (self.screensize[0] - 10) - self.rect.width
-            print(self.x)
