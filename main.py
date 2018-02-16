@@ -62,29 +62,29 @@ while not done:
         if event.type == pygame.QUIT:
             done = True
         elif event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_w:
+            if event.key == pygame.K_w and not player1.dead:
                 player1.jump()
-            elif event.key == pygame.K_a:
+            elif event.key == pygame.K_a and not player1.dead:
                 player1.xchange = -5
-            elif event.key == pygame.K_d:
+            elif event.key == pygame.K_d and not player1.dead:
                 player1.xchange = 5
-            elif event.key == pygame.K_s:
+            elif event.key == pygame.K_s and not player1.dead:
                 player1.duck()
-            elif event.key == pygame.K_r:
+            elif event.key == pygame.K_r and not player1.dead:
                 attack.p1_melee_attack()
-            elif event.key == pygame.K_RCTRL:
+            elif event.key == pygame.K_RCTRL and not player2.dead:
                 attack.p2_melee_attack()
-            elif event.key == pygame.K_e:
+            elif event.key == pygame.K_e and not player1.dead:
                 player1.attack(testProjectile, screen, "1")
-            elif event.key == pygame.K_UP:
+            elif event.key == pygame.K_UP and not player2.dead:
                 player2.jump()
-            elif event.key == pygame.K_LEFT:
+            elif event.key == pygame.K_LEFT and not player2.dead:
                 player2.xchange = -5
-            elif event.key == pygame.K_RIGHT:
+            elif event.key == pygame.K_RIGHT and not player2.dead:
                 player2.xchange = 5
-            elif event.key == pygame.K_DOWN:
+            elif event.key == pygame.K_DOWN and not player2.dead:
                 player2.duck()
-            elif event.key == pygame.K_KP0:
+            elif event.key == pygame.K_KP0 and not player2.dead:
                 player2.attack(testProjectile, screen, "2")
         elif event.type == pygame.KEYUP:
             if event.key == pygame.K_a or event.key == pygame.K_d:
