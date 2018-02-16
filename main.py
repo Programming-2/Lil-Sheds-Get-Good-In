@@ -122,6 +122,8 @@ while not done:
             pygame.sprite.spritecollide(player2, attackUpdateList, True)
             player2.takeDamage(player1.damage)
 
+    pygame.sprite.groupcollide(platformArray, attackUpdateList, False, True)
+
     clock.tick(60)
     pygame.display.flip()
 
