@@ -10,7 +10,7 @@ class TestLevel(Level):
         self.ground = Platform(screen, 0, 650, 1100, 150)
         self.lWall = Platform(screen, -100, 0, 100, 800)
         self.rWall = Platform(screen, 1100, 0, 100, 800)
-        self.cPlat = Platform(screen, 350, 350, 400, 50)
+        self.cPlat = Platform(screen, 350, 400, 400, 50)
         self.platformGroup = pygame.sprite.Group()
         self.platformGroup.add(self.ground)
         self.platformGroup.add(self.lWall)
