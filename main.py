@@ -25,11 +25,7 @@ level = TestLevel(screen)
 background_image = pygame.image.load(level.getBackImg()).convert()
 testProjectile = pygame.image.load("media/projectileTest.png").convert()
 
-platformArray = pygame.sprite.Group()
-
-platformArray.add(level.ground)
-platformArray.add(Platform(screen, 50, 200, 50, 350))
-platformArray.add(Platform(screen, 1000, 200, 50, 350))
+platformArray = level.platformGroup
 
 pygame.display.set_caption("Lil' Shed's Get Good In™")
 
@@ -42,8 +38,8 @@ attackUpdateList = pygame.sprite.Group()
 
 handler = Handler(attackUpdateList)
 
-player1 = Player(100, 20, "Yes", "No", "Will", 200, 100, platformArray, handler, .1)
-player2 = Player(100, 20, "Yes", "No", "Jaccob Bonkley", 850, 100, platformArray, handler,.5)
+player1 = Player(100, 20, "Yes", "No", "Will", 200, 100, platformArray, handler, .3, 1)
+player2 = Player(100, 20, "Yes", "No", "Jaccob Bonkley", 850, 100, platformArray, handler,.3, 2)
 
 handler.setPlayer1(player1)
 handler.setPlayer2(player2)
