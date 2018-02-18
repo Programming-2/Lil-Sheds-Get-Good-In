@@ -36,7 +36,7 @@ class Player(pygame.sprite.Sprite):
         self.handler = handler
         self.defense = defense
         self.dead = False
-        self.facing = 1 #-1 for left, 1 for right
+        self.facing = 1  # -1 for left, 1 for right
 
     def jump(self):
         if self.jumpCount <= 1:
@@ -123,7 +123,6 @@ class Player(pygame.sprite.Sprite):
         else:
             self.handler.getAttackList().add(Attack(self.x + self.width + 5, self.y, 5 * self.facing, "ranged", 1, 3, 5, screen, image, 20, self.handler, player))
 
-
     def goToSleepForAnExtendedPeriodOfTime(self):
         self.ychange = -5
         self.dead = True
@@ -133,4 +132,3 @@ class Player(pygame.sprite.Sprite):
 
     def getY(self):
         return self.y
-
