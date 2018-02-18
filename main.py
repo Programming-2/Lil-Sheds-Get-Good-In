@@ -112,6 +112,10 @@ while not done:
     handler.setPlayer2(player2)
 
     for e in attackUpdateList:
+        if e.x < 0 or e.x > screen.get_size()[0]:
+            attackUpdateList.remove(e)
+        if e.y < 0 or e.y > screen.get_size()[1]:
+            attackUpdateList.remove(e)
         e.render(screen)
         e.move()
         if pygame.sprite.spritecollide(player1, attackUpdateList, False) and e.player == "2":
@@ -120,6 +124,7 @@ while not done:
         if pygame.sprite.spritecollide(player2, attackUpdateList, False) and e.player == "1":
             pygame.sprite.spritecollide(player2, attackUpdateList, True)
             player2.takeDamage(player1.damage)
+    print(attackUpdateList)
 
     pygame.sprite.groupcollide(platformArray, attackUpdateList, False, True)
 
