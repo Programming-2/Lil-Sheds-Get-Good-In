@@ -8,7 +8,7 @@ class Timer:
         self.total_time = time
         self.current_time = time
         self.clock = pygame.time.Clock()
-        self.font = pygame.font.SysFont('Comic Sans MS', 16)
+        self.font = pygame.font.SysFont('Comic Sans MS', 24)
         self.screensize = screen.get_size()
         self.frame_count = 0
 
@@ -19,7 +19,7 @@ class Timer:
 
         if self.current_time > 10:
             text = self.font.render(str(self.current_time), False, colors.colors.get("BLACK"))
-            screen.blit(text, (self.screensize[0] / 2, 100))
+            screen.blit(text, (self.screensize[0] / 2 - 20, 10))
         if self.current_time <= 10:
             text = self.font.render(str(self.current_time), False, colors.colors.get("RED"))
-            screen.blit(text, (self.screensize[0] / 2, 100))
+            screen.blit(text, (self.screensize[0] / 2 - 20, 10))

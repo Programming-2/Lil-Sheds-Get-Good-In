@@ -7,7 +7,7 @@ class Entity(pygame.sprite.Sprite):
         super().__init__()
         self.x = startx
         self.y = starty
-        self.changex = changex
+        self.changex = 15
         self.changey = 0
         self.image = image
         self.image_width = image.get_size()[0]

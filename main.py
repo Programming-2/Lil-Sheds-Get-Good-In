@@ -14,6 +14,7 @@ BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
 GREEN = (0, 255, 0)
 RED = (255, 0, 0)
+font = pygame.font.SysFont("Comic Sans MS", 36)
 
 size = (1100, 800)
 screen = pygame.display.set_mode(size)
@@ -51,6 +52,7 @@ p2hpbar = HealthBar(screen, "topright", player2.health)
 timer = Timer(300, screen)
 
 done = False
+game_won = False
 while not done:
     screen.blit(background_image, [0, 0])  # Jakob's mistake
     keys = pygame.key.get_pressed()
@@ -130,6 +132,17 @@ while not done:
 
     player1.xchange = 0
     player2.xchange = 0
+
+    if player1.dead:
+        # player2.dead = True
+        text = font.render("Player 2 Wins!", False, BLACK)
+        screen.blit(text, ((screen.get_size()[0] / 2 - 125), (screen.get_size()[1] / 2 - 200)))
+        game_won = True
+    elif player2.dead:
+        # player1.dead = True
+        text = font.render("Player 1 Wins!", False, BLACK)
+        screen.blit(text, ((screen.get_size()[0] / 2 - 125), (screen.get_size()[1] / 2 - 200)))
+        game_won = True
 
     clock.tick(60)
     pygame.display.flip()
