@@ -101,14 +101,13 @@ while not done:
     if player1.health <= 0:
         player1.goToSleepForAnExtendedPeriodOfTime()
     if timer.current_time < 1:
-        platformArray.remove(level.ground)
+        platformArray.remove(platformArray)
     player1.update(screen)
     player2.update(screen)
     timer.update(screen)
     p1hpbar.update(player1.health)
     p2hpbar.update(player2.health)
     platformArray.update()
-    level.ground.update()
     handler.setPlayer1(player1)
     handler.setPlayer2(player2)
 
@@ -125,6 +124,7 @@ while not done:
     pygame.sprite.groupcollide(platformArray, attackUpdateList, False, True)
 
     player1.xchange = 0
+    player2.xchange = 0
 
     clock.tick(60)
     pygame.display.flip()
