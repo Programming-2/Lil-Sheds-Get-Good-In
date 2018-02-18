@@ -50,6 +50,7 @@ handler.setPlayer2(player2)
 p1hpbar = HealthBar(screen, "topleft", player1.health)
 p2hpbar = HealthBar(screen, "topright", player2.health)
 timer = Timer(300, screen)
+count = 0
 
 done = False
 game_won = False
@@ -138,11 +139,23 @@ while not done:
         text = font.render("Player 2 Wins!", False, BLACK)
         screen.blit(text, ((screen.get_size()[0] / 2 - 125), (screen.get_size()[1] / 2 - 200)))
         game_won = True
+        if count == 0:
+            end_time = timer.current_time
+            count += 1
+        print(end_time)
+        if timer.current_time <= end_time - 5:
+            break
     elif player2.dead:
         # player1.dead = True
         text = font.render("Player 1 Wins!", False, BLACK)
         screen.blit(text, ((screen.get_size()[0] / 2 - 125), (screen.get_size()[1] / 2 - 200)))
         game_won = True
+        if count == 0:
+            end_time = timer.current_time
+            count += 1
+        print(end_time)
+        if timer.current_time <= end_time - 5:
+            break
 
     clock.tick(60)
     pygame.display.flip()
