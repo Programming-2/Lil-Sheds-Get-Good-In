@@ -14,15 +14,15 @@ class Attack(Entity):
         self.screen = screen
         self.full_cooldown = full_cooldown
         self.image = image
-        #self.rect = pygame.Rect(image.get_rect())
+        # self.rect = pygame.Rect(image.get_rect())
         self.range = range
         self.handler = handler
         self.player = player
-        #self.sound = sound
+        # self.sound = sound
 
     def attack(self):
         if self.cooldown == 0:
-            #self.sound.play()
+            # self.sound.play()
             return self.damage
 
     def ranged_attack(self, screen):
