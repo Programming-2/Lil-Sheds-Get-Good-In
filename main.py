@@ -84,11 +84,11 @@ while not done:
 
     if keys[pygame.K_a] and not player1.dead:
         player1.xchange = -5
-    elif keys[pygame.K_d] and not player1.dead:
+    if keys[pygame.K_d] and not player1.dead:
         player1.xchange = 5
-    elif keys[pygame.K_LEFT] and not player2.dead:
+    if keys[pygame.K_LEFT] and not player2.dead:
         player2.xchange = -5
-    elif keys[pygame.K_RIGHT] and not player2.dead:
+    if keys[pygame.K_RIGHT] and not player2.dead:
         player2.xchange = 5
 
     if player1.y > screen.get_size()[1]:
