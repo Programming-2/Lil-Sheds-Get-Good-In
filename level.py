@@ -1,4 +1,4 @@
-#Parent Level Class
+# Parent Level Class
 from abc import abstractmethod
 import pygame
 
@@ -16,4 +16,3 @@ class Level():
     @abstractmethod
     def update(self):
         pass
-

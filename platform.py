@@ -1,4 +1,4 @@
-#Platform class
+# Platform class
 import pygame
 import colors
 

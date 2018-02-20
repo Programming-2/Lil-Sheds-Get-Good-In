@@ -16,4 +16,3 @@ class TestLevel(Level):
         self.platformGroup.add(self.lWall)
         self.platformGroup.add(self.rWall)
         self.platformGroup.add(self.cPlat)
-
