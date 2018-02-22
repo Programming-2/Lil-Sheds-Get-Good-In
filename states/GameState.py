@@ -1,16 +1,28 @@
 import pygame
 from State import State
+from colors import colors
 
+font = pygame.font.SysFont("Comic Sans MS", 36)
+DeadText = font.render("KO", True, colors.get("RED"))
 
 class GameState(State):
 
-    def __init(self, name, level, player1, player2):
+    def __init(self, name, level, player1, player2, handler, timer, platformArray, attackUpdateList, p1hpbar, p2hpbar):
         super().__init__(name)
         # TODO Move all instantiation to this state
         self.player1 = player1
         self.player2 = player2
+        self.platformArray = platformArray
+        self.attackUpdateList = attackUpdateList
+        self.p1hpbar = p1hpbar
+        self.p2hpbar = p2hpbar
+        self.timer = timer
         self.testProjectile = pygame.image.load("media/projectileTest.png").convert()
         self.background_image = pygame.image.load(level.getBackImg()).convert()
+        self.handler = handler
+
+        # Timer utils
+        count = 0
 
     def update(self, screen):
         screen.blit(self.background_image, [0, 0])  # Jakob's mistake
@@ -63,32 +75,32 @@ class GameState(State):
         if self.player1.health <= 0:
             self.player1.goToSleepForAnExtendedPeriodOfTime()
             screen.blit(DeadText, [self.player1.x, self.player2.y])
-        if timer.current_time < 1:
-            platformArray.remove(platformArray)
+        if self.timer.current_time < 1:
+            self.platformArray.remove(self.platformArray)
         self.player1.update(screen)
         self.player2.update(screen)
-        timer.update(screen)
-        p1hpbar.update(self.player1.health)
-        p2hpbar.update(self.player2.health)
-        platformArray.update()
-        handler.setPlayer1(self.player1)
-        handler.setPlayer2(self.player2)
+        self.timer.update(screen)
+        self.p1hpbar.update(self.player1.health)
+        self.p2hpbar.update(self.player2.health)
+        self.platformArray.update()
+        self.handler.setPlayer1(self.player1)
+        self.handler.setPlayer2(self.player2)
 
-        for e in attackUpdateList:
+        for e in self.attackUpdateList:
             if e.x < 0 or e.x > screen.get_size()[0]:
-                attackUpdateList.remove(e)
+                self.attackUpdateList.remove(e)
             if e.y < 0 or e.y > screen.get_size()[1]:
-                attackUpdateList.remove(e)
+                self.attackUpdateList.remove(e)
             e.render(screen)
             e.move()
-            if pygame.sprite.spritecollide(self.player1, attackUpdateList, False) and e.player == "2":
-                pygame.sprite.spritecollide(self.player1, attackUpdateList, True)
+            if pygame.sprite.spritecollide(self.player1, self.attackUpdateList, False) and e.player == "2":
+                pygame.sprite.spritecollide(self.player1, self.attackUpdateList, True)
                 self.player1.takeDamage(self.player2.damage)
-            if pygame.sprite.spritecollide(self.player2, attackUpdateList, False) and e.player == "1":
-                pygame.sprite.spritecollide(self.player2, attackUpdateList, True)
+            if pygame.sprite.spritecollide(self.player2, self.attackUpdateList, False) and e.player == "1":
+                pygame.sprite.spritecollide(self.player2, self.attackUpdateList, True)
                 self.player2.takeDamage(self.player1.damage)
 
-        pygame.sprite.groupcollide(platformArray, attackUpdateList, False, True)
+        pygame.sprite.groupcollide(self.platformArray, self.attackUpdateList, False, True)
 
         self.player1.xchange = 0
         self.player2.xchange = 0
@@ -98,20 +110,24 @@ class GameState(State):
             text = font.render("Player 2 Wins!", False, colors.get("BLACK"))
             screen.blit(text, ((screen.get_size()[0] / 2 - 125), (screen.get_size()[1] / 2 - 200)))
             game_won = True
-            if count == 0:
-                end_time = timer.current_time
-                count += 1
+            if self.count == 0:
+                end_time = self.timer.current_time
+                self.count += 1
             print(end_time)
-            if timer.current_time <= end_time - 5:
+            if self.timer.current_time <= end_time - 5:
+                # TODO find a new way to break
+                # Maybe just change state
                 break
         elif self.player2.dead:
             # player1.dead = True
             text = font.render("Player 1 Wins!", False, colors.get("BLACK"))
             screen.blit(text, ((screen.get_size()[0] / 2 - 125), (screen.get_size()[1] / 2 - 200)))
             game_won = True
-            if count == 0:
-                end_time = timer.current_time
-                count += 1
+            if self.count == 0:
+                end_time = self.timer.current_time
+                self.count += 1
             print(end_time)
-            if timer.current_time <= end_time - 5:
+            if self.timer.current_time <= end_time - 5:
+                # TODO find a new way to break
+                # Maybe just change state
                 break
