@@ -6,6 +6,13 @@ from healthbar import HealthBar
 from timer import Timer
 from handler import Handler
 from colors import colors
+from states.GameState import GameState
+from states.ControlState import ControlState
+from states.EndGameState import EndGameState
+from states.MainMenuState import MainMenuState
+from states.MapSelectionState import MapSelectionState
+from states.PlayerSelectionState import PlayerSelectionState
+from states.StateManager import StateManager
 
 pygame.init()
 
@@ -33,7 +40,19 @@ p2HitList = []
 
 attackUpdateList = pygame.sprite.Group()
 
-handler = Handler(attackUpdateList, None)
+# State Declaration
+stateDict = {
+    "GameState": GameState("GameState"),
+    "ControlState": ControlState("ControlState"),
+    "EndGameState": EndGameState("EndGameState"),
+    "MainMenuState": MainMenuState("MainMenuState"),
+    "MapSelectionState": MapSelectionState("MapSelectionState"),
+    "PlayerSelectionState": PlayerSelectionState("PlayerSelectionState")
+}
+stateManager = StateManager(stateDict)
+# End State Declatation
+
+handler = Handler(attackUpdateList, stateManager)
 
 player1 = Player(100, 20, "Yes", "No", "Will", 200, 100, platformArray, handler, .3, 1)
 player2 = Player(100, 20, "Yes", "No", "Jaccob Bonkley", 850, 100, platformArray, handler, .3, 2)
@@ -51,6 +70,7 @@ count = 0
 done = False
 game_won = False
 while not done:
+    stateManager.setCurrentState("GameState")
 
     clock.tick(60)
     pygame.display.flip()

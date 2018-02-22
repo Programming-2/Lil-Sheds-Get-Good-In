@@ -1,5 +1,5 @@
 import pygame
-from State import State
+from states.State import State
 from colors import colors
 
 font = pygame.font.SysFont("Comic Sans MS", 36)
