@@ -12,3 +12,8 @@ class StateManager:
             self.currentState = self.states[name]
         else:
             raise Exception("Selected an invalid state.")
+
+    # Should be called by main loop
+    def update(self, screen):
+        self.currentState.tick()
+        self.currentState.render(screen)
