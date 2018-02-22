@@ -33,7 +33,7 @@ p2HitList = []
 
 attackUpdateList = pygame.sprite.Group()
 
-handler = Handler(attackUpdateList)
+handler = Handler(attackUpdateList, None)
 
 player1 = Player(100, 20, "Yes", "No", "Will", 200, 100, platformArray, handler, .3, 1)
 player2 = Player(100, 20, "Yes", "No", "Jaccob Bonkley", 850, 100, platformArray, handler, .3, 2)

@@ -2,9 +2,9 @@ from states.StateManager import StateManager
 
 class Handler:
 
-    def __init__(self, attackList, states=0):
+    def __init__(self, attackList, stateManager):
         self.attackList = attackList
-        self.stateManager = StateManager(states)
+        self.stateManager = stateManager
         self.player1 = 0
         self.player2 = 0
 
