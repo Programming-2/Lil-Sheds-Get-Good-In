@@ -97,10 +97,10 @@ while not done:
 
     if player2.health <= 0:
         player2.goToSleepForAnExtendedPeriodOfTime()
-        screen.blit(DeadText, [player2.x, player1.y])
+        screen.blit(DeadText, [player2.x, player1.y - 1])
     if player1.health <= 0:
         player1.goToSleepForAnExtendedPeriodOfTime()
-        screen.blit(DeadText, [player2.x, player1.y])
+        screen.blit(DeadText, [player1.x, player2.y])
     if timer.current_time < 1:
         platformArray.remove(platformArray)
     player1.update(screen)
