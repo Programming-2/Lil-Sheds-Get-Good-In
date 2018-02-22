@@ -15,5 +15,4 @@ class StateManager:
 
     # Should be called by main loop
     def update(self, screen):
-        self.currentState.tick()
-        self.currentState.render(screen)
+        self.currentState.update(screen)

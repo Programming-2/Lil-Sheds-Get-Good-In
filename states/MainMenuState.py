@@ -8,7 +8,7 @@ class MainMenuState(State):
         super().__init__(name)
         self.menuImage = pygame.image.load("media/LilShedTitleScreen.png").convert()
 
-    def tick(self):
+    def update(self, screen):
         # TODO add code to make buttons on screen work
         # Buttons with transition to Control state or Player Selection state
 
@@ -17,8 +17,8 @@ class MainMenuState(State):
         elif self.isPressingPlayerSelectionButton():
             pass
 
-    def render(self, screen):
         screen.blit(self.menuImage, [0, 0])
+
 
     def isPressingControlButton(self):
         pass

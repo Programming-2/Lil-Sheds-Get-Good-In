@@ -7,9 +7,5 @@ class State:
         self.name = name
 
     @abstractmethod
-    def tick(self):
-        pass
-
-    @abstractmethod
-    def render(self, screen):
+    def update(self, screen):
         pass
