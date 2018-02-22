@@ -8,3 +8,6 @@ class GameState(State):
 
     def tick(self):
         pass
+
+    def render(self, screen):
+        pass
