@@ -74,6 +74,10 @@ done = False
 game_won = False
 stateManager.setCurrentState("GameState")
 # stateManager.setCurrentState("MainMenuState")
+# stateManager.setCurrentState("ControlState")
+# stateManager.setCurrentState("EndGameState")
+# stateManager.setCurrentState("MapSelectionState")
+#  stateManager.setCurrentState("PlayerSelectionState")
 
 while not handler.getDone():
     stateManager.update(screen)
