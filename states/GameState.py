@@ -23,7 +23,7 @@ class GameState(State):
         self.handler = handler
 
         # Timer utils
-        count = 0
+        self.count = 0
 
     def update(self, screen):
         screen.blit(self.background_image, [0, 0])  # Jakob's mistake
@@ -111,6 +111,7 @@ class GameState(State):
             text = font.render("Player 2 Wins!", False, colors.get("BLACK"))
             screen.blit(text, ((screen.get_size()[0] / 2 - 125), (screen.get_size()[1] / 2 - 200)))
             game_won = True
+            end_time = 0
             if self.count == 0:
                 end_time = self.timer.current_time
                 self.count += 1
@@ -118,12 +119,13 @@ class GameState(State):
             if self.timer.current_time <= end_time - 5:
                 # TODO find a new way to break
                 # Maybe just change state
-                self.handler.getStateManager().setState("EndGame")
+                self.handler.setDone(True)
         elif self.player2.dead:
             # player1.dead = True
             text = font.render("Player 1 Wins!", False, colors.get("BLACK"))
             screen.blit(text, ((screen.get_size()[0] / 2 - 125), (screen.get_size()[1] / 2 - 200)))
             game_won = True
+            end_time = 0
             if self.count == 0:
                 end_time = self.timer.current_time
                 self.count += 1
@@ -131,4 +133,4 @@ class GameState(State):
             if self.timer.current_time <= end_time - 5:
                 # TODO find a new way to break
                 # Maybe just change state
-                self.handler.getStateManager().setState("EndGame")
+                self.handler.setDone(True)
