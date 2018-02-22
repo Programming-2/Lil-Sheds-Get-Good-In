@@ -27,6 +27,7 @@ os.environ['SDL_VIDEO_CENTERED'] = '1'
 level = TestLevel(screen)
 
 background_image = pygame.image.load(level.getBackImg()).convert()
+mainMenu = pygame.image.load("media/LilShedTitleScreen.png").convert()
 testProjectile = pygame.image.load("media/projectileTest.png").convert()
 
 platformArray = level.platformGroup
@@ -62,7 +63,7 @@ stateDict = {
     "GameState": GameState("GameState", level, player1, player2, handler, timer, platformArray, attackUpdateList, p1hpbar, p2hpbar),
     "ControlState": ControlState("ControlState"),
     "EndGameState": EndGameState("EndGameState"),
-    "MainMenuState": MainMenuState("MainMenuState"),
+    "MainMenuState": MainMenuState("MainMenuState", mainMenu),
     "MapSelectionState": MapSelectionState("MapSelectionState"),
     "PlayerSelectionState": PlayerSelectionState("PlayerSelectionState")
 }
@@ -71,7 +72,8 @@ stateManager.setStateDict(stateDict)
 
 done = False
 game_won = False
-stateManager.setCurrentState("MainMenuState")
+stateManager.setCurrentState("GameState")
+# stateManager.setCurrentState("MainMenuState")
 
 while not handler.getDone():
     stateManager.update(screen)

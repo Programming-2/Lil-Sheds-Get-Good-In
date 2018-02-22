@@ -1,13 +1,12 @@
 import pygame
-import Assets
 from states.State import State
 
 
 class MainMenuState(State):
 
-    def __init__(self, name):
+    def __init__(self, name, mainMenu):
         super().__init__(name)
-        self.menuImage = Assets.mainMenu
+        self.menuImage = mainMenu
 
     def update(self, screen):
         # TODO add code to make buttons on screen work
