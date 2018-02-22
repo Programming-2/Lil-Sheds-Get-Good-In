@@ -1,6 +1,5 @@
 # Platform class
 import pygame
-import colors
 
 
 class Platform(pygame.sprite.Sprite):

@@ -5,8 +5,6 @@ from testLevel import TestLevel
 from healthbar import HealthBar
 from timer import Timer
 from handler import Handler
-from attack import Attack
-from platform import Platform
 
 pygame.init()
 
