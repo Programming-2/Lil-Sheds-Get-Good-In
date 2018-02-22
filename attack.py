@@ -4,8 +4,8 @@ from entity import Entity
 
 class Attack(Entity):
 
-    def __init__(self, player_x, player_y, changex, attack_name, damage, full_cooldown, cooldown, screen, image, range, handler, player):
-        super().__init__(player_x, player_y, changex, image)
+    def __init__(self, player_x, player_y, changex, changey, attack_name, damage, full_cooldown, cooldown, screen, image, range, handler, player):
+        super().__init__(player_x, player_y, changex, changey, image)
         self.attack_name = attack_name
         self.damage = damage
         self.cooldown = cooldown

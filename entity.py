@@ -3,12 +3,12 @@ import pygame
 
 class Entity(pygame.sprite.Sprite):
 
-    def __init__(self, startx, starty, changex, image):
+    def __init__(self, startx, starty, changex, changey, image):
         super().__init__()
         self.x = startx
         self.y = starty
         self.changex = changex
-        self.changey = 0
+        self.changey = changey
         self.image = image
         self.image_width = image.get_size()[0]
         self.image_height = image.get_size()[1]
