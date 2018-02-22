@@ -3,6 +3,7 @@ import colors
 from attack import Attack
 RED = (255, 0, 0)
 
+
 class Player(pygame.sprite.Sprite):
 
     def __init__(self, health, damage, winQuote, loseQuote, name, x, y, platArray, handler, defense, playNum):
