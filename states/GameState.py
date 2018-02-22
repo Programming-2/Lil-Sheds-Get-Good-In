@@ -8,4 +8,3 @@ class GameState(State):
 
     def tick(self):
         pass
-
