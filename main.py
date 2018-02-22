@@ -125,7 +125,6 @@ while not done:
         if pygame.sprite.spritecollide(player2, attackUpdateList, False) and e.player == "1":
             pygame.sprite.spritecollide(player2, attackUpdateList, True)
             player2.takeDamage(player1.damage)
-    print(attackUpdateList)
 
     pygame.sprite.groupcollide(platformArray, attackUpdateList, False, True)
 
