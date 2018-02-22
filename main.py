@@ -5,15 +5,12 @@ from testLevel import TestLevel
 from healthbar import HealthBar
 from timer import Timer
 from handler import Handler
+from colors import colors
 
 pygame.init()
 
-BLACK = (0, 0, 0)
-WHITE = (255, 255, 255)
-GREEN = (0, 255, 0)
-RED = (255, 0, 0)
 font = pygame.font.SysFont("Comic Sans MS", 36)
-DeadText = font.render("KO", True, RED)
+DeadText = font.render("KO", True, colors.get("RED"))
 
 size = (1100, 800)
 screen = pygame.display.set_mode(size)
@@ -137,7 +134,7 @@ while not done:
 
     if player1.dead:
         # player2.dead = True
-        text = font.render("Player 2 Wins!", False, BLACK)
+        text = font.render("Player 2 Wins!", False, colors.get("BLACK"))
         screen.blit(text, ((screen.get_size()[0] / 2 - 125), (screen.get_size()[1] / 2 - 200)))
         game_won = True
         if count == 0:
@@ -148,7 +145,7 @@ while not done:
             break
     elif player2.dead:
         # player1.dead = True
-        text = font.render("Player 1 Wins!", False, BLACK)
+        text = font.render("Player 1 Wins!", False, colors.get("BLACK"))
         screen.blit(text, ((screen.get_size()[0] / 2 - 125), (screen.get_size()[1] / 2 - 200)))
         game_won = True
         if count == 0:
