@@ -71,7 +71,7 @@ stateManager.setStateDict(stateDict)
 
 done = False
 game_won = False
-stateManager.setCurrentState("GameState")
+stateManager.setCurrentState("MainMenuState")
 
 while not handler.getDone():
     stateManager.update(screen)
