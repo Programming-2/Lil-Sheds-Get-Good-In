@@ -1,5 +1,5 @@
 import pygame
-from State import State
+from states.State import State
 
 
 class MainMenuState(State):

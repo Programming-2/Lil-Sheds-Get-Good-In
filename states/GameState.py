@@ -1,13 +1,14 @@
 import pygame
-from State import State
+from states.State import State
 from colors import colors
 
 font = pygame.font.SysFont("Comic Sans MS", 36)
 DeadText = font.render("KO", True, colors.get("RED"))
 
+
 class GameState(State):
 
-    def __init(self, name, level, player1, player2, handler, timer, platformArray, attackUpdateList, p1hpbar, p2hpbar):
+    def __init__(self, name, level, player1, player2, handler, timer, platformArray, attackUpdateList, p1hpbar, p2hpbar):
         super().__init__(name)
         # TODO Move all instantiation to this state
         self.player1 = player1
@@ -29,7 +30,7 @@ class GameState(State):
         keys = pygame.key.get_pressed()
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                done = True
+                self.handler.setDone(True)
             elif event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_e:
                     self.player1.attack(self.testProjectile, screen, "1")
