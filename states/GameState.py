@@ -117,7 +117,7 @@ class GameState(State):
             if self.timer.current_time <= end_time - 5:
                 # TODO find a new way to break
                 # Maybe just change state
-                break
+                self.handler.getStateManager().setState("EndGame")
         elif self.player2.dead:
             # player1.dead = True
             text = font.render("Player 1 Wins!", False, colors.get("BLACK"))
@@ -130,4 +130,4 @@ class GameState(State):
             if self.timer.current_time <= end_time - 5:
                 # TODO find a new way to break
                 # Maybe just change state
-                break
+                self.handler.getStateManager().setState("EndGame")
