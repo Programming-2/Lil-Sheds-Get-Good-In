@@ -15,6 +15,7 @@ WHITE = (255, 255, 255)
 GREEN = (0, 255, 0)
 RED = (255, 0, 0)
 font = pygame.font.SysFont("Comic Sans MS", 36)
+DeadText = font.render("KO", True, RED)
 
 size = (1100, 800)
 screen = pygame.display.set_mode(size)
@@ -101,8 +102,10 @@ while not done:
 
     if player2.health <= 0:
         player2.goToSleepForAnExtendedPeriodOfTime()
+        screen.blit(DeadText, [player2.x,player1.y])
     if player1.health <= 0:
         player1.goToSleepForAnExtendedPeriodOfTime()
+        screen.blit(DeadText, [player2.x,player1.y])
     if timer.current_time < 1:
         platformArray.remove(platformArray)
     player1.update(screen)

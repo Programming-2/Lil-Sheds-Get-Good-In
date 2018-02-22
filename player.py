@@ -1,7 +1,7 @@
 import pygame
 import colors
 from attack import Attack
-
+RED = (255, 0, 0)
 
 class Player(pygame.sprite.Sprite):
 
