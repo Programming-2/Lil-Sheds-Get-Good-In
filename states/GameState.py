@@ -5,6 +5,7 @@ from colors import colors
 font = pygame.font.SysFont("Comic Sans MS", 36)
 DeadText = font.render("KO", True, colors.get("RED"))
 
+
 class GameState(State):
 
     def __init(self, name, level, player1, player2, handler, timer, platformArray, attackUpdateList, p1hpbar, p2hpbar):

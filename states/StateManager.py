@@ -13,6 +13,9 @@ class StateManager:
         else:
             raise Exception("Selected an invalid state.")
 
+    def setStateDict(self, dict):
+        self.states = dict
+
     # Should be called by main loop
     def update(self, screen):
         self.currentState.update(screen)

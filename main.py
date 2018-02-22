@@ -40,17 +40,7 @@ p2HitList = []
 
 attackUpdateList = pygame.sprite.Group()
 
-# State Declaration
-stateDict = {
-    "GameState": GameState("GameState"),
-    "ControlState": ControlState("ControlState"),
-    "EndGameState": EndGameState("EndGameState"),
-    "MainMenuState": MainMenuState("MainMenuState"),
-    "MapSelectionState": MapSelectionState("MapSelectionState"),
-    "PlayerSelectionState": PlayerSelectionState("PlayerSelectionState")
-}
-stateManager = StateManager(stateDict)
-# End State Declatation
+stateManager = StateManager(None)
 
 handler = Handler(attackUpdateList, stateManager)
 
@@ -67,10 +57,24 @@ p2hpbar = HealthBar(screen, "topright", player2.health)
 timer = Timer(300, screen)
 count = 0
 
+# State Declaration
+stateDict = {
+    "GameState": GameState("GameState", level, player1, player2, handler, timer, platformArray, attackUpdateList, p1hpbar, p2hpbar),
+    "ControlState": ControlState("ControlState"),
+    "EndGameState": EndGameState("EndGameState"),
+    "MainMenuState": MainMenuState("MainMenuState"),
+    "MapSelectionState": MapSelectionState("MapSelectionState"),
+    "PlayerSelectionState": PlayerSelectionState("PlayerSelectionState")
+}
+stateManager.setStateDict(stateDict)
+# End State Declatation
+
 done = False
 game_won = False
+stateManager.setCurrentState("GameState")
+
 while not done:
-    stateManager.setCurrentState("GameState")
+    stateManager.update(screen)
 
     clock.tick(60)
     pygame.display.flip()
