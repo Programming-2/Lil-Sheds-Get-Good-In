@@ -5,6 +5,7 @@ class Handler:
     def __init__(self, attackList, stateManager):
         self.attackList = attackList
         self.stateManager = stateManager
+        self.done = False
         self.player1 = 0
         self.player2 = 0
 
@@ -28,3 +29,9 @@ class Handler:
 
     def getStateManager(self):
         return self.stateManager
+
+    def getDone(self):
+        return self.done
+
+    def setDone(self, done):
+        self.done = done

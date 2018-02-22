@@ -73,7 +73,7 @@ done = False
 game_won = False
 stateManager.setCurrentState("GameState")
 
-while not done:
+while not handler.getDone():
     stateManager.update(screen)
 
     clock.tick(60)
