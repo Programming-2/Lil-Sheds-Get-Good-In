@@ -24,8 +24,10 @@ class GameState(State):
 
         # Timer utils
         self.count = 0
+        self.end_time = 0
 
     def update(self, screen):
+        print("time: " + str(self.timer.current_time))
         screen.blit(self.background_image, [0, 0])  # Jakob's mistake
         keys = pygame.key.get_pressed()
         for event in pygame.event.get():
@@ -110,27 +112,28 @@ class GameState(State):
             # player2.dead = True
             text = font.render("Player 2 Wins!", False, colors.get("BLACK"))
             screen.blit(text, ((screen.get_size()[0] / 2 - 125), (screen.get_size()[1] / 2 - 200)))
-            game_won = True
-            end_time = 0
             if self.count == 0:
-                end_time = self.timer.current_time
+                self.end_time = self.timer.current_time
                 self.count += 1
-            print(end_time)
-            if self.timer.current_time <= end_time - 5:
+                print(self.end_time)
+            if self.timer.current_time <= self.end_time - 5:
+                # pygame.quit()
+                self.handler.setDone(True)
+            print("end time: " + str(self.end_time))
+            '''if self.timer.current_time <= self.end_time - 5:
                 # TODO find a new way to break
                 # Maybe just change state
-                self.handler.setDone(True)
+                self.handler.setDone(True)'''
         elif self.player2.dead:
             # player1.dead = True
             text = font.render("Player 1 Wins!", False, colors.get("BLACK"))
             screen.blit(text, ((screen.get_size()[0] / 2 - 125), (screen.get_size()[1] / 2 - 200)))
-            game_won = True
-            end_time = 0
             if self.count == 0:
-                end_time = self.timer.current_time
+                self.end_time = self.timer.current_time
                 self.count += 1
-            print(end_time)
-            if self.timer.current_time <= end_time - 5:
+            print("end time: " + str(self.end_time))
+            if self.timer.current_time <= self.end_time - 5:
                 # TODO find a new way to break
                 # Maybe just change state
                 self.handler.setDone(True)
+                # pygame.quit()
