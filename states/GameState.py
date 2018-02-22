@@ -1,4 +1,4 @@
-from State import State
+import State
 
 
 class GameState(State):
