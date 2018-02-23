@@ -18,3 +18,7 @@ class MainMenuState(State):
                 self.handler.setDone(True)
 
         screen.blit(self.menuImage, [0, 0])
+
+        if (14 < pygame.mouse.get_pos()[0] < 323 and pygame.mouse.get_pressed()[0]) and (590 < pygame.mouse.get_pos()[1] < 740 and pygame.mouse.get_pressed()[0]):
+            self.handler.getStateManager().setCurrentState("GameState")
+
