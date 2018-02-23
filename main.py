@@ -82,8 +82,6 @@ stateManager.setCurrentState("MainMenuState")
 while not handler.getDone():
     stateManager.update(screen)
 
-    print("Running")
-
     clock.tick(60)
     pygame.display.flip()
 
