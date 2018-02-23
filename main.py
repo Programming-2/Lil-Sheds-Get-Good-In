@@ -30,8 +30,6 @@ background_image = pygame.image.load(level.getBackImg()).convert()
 mainMenu = pygame.image.load("media/LilShedTitleScreen.png").convert()
 testProjectile = pygame.image.load("media/projectileTest.png").convert()
 
-platformArray = level.platformGroup
-
 pygame.display.set_caption("Lil' Shed's Get Good In™")
 
 clock = pygame.time.Clock()
@@ -45,22 +43,12 @@ stateManager = StateManager(None)
 
 handler = Handler(attackUpdateList, stateManager)
 
-player1 = Player(100, 20, "Yes", "No", "Will", 200, 100, platformArray, handler, .3, 1)
-player2 = Player(100, 20, "Yes", "No", "Jaccob Bonkley", 850, 100, platformArray, handler, .3, 2)
-
-handler.setPlayer1(player1)
-handler.setPlayer2(player2)
-
-# attack = Attack(player1.x, player1.y, 10, "melee", 5, 2, 2, screen, testProjectile, 100, handler)
-
-p1hpbar = HealthBar(screen, "topleft", player1.health)
-p2hpbar = HealthBar(screen, "topright", player2.health)
 timer = Timer(300, screen)
 count = 0
 
 # State Declaration
 stateDict = {
-    "GameState": GameState("GameState", level, player1, player2, handler, timer, platformArray, attackUpdateList, p1hpbar, p2hpbar),
+    "GameState": GameState("GameState", level, screen, handler, timer, attackUpdateList),
     "ControlState": ControlState("ControlState"),
     "EndGameState": EndGameState("EndGameState"),
     "MainMenuState": MainMenuState("MainMenuState", mainMenu, handler),

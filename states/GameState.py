@@ -1,6 +1,8 @@
 import pygame
 from states.State import State
 from colors import colors
+from player import Player
+from healthbar import HealthBar
 
 font = pygame.font.SysFont("Comic Sans MS", 36)
 DeadText = font.render("KO", True, colors.get("RED"))
@@ -8,19 +10,25 @@ DeadText = font.render("KO", True, colors.get("RED"))
 
 class GameState(State):
 
-    def __init__(self, name, level, player1, player2, handler, timer, platformArray, attackUpdateList, p1hpbar, p2hpbar):
+    def __init__(self, name, level, screen, handler, timer, attackUpdateList):
         super().__init__(name)
         # TODO Move all instantiation to this state
-        self.player1 = player1
-        self.player2 = player2
-        self.platformArray = platformArray
+        self.platformArray = level.platformGroup
         self.attackUpdateList = attackUpdateList
-        self.p1hpbar = p1hpbar
-        self.p2hpbar = p2hpbar
+
         self.timer = timer
         self.testProjectile = pygame.image.load("media/projectileTest.png").convert()
         self.background_image = pygame.image.load(level.getBackImg()).convert()
         self.handler = handler
+
+        self.player1 = Player(100, 20, "Yes", "No", "Will", 200, 100, self.platformArray, handler, .3, 1)
+        self.player2 = Player(100, 20, "Yes", "No", "Jaccob Bonkley", 850, 100, self.platformArray, handler, .3, 2)
+
+        self.p1hpbar = HealthBar(screen, "topleft", self.player1.health)
+        self.p2hpbar = HealthBar(screen, "topright", self.player2.health)
+
+        handler.setPlayer1(self.player1)
+        handler.setPlayer2(self.player2)
 
         # Timer utils
         self.count = 0
