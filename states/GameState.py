@@ -3,6 +3,7 @@ from states.State import State
 from colors import colors
 from player import Player
 from healthbar import HealthBar
+from timer import Timer
 
 font = pygame.font.SysFont("Comic Sans MS", 36)
 DeadText = font.render("KO", True, colors.get("RED"))
@@ -10,13 +11,13 @@ DeadText = font.render("KO", True, colors.get("RED"))
 
 class GameState(State):
 
-    def __init__(self, name, level, screen, handler, timer, attackUpdateList):
+    def __init__(self, name, level, screen, handler, attackUpdateList):
         super().__init__(name)
         # TODO Move all instantiation to this state
         self.platformArray = level.platformGroup
         self.attackUpdateList = attackUpdateList
 
-        self.timer = timer
+        self.timer = Timer(300, screen)
         self.testProjectile = pygame.image.load("media/projectileTest.png").convert()
         self.background_image = pygame.image.load(level.getBackImg()).convert()
         self.handler = handler

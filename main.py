@@ -1,9 +1,6 @@
 import pygame
 import os
-from player import Player
 from testLevel import TestLevel
-from healthbar import HealthBar
-from timer import Timer
 from handler import Handler
 from colors import colors
 from states.GameState import GameState
@@ -43,12 +40,9 @@ stateManager = StateManager(None)
 
 handler = Handler(attackUpdateList, stateManager)
 
-timer = Timer(300, screen)
-count = 0
-
 # State Declaration
 stateDict = {
-    "GameState": GameState("GameState", level, screen, handler, timer, attackUpdateList),
+    "GameState": GameState("GameState", level, screen, handler, attackUpdateList),
     "ControlState": ControlState("ControlState"),
     "EndGameState": EndGameState("EndGameState"),
     "MainMenuState": MainMenuState("MainMenuState", mainMenu, handler),
