@@ -13,9 +13,6 @@ from states.StateManager import StateManager
 
 pygame.init()
 
-font = pygame.font.SysFont("Comic Sans MS", 36)
-DeadText = font.render("KO", True, colors.get("RED"))
-
 size = (1100, 800)
 screen = pygame.display.set_mode(size)
 pygame.display.set_caption("Test Game")
