@@ -63,7 +63,7 @@ stateDict = {
     "GameState": GameState("GameState", level, player1, player2, handler, timer, platformArray, attackUpdateList, p1hpbar, p2hpbar),
     "ControlState": ControlState("ControlState"),
     "EndGameState": EndGameState("EndGameState"),
-    "MainMenuState": MainMenuState("MainMenuState", mainMenu),
+    "MainMenuState": MainMenuState("MainMenuState", mainMenu, handler),
     "MapSelectionState": MapSelectionState("MapSelectionState"),
     "PlayerSelectionState": PlayerSelectionState("PlayerSelectionState")
 }
@@ -72,15 +72,17 @@ stateManager.setStateDict(stateDict)
 
 done = False
 game_won = False
-stateManager.setCurrentState("GameState")
-# stateManager.setCurrentState("MainMenuState")
+# stateManager.setCurrentState("GameState")
+stateManager.setCurrentState("MainMenuState")
 # stateManager.setCurrentState("ControlState")
 # stateManager.setCurrentState("EndGameState")
 # stateManager.setCurrentState("MapSelectionState")
-#  stateManager.setCurrentState("PlayerSelectionState")
+# stateManager.setCurrentState("PlayerSelectionState")
 
 while not handler.getDone():
     stateManager.update(screen)
+
+    print("Running")
 
     clock.tick(60)
     pygame.display.flip()
