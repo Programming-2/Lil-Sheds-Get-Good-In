@@ -2,7 +2,6 @@ import pygame
 import os
 from testLevel import TestLevel
 from handler import Handler
-from colors import colors
 from states.GameState import GameState
 from states.ControlState import ControlState
 from states.EndGameState import EndGameState
