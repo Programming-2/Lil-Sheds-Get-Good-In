@@ -3,6 +3,7 @@ import colors
 from attack import Attack
 
 # TODO Make class more abstract to allow for multiple implementations for each character
+# TODO Figure out why sprite draws weird/gets cut
 
 
 class Player(pygame.sprite.Sprite):
