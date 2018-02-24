@@ -3,6 +3,7 @@ import colors
 from attack import Attack
 RED = (255, 0, 0)
 
+# TODO Make class more abstract to allow for multiple implementations for each character
 
 class Player(pygame.sprite.Sprite):
 

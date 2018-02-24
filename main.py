@@ -14,6 +14,7 @@ pygame.init()
 
 # TODO Centralize image loading
 # TODO Standardize naming conventions and casing
+# TODO Determine better keybinds
 
 size = (1100, 800)
 screen = pygame.display.set_mode(size)
