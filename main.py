@@ -47,7 +47,7 @@ stateDict = {
     "PlayerSelectionState": PlayerSelectionState("PlayerSelectionState")
 }
 stateManager.setStateDict(stateDict)
-# End State Declatation
+# End State Declaration
 
 done = False
 game_won = False
