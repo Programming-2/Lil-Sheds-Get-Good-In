@@ -13,7 +13,6 @@ class GameState(State):
 
     def __init__(self, name, level, screen, handler, attackUpdateList):
         super().__init__(name)
-        # TODO Move all instantiation to this state
         self.platformArray = level.platformGroup
         self.attackUpdateList = attackUpdateList
 
@@ -126,7 +125,6 @@ class GameState(State):
                 self.count += 1
                 print(self.end_time)
             if self.timer.current_time <= self.end_time - 5:
-                # pygame.quit()
                 self.handler.setDone(True)
             print("end time: " + str(self.end_time))
             '''if self.timer.current_time <= self.end_time - 5:
@@ -142,7 +140,4 @@ class GameState(State):
                 self.count += 1
             print("end time: " + str(self.end_time))
             if self.timer.current_time <= self.end_time - 5:
-                # TODO find a new way to break
-                # Maybe just change state
                 self.handler.setDone(True)
-                # pygame.quit()

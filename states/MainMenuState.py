@@ -10,8 +10,7 @@ class MainMenuState(State):
         self.handler = handler
 
     def update(self, screen):
-        # TODO add code to make buttons on screen work
-        # Buttons with transition to Control state or Player Selection state
+        # TODO Add control screen
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
