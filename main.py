@@ -39,7 +39,7 @@ handler = Handler(attackUpdateList, stateManager)
 # State Declaration
 stateDict = {
     "GameState": GameState("GameState", level, screen, handler, attackUpdateList),
-    "ControlState": ControlState("ControlState"),
+    "ControlState": ControlState("ControlState", handler),
     "EndGameState": EndGameState("EndGameState"),
     "MainMenuState": MainMenuState("MainMenuState", mainMenu, handler),
     "MapSelectionState": MapSelectionState("MapSelectionState"),
