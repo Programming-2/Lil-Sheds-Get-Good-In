@@ -22,6 +22,7 @@ level = TestLevel(screen)
 background_image = pygame.image.load(level.getBackImg()).convert()
 mainMenu = pygame.image.load("media/LilShedTitleScreen.png").convert()
 testProjectile = pygame.image.load("media/projectileTest.png").convert()
+testControlScreen = pygame.image.load("media/ControlTestImage.png").convert()
 
 pygame.display.set_caption("Lil' Shed's Get Good In™")
 
@@ -39,7 +40,7 @@ handler = Handler(attackUpdateList, stateManager)
 # State Declaration
 stateDict = {
     "GameState": GameState("GameState", level, screen, handler, attackUpdateList),
-    "ControlState": ControlState("ControlState", handler),
+    "ControlState": ControlState("ControlState", handler, testControlScreen),
     "EndGameState": EndGameState("EndGameState"),
     "MainMenuState": MainMenuState("MainMenuState", mainMenu, handler),
     "MapSelectionState": MapSelectionState("MapSelectionState"),
