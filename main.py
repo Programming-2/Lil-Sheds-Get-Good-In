@@ -12,6 +12,9 @@ from states.StateManager import StateManager
 
 pygame.init()
 
+# TODO Centralize image loading
+# TODO Standardize naming conventions and casing
+
 size = (1100, 800)
 screen = pygame.display.set_mode(size)
 pygame.display.set_caption("Test Game")
