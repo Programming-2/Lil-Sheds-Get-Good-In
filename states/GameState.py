@@ -38,6 +38,16 @@ class GameState(State):
         print("time: " + str(self.timer.current_time))
         screen.blit(self.background_image, [0, 0])  # Jakob's mistake
         keys = pygame.key.get_pressed()
+
+        if keys[pygame.K_a] and not self.player1.dead:
+            self.player1.xchange = -5
+        if keys[pygame.K_d] and not self.player1.dead:
+            self.player1.xchange = 5
+        if keys[pygame.K_LEFT] and not self.player2.dead:
+            self.player2.xchange = -5
+        if keys[pygame.K_RIGHT] and not self.player2.dead:
+            self.player2.xchange = 5
+
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 self.handler.setDone(True)
@@ -65,15 +75,6 @@ class GameState(State):
                     self.player1.unduck()
                 elif event.key == pygame.K_DOWN:
                     self.player2.unduck()
-
-        if keys[pygame.K_a] and not self.player1.dead:
-            self.player1.xchange = -5
-        if keys[pygame.K_d] and not self.player1.dead:
-            self.player1.xchange = 5
-        if keys[pygame.K_LEFT] and not self.player2.dead:
-            self.player2.xchange = -5
-        if keys[pygame.K_RIGHT] and not self.player2.dead:
-            self.player2.xchange = 5
 
         if self.player1.y > screen.get_size()[1]:
             self.player1.health = 0
