@@ -1,3 +1,4 @@
+import pygame
 from states.State import State
 
 
@@ -7,4 +8,7 @@ class MapSelectionState(State):
         super().__init__(name)
 
     def update(self, screen):
-        pass
+
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                self.handler.setDone(True)
