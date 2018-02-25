@@ -18,7 +18,6 @@ pygame.init()
 
 size = (1100, 800)
 screen = pygame.display.set_mode(size)
-pygame.display.set_caption("Test Game")
 os.environ['SDL_VIDEO_CENTERED'] = '1'
 
 level = TestLevel(screen)
