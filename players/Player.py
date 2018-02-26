@@ -7,13 +7,13 @@ from attack import Attack
 
 class Player(pygame.sprite.Sprite):
 
-    def __init__(self, health, damage, winQuote, loseQuote, name, x, y, platArray, handler, defense, playNum):
+    def __init__(self, health, damage, winQuote, loseQuote, name, x, y, platArray, handler, defense):
         super().__init__()
         self.sprite = pygame.image.load("media/" + name + ".png").convert()
         self.stansprite = pygame.image.load("media/" + name + ".png").convert()
         self.crouchsprite = pygame.image.load("media/" + name + "Crouch.png").convert()
-        self.health = health
         self.damage = damage
+        self.health = health
         self.winQuote = winQuote
         self.loseQuote = loseQuote
         self.name = name
@@ -31,7 +31,7 @@ class Player(pygame.sprite.Sprite):
         self.handler = handler
         self.defense = defense
         self.stunned = False
-        self.dead = False
+        self.sleeping = False
         self.facing = 1  # -1 for left, 1 for right
 
     def jump(self):
@@ -114,25 +114,17 @@ class Player(pygame.sprite.Sprite):
             self.ychange = 0
 
     def attack(self, image, screen, player):
-        if self.ychange > 0 and self.xchange == 0:
-            self.handler.getAttackList().add(Attack(self.x + self.width / 2, self.y + self.height + 5, 0, 15, "ranged", 1, 3, 5, screen, image, 20, self.handler, player))
-            print(1)
-        elif self.ychange < 0 and self.xchange == 0:
-            self.handler.getAttackList().add(Attack(self.x + self.width / 2, self.y - 5, 0, -15, "ranged", 1, 3, 5, screen, image, 20, self.handler, player))
-            print(2)
-        elif self.facing == -1:
+        if self.facing == -1:
             self.handler.getAttackList().add(Attack(self.x - 25, self.y, 15 * self.facing, 0, "ranged", 1, 3, 5, screen, image, 20, self.handler, player))
-            print(3)
         elif self.facing == 1:
             self.handler.getAttackList().add(Attack(self.x + self.width + 5, self.y, 15 * self.facing, 0, "ranged", 1, 3, 5, screen, image, 20, self.handler, player))
-            print(4)
 
     def special(self):
         pass  # abstract
 
     def goToSleepForAnExtendedPeriodOfTime(self):
         self.ychange = -5
-        self.dead = True
+        self.sleeping = True
 
     def getX(self):
         return self.x
