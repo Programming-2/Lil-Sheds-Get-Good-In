@@ -39,6 +39,9 @@ class GameState(State):
         self.count = 0
         self.end_time = 0
 
+    def setPlayers(self, player1, player2):
+        pass
+
     def update(self, screen):
         print("time: " + str(self.timer.current_time))
         screen.blit(self.background_image, [0, 0])  # Jakob's mistake
