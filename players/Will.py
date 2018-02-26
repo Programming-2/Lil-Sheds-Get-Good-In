@@ -18,6 +18,7 @@ class Will(Player):
         self.start_time = 0
         self.startgravity = self.gravity
         self.startdefense = defense
+        self.specialsprite = pygame.image.load("media/WillSpecial.png")
 
     def special(self):
         self.special_active = True
@@ -34,6 +35,7 @@ class Will(Player):
                 self.facing = -1
 
         if self.special_active:
+            self.sprite = self.specialsprite
             if self.count == 0:
                 self.start_time = pygame.time.get_ticks()
                 self.count += 1
@@ -50,5 +52,6 @@ class Will(Player):
                 self.count = 0
                 self.gravity = self.startgravity
                 self.defense = self.startdefense
+                self.sprite = self.stansprite
 
         screen.blit(self.sprite, [self.x, self.y])
