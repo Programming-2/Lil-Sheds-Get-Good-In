@@ -5,7 +5,7 @@ from players.Player import Player
 
 
 class Will(Player):
-    def __init__(self, x, y, platArray, handler, playNum):
+    def __init__(self, x, y, platArray, handler, playNum, enemy):
         health = 100
         damage = 15
         winQuote = "yikes"
@@ -23,6 +23,7 @@ class Will(Player):
         self.startdefense = defense
         self.specialsprite = pygame.image.load("media/WillSpecial.png")
         self.attacksprite = pygame.image.load("media/projectileTest.png")
+        self.enemy = enemy
 
     def special(self):
         self.special_active = True
@@ -52,6 +53,9 @@ class Will(Player):
                 self.defense = 0
                 self.gravity = 0
                 self.handler.getAttackList().add(Attack(self.x + self.width / 2, self.y + self.height - 50, random.randint(-10, 10), random.randint(-5, 5), "ranged", self.damage, 0, 0, screen, self.attacksprite, 20, self.handler, self.playerNum))
+                if pygame.sprite.spritecollide(self.enemy, self.handler.getAttackList(), False):
+                    self.enemy.takeDamage(self.damage)
+                    pygame.sprite.spritecollide(self.enemy, self.handler.getAttackList(), True)
             if seconds > 2:
                 self.special_active = False
                 self.count = 0
