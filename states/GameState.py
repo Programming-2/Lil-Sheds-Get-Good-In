@@ -5,6 +5,7 @@ from healthbar import HealthBar
 from timer import Timer
 from players.Player import Player
 from players.Will import Will
+from meleeAttack import Attack
 
 font = pygame.font.SysFont("Comic Sans MS", 36)
 DeadText = font.render("KO", True, colors.get("RED"))
@@ -22,8 +23,11 @@ class GameState(State):
         self.background_image = pygame.image.load(level.getBackImg()).convert()
         self.handler = handler
 
-        self.player2 = Player(100, 20, "Yes", "No", "JaccobBonkley", 850, 100, self.platformArray, handler, .6, 0)
+        self.player2 = Player(100, "Yes", "No", "JaccobBonkley", 850, 100, self.platformArray, handler, .6)
         self.player1 = Will(200, 100, self.platformArray, handler, 1, self.player2)
+
+        self.player1MeleeAttack = Attack(self.player1.x, self.player1.y, "melee attack", 5, 2, 2, screen, 120, handler, self.player1)
+        self.player2MeleeAttack = Attack(self.player2.x, self.player2.x, "melee attack", 5, 2, 2, screen, 120, handler, self.player2)
 
         self.p1hpbar = HealthBar(screen, "topleft", self.player1.health)
         self.p2hpbar = HealthBar(screen, "topright", self.player2.health)
@@ -60,11 +64,10 @@ class GameState(State):
                 elif event.key == pygame.K_RSHIFT:
                     self.player2.attack(self.testProjectile, screen, "2")
                 elif event.key == pygame.K_r:
-                    pass
-                    # attack.p1_melee_attack()
+                    self.player1MeleeAttack.p1_melee_attack()
                 elif event.key == pygame.K_RCTRL and not self.player2.dead:
                     pass
-                    # attack.p2_melee_attack()
+                    self.player2MeleeAttack.p2_melee_attack()
                 elif event.key == pygame.K_w and not (self.player1.dead or self.player1.stunned):
                     self.player1.jump()
                 elif event.key == pygame.K_s and not (self.player1.dead or self.player1.stunned):
