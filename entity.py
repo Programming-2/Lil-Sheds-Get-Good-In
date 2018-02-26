@@ -36,6 +36,3 @@ class Entity(pygame.sprite.Sprite):
 
     def setChangeX(self, x):
         self.changex = x
-
-    def setChangeY(self, y):
-        self.changey = y

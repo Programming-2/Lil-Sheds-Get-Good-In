@@ -1,14 +1,4 @@
-import pygame
-from states.State import State
+class EndGameState:
 
-
-class EndGameState(State):
-
-    def __init__(self, name):
+    def __init(self, name):
         super().__init__(name)
-
-    def update(self, screen):
-
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                self.handler.setDone(True)
