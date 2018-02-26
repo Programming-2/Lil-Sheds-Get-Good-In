@@ -53,8 +53,9 @@ class GameState(State):
             if event.type == pygame.QUIT:
                 self.handler.setDone(True)
             elif event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_e:
-                    # self.player1.attack(self.testProjectile, screen, "1")
+                if event.key == pygame.K_g:
+                    self.player1.attack(self.testProjectile, screen, "1")
+                elif event.key == pygame.K_f:
                     self.player1.special()
                 elif event.key == pygame.K_RSHIFT:
                     self.player2.attack(self.testProjectile, screen, "2")
@@ -115,6 +116,7 @@ class GameState(State):
                 self.player2.takeDamage(self.player1.damage)
 
         pygame.sprite.groupcollide(self.platformArray, self.attackUpdateList, False, True)
+        print(self.attackUpdateList)
 
         self.player1.xchange = 0
         self.player2.xchange = 0

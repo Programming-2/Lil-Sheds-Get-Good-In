@@ -122,12 +122,10 @@ class Player(pygame.sprite.Sprite):
             self.handler.getAttackList().add(Attack(self.x + self.width / 2, self.y - 5, 0, -15, "ranged", 1, 3, 5, screen, image, 20, self.handler, player))
             print(2)
         elif self.facing == -1:
-            self.handler.getAttackList().add(Attack(self.x - 25, self.y, 15 * self.facing, 0, "ranged", 1, 3, 5, screen,
-                                                    image, 20, self.handler, player))
+            self.handler.getAttackList().add(Attack(self.x - 25, self.y, 15 * self.facing, 0, "ranged", 1, 3, 5, screen, image, 20, self.handler, player))
             print(3)
         elif self.facing == 1:
-            self.handler.getAttackList().add(Attack(self.x + self.width + 5, self.y, 15 * self.facing, 0, "ranged",
-                                                    1, 3, 5, screen, image, 20, self.handler, player))
+            self.handler.getAttackList().add(Attack(self.x + self.width + 5, self.y, 15 * self.facing, 0, "ranged", 1, 3, 5, screen, image, 20, self.handler, player))
             print(4)
 
     def special(self):

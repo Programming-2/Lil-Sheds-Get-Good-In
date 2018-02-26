@@ -1,4 +1,6 @@
 import pygame
+import random
+from attack import Attack
 from players.Player import Player
 
 
@@ -13,12 +15,14 @@ class Will(Player):
 
         super().__init__(health, damage, winQuote, loseQuote, name, x, y, platArray, handler, defense, playNum)
 
+        self.playerNum = playNum
         self.special_active = False
         self.count = 0
         self.start_time = 0
         self.startgravity = self.gravity
         self.startdefense = defense
         self.specialsprite = pygame.image.load("media/WillSpecial.png")
+        self.attacksprite = pygame.image.load("media/projectileTest.png")
 
     def special(self):
         self.special_active = True
@@ -47,6 +51,7 @@ class Will(Player):
                 self.ychange = 0
                 self.defense = 0
                 self.gravity = 0
+                self.handler.getAttackList().add(Attack(self.x + self.width / 2, self.y + self.height - 50, random.randint(-10, 10), random.randint(-5, 5), "ranged", self.damage, 0, 0, screen, self.attacksprite, 20, self.handler, self.playerNum))
             if seconds > 2:
                 self.special_active = False
                 self.count = 0
