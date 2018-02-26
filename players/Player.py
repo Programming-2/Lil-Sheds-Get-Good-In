@@ -10,16 +10,9 @@ class Player(pygame.sprite.Sprite):
 
     def __init__(self, health, damage, winQuote, loseQuote, name, x, y, platArray, handler, defense, playNum):
         super().__init__()
-        if playNum == 0:
-            self.duckSprite = pygame.image.load("media/TestCrouchSprite.png").convert()
-            self.stanSprite = pygame.image.load("media/BaseSprite.png").convert()
-        if playNum == 1:
-            self.duckSprite = pygame.image.load("media/TestCrouchSprite2.png").convert()
-            self.stanSprite = pygame.image.load("media/testSprite2.png").convert()
-        if playNum == 2:
-            self.duckSprite = pygame.image.load("media/TestCrouchSprite3.png").convert()
-            self.stanSprite = pygame.image.load("media/testSprite3.png").convert()
-        self.sprite = self.stanSprite
+        self.sprite = pygame.image.load("media/" + name + ".png").convert()
+        self.stansprite = pygame.image.load("media/" + name + ".png").convert()
+        self.crouchsprite = pygame.image.load("media/" + name + "Crouch.png").convert()
         self.health = health
         self.damage = damage
         self.winQuote = winQuote
@@ -38,6 +31,7 @@ class Player(pygame.sprite.Sprite):
         self.takenDamage = 0
         self.handler = handler
         self.defense = defense
+        self.stunned = False
         self.dead = False
         self.facing = 1  # -1 for left, 1 for right
 
@@ -81,15 +75,15 @@ class Player(pygame.sprite.Sprite):
         return False
 
     def duck(self):
-        self.y += self.stanSprite.get_height() - self.duckSprite.get_height()
-        self.sprite = self.duckSprite
+        self.y += self.stansprite.get_height() - self.crouchsprite.get_height()
+        self.sprite = self.crouchsprite
         self.width = self.sprite.get_width()
         self.height = self.sprite.get_height()
         self.rect = pygame.Rect(self.x, self.y, self.width, self.height)
 
     def unduck(self):
-        self.y -= self.stanSprite.get_height() - self.duckSprite.get_height()
-        self.sprite = self.stanSprite
+        self.y -= self.stansprite.get_height() - self.crouchsprite.get_height()
+        self.sprite = self.stansprite
         self.width = self.sprite.get_width()
         self.height = self.sprite.get_height()
         self.rect = pygame.Rect(self.x, self.y, self.width, self.height)
@@ -122,21 +116,20 @@ class Player(pygame.sprite.Sprite):
 
     def attack(self, image, screen, player):
         if self.ychange > 0 and self.xchange == 0:
-            self.handler.getAttackList().add(Attack(self.x + self.width / 2, self.y + self.height + 5, 0, 15, "ranged",
-                                                1, 3, 5, screen, image, 20, self.handler, player))
+            self.handler.getAttackList().add(Attack(self.x + self.width / 2, self.y + self.height + 5, 0, 15, "ranged", 1, 3, 5, screen, image, 20, self.handler, player))
             print(1)
         elif self.ychange < 0 and self.xchange == 0:
-            self.handler.getAttackList().add(Attack(self.x + self.width / 2, self.y - 5, 0, -15, "ranged",
-                                                1, 3, 5, screen, image, 20, self.handler, player))
+            self.handler.getAttackList().add(Attack(self.x + self.width / 2, self.y - 5, 0, -15, "ranged", 1, 3, 5, screen, image, 20, self.handler, player))
             print(2)
         elif self.facing == -1:
-            self.handler.getAttackList().add(Attack(self.x - 25, self.y, 15 * self.facing, 0, "ranged", 1, 3, 5, screen,
-                                                    image, 20, self.handler, player))
+            self.handler.getAttackList().add(Attack(self.x - 25, self.y, 15 * self.facing, 0, "ranged", 1, 3, 5, screen, image, 20, self.handler, player))
             print(3)
         elif self.facing == 1:
-            self.handler.getAttackList().add(Attack(self.x + self.width + 5, self.y, 15 * self.facing, 0, "ranged",
-                                                    1, 3, 5, screen, image, 20, self.handler, player))
+            self.handler.getAttackList().add(Attack(self.x + self.width + 5, self.y, 15 * self.facing, 0, "ranged", 1, 3, 5, screen, image, 20, self.handler, player))
             print(4)
+
+    def special(self):
+        pass  # abstract
 
     def goToSleepForAnExtendedPeriodOfTime(self):
         self.ychange = -5
