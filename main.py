@@ -25,7 +25,7 @@ level = TestLevel(screen)
 background_image = pygame.image.load(level.getBackImg()).convert()
 mainMenu = pygame.image.load("media/LilShedTitleScreen.png").convert()
 testProjectile = pygame.image.load("media/projectileTest.png").convert()
-testControlScreen = pygame.image.load("media/ControlTestImage.png").convert()
+testControlScreen = pygame.image.load("media/ControlScreen.png").convert()
 
 pygame.display.set_caption("Lil' Shed's Get Good In™")
 
