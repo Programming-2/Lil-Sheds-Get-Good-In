@@ -22,7 +22,7 @@ class GameState(State):
         self.background_image = pygame.image.load(level.getBackImg()).convert()
         self.handler = handler
 
-        self.player2 = Player(100, 20, "Yes", "No", "JaccobBonkley", 850, 100, self.platformArray, handler, .6)
+        self.player2 = Player(100, 20, "Yes", "No", "JaccobBonkley", 850, 100, self.platformArray, handler, .6, 0)
         self.player1 = Will(200, 100, self.platformArray, handler, 1, self.player2)
 
         self.p1hpbar = HealthBar(screen, "topleft", self.player1.health)
