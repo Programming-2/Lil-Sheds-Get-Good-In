@@ -16,6 +16,9 @@ class StateManager:
     def setStateDict(self, dict):
         self.states = dict
 
+    def getState(self, name):
+        return self.states[name]
+
     # Should be called by main loop
     def update(self, screen):
         self.currentState.update(screen)
