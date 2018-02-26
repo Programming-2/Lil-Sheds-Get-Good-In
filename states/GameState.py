@@ -23,16 +23,16 @@ class GameState(State):
         self.background_image = pygame.image.load(level.getBackImg()).convert()
         self.handler = handler
 
-<<<<<<< HEAD
+
         self.player1 = Will(200, 100, self.platformArray, handler, 1)
         self.player2 = Player(100, "Yes", "No", "JaccobBonkley", 850, 100, self.platformArray, handler, .6)
 
         self.player1MeleeAttack = Attack(self.player1.x, self.player1.y, "melee attack", 5, 2, 2, screen, 15, handler, self.player1)
         self.player2MeleeAttack = Attack(self.player2.x, self.player2.x, "melee attack", 5, 2, 2, screen, 15, handler, self.player2)
-=======
+
         self.player2 = Player(100, 20, "Yes", "No", "JaccobBonkley", 850, 100, self.platformArray, handler, .6, 0)
         self.player1 = Will(200, 100, self.platformArray, handler, 1, self.player2)
->>>>>>> 373a71fdb1e02a261377a8b843a402f2d1090d56
+
 
         self.p1hpbar = HealthBar(screen, "topleft", self.player1.health)
         self.p2hpbar = HealthBar(screen, "topright", self.player2.health)
