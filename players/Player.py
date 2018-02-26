@@ -8,13 +8,12 @@ from attack import Attack
 
 class Player(pygame.sprite.Sprite):
 
-    def __init__(self, health, damage, winQuote, loseQuote, name, x, y, platArray, handler, defense, playNum):
+    def __init__(self, health, winQuote, loseQuote, name, x, y, platArray, handler, defense, playNum):
         super().__init__()
         self.sprite = pygame.image.load("media/" + name + ".png").convert()
         self.stansprite = pygame.image.load("media/" + name + ".png").convert()
         self.crouchsprite = pygame.image.load("media/" + name + "Crouch.png").convert()
         self.health = health
-        self.damage = damage
         self.winQuote = winQuote
         self.loseQuote = loseQuote
         self.name = name
