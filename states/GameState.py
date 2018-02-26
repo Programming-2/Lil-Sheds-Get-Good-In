@@ -1,9 +1,10 @@
 import pygame
 from states.State import State
 from colors import colors
-from player import Player
 from healthbar import HealthBar
 from timer import Timer
+from players.Player import Player
+from players.Will import Will
 
 font = pygame.font.SysFont("Comic Sans MS", 36)
 DeadText = font.render("KO", True, colors.get("RED"))
@@ -21,8 +22,8 @@ class GameState(State):
         self.background_image = pygame.image.load(level.getBackImg()).convert()
         self.handler = handler
 
-        self.player1 = Player(100, 20, "Yes", "No", "Will", 200, 100, self.platformArray, handler, .3, 1)
-        self.player2 = Player(100, 20, "Yes", "No", "Jaccob Bonkley", 850, 100, self.platformArray, handler, .3, 2)
+        self.player1 = Will(200, 100, self.platformArray, handler, .3, 1)
+        self.player2 = Player(100, 20, "Yes", "No", "JaccobBonkley", 850, 100, self.platformArray, handler, .3, 2)
 
         self.p1hpbar = HealthBar(screen, "topleft", self.player1.health)
         self.p2hpbar = HealthBar(screen, "topright", self.player2.health)
@@ -39,13 +40,13 @@ class GameState(State):
         screen.blit(self.background_image, [0, 0])  # Jakob's mistake
         keys = pygame.key.get_pressed()
 
-        if keys[pygame.K_a] and not self.player1.dead:
+        if keys[pygame.K_a] and not (self.player1.dead or self.player1.stunned):
             self.player1.xchange = -5
-        if keys[pygame.K_d] and not self.player1.dead:
+        if keys[pygame.K_d] and not (self.player1.dead or self.player1.stunned):
             self.player1.xchange = 5
-        if keys[pygame.K_LEFT] and not self.player2.dead:
+        if keys[pygame.K_LEFT] and not (self.player2.dead or self.player2.stunned):
             self.player2.xchange = -5
-        if keys[pygame.K_RIGHT] and not self.player2.dead:
+        if keys[pygame.K_RIGHT] and not (self.player2.dead or self.player2.stunned):
             self.player2.xchange = 5
 
         for event in pygame.event.get():
@@ -53,7 +54,8 @@ class GameState(State):
                 self.handler.setDone(True)
             elif event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_e:
-                    self.player1.attack(self.testProjectile, screen, "1")
+                    # self.player1.attack(self.testProjectile, screen, "1")
+                    self.player1.special()
                 elif event.key == pygame.K_KP0:
                     self.player2.attack(self.testProjectile, screen, "2")
                 elif event.key == pygame.K_r:
@@ -62,13 +64,13 @@ class GameState(State):
                 elif event.key == pygame.K_RCTRL and not self.player2.dead:
                     pass
                     # attack.p2_melee_attack()
-                elif event.key == pygame.K_w and not self.player1.dead:
+                elif event.key == pygame.K_w and not (self.player1.dead or self.player1.stunned):
                     self.player1.jump()
-                elif event.key == pygame.K_s and not self.player1.dead:
+                elif event.key == pygame.K_s and not (self.player1.dead or self.player1.stunned):
                     self.player1.duck()
-                elif event.key == pygame.K_UP and not self.player2.dead:
+                elif event.key == pygame.K_UP and not (self.player2.dead or self.player2.stunned):
                     self.player2.jump()
-                elif event.key == pygame.K_DOWN and not self.player2.dead:
+                elif event.key == pygame.K_DOWN and not (self.player2.dead or self.player2.stunned):
                     self.player2.duck()
             elif event.type == pygame.KEYUP:
                 if event.key == pygame.K_s:
