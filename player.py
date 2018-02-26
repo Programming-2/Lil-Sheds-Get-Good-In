@@ -1,7 +1,9 @@
 import pygame
 import colors
 from attack import Attack
-RED = (255, 0, 0)
+
+# TODO Make class more abstract to allow for multiple implementations for each character
+# TODO Figure out why sprite draws weird/gets cut
 
 
 class Player(pygame.sprite.Sprite):
@@ -119,18 +121,22 @@ class Player(pygame.sprite.Sprite):
             self.ychange = 0
 
     def attack(self, image, screen, player):
-        if self.facing == -1 and self.ychange == 0:
+        if self.ychange > 0 and self.xchange == 0:
+            self.handler.getAttackList().add(Attack(self.x + self.width / 2, self.y + self.height + 5, 0, 15, "ranged",
+                                                1, 3, 5, screen, image, 20, self.handler, player))
+            print(1)
+        elif self.ychange < 0 and self.xchange == 0:
+            self.handler.getAttackList().add(Attack(self.x + self.width / 2, self.y - 5, 0, -15, "ranged",
+                                                1, 3, 5, screen, image, 20, self.handler, player))
+            print(2)
+        elif self.facing == -1:
             self.handler.getAttackList().add(Attack(self.x - 25, self.y, 15 * self.facing, 0, "ranged", 1, 3, 5, screen,
                                                     image, 20, self.handler, player))
-        elif self.facing == 1 and self.ychange == 0:
+            print(3)
+        elif self.facing == 1:
             self.handler.getAttackList().add(Attack(self.x + self.width + 5, self.y, 15 * self.facing, 0, "ranged",
                                                     1, 3, 5, screen, image, 20, self.handler, player))
-        elif self.ychange > 0:
-            self.handler.getAttackList().add(Attack(self.x + self.width / 2, self.y + self.height + 5, 0, 15, "ranged",
-                                                    1, 3, 5, screen, image, 20, self.handler, player))
-        else:
-            self.handler.getAttackList().add(Attack(self.x + self.width / 2, self.y - 5, 0, -15, "ranged",
-                                                    1, 3, 5, screen, image, 20, self.handler, player))
+            print(4)
 
     def goToSleepForAnExtendedPeriodOfTime(self):
         self.ychange = -5
