@@ -9,7 +9,7 @@ from colors import colors
 
 pygame.init()
 
-font = pygame.font.SysFont("Comic Sans MS", 36)
+font = pygame.font.SysFont("Calibri", 36)
 DeadText = font.render("KO", True, colors.get("RED"))
 
 size = (1100, 800)
@@ -154,6 +154,8 @@ while not done:
         print(end_time)
         if timer.current_time <= end_time - 5:
             break
+
+    player1.health += .01
 
     clock.tick(60)
     pygame.display.flip()
