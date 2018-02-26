@@ -43,7 +43,6 @@ class GameState(State):
         pass
 
     def update(self, screen):
-        print("time: " + str(self.timer.current_time))
         screen.blit(self.background_image, [0, 0])  # Jakob's mistake
         keys = pygame.key.get_pressed()
 
@@ -122,7 +121,6 @@ class GameState(State):
                 self.player2.takeDamage(self.player1.damage)
 
         pygame.sprite.groupcollide(self.platformArray, self.attackUpdateList, False, True)
-        print(self.attackUpdateList)
 
         self.player1.xchange = 0
         self.player2.xchange = 0
@@ -137,7 +135,6 @@ class GameState(State):
                 print(self.end_time)
             if self.timer.current_time <= self.end_time - 5:
                 self.handler.setDone(True)
-            print("end time: " + str(self.end_time))
             '''if self.timer.current_time <= self.end_time - 5:
                 # TODO find a new way to break
                 # Maybe just change state
@@ -149,6 +146,5 @@ class GameState(State):
             if self.count == 0:
                 self.end_time = self.timer.current_time
                 self.count += 1
-            print("end time: " + str(self.end_time))
             if self.timer.current_time <= self.end_time - 5:
                 self.handler.setDone(True)
