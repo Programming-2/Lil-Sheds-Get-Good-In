@@ -13,7 +13,7 @@ class Will(Player):
         name = "Will"
         defense = .8
 
-        super().__init__(health, winQuote, loseQuote, name, x, y, platArray, handler, defense)
+        super().__init__(health, damage, winQuote, loseQuote, name, x, y, platArray, handler, defense)
 
         self.special_active = False
         self.count = 0

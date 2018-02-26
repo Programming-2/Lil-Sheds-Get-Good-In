@@ -7,11 +7,12 @@ from attack import Attack
 
 class Player(pygame.sprite.Sprite):
 
-    def __init__(self, health, winQuote, loseQuote, name, x, y, platArray, handler, defense):
+    def __init__(self, health, damage, winQuote, loseQuote, name, x, y, platArray, handler, defense):
         super().__init__()
         self.sprite = pygame.image.load("media/" + name + ".png").convert()
         self.stansprite = pygame.image.load("media/" + name + ".png").convert()
         self.crouchsprite = pygame.image.load("media/" + name + "Crouch.png").convert()
+        self.damage = damage
         self.health = health
         self.winQuote = winQuote
         self.loseQuote = loseQuote
@@ -30,7 +31,7 @@ class Player(pygame.sprite.Sprite):
         self.handler = handler
         self.defense = defense
         self.stunned = False
-        self.dead = False
+        self.sleeping = False
         self.facing = 1  # -1 for left, 1 for right
 
     def jump(self):
@@ -131,7 +132,7 @@ class Player(pygame.sprite.Sprite):
 
     def goToSleepForAnExtendedPeriodOfTime(self):
         self.ychange = -5
-        self.dead = True
+        self.sleeping = True
 
     def getX(self):
         return self.x
