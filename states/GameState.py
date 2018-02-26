@@ -22,8 +22,8 @@ class GameState(State):
         self.background_image = pygame.image.load(level.getBackImg()).convert()
         self.handler = handler
 
-        self.player1 = Will(200, 100, self.platformArray, handler, .3, 1)
-        self.player2 = Player(100, 20, "Yes", "No", "JaccobBonkley", 850, 100, self.platformArray, handler, .3, 2)
+        self.player1 = Will(200, 100, self.platformArray, handler, 1)
+        self.player2 = Player(100, 20, "Yes", "No", "JaccobBonkley", 850, 100, self.platformArray, handler, .6, 2)
 
         self.p1hpbar = HealthBar(screen, "topleft", self.player1.health)
         self.p2hpbar = HealthBar(screen, "topright", self.player2.health)
@@ -56,7 +56,7 @@ class GameState(State):
                 if event.key == pygame.K_e:
                     # self.player1.attack(self.testProjectile, screen, "1")
                     self.player1.special()
-                elif event.key == pygame.K_KP0:
+                elif event.key == pygame.K_RSHIFT:
                     self.player2.attack(self.testProjectile, screen, "2")
                 elif event.key == pygame.K_r:
                     pass

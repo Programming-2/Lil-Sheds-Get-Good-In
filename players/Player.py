@@ -11,6 +11,8 @@ class Player(pygame.sprite.Sprite):
     def __init__(self, health, damage, winQuote, loseQuote, name, x, y, platArray, handler, defense, playNum):
         super().__init__()
         self.sprite = pygame.image.load("media/" + name + ".png").convert()
+        self.stansprite = pygame.image.load("media/" + name + ".png").convert()
+        self.crouchsprite = pygame.image.load("media/" + name + "Crouch.png").convert()
         self.health = health
         self.damage = damage
         self.winQuote = winQuote
@@ -73,15 +75,15 @@ class Player(pygame.sprite.Sprite):
         return False
 
     def duck(self):
-        self.y += self.stanSprite.get_height() - self.duckSprite.get_height()
-        self.sprite = self.duckSprite
+        self.y += self.stansprite.get_height() - self.crouchsprite.get_height()
+        self.sprite = self.crouchsprite
         self.width = self.sprite.get_width()
         self.height = self.sprite.get_height()
         self.rect = pygame.Rect(self.x, self.y, self.width, self.height)
 
     def unduck(self):
-        self.y -= self.stanSprite.get_height() - self.duckSprite.get_height()
-        self.sprite = self.stanSprite
+        self.y -= self.stansprite.get_height() - self.crouchsprite.get_height()
+        self.sprite = self.stansprite
         self.width = self.sprite.get_width()
         self.height = self.sprite.get_height()
         self.rect = pygame.Rect(self.x, self.y, self.width, self.height)
