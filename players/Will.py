@@ -1,5 +1,4 @@
 import pygame
-import random
 from attack import Attack
 from players.Player import Player
 
@@ -26,6 +25,7 @@ class Will(Player):
         self.rangedavailable = True
         self.rangedstarttime = 0
         self.rangedcooldown = 0
+        self.damage_special = 1.5 * damage
 
     def special(self):
         self.special_active = True
@@ -100,7 +100,7 @@ class Will(Player):
                 self.start_time = pygame.time.get_ticks()
                 self.count += 1
             seconds = 0
-            if seconds <= 2:
+            if seconds <= 1:
                 self.rangedavailable = False
                 seconds = (pygame.time.get_ticks() - self.start_time) / 1000
                 print("Current time: " + str(seconds))
@@ -108,8 +108,15 @@ class Will(Player):
                 self.ychange = 0
                 self.defense = 0
                 self.gravity = 0
-                self.handler.getAttackList().add(Attack(self.x + self.width / 2, self.y + self.height - 50, random.randint(-10, 10), random.randint(-5, 5), "ranged", self.damage, 0, 0, screen, self.attacksprite, 20, self.handler, self.playNum))
-            if seconds > 2:
+            if seconds > 1:
+                self.handler.getAttackList().add(Attack(self.x + self.width / 2, self.y + self.height - 50, 15, 0, "ranged", self.damage_special, 0, 0, screen, self.attacksprite, 20, self.handler, self.playNum))
+                self.handler.getAttackList().add(Attack(self.x + self.width / 2, self.y + self.height - 50, -15, 0, "ranged", self.damage_special, 0, 0, screen, self.attacksprite, 20, self.handler, self.playNum))
+                self.handler.getAttackList().add(Attack(self.x + self.width / 2, self.y + self.height - 50, 0, 15, "ranged", self.damage_special, 0, 0, screen, self.attacksprite, 20, self.handler, self.playNum))
+                self.handler.getAttackList().add(Attack(self.x + self.width / 2, self.y + self.height - 50, 0, -15, "ranged", self.damage_special, 0, 0, screen, self.attacksprite, 20, self.handler, self.playNum))
+                self.handler.getAttackList().add(Attack(self.x + self.width / 2, self.y + self.height - 50, 10.65, 10.65, "ranged", self.damage_special, 0, 0, screen, self.attacksprite, 20, self.handler, self.playNum))
+                self.handler.getAttackList().add(Attack(self.x + self.width / 2, self.y + self.height - 50, -10.65, 10.65, "ranged", self.damage_special, 0, 0, screen, self.attacksprite, 20, self.handler, self.playNum))
+                self.handler.getAttackList().add(Attack(self.x + self.width / 2, self.y + self.height - 50, 10.65, -10.65, "ranged", self.damage_special, 0, 0, screen, self.attacksprite, 20, self.handler, self.playNum))
+                self.handler.getAttackList().add(Attack(self.x + self.width / 2, self.y + self.height - 50, -10.65, -10.65, "ranged", self.damage_special, 0, 0, screen, self.attacksprite, 20, self.handler, self.playNum))
                 self.special_active = False
                 self.count = 0
                 self.gravity = self.startgravity
