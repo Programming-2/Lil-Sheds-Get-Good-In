@@ -1,5 +1,6 @@
 from states.StateManager import StateManager
 
+
 class Handler:
 
     def __init__(self, attackList, stateManager):
