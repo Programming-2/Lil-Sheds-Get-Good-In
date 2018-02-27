@@ -27,6 +27,7 @@ class Will(Player):
         self.rangedavailable = True
         self.rangedstarttime = 0
         self.rangedcooldown = 0
+        self.playerNum = playNum
 
     def special(self):
         self.special_active = True
