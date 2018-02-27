@@ -25,7 +25,7 @@ class GameState(State):
         self.handler = handler
 
         self.player1 = Will(200, 100, self.platformArray, handler, 1)
-        self.player2 = JaccobBonkley(850, 100, self.platformArray, handler, 2)
+        self.player2 = JaccobBonkley(850, 100 + 30, self.platformArray, handler, 2)
         self.player2.facing = -1
 
         self.player1MeleeAttack = Attack(self.player1.x, self.player1.y, "melee attack", 5, 2, 2, screen, 120, handler, self.player1)
