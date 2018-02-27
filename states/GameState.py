@@ -79,15 +79,19 @@ class GameState(State):
                     self.player1.jump()
                 elif event.key == pygame.K_s and not (self.player1.sleeping or self.player1.stunned):
                     self.player1.duck()
+                    self.player1.gravity *= 4
                 elif event.key == pygame.K_UP and not (self.player2.sleeping or self.player2.stunned):
                     self.player2.jump()
                 elif event.key == pygame.K_DOWN and not (self.player2.sleeping or self.player2.stunned):
                     self.player2.duck()
+                    self.player2.gravity *= 4
             elif event.type == pygame.KEYUP:
                 if event.key == pygame.K_s:
                     self.player1.unduck()
+                    self.player1.gravity /= 4
                 elif event.key == pygame.K_DOWN:
                     self.player2.unduck()
+                    self.player2.gravity /= 4
 
         if self.player1.y > screen.get_size()[1]:
             self.player1.health = 0
