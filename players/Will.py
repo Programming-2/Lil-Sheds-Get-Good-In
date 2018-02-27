@@ -28,6 +28,7 @@ class Will(Player):
         self.damage_special = 1.5 * damage
         self.special_available = True
         self.special_cooldown = 0
+        self.special_total_cooldown = 5
         self.special_count = 0
         self.special_start_time = 0
 
@@ -79,10 +80,9 @@ class Will(Player):
                 self.special_start_time = pygame.time.get_ticks()
                 self.special_count = 1
             self.special_cooldown = (pygame.time.get_ticks() - self.special_start_time) / 1000
-            if self.special_cooldown >= 5:
+            if self.special_cooldown >= self.special_total_cooldown:
                 self.special_available = True
-                self.count = 0
-                self.special_cooldown = 0
+                self.special_count = 0
 
         if self.special_active and not self.sleeping:
             self.sprite = self.specialsprite
@@ -113,6 +113,7 @@ class Will(Player):
                 self.defense = self.startdefense
                 self.sprite = self.stansprite
                 self.rangedavailable = True
+                self.count = 0
 
         if self.playNum == 1:
             if pygame.sprite.spritecollide(self.handler.getPlayer2(), self.handler.getAttackList(), False):

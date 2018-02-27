@@ -2,6 +2,7 @@ import pygame
 from states.State import State
 from colors import colors
 from healthbar import HealthBar
+from cooldownbar import CooldownBar
 from timer import Timer
 # from players.Player import Player
 from players.Will import Will
@@ -33,6 +34,8 @@ class GameState(State):
 
         self.p1hpbar = HealthBar(screen, "topleft", self.player1.health)
         self.p2hpbar = HealthBar(screen, "topright", self.player2.health)
+        self.p1cdbar = CooldownBar(screen, self.player1)
+        self.p2cdbar = CooldownBar(screen, self.player2)
 
         handler.setPlayer1(self.player1)
         handler.setPlayer2(self.player2)
@@ -104,6 +107,9 @@ class GameState(State):
         self.timer.update(screen)
         self.p1hpbar.update(self.player1.health)
         self.p2hpbar.update(self.player2.health)
+        self.p1cdbar.update(self.player1.special_cooldown)
+        self.p2cdbar.update(self.player2.special_cooldown)
+        print(self.player1.special_cooldown)
         self.platformArray.update()
         self.handler.setPlayer1(self.player1)
         self.handler.setPlayer2(self.player2)
