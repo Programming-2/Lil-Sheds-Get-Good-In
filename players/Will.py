@@ -26,9 +26,14 @@ class Will(Player):
         self.rangedstarttime = 0
         self.rangedcooldown = 0
         self.damage_special = 1.5 * damage
+        self.special_available = True
+        self.special_cooldown = 0
+        self.special_count = 0
+        self.special_start_time = 0
 
     def special(self):
-        self.special_active = True
+        if self.special_available:
+            self.special_active = True
 
     def attack(self, image, screen, player):
         if self.rangedavailable:
@@ -68,6 +73,17 @@ class Will(Player):
                     self.rangedavailable = True
                     self.rangedcount = 0
 
+        if not self.special_available:
+            self.special_cooldown = 0
+            if self.special_count == 0:
+                self.special_start_time = pygame.time.get_ticks()
+                self.special_count = 1
+            self.special_cooldown = (pygame.time.get_ticks() - self.special_start_time) / 1000
+            if self.special_cooldown >= 5:
+                self.special_available = True
+                self.count = 0
+                self.special_cooldown = 0
+
         if self.special_active and not self.sleeping:
             self.sprite = self.specialsprite
             if self.count == 0:
@@ -83,6 +99,7 @@ class Will(Player):
                 self.defense = 0
                 self.gravity = 0
             if seconds > 1:
+                self.special_available = False
                 self.handler.getAttackList().add(Attack(self.x + self.width / 2, self.y + self.height - 50, 15, 0, "ranged", self.damage_special, 0, 0, screen, self.attacksprite, 20, self.handler, self.playNum))
                 self.handler.getAttackList().add(Attack(self.x + self.width / 2, self.y + self.height - 50, -15, 0, "ranged", self.damage_special, 0, 0, screen, self.attacksprite, 20, self.handler, self.playNum))
                 self.handler.getAttackList().add(Attack(self.x + self.width / 2, self.y + self.height - 50, 0, 15, "ranged", self.damage_special, 0, 0, screen, self.attacksprite, 20, self.handler, self.playNum))
@@ -92,7 +109,6 @@ class Will(Player):
                 self.handler.getAttackList().add(Attack(self.x + self.width / 2, self.y + self.height - 50, 10.65, -10.65, "ranged", self.damage_special, 0, 0, screen, self.attacksprite, 20, self.handler, self.playNum))
                 self.handler.getAttackList().add(Attack(self.x + self.width / 2, self.y + self.height - 50, -10.65, -10.65, "ranged", self.damage_special, 0, 0, screen, self.attacksprite, 20, self.handler, self.playNum))
                 self.special_active = False
-                self.count = 0
                 self.gravity = self.startgravity
                 self.defense = self.startdefense
                 self.sprite = self.stansprite

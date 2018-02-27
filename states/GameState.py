@@ -122,7 +122,7 @@ class GameState(State):
                 pygame.sprite.spritecollide(self.player2, self.attackUpdateList, True)
                 self.player2.takeDamage(self.player1.damage)
 
-        print(self.attackUpdateList)
+        # print(self.attackUpdateList)
         pygame.sprite.groupcollide(self.platformArray, self.attackUpdateList, False, True)
 
         self.player1.xchange = 0
