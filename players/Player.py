@@ -35,6 +35,8 @@ class Player(pygame.sprite.Sprite):
         self.sleeping = False
         self.facing = 1  # -1 for left, 1 for right
         self.playNum = playNum
+        self.special_cooldown = 0
+        self.special_total_cooldown = 1
 
     def jump(self):
         if self.jumpCount <= 1:
