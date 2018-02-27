@@ -5,7 +5,7 @@ from players.Player import Player
 
 class Will(Player):
     def __init__(self, x, y, platArray, handler, playNum):
-        health = 120
+        health = 110
         damage = 15
         winQuote = "yikes"
         loseQuote = "yikes"
