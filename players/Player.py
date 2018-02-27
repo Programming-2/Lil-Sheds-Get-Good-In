@@ -7,7 +7,7 @@ from attack import Attack
 
 class Player(pygame.sprite.Sprite):
 
-    def __init__(self, health, damage, winQuote, loseQuote, name, x, y, platArray, handler, defense):
+    def __init__(self, health, damage, winQuote, loseQuote, name, x, y, platArray, handler, playNum, defense):
         super().__init__()
         self.sprite = pygame.image.load("media/" + name + ".png").convert()
         self.stansprite = pygame.image.load("media/" + name + ".png").convert()
@@ -34,6 +34,7 @@ class Player(pygame.sprite.Sprite):
         self.stunned = False
         self.sleeping = False
         self.facing = 1  # -1 for left, 1 for right
+        self.playNum = playNum
 
     def jump(self):
         if self.jumpCount <= 1:

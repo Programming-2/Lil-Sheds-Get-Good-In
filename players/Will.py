@@ -5,7 +5,7 @@ from players.Player import Player
 
 
 class Will(Player):
-    def __init__(self, x, y, platArray, handler, playNum, enemy):
+    def __init__(self, x, y, platArray, handler, playNum, screen):
         health = 100
         damage = 15
         winQuote = "yikes"
@@ -13,7 +13,7 @@ class Will(Player):
         name = "Will"
         defense = .8
 
-        super().__init__(health, damage, winQuote, loseQuote, name, x, y, platArray, handler, defense)
+        super().__init__(health, damage, winQuote, loseQuote, name, x, y, platArray, handler, playNum, defense)
 
         self.special_active = False
         self.count = 0
@@ -22,12 +22,12 @@ class Will(Player):
         self.startdefense = defense
         self.specialsprite = pygame.image.load("media/WillSpecial.png")
         self.attacksprite = pygame.image.load("media/projectileTest.png")
-        self.enemy = enemy
         self.rangedcount = 0
         self.rangedavailable = True
         self.rangedstarttime = 0
         self.rangedcooldown = 0
-        self.playerNum = playNum
+
+        self.screen = screen
 
     def special(self):
         self.special_active = True
@@ -110,7 +110,7 @@ class Will(Player):
                 self.ychange = 0
                 self.defense = 0
                 self.gravity = 0
-                self.handler.getAttackList().add(Attack(self.x + self.width / 2, self.y + self.height - 50, random.randint(-10, 10), random.randint(-5, 5), "ranged", self.damage, 0, 0, screen, self.attacksprite, 20, self.handler, self.playerNum))
+                self.handler.getAttackList().add(Attack(self.x + self.width / 2, self.y + self.height - 50, random.randint(-10, 10), random.randint(-5, 5), "ranged", self.damage, 0, 0, screen, self.attacksprite, 20, self.handler, self.playNum))
             if seconds > 2:
                 self.special_active = False
                 self.count = 0
@@ -119,8 +119,13 @@ class Will(Player):
                 self.sprite = self.stansprite
                 self.rangedavailable = True
 
-        if pygame.sprite.spritecollide(self.enemy, self.handler.getAttackList(), False):
-            self.enemy.takeDamage(self.damage)
-            pygame.sprite.spritecollide(self.enemy, self.handler.getAttackList(), True)
+        if self.playNum == 1:
+            if pygame.sprite.spritecollide(self.handler.getPlayer2(), self.handler.getAttackList(), False):
+                self.handler.getPlayer2().takeDamage(self.damage)
+                pygame.sprite.spritecollide(self.handler.getPlayer2(), self.handler.getAttackList(), True)
+        if self.playNum == 2:
+            if pygame.sprite.spritecollide(self.handler.getPlayer1(), self.handler.getAttackList(), False):
+                self.handler.getPlayer1().takeDamage(self.damage)
+                pygame.sprite.spritecollide(self.handler.getPlayer1(), self.handler.getAttackList(), True)
 
         screen.blit(self.sprite, [self.x, self.y])
