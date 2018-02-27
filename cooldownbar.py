@@ -4,7 +4,7 @@ import pygame
 class CooldownBar(pygame.sprite.Sprite):
     def __init__(self, screen, player):
         super().__init__()
-        self.LIGHT_GRAY = (200, 200, 200)
+        self.LIGHT_GRAY = (150, 150, 150)
 
         self.screen = screen
         self.player = player
