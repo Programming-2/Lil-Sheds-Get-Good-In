@@ -22,6 +22,7 @@ class Player(pygame.sprite.Sprite):
         self.platArray = platArray
         self.xchange = 0
         self.ychange = 0
+        self.movespeed = 5
         self.gravity = 0.25
         self.width = self.sprite.get_width()
         self.height = self.sprite.get_height()
