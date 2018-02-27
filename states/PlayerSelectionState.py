@@ -16,7 +16,6 @@ class PlayerSelectionState(State):
         self.player2 = None
 
         # Rectangle Dict
-        # TODO Figure out why this errors
         self.rects = {
             Rect(15, 15, 55, 55): "David",
             Rect(15, 85, 55, 55): "Will",
