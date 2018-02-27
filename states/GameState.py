@@ -60,13 +60,13 @@ class GameState(State):
             if event.type == pygame.QUIT:
                 self.handler.setDone(True)
             elif event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_g:
+                if event.key == pygame.K_g and not self.player1.sleeping:
                     self.player1.attack(self.testProjectile, screen, "1")
-                elif event.key == pygame.K_f:
+                elif event.key == pygame.K_f and not self.player1.sleeping:
                     self.player1.special()
-                elif event.key == pygame.K_RSHIFT:
+                elif event.key == pygame.K_RSHIFT and not self.player2.sleeping:
                     self.player2.attack(self.testProjectile, screen, "2")
-                elif event.key == pygame.K_r:
+                elif event.key == pygame.K_r and not self.player1.sleeping:
                     self.player1MeleeAttack.p1_melee_attack()
                 elif event.key == pygame.K_RCTRL and not self.player2.sleeping:
                     pass

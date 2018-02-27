@@ -94,7 +94,7 @@ class Will(Player):
                     self.rangedavailable = True
                     self.rangedcount = 0
 
-        if self.special_active:
+        if self.special_active and not self.sleeping:
             self.sprite = self.specialsprite
             if self.count == 0:
                 self.start_time = pygame.time.get_ticks()
