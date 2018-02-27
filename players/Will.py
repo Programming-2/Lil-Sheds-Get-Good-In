@@ -5,12 +5,12 @@ from players.Player import Player
 
 class Will(Player):
     def __init__(self, x, y, platArray, handler, playNum):
-        health = 100
+        health = 120
         damage = 15
         winQuote = "yikes"
         loseQuote = "yikes"
         name = "Will"
-        defense = .8
+        defense = .5
 
         super().__init__(health, damage, winQuote, loseQuote, name, x, y, platArray, handler, playNum, defense)
 
@@ -32,45 +32,19 @@ class Will(Player):
 
     def attack(self, image, screen, player):
         if self.rangedavailable:
-            if self.ychange > 0 and self.xchange == 0:
-                self.handler.getAttackList().add(Attack(self.x + self.width / 2, self.y + self.height + 5, 3, 15, "ranged", 1, 3, 5, screen, image, 20, self.handler, player))
-                print(1)
-                self.handler.getAttackList().add(Attack(self.x + self.width / 2, self.y + self.height + 5, 1, 15, "ranged", 1, 3, 5, screen, image, 20, self.handler, player))
-                print(1)
-                self.handler.getAttackList().add(Attack(self.x + self.width / 2, self.y + self.height + 5, -1, 15, "ranged", 1, 3, 5, screen, image, 20, self.handler, player))
-                print(1)
-                self.handler.getAttackList().add(Attack(self.x + self.width / 2, self.y + self.height + 5, -3, 15, "ranged", 1, 3, 5, screen, image, 20, self.handler, player))
-                print(1)
-                self.rangedavailable = False
-            elif self.ychange < 0 and self.xchange == 0:
-                self.handler.getAttackList().add(Attack(self.x + self.width / 2, self.y - 5, 3, -15, "ranged", 1, 3, 5, screen, image, 20, self.handler, player))
-                print(2)
-                self.handler.getAttackList().add(Attack(self.x + self.width / 2, self.y - 5, 1, -15, "ranged", 1, 3, 5, screen, image, 20, self.handler, player))
-                print(2)
-                self.handler.getAttackList().add(Attack(self.x + self.width / 2, self.y - 5, -1, -15, "ranged", 1, 3, 5, screen, image, 20, self.handler, player))
-                print(2)
-                self.handler.getAttackList().add(Attack(self.x + self.width / 2, self.y - 5, -3, -15, "ranged", 1, 3, 5, screen, image, 20, self.handler, player))
-                print(2)
-                self.rangedavailable = False
-            elif self.facing == -1:
-                self.handler.getAttackList().add(Attack(self.x - 25, self.y, 15 * self.facing, 3, "ranged", 1, 3, 5, screen, image, 20, self.handler, player))
-                print(3)
+            if self.facing == -1:
+                self.handler.getAttackList().add(Attack(self.x - 25, self.y, 15 * self.facing, 2, "ranged", 1, 3, 5, screen, image, 20, self.handler, player))
                 self.handler.getAttackList().add(Attack(self.x - 25, self.y, 15 * self.facing, 1, "ranged", 1, 3, 5, screen, image, 20, self.handler, player))
-                print(3)
+                self.handler.getAttackList().add(Attack(self.x - 25, self.y, 15 * self.facing, 0, "ranged", 1, 3, 5, screen, image, 20, self.handler, player))
                 self.handler.getAttackList().add(Attack(self.x - 25, self.y, 15 * self.facing, -1, "ranged", 1, 3, 5, screen, image, 20, self.handler, player))
-                print(3)
-                self.handler.getAttackList().add(Attack(self.x - 25, self.y, 15 * self.facing, -3, "ranged", 1, 3, 5, screen, image, 20, self.handler, player))
-                print(3)
+                self.handler.getAttackList().add(Attack(self.x - 25, self.y, 15 * self.facing, -2, "ranged", 1, 3, 5, screen, image, 20, self.handler, player))
                 self.rangedavailable = False
             elif self.facing == 1:
-                self.handler.getAttackList().add(Attack(self.x + self.width + 5, self.y, 15 * self.facing, 3, "ranged", 1, 3, 5, screen, image, 20, self.handler, player))
-                print(4)
+                self.handler.getAttackList().add(Attack(self.x + self.width + 5, self.y, 15 * self.facing, 2, "ranged", 1, 3, 5, screen, image, 20, self.handler, player))
                 self.handler.getAttackList().add(Attack(self.x + self.width + 5, self.y, 15 * self.facing, 1, "ranged", 1, 3, 5, screen, image, 20, self.handler, player))
-                print(4)
+                self.handler.getAttackList().add(Attack(self.x + self.width + 5, self.y, 15 * self.facing, 0, "ranged", 1, 3, 5, screen, image, 20, self.handler, player))
                 self.handler.getAttackList().add(Attack(self.x + self.width + 5, self.y, 15 * self.facing, -1, "ranged", 1, 3, 5, screen, image, 20, self.handler, player))
-                print(4)
-                self.handler.getAttackList().add(Attack(self.x + self.width + 5, self.y, 15 * self.facing, -3, "ranged", 1, 3, 5, screen, image, 20, self.handler, player))
-                print(4)
+                self.handler.getAttackList().add(Attack(self.x + self.width + 5, self.y, 15 * self.facing, -2, "ranged", 1, 3, 5, screen, image, 20, self.handler, player))
                 self.rangedavailable = False
 
     def update(self, screen):
