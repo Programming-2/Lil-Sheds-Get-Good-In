@@ -1,5 +1,6 @@
 import pygame
 from states.State import State
+from Rect import Rect
 
 
 class PlayerSelectionState(State):
@@ -17,13 +18,13 @@ class PlayerSelectionState(State):
         # Rectangle Dict
         # TODO Figure out why this errors
         self.rects = {
-            pygame.Rect(15, 15, 55, 55): "David",
-            pygame.Rect(15, 85, 55, 55): "Will",
-            pygame.Rect(15, 160, 55, 55): "Kyle",
-            pygame.Rect(15, 230, 55, 55): "JB",
-            pygame.Rect(15, 305, 55, 55): "TBJ",
-            pygame.Rect(15, 385, 55, 55): "Greg",
-            pygame.Rect(15, 505, 55, 55): "Lil' Shed"
+            Rect(15, 15, 55, 55): "David",
+            Rect(15, 85, 55, 55): "Will",
+            Rect(15, 160, 55, 55): "Kyle",
+            Rect(15, 230, 55, 55): "JB",
+            Rect(15, 305, 55, 55): "TBJ",
+            Rect(15, 385, 55, 55): "Greg",
+            Rect(15, 505, 55, 55): "Lil' Shed"
         }
 
     def update(self, screen):
