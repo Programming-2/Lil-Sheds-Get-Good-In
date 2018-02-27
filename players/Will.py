@@ -5,7 +5,7 @@ from players.Player import Player
 
 
 class Will(Player):
-    def __init__(self, x, y, platArray, handler, playNum, screen):
+    def __init__(self, x, y, platArray, handler, playNum):
         health = 100
         damage = 15
         winQuote = "yikes"
@@ -26,8 +26,6 @@ class Will(Player):
         self.rangedavailable = True
         self.rangedstarttime = 0
         self.rangedcooldown = 0
-
-        self.screen = screen
 
     def special(self):
         self.special_active = True

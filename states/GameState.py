@@ -3,8 +3,9 @@ from states.State import State
 from colors import colors
 from healthbar import HealthBar
 from timer import Timer
-from players.Player import Player
+# from players.Player import Player
 from players.Will import Will
+from players.JaccobBonkley import JaccobBonkley
 from meleeAttack import Attack
 
 font = pygame.font.SysFont("Comic Sans MS", 36)
@@ -23,8 +24,8 @@ class GameState(State):
         self.background_image = pygame.image.load(level.getBackImg()).convert()
         self.handler = handler
 
-        self.player1 = Will(200, 100, self.platformArray, handler, 1, screen)
-        self.player2 = Player(100, 20, "Yes", "No", "JaccobBonkley", 850, 100, self.platformArray, handler, 2, .6)
+        self.player1 = Will(200, 100, self.platformArray, handler, 1)
+        self.player2 = JaccobBonkley(850, 100, self.platformArray, handler, 2)
 
         self.player1MeleeAttack = Attack(self.player1.x, self.player1.y, "melee attack", 5, 2, 2, screen, 120, handler, self.player1)
         self.player2MeleeAttack = Attack(self.player2.x, self.player2.x, "melee attack", 5, 2, 2, screen, 120, handler, self.player2)
