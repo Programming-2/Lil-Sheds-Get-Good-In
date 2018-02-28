@@ -15,7 +15,7 @@ class Will(Player):
         name = "Will"
         defense = .5
 
-        super().__init__(health, damage, winQuote, loseQuote, name, x, y, handler.getPlatformArray(), handler, playNum, defense)
+        super().__init__(health, damage, winQuote, loseQuote, name, x, y, handler.getPlatformArray(), handler.getAttackList(), handler, playNum, defense)
 
         self.special_active = False
         self.count = 0
@@ -58,6 +58,7 @@ class Will(Player):
 
     def update(self, screen):
         if not self.special_active:
+            self.gravity = self.startgravity
             self.gravityUpdate()
             self.moveX()
             self.moveY()

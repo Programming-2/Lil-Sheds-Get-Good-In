@@ -1,3 +1,6 @@
+from players.Will import Will
+
+
 class Handler:
 
     def __init__(self, attackList, stateManager, platformArray):
@@ -5,8 +8,8 @@ class Handler:
         self.stateManager = stateManager
         self.platformArray = platformArray
         self.done = False
-        self.player1 = 0
-        self.player2 = 0
+        self.player1 = Will(0, 0, self, 0)
+        self.player2 = Will(0, 0, self, 0)
 
     def getAttackList(self):
         return self.attackList

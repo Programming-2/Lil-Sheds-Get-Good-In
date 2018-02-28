@@ -7,7 +7,7 @@ from attack import Attack
 
 class Player(pygame.sprite.Sprite):
 
-    def __init__(self, health, damage, winQuote, loseQuote, name, x, y, platArray, handler, playNum, defense):
+    def __init__(self, health, damage, winQuote, loseQuote, name, x, y, platArray, attackList, handler, playNum, defense):
         super().__init__()
         self.sprite = pygame.image.load("media/" + name + ".png").convert()
         self.stansprite = pygame.image.load("media/" + name + ".png").convert()
@@ -20,6 +20,7 @@ class Player(pygame.sprite.Sprite):
         self.x = x
         self.y = y
         self.platArray = platArray
+        self.attackList = attackList
         self.xchange = 0
         self.ychange = 0
         self.movespeed = 5
@@ -37,6 +38,7 @@ class Player(pygame.sprite.Sprite):
         self.playNum = playNum
         self.special_cooldown = 0
         self.special_total_cooldown = 1
+        self.bullet_speed = 15
 
     def jump(self):
         if self.jumpCount <= 1:
@@ -117,11 +119,26 @@ class Player(pygame.sprite.Sprite):
             self.y = self.rect.y
             self.ychange = 0
 
+    def attackUpdate(self):
+        for e in self.attackList:
+            if e.x < 0 or e.x > screen.get_size()[0]:
+                self.attackList.remove(e)
+            if e.y < 0 or e.y > screen.get_size()[1]:
+                self.attackList.remove(e)
+            e.render(screen)
+            e.move()
+            if pygame.sprite.spritecollide(self.player1, self.attackList, False) and e.player == "2":
+                pygame.sprite.spritecollide(self.player1, self.attackList, True)
+                self.player1.takeDamage(self.player2.damage)
+            if pygame.sprite.spritecollide(self.player2, self.attackList, False) and e.player == "1":
+                pygame.sprite.spritecollide(self.player2, self.attackList, True)
+                self.player2.takeDamage(self.player1.damage)
+
     def attack(self, image, screen, player):
         if self.facing == -1:
-            self.handler.getAttackList().add(Attack(self.x - 25, self.y, 15 * self.facing, 0, "ranged", 1, 3, 5, screen, image, 20, self.handler, player))
+            self.handler.getAttackList().add(Attack(self.x - 50, self.y, self.bullet_speed * self.facing, 0, "ranged", 1, 3, 5, screen, image, 20, self.handler, player))
         elif self.facing == 1:
-            self.handler.getAttackList().add(Attack(self.x + self.width + 5, self.y, 15 * self.facing, 0, "ranged", 1, 3, 5, screen, image, 20, self.handler, player))
+            self.handler.getAttackList().add(Attack(self.x + self.width + 30, self.y, self.bullet_speed * self.facing, 0, "ranged", 1, 3, 5, screen, image, 20, self.handler, player))
 
     def special(self):
         pass  # abstract
