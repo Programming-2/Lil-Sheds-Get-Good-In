@@ -7,6 +7,9 @@ from timer import Timer
 # from players.Player import Player
 from players.Will import Will
 from players.JaccobBonkley import JaccobBonkley
+from players.David import David
+from players.Kyle import Kyle
+from players.Jakob import Jakob
 from meleeAttack import Attack
 
 font = pygame.font.SysFont("Comic Sans MS", 36)
@@ -26,7 +29,7 @@ class GameState(State):
         self.handler = handler
 
         self.player1 = Will(200, 100, self.platformArray, handler, 1)
-        self.player2 = JaccobBonkley(850, 100 + 30, self.platformArray, handler, 2)
+        self.player2 = David(850, 100 + 30, self.platformArray, handler, 2)
         self.player2.facing = -1
 
         self.player1MeleeAttack = Attack(self.player1.x, self.player1.y, "melee attack", 5, 2, 2, screen, 120, handler, self.player1)
