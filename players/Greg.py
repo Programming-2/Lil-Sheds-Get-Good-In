@@ -9,9 +9,9 @@ class Greg(Player):
     def __init__(self, x, y, handler, playNum):
         health = 100
         damage = 15
-        winQuote = "Robotics taught me that"
-        loseQuote = "I could've been watching Robotics competitions"
-        name = "Jakob"
+        winQuote = "Broken like Katarina"
+        loseQuote = "I don't even care"
+        name = "Greg"
 
         super().__init__(health, damage, winQuote, loseQuote, name, x, y, handler.getPlatformArray(), handler, playNum, 0.5)
 
