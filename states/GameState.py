@@ -27,15 +27,10 @@ class GameState(State):
         self.kosprite = pygame.image.load("media/KO.png")
         self.handler = handler
 
-<<<<<<< HEAD
-        self.player1 = Will(200, 100, self.platformArray, handler, 1)
-        self.player2 = David(850, 100 + 30, self.platformArray, handler, 2)
-=======
         handler.setPlatformArray(self.platformArray)
 
         self.player1 = Will(200, 100, handler, 1)
         self.player2 = JaccobBonkley(850, 100 + 30, handler, 2)
->>>>>>> 07c09291a3b8d2bd876eeeeeff5840253f8cfaa3
         self.player2.facing = -1
 
         self.player1MeleeAttack = Attack(self.player1.x, self.player1.y, "melee attack", 5, 2, 2, screen, 120, handler, self.player1)
