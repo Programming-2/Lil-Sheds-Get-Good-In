@@ -4,8 +4,6 @@ from states.State import State
 
 class MainMenuState(State):
 
-    # TODO Make better image and make Main Menu button work better
-
     def __init__(self, name, mainMenu, handler):
         super().__init__(name)
         self.menuImage = mainMenu

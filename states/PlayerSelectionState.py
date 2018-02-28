@@ -22,7 +22,6 @@ class PlayerSelectionState(State):
         self.player1 = None
         self.player2 = None
 
-        # TODO Change strings to player objects
         # Rectangle Dict
         self.rects = {
             Rect(15, 15, 55, 55): David(100, 100, handler, 0),
