@@ -25,13 +25,13 @@ class PlayerSelectionState(State):
 
         # Rectangle Dict
         self.rects = {
-            Rect(15, 15, 55, 55): David(150, 100, handler, 0),
-            Rect(15, 85, 55, 55): Will(150, 100, handler, 0),
-            Rect(15, 160, 55, 55): Kyle(150, 100, handler, 0),
-            Rect(15, 230, 55, 55): JaccobBonkley(150, 100, handler, 0),
-            Rect(15, 305, 55, 55): Jakob(150, 100, handler, 0),
-            Rect(15, 385, 55, 55): Greg(150, 100, handler, 0),
-            Rect(15, 505, 55, 55): Shed(150, 100, handler, 0)
+            Rect(14, 15, 54, 55): David(150, 100, handler, 0),
+            Rect(14, 85, 54, 55): Will(150, 100, handler, 0),
+            Rect(14, 160, 54, 55): Kyle(150, 100, handler, 0),
+            Rect(14, 230, 54, 55): JaccobBonkley(150, 100, handler, 0),
+            Rect(14, 305, 54, 55): Jakob(150, 100, handler, 0),
+            Rect(14, 385, 54, 55): Greg(150, 100, handler, 0),
+            Rect(14, 505, 54, 55): Shed(150, 100, handler, 0)
         }
 
     def update(self, screen):
@@ -45,6 +45,8 @@ class PlayerSelectionState(State):
                     pressed = True
 
         screen.blit(self.img, [0, 0])
+
+        # TODO Make going to main menu reset selections
 
         if (715 < pygame.mouse.get_pos()[0] < 1055 and pressed) and (600 < pygame.mouse.get_pos()[1] < 750 and pressed):
             self.handler.getStateManager().setCurrentState("MainMenuState")
