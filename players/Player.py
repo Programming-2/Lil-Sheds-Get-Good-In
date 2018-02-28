@@ -7,7 +7,7 @@ from attack import Attack
 
 class Player(pygame.sprite.Sprite):
 
-    def __init__(self, health, damage, winQuote, loseQuote, name, x, y, platArray, handler, playNum, defense):
+    def __init__(self, health, damage, winQuote, loseQuote, name, x, y, platArray, attackList, handler, playNum, defense):
         super().__init__()
         self.sprite = pygame.image.load("media/" + name + ".png").convert()
         self.stansprite = pygame.image.load("media/" + name + ".png").convert()
@@ -20,6 +20,7 @@ class Player(pygame.sprite.Sprite):
         self.x = x
         self.y = y
         self.platArray = platArray
+        self.attackList = attackList
         self.xchange = 0
         self.ychange = 0
         self.movespeed = 5
@@ -75,6 +76,7 @@ class Player(pygame.sprite.Sprite):
         elif self.xchange < 0:
             self.facing = -1
 
+        self.attackUpdate(screen)
     def checkEntityCollision(self):
         return False
 
@@ -118,11 +120,25 @@ class Player(pygame.sprite.Sprite):
             self.y = self.rect.y
             self.ychange = 0
 
+    def attackUpdate(self, screen):
+        for e in self.attackList:
+            if e.x < 0 or e.x > screen.get_size()[0]:
+                self.attackList.remove(e)
+            if e.y < 0 or e.y > screen.get_size()[1]:
+                self.attackList.remove(e)
+            e.render(screen)
+            e.move()
+            if pygame.sprite.spritecollide(self, self.attackList, False):
+                pygame.sprite.spritecollide(self, self.attackList, True)
+                self.takeDamage(e.damage)
+
     def attack(self, image, screen, player):
         if self.facing == -1:
-            self.handler.getAttackList().add(Attack(self.x - 50, self.y, self.bullet_speed * self.facing, 0, "ranged", 1, 3, 5, screen, image, 20, self.handler, player))
+            self.handler.getAttackList().add(Attack(self.x - 50, self.y, self.bullet_speed * self.facing, 0, "ranged",
+                                                    self.damage, 3, 5, screen, image, 20, self.handler, player))
         elif self.facing == 1:
-            self.handler.getAttackList().add(Attack(self.x + self.width + 30, self.y, self.bullet_speed * self.facing, 0, "ranged", 1, 3, 5, screen, image, 20, self.handler, player))
+            self.handler.getAttackList().add(Attack(self.x + self.width + 30, self.y, self.bullet_speed * self.facing, 0,
+                                                    "ranged", self.damage, 3, 5, screen, image, 20, self.handler, player))
 
     def special(self):
         pass  # abstract
@@ -142,3 +158,6 @@ class Player(pygame.sprite.Sprite):
 
     def setX(self, x):
         self.x = x
+
+    def toString(self):
+        return self.name
