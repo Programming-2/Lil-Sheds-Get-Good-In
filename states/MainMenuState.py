@@ -23,7 +23,7 @@ class MainMenuState(State):
 
         if (14 < pygame.mouse.get_pos()[0] < 323 and pressed) and (590 < pygame.mouse.get_pos()[1] < 740 and pressed):
             # self.handler.getStateManager().setCurrentState("PlayerSelectionState")
-            self.handler.getStateManager().setCurrentState("GameState")
+            self.handler.getStateManager().setCurrentState("PlayerSelectionState")
 
         if (715 < pygame.mouse.get_pos()[0] < 1024 and pressed) and (591 < pygame.mouse.get_pos()[1] < 725 and pressed):
             self.handler.getStateManager().setCurrentState("ControlState")

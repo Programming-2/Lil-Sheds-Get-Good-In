@@ -26,7 +26,7 @@ background_image = pygame.image.load(level.getBackImg()).convert()
 mainMenu = pygame.image.load("media/LilShedTitleScreen.png").convert()
 testProjectile = pygame.image.load("media/projectileTest.png").convert()
 testControlScreen = pygame.image.load("media/ControlScreen.png").convert()
-playerSelectScreen = pygame.image.load("media/TestPlayerSelect.png")
+playerSelectScreen = pygame.image.load("media/LilShedCharacterSelect.png")
 
 pygame.display.set_caption("Lil' Shed's Get Good In™")
 

@@ -49,7 +49,7 @@ class PlayerSelectionState(State):
             self.handler.getStateManager().setCurrentState("MainMenuState")
 
         for key in self.rects:
-            if key.contains(pygame.mouse.get_pos()[0], pygame.mouse.get_pos()[1], 10, 10):
+            if key.contains(pygame.mouse.get_pos()[0], pygame.mouse.get_pos()[1], 10, 10) and pressed:
                 if self.firstSelection:
                     self.player1 = self.rects[key]
                     self.player1.setPlayerNum(1)
@@ -58,5 +58,6 @@ class PlayerSelectionState(State):
                     self.player2 = self.rects[key]
                     self.player2.setPlayerNum(2)
                     self.player2.setX(200)
-                    self.handler.getStateManager().getState("GameState").setPlayers(self.player1, self.player2)
+                    self.handler.setPlayer1(self.player1)
+                    self.handler.setPlayer2(self.player2)
                     self.handler.getStateManager().setCurrentState("GameState")

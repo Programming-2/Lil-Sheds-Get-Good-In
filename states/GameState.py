@@ -116,7 +116,6 @@ class GameState(State):
         self.p2hpbar.update(self.player2.health)
         self.p1cdbar.update(self.player1.special_cooldown)
         self.p2cdbar.update(self.player2.special_cooldown)
-        print(self.player1.special_cooldown)
         self.platformArray.update()
         self.handler.setPlayer1(self.player1)
         self.handler.setPlayer2(self.player2)

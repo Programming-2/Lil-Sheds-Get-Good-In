@@ -16,7 +16,6 @@ class CooldownBar(pygame.sprite.Sprite):
         self.rect = pygame.Rect(self.x, self.y, self.width, self.height)
 
     def update(self, currentcd):
-        print(currentcd)
         self.rect.x = self.player.x
         self.rect.y = self.player.y - 10
         pct = currentcd / self.player.special_total_cooldown
