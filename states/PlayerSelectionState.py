@@ -8,11 +8,10 @@ from players.JaccobBonkley import JaccobBonkley
 from players.Jakob import Jakob
 from players.Greg import Greg
 from players.Shed import Shed
+from colors import colors
 
 
 class PlayerSelectionState(State):
-
-    # TODO Implement player selection
 
     def __init__(self, name, handler, img):
         super().__init__(name)
@@ -21,6 +20,8 @@ class PlayerSelectionState(State):
         self.firstSelection = True
         self.player1 = None
         self.player2 = None
+        self.player1Rect = Rect(0, 0, 0, 0)
+        self.player2Rect = Rect(0, 0, 0, 0)
 
         # Rectangle Dict
         self.rects = {
@@ -48,14 +49,19 @@ class PlayerSelectionState(State):
         if (715 < pygame.mouse.get_pos()[0] < 1055 and pressed) and (600 < pygame.mouse.get_pos()[1] < 750 and pressed):
             self.handler.getStateManager().setCurrentState("MainMenuState")
 
+        pygame.draw.rect(screen, colors["BLACK"], self.player1Rect)
+        pygame.draw.rect(screen, colors["BLACK"], self.player2Rect)
+
         for key in self.rects:
             if key.contains(pygame.mouse.get_pos()[0], pygame.mouse.get_pos()[1], 10, 10) and pressed:
                 if self.firstSelection:
                     self.player1 = self.rects[key]
                     self.player1.setPlayerNum(1)
                     self.firstSelection = False
+                    self.player1Rect = key
                 else:
                     self.player2 = self.rects[key]
+                    self.player2Rect = key
                     self.player2.setPlayerNum(2)
                     self.player2.setX(850)
                     self.handler.getStateManager().getState("GameState").setPlayers(self.player1, self.player2)

@@ -158,3 +158,6 @@ class Player(pygame.sprite.Sprite):
 
     def setX(self, x):
         self.x = x
+
+    def toString(self):
+        return self.name
