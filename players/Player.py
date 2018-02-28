@@ -76,6 +76,7 @@ class Player(pygame.sprite.Sprite):
         elif self.xchange < 0:
             self.facing = -1
 
+        self.attackUpdate(screen)
     def checkEntityCollision(self):
         return False
 
@@ -119,7 +120,7 @@ class Player(pygame.sprite.Sprite):
             self.y = self.rect.y
             self.ychange = 0
 
-    def attackUpdate(self):
+    def attackUpdate(self, screen):
         for e in self.attackList:
             if e.x < 0 or e.x > screen.get_size()[0]:
                 self.attackList.remove(e)
@@ -127,12 +128,9 @@ class Player(pygame.sprite.Sprite):
                 self.attackList.remove(e)
             e.render(screen)
             e.move()
-            if pygame.sprite.spritecollide(self.player1, self.attackList, False) and e.player == "2":
-                pygame.sprite.spritecollide(self.player1, self.attackList, True)
-                self.player1.takeDamage(self.player2.damage)
-            if pygame.sprite.spritecollide(self.player2, self.attackList, False) and e.player == "1":
-                pygame.sprite.spritecollide(self.player2, self.attackList, True)
-                self.player2.takeDamage(self.player1.damage)
+            if pygame.sprite.spritecollide(self, self.attackList, False):
+                pygame.sprite.spritecollide(self, self.attackList, True)
+                self.takeDamage(e.damage)
 
     def attack(self, image, screen, player):
         if self.facing == -1:
