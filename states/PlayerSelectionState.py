@@ -23,15 +23,17 @@ class PlayerSelectionState(State):
         self.player1Rect = Rect(0, 0, 0, 0)
         self.player2Rect = Rect(0, 0, 0, 0)
 
+        # TODO Fix bug with duplicated players or made it so same player cannot be selected twice
+
         # Rectangle Dict
         self.rects = {
             Rect(14, 15, 54, 55): David(150, 100, handler, 0),
             Rect(14, 85, 54, 55): Will(150, 100, handler, 0),
-            Rect(14, 160, 54, 55): Kyle(150, 100, handler, 0),
-            Rect(14, 230, 54, 55): JaccobBonkley(150, 100, handler, 0),
-            Rect(14, 305, 54, 55): Jakob(150, 100, handler, 0),
-            Rect(14, 385, 54, 55): Greg(150, 100, handler, 0),
-            Rect(14, 505, 54, 55): Shed(150, 100, handler, 0)
+            Rect(14, 159, 54, 55): Kyle(150, 100, handler, 0),
+            Rect(14, 231, 54, 55): JaccobBonkley(150, 100, handler, 0),
+            Rect(14, 303, 54, 55): Jakob(150, 100, handler, 0),
+            Rect(14, 388, 54, 55): Greg(150, 100, handler, 0),
+            Rect(14, 503, 54, 55): Shed(150, 100, handler,  0)
         }
 
     def update(self, screen):
