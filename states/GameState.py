@@ -10,7 +10,6 @@ from players.JaccobBonkley import JaccobBonkley
 from meleeAttack import Attack
 
 font = pygame.font.SysFont("Comic Sans MS", 36)
-DeadText = font.render("KO", True, colors.get("RED"))
 
 
 class GameState(State):
@@ -23,6 +22,7 @@ class GameState(State):
         self.timer = Timer(300, screen)
         self.testProjectile = pygame.image.load("media/projectileTest.png").convert()
         self.background_image = pygame.image.load(level.getBackImg()).convert()
+        self.kosprite = pygame.image.load("media/KO.png")
         self.handler = handler
 
         self.player1 = Will(200, 100, self.platformArray, handler, 1)
@@ -100,10 +100,10 @@ class GameState(State):
 
         if self.player2.health <= 0:
             self.player2.goToSleepForAnExtendedPeriodOfTime()
-            screen.blit(DeadText, [self.player2.x, self.player1.y - 1])
+            screen.blit(self.kosprite, [self.player2.x - 15, self.player2.y - 80])
         if self.player1.health <= 0:
             self.player1.goToSleepForAnExtendedPeriodOfTime()
-            screen.blit(DeadText, [self.player1.x, self.player2.y])
+            screen.blit(self.kosprite, [self.player1.x - 15, self.player1.y - 80])
         if self.timer.current_time < 1:
             self.platformArray.remove(self.platformArray)
         self.player1.update(screen)
