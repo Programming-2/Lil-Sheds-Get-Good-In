@@ -127,19 +127,6 @@ class GameState(State):
         self.handler.setPlayer1(self.player1)
         self.handler.setPlayer2(self.player2)
 
-        for e in self.attackUpdateList:
-            if e.x < 0 or e.x > screen.get_size()[0]:
-                self.attackUpdateList.remove(e)
-            if e.y < 0 or e.y > screen.get_size()[1]:
-                self.attackUpdateList.remove(e)
-            e.render(screen)
-            e.move()
-            if pygame.sprite.spritecollide(self.player1, self.attackUpdateList, False) and e.player == "2":
-                pygame.sprite.spritecollide(self.player1, self.attackUpdateList, True)
-                self.player1.takeDamage(self.player2.damage)
-            if pygame.sprite.spritecollide(self.player2, self.attackUpdateList, False) and e.player == "1":
-                pygame.sprite.spritecollide(self.player2, self.attackUpdateList, True)
-                self.player2.takeDamage(self.player1.damage)
 
         # print(self.attackUpdateList)
         pygame.sprite.groupcollide(self.platformArray, self.attackUpdateList, False, True)
