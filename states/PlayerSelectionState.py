@@ -15,6 +15,7 @@ class PlayerSelectionState(State):
         self.player1 = None
         self.player2 = None
 
+        # TODO Change strings to player objects
         # Rectangle Dict
         self.rects = {
             Rect(15, 15, 55, 55): "David",
@@ -45,6 +46,7 @@ class PlayerSelectionState(State):
             if key.contains(pygame.mouse.get_pos()[0], pygame.mouse.get_pos()[1], 10, 10):
                 if self.firstSelection:
                     self.player1 = self.rects[key]
+                    self.firstSelection = False
                 else:
                     self.player2 = self.rects[key]
                     self.handler.getStateManager().getState("GameState").setPlayers(self.player1, self.player2)
