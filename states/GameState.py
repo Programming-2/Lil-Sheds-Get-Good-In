@@ -85,6 +85,8 @@ class GameState(State):
                 elif event.key == pygame.K_DOWN and not (self.player2.sleeping or self.player2.stunned):
                     self.player2.duck()
                     self.player2.gravity *= 4
+                elif event.key == pygame.K_RETURN:
+                    self.player2.special()
             elif event.type == pygame.KEYUP:
                 if event.key == pygame.K_s:
                     self.player1.unduck()

@@ -27,8 +27,8 @@ class Will(Player):
         self.rangedcooldown = 0
         self.damage_special = 1.5 * damage
         self.special_available = True
-        self.special_cooldown = 0
         self.special_total_cooldown = 5
+        self.special_cooldown = self.special_total_cooldown
         self.special_count = 0
         self.special_start_time = 0
 
