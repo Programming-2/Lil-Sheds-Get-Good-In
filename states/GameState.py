@@ -4,7 +4,6 @@ from colors import colors
 from healthbar import HealthBar
 from cooldownbar import CooldownBar
 from timer import Timer
-# from players.Player import Player
 from players.Will import Will
 from players.JaccobBonkley import JaccobBonkley
 from meleeAttack import Attack
@@ -43,9 +42,6 @@ class GameState(State):
         # Timer utils
         self.count = 0
         self.end_time = 0
-
-    def setPlayers(self, player1, player2):
-        pass
 
     def update(self, screen):
         screen.blit(self.background_image, [0, 0])  # Jakob's mistake
