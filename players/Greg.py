@@ -2,7 +2,7 @@ import pygame
 from players.Player import Player
 
 
-class Jakob(Player):
+class Greg(Player):
 
     # TODO Give real data
 

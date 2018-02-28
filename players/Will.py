@@ -4,7 +4,10 @@ from players.Player import Player
 
 
 class Will(Player):
-    def __init__(self, x, y, platArray, handler, playNum):
+
+    # TODO Give real data
+
+    def __init__(self, x, y, handler, playNum):
         health = 110
         damage = 15
         winQuote = "yikes"
@@ -12,7 +15,7 @@ class Will(Player):
         name = "Will"
         defense = .5
 
-        super().__init__(health, damage, winQuote, loseQuote, name, x, y, platArray, handler, playNum, defense)
+        super().__init__(health, damage, winQuote, loseQuote, name, x, y, handler.getPlatformArray(), handler, playNum, defense)
 
         self.special_active = False
         self.count = 0

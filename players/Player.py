@@ -135,3 +135,9 @@ class Player(pygame.sprite.Sprite):
 
     def getY(self):
         return self.y
+
+    def setPlayerNum(self, num):
+        self.playNum = num
+
+    def setX(self, x):
+        self.x = x
