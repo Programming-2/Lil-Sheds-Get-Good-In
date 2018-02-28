@@ -1,11 +1,9 @@
-from states.StateManager import StateManager
-
-
 class Handler:
 
-    def __init__(self, attackList, stateManager):
+    def __init__(self, attackList, stateManager, platformArray):
         self.attackList = attackList
         self.stateManager = stateManager
+        self.platformArray = platformArray
         self.done = False
         self.player1 = 0
         self.player2 = 0
@@ -36,3 +34,9 @@ class Handler:
 
     def setDone(self, done):
         self.done = done
+
+    def setPlatformArray(self, array):
+        self.platformArray = array
+
+    def getPlatformArray(self):
+        return self.platformArray

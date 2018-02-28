@@ -34,7 +34,7 @@ class HealthBar(pygame.sprite.Sprite):
         pct = currenthp / self.health
         if pct >= .7:
             pygame.draw.rect(self.screen, self.GREEN, self.rect)
-        if pct >= .3 and pct <= .69:
+        if .3 <= pct <= .69:
             pygame.draw.rect(self.screen, self.YELLOW, self.rect)
         if pct < .3:
             pygame.draw.rect(self.screen, self.RED, self.rect)

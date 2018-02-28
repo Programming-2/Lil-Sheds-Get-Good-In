@@ -39,7 +39,7 @@ attackUpdateList = pygame.sprite.Group()
 
 stateManager = StateManager(None)
 
-handler = Handler(attackUpdateList, stateManager)
+handler = Handler(attackUpdateList, stateManager, None)
 
 # State Declaration
 stateDict = {

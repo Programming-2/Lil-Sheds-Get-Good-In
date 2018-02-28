@@ -2,7 +2,10 @@ from players.Player import Player
 
 
 class JaccobBonkley(Player):
-    def __init__(self, x, y, platArray, handler, playNum):
+
+    # TODO Give real data
+
+    def __init__(self, x, y, handler, playNum):
         health = 80
         damage = 25
         defense = .9
@@ -10,7 +13,7 @@ class JaccobBonkley(Player):
         loseQuote = "It's my team's fault"
         name = "JaccobBonkley"
 
-        super().__init__(health, damage, winQuote, loseQuote, name, x, y, platArray, handler, playNum, defense)
+        super().__init__(health, damage, winQuote, loseQuote, name, x, y, handler.getPlatformArray(), handler, playNum, defense)
 
         self.movespeed = 10
         self.playNum = playNum
