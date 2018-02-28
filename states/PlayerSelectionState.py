@@ -56,10 +56,6 @@ class PlayerSelectionState(State):
         if (715 < pygame.mouse.get_pos()[0] < 1055 and pressed) and (600 < pygame.mouse.get_pos()[1] < 750 and pressed):
             self.handler.getStateManager().setCurrentState("MainMenuState")
 
-        # Colors selected player black
-        pygame.draw.rect(screen, colors["BLACK"], self.player1Rect)
-        pygame.draw.rect(screen, colors["BLACK"], self.player2Rect)
-
         # Looks at keys in rects dict, and determines if the mouse if clicking that rect
         for key in self.rects:
             if key.contains(pygame.mouse.get_pos()[0], pygame.mouse.get_pos()[1], 10, 10):
@@ -78,3 +74,7 @@ class PlayerSelectionState(State):
                         self.handler.getStateManager().setCurrentState("GameState")
                 else:
                     pygame.draw.rect(screen, colors["GREEN"], key)
+
+        # Colors selected player black
+        pygame.draw.rect(screen, colors["BLACK"], self.player1Rect)
+        pygame.draw.rect(screen, colors["BLACK"], self.player2Rect)

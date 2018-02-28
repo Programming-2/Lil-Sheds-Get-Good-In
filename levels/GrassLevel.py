@@ -1,5 +1,5 @@
 import pygame
-from level import Level
+from levels.Level import Level
 from platform import Platform
 
 
