@@ -77,6 +77,7 @@ class Player(pygame.sprite.Sprite):
             self.facing = -1
 
         self.attackUpdate(screen)
+
     def checkEntityCollision(self):
         return False
 
@@ -134,11 +135,9 @@ class Player(pygame.sprite.Sprite):
 
     def attack(self, image, screen, player):
         if self.facing == -1:
-            self.handler.getAttackList().add(Attack(self.x - 50, self.y, self.bullet_speed * self.facing, 0, "ranged",
-                                                    self.damage, 3, 5, screen, image, 20, self.handler, player))
+            self.handler.getAttackList().add(Attack(self.x - 50, self.y, self.bullet_speed * self.facing, 0, "ranged", self.damage, 3, 5, screen, image, 20, self.handler, player))
         elif self.facing == 1:
-            self.handler.getAttackList().add(Attack(self.x + self.width + 30, self.y, self.bullet_speed * self.facing, 0,
-                                                    "ranged", self.damage, 3, 5, screen, image, 20, self.handler, player))
+            self.handler.getAttackList().add(Attack(self.x + self.width + 30, self.y, self.bullet_speed * self.facing, 0, "ranged", self.damage, 3, 5, screen, image, 20, self.handler, player))
 
     def special(self):
         pass  # abstract

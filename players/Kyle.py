@@ -12,8 +12,9 @@ class Kyle(Player):
         winQuote = "Are the platforms fixed yet?"
         loseQuote = "I\'d better try to fix that... emphasis on try"
         name = "Kyle"
+        defense = .5
 
-        super().__init__(health, damage, winQuote, loseQuote, name, x, y, handler.getPlatformArray(), handler.getAttackList(), handler, playNum, 0.5)
+        super().__init__(health, damage, winQuote, loseQuote, name, x, y, handler.getPlatformArray(), handler.getAttackList(), handler, playNum, defense)
 
     def special(self):
         pass  # special here (reflects attacks, own do less damage for duration)

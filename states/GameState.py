@@ -133,7 +133,6 @@ class GameState(State):
         self.handler.setPlayer1(self.player1)
         self.handler.setPlayer2(self.player2)
 
-
         # print(self.attackUpdateList)
         pygame.sprite.groupcollide(self.platformArray, self.attackUpdateList, False, True)
 

@@ -9,7 +9,7 @@ class Will(Player):
 
     def __init__(self, x, y, handler, playNum):
         health = 110
-        damage = 0
+        damage = 100
         winQuote = "yikes"
         loseQuote = "yikes"
         name = "Will"
@@ -38,6 +38,7 @@ class Will(Player):
         self.special_start_time = 0
         self.released = False
         self.bulletspeed = 10
+        self.damage = damage
 
     def special(self):
         if self.special_available:
@@ -45,7 +46,6 @@ class Will(Player):
 
     def attack(self, image, screen, player):
         self.rangedavailable = True
-        print(str(self.rangedstarttime) + " " + str(self.rangedendtime))
 
     def update(self, screen):
         self.screen = screen
@@ -79,7 +79,6 @@ class Will(Player):
             if seconds <= 1:
                 self.rangedavailable = False
                 seconds = (pygame.time.get_ticks() - self.start_time) / 1000
-                print("Current time: " + str(seconds))
                 self.xchange = 0
                 self.ychange = 0
                 self.defense = 0
@@ -99,15 +98,6 @@ class Will(Player):
                 self.defense = self.startdefense
                 self.sprite = self.stansprite
                 self.count = 0
-
-        if self.playNum == 1:
-            if pygame.sprite.spritecollide(self.handler.getPlayer2(), self.handler.getAttackList(), False):
-                self.handler.getPlayer2().takeDamage(self.damage)
-                pygame.sprite.spritecollide(self.handler.getPlayer2(), self.handler.getAttackList(), True)
-        if self.playNum == 2:
-            if pygame.sprite.spritecollide(self.handler.getPlayer1(), self.handler.getAttackList(), False):
-                self.handler.getPlayer1().takeDamage(self.damage)
-                pygame.sprite.spritecollide(self.handler.getPlayer1(), self.handler.getAttackList(), True)
 
         if self.rangedavailable:
             secondsheld = (self.rangedendtime - self.rangedstarttime) / 1000
@@ -131,16 +121,26 @@ class Will(Player):
                 self.damage = secondsheld * 40
                 self.bulletspeed = secondsheld * 8
                 self.attackavailable = True
-            print(self.damage)
             if self.attackavailable:
                 if self.facing == -1:
-                    self.handler.getAttackList().add(Attack(self.x - 25, self.y, 15 * self.facing, 0, "ranged", 1, 3, 5, self.screen, self.attacksprite, 20, self.handler, self))
+                    self.handler.getAttackList().add(Attack(self.x - 25, self.y, 15 * self.facing, 0, "ranged", self.damage, 3, 5, self.screen, self.attacksprite, 20, self.handler, self))
                     self.rangedavailable = False
                     self.attackavailable = False
                 elif self.facing == 1:
-                    self.handler.getAttackList().add(Attack(self.x + self.width + 5, self.y, 15 * self.facing, 0, "ranged", 1, 3, 5, self.screen, self.attacksprite, 20, self.handler, self))
+                    self.handler.getAttackList().add(Attack(self.x + self.width + 5, self.y, 15 * self.facing, 0, "ranged", self.damage, 3, 5, self.screen, self.attacksprite, 20, self.handler, self))
                     self.rangedavailable = False
                     self.attackavailable = False
+
+            '''if self.playNum == 1:
+                if pygame.sprite.spritecollide(self.handler.getPlayer2(), self.handler.getAttackList(), False):
+                    print(self.damage)
+                    self.handler.getPlayer2().takeDamage(self.damage)
+                    pygame.sprite.spritecollide(self.handler.getPlayer2(), self.handler.getAttackList(), True)
+            if self.playNum == 2:
+                if pygame.sprite.spritecollide(self.handler.getPlayer1(), self.handler.getAttackList(), False):
+                    print(self.damage)
+                    self.handler.getPlayer1().takeDamage(self.damage)
+                    pygame.sprite.spritecollide(self.handler.getPlayer1(), self.handler.getAttackList(), True)'''
 
         screen.blit(self.sprite, [self.x, self.y])
         self.attackUpdate(screen)
