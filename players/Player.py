@@ -7,7 +7,7 @@ from attack import Attack
 
 class Player(pygame.sprite.Sprite):
 
-    def __init__(self, health, damage, winQuote, loseQuote, name, x, y, platArray, handler, playNum, defense):
+    def __init__(self, health, damage, winQuote, loseQuote, name, x, y, platArray, attackList, handler, playNum, defense):
         super().__init__()
         self.sprite = pygame.image.load("media/" + name + ".png").convert()
         self.stansprite = pygame.image.load("media/" + name + ".png").convert()
@@ -20,6 +20,7 @@ class Player(pygame.sprite.Sprite):
         self.x = x
         self.y = y
         self.platArray = platArray
+        self.attackList = attackList
         self.xchange = 0
         self.ychange = 0
         self.movespeed = 5
@@ -117,6 +118,21 @@ class Player(pygame.sprite.Sprite):
                 self.resetJump()
             self.y = self.rect.y
             self.ychange = 0
+
+    def attackUpdate(self):
+        for e in self.attackList:
+            if e.x < 0 or e.x > screen.get_size()[0]:
+                self.attackList.remove(e)
+            if e.y < 0 or e.y > screen.get_size()[1]:
+                self.attackList.remove(e)
+            e.render(screen)
+            e.move()
+            if pygame.sprite.spritecollide(self.player1, self.attackList, False) and e.player == "2":
+                pygame.sprite.spritecollide(self.player1, self.attackList, True)
+                self.player1.takeDamage(self.player2.damage)
+            if pygame.sprite.spritecollide(self.player2, self.attackList, False) and e.player == "1":
+                pygame.sprite.spritecollide(self.player2, self.attackList, True)
+                self.player2.takeDamage(self.player1.damage)
 
     def attack(self, image, screen, player):
         if self.facing == -1:
