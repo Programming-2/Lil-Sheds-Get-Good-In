@@ -57,6 +57,9 @@ class PlayerSelectionState(State):
         pygame.draw.rect(screen, colors["BLACK"], self.player2Rect)
 
         for key in self.rects:
+            if key.contains(pygame.mouse.get_pos()[0], pygame.mouse.get_pos()[1], 10, 10):
+                pygame.draw.rect(screen, colors["GREEN"], key)
+
             if key.contains(pygame.mouse.get_pos()[0], pygame.mouse.get_pos()[1], 10, 10) and pressed:
                 if self.firstSelection:
                     self.player1 = self.rects[key]

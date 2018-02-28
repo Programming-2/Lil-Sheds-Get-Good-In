@@ -4,11 +4,6 @@ from colors import colors
 from healthbar import HealthBar
 from cooldownbar import CooldownBar
 from timer import Timer
-from players.Will import Will
-from players.JaccobBonkley import JaccobBonkley
-from players.David import David
-from players.Kyle import Kyle
-from players.Jakob import Jakob
 from meleeAttack import Attack
 
 font = pygame.font.SysFont("Comic Sans MS", 36)
