@@ -45,7 +45,7 @@ class PlayerSelectionState(State):
 
         screen.blit(self.img, [0, 0])
 
-        if (690 < pygame.mouse.get_pos()[0] < 975 and pressed) and (545 < pygame.mouse.get_pos()[1] < 690 and pressed):
+        if (715 < pygame.mouse.get_pos()[0] < 1055 and pressed) and (600 < pygame.mouse.get_pos()[1] < 750 and pressed):
             self.handler.getStateManager().setCurrentState("MainMenuState")
 
         for key in self.rects:
