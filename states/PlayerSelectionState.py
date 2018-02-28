@@ -39,6 +39,7 @@ class PlayerSelectionState(State):
     def update(self, screen):
         pressed = False
 
+        # Event look
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 self.handler.setDone(True)
@@ -46,30 +47,34 @@ class PlayerSelectionState(State):
                 if event.button == 1:
                     pressed = True
 
+        # Drawing background image
         screen.blit(self.img, [0, 0])
 
         # TODO Make going to main menu reset selections
 
+        # Button to return to the main menu
         if (715 < pygame.mouse.get_pos()[0] < 1055 and pressed) and (600 < pygame.mouse.get_pos()[1] < 750 and pressed):
             self.handler.getStateManager().setCurrentState("MainMenuState")
 
+        # Colors selected player black
         pygame.draw.rect(screen, colors["BLACK"], self.player1Rect)
         pygame.draw.rect(screen, colors["BLACK"], self.player2Rect)
 
+        # Looks at keys in rects dict, and determines if the mouse if clicking that rect
         for key in self.rects:
             if key.contains(pygame.mouse.get_pos()[0], pygame.mouse.get_pos()[1], 10, 10):
-                pygame.draw.rect(screen, colors["GREEN"], key)
-
-            if key.contains(pygame.mouse.get_pos()[0], pygame.mouse.get_pos()[1], 10, 10) and pressed:
-                if self.firstSelection:
-                    self.player1 = self.rects[key]
-                    self.player1.setPlayerNum(1)
-                    self.firstSelection = False
-                    self.player1Rect = key
+                if pressed:
+                    if self.firstSelection:
+                        self.player1 = self.rects[key]
+                        self.player1.setPlayerNum(1)
+                        self.firstSelection = False
+                        self.player1Rect = key
+                    else:
+                        self.player2 = self.rects[key]
+                        self.player2Rect = key
+                        self.player2.setPlayerNum(2)
+                        self.player2.setX(850)
+                        self.handler.getStateManager().getState("GameState").setPlayers(self.player1, self.player2)
+                        self.handler.getStateManager().setCurrentState("GameState")
                 else:
-                    self.player2 = self.rects[key]
-                    self.player2Rect = key
-                    self.player2.setPlayerNum(2)
-                    self.player2.setX(850)
-                    self.handler.getStateManager().getState("GameState").setPlayers(self.player1, self.player2)
-                    self.handler.getStateManager().setCurrentState("GameState")
+                    pygame.draw.rect(screen, colors["GREEN"], key)
