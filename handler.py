@@ -1,3 +1,4 @@
+import pygame
 from players.Will import Will
 
 
@@ -10,6 +11,7 @@ class Handler:
         self.done = False
         self.player1 = Will(0, 0, self, 0)
         self.player2 = Will(0, 0, self, 0)
+        self.projectileimage = pygame.image.load("media/projectileTest.png")
 
     def getAttackList(self):
         return self.attackList
@@ -43,3 +45,6 @@ class Handler:
 
     def getPlatformArray(self):
         return self.platformArray
+
+    def getProjectileImage(self):
+        return self.projectileimage

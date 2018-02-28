@@ -74,6 +74,8 @@ class GameState(State):
             elif event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_g and not self.player1.sleeping:
                     self.player1.attack(self.testProjectile, screen, "1")
+                    self.player1.rangedstarttime = pygame.time.get_ticks()
+                    self.player1.released = False
                 elif event.key == pygame.K_f and not self.player1.sleeping:
                     self.player1.special()
                 elif event.key == pygame.K_RSHIFT and not self.player2.sleeping:
@@ -102,6 +104,10 @@ class GameState(State):
                 elif event.key == pygame.K_DOWN:
                     self.player2.unduck()
                     self.player2.gravity /= 4
+                elif event.key == pygame.K_g:
+                    self.player1.rangedendtime = pygame.time.get_ticks()
+                    self.player1.released = True
+                    print("END")
 
         if self.player1.y > screen.get_size()[1]:
             self.player1.health = 0
@@ -154,7 +160,6 @@ class GameState(State):
             if self.count == 0:
                 self.end_time = self.timer.current_time
                 self.count += 1
-                print(self.end_time)
             if self.timer.current_time <= self.end_time - 5:
                 self.handler.setDone(True)
             '''if self.timer.current_time <= self.end_time - 5:

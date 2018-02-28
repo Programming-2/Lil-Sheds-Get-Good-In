@@ -9,7 +9,7 @@ class Will(Player):
 
     def __init__(self, x, y, handler, playNum):
         health = 110
-        damage = 7.5
+        damage = 0
         winQuote = "yikes"
         loseQuote = "yikes"
         name = "Will"
@@ -25,38 +25,30 @@ class Will(Player):
         self.specialsprite = pygame.image.load("media/WillSpecial.png")
         self.attacksprite = pygame.image.load("media/projectileTest.png")
         self.rangedcount = 0
-        self.rangedavailable = True
+        self.rangedavailable = False
         self.rangedstarttime = 0
+        self.rangedendtime = 0
         self.rangedcooldown = 0
+        self.attackavailable = False
         self.damage_special = 1.5 * damage
         self.special_available = True
         self.special_total_cooldown = 5
         self.special_cooldown = self.special_total_cooldown
         self.special_count = 0
         self.special_start_time = 0
+        self.released = False
+        self.bulletspeed = 10
 
     def special(self):
         if self.special_available:
             self.special_active = True
 
     def attack(self, image, screen, player):
-        if self.rangedavailable:
-            if self.facing == -1:
-                self.handler.getAttackList().add(Attack(self.x - 25, self.y, 15 * self.facing, 2, "ranged", 1, 3, 5, screen, image, 20, self.handler, player))
-                self.handler.getAttackList().add(Attack(self.x - 25, self.y, 15 * self.facing, 1, "ranged", 1, 3, 5, screen, image, 20, self.handler, player))
-                self.handler.getAttackList().add(Attack(self.x - 25, self.y, 15 * self.facing, 0, "ranged", 1, 3, 5, screen, image, 20, self.handler, player))
-                self.handler.getAttackList().add(Attack(self.x - 25, self.y, 15 * self.facing, -1, "ranged", 1, 3, 5, screen, image, 20, self.handler, player))
-                self.handler.getAttackList().add(Attack(self.x - 25, self.y, 15 * self.facing, -2, "ranged", 1, 3, 5, screen, image, 20, self.handler, player))
-                self.rangedavailable = False
-            elif self.facing == 1:
-                self.handler.getAttackList().add(Attack(self.x + self.width + 5, self.y, 15 * self.facing, 2, "ranged", 1, 3, 5, screen, image, 20, self.handler, player))
-                self.handler.getAttackList().add(Attack(self.x + self.width + 5, self.y, 15 * self.facing, 1, "ranged", 1, 3, 5, screen, image, 20, self.handler, player))
-                self.handler.getAttackList().add(Attack(self.x + self.width + 5, self.y, 15 * self.facing, 0, "ranged", 1, 3, 5, screen, image, 20, self.handler, player))
-                self.handler.getAttackList().add(Attack(self.x + self.width + 5, self.y, 15 * self.facing, -1, "ranged", 1, 3, 5, screen, image, 20, self.handler, player))
-                self.handler.getAttackList().add(Attack(self.x + self.width + 5, self.y, 15 * self.facing, -2, "ranged", 1, 3, 5, screen, image, 20, self.handler, player))
-                self.rangedavailable = False
+        self.rangedavailable = True
+        print(str(self.rangedstarttime) + " " + str(self.rangedendtime))
 
     def update(self, screen):
+        self.screen = screen
         if not self.special_active:
             self.gravity = self.startgravity
             self.gravityUpdate()
@@ -67,16 +59,6 @@ class Will(Player):
                 self.facing = 1
             elif self.xchange < 0:
                 self.facing = -1
-
-            if not self.rangedavailable:
-                self.rangedcooldown = 0
-                if self.rangedcount == 0:
-                    self.rangedstarttime = pygame.time.get_ticks()
-                    self.rangedcount = 1
-                self.rangedcooldown = (pygame.time.get_ticks() - self.rangedstarttime) / 1000
-                if self.rangedcooldown >= .75:
-                    self.rangedavailable = True
-                    self.rangedcount = 0
 
         if not self.special_available:
             self.special_cooldown = 0
@@ -116,7 +98,6 @@ class Will(Player):
                 self.gravity = self.startgravity
                 self.defense = self.startdefense
                 self.sprite = self.stansprite
-                self.rangedavailable = True
                 self.count = 0
 
         if self.playNum == 1:
@@ -127,5 +108,38 @@ class Will(Player):
             if pygame.sprite.spritecollide(self.handler.getPlayer1(), self.handler.getAttackList(), False):
                 self.handler.getPlayer1().takeDamage(self.damage)
                 pygame.sprite.spritecollide(self.handler.getPlayer1(), self.handler.getAttackList(), True)
+
+        if self.rangedavailable:
+            secondsheld = (self.rangedendtime - self.rangedstarttime) / 1000
+            if secondsheld <= 1 and self.released:
+                self.damage = 10
+                self.bulletspeed = 10
+                self.attackavailable = True
+            elif secondsheld <= 2 and self.released:
+                self.damage = 25
+                self.bulletspeed = 15
+                self.attackavailable = True
+            elif secondsheld <= 3 and self.released:
+                self.damage = 60
+                self.bulletspeed = 20
+                self.attackavailable = True
+            elif secondsheld <= 4 and self.released:
+                self.damage = 120
+                self.bulletspeed = 25
+                self.attackavailable = True
+            elif secondsheld > 4 and self.released:
+                self.damage = secondsheld * 40
+                self.bulletspeed = secondsheld * 8
+                self.attackavailable = True
+            print(self.damage)
+            if self.attackavailable:
+                if self.facing == -1:
+                    self.handler.getAttackList().add(Attack(self.x - 25, self.y, 15 * self.facing, 0, "ranged", 1, 3, 5, self.screen, self.attacksprite, 20, self.handler, self))
+                    self.rangedavailable = False
+                    self.attackavailable = False
+                elif self.facing == 1:
+                    self.handler.getAttackList().add(Attack(self.x + self.width + 5, self.y, 15 * self.facing, 0, "ranged", 1, 3, 5, self.screen, self.attacksprite, 20, self.handler, self))
+                    self.rangedavailable = False
+                    self.attackavailable = False
 
         screen.blit(self.sprite, [self.x, self.y])

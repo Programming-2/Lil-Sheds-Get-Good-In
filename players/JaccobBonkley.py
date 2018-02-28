@@ -17,4 +17,4 @@ class JaccobBonkley(Player):
 
         self.movespeed = 10
         self.playNum = playNum
-        self.bullet_speed = 25
+        self.bullet_speed = 20
