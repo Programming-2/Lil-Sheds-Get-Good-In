@@ -41,9 +41,18 @@ class GameState(State):
         self.p1cdbar = CooldownBar(screen, self.player1)
         self.p2cdbar = CooldownBar(screen, self.player2)
 
+        self.handler.setPlayer1(self.player1)
+        self.handler.setPlayer2(self.player2)
+
         # Timer utils
         self.count = 0
         self.end_time = 0
+
+    def setPlayers(self, player1, player2):
+        self.player1 = player1
+        self.player2 = player2
+        self.handler.setPlayer1(self.player1)
+        self.handler.setPlayer2(self.player2)
 
     def update(self, screen):
         screen.blit(self.background_image, [0, 0])  # Jakob's mistake

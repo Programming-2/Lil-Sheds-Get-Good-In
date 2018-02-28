@@ -1,4 +1,4 @@
-from players.Player import Player
+from players.Will import Will
 
 
 class Handler:
@@ -8,8 +8,8 @@ class Handler:
         self.stateManager = stateManager
         self.platformArray = platformArray
         self.done = False
-        self.player1 = Player(0, 0, "", "", "Will", 0, 0, self.platformArray, self, 0, 0)
-        self.player2 = Player(0, 0, "", "", "Will", 0, 0, self.platformArray, self, 0, 0)
+        self.player1 = Will(0, 0, self, 0)
+        self.player2 = Will(0, 0, self, 0)
 
     def getAttackList(self):
         return self.attackList

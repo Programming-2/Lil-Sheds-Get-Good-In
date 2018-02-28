@@ -58,4 +58,5 @@ class PlayerSelectionState(State):
                     self.player2 = self.rects[key]
                     self.player2.setPlayerNum(2)
                     self.player2.setX(200)
+                    self.handler.getStateManager().getState("GameState").setPlayers(self.player1, self.player2)
                     self.handler.getStateManager().setCurrentState("GameState")
