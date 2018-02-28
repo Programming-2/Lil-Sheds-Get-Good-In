@@ -14,7 +14,8 @@ class David(Player):
         name = "David"
         defense = .5
 
-        super().__init__(health, damage, winQuote, loseQuote, name, x, y, handler.getPlatformArray(), handler, playNum, defense)
+        super().__init__(health, damage, winQuote, loseQuote, name, x, y, handler.getPlatformArray(), handler, playNum,
+                         defense)
 
     def special(self):
         pass  # add special here (Puts enemy to sleep)

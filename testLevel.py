@@ -5,6 +5,7 @@ import pygame
 
 
 class TestLevel(Level):
+
     def __init__(self, screen):
         super().__init__(screen, "media/field_map.png")
         self.ground = Platform(screen, 0, 650, 1100, 150)
@@ -16,3 +17,6 @@ class TestLevel(Level):
         self.platformGroup.add(self.lWall)
         self.platformGroup.add(self.rWall)
         self.platformGroup.add(self.cPlat)
+
+    def update(self):
+        pass
