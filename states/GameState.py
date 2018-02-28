@@ -29,8 +29,8 @@ class GameState(State):
 
         handler.setPlatformArray(self.platformArray)
 
-        self.player1 = Will(200, 100, handler, 1)
-        self.player2 = JaccobBonkley(850, 100 + 30, handler, 2)
+        self.player1 = self.handler.player1
+        self.player2 = self.handler.player2
         self.player2.facing = -1
 
         self.player1MeleeAttack = Attack(self.player1.x, self.player1.y, "melee attack", 5, 2, 2, screen, 120, handler, self.player1)
@@ -40,9 +40,6 @@ class GameState(State):
         self.p2hpbar = HealthBar(screen, "topright", self.player2.health)
         self.p1cdbar = CooldownBar(screen, self.player1)
         self.p2cdbar = CooldownBar(screen, self.player2)
-
-        handler.setPlayer1(self.player1)
-        handler.setPlayer2(self.player2)
 
         # Timer utils
         self.count = 0
