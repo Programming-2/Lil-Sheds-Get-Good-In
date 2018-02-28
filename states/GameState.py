@@ -29,7 +29,7 @@ class GameState(State):
 
         handler.setPlatformArray(self.platformArray)
 
-        self.player1 = Will(200, 100, handler, 1)
+        self.player1 = Kyle(200, 100, handler, 1)
         self.player2 = JaccobBonkley(850, 100 + 30, handler, 2)
         self.player2.facing = -1
 
