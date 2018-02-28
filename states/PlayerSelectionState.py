@@ -24,13 +24,13 @@ class PlayerSelectionState(State):
 
         # Rectangle Dict
         self.rects = {
-            Rect(15, 15, 55, 55): David(100, 100, handler, 0),
-            Rect(15, 85, 55, 55): Will(100, 100, handler, 0),
-            Rect(15, 160, 55, 55): Kyle(100, 100, handler, 0),
-            Rect(15, 230, 55, 55): JaccobBonkley(100, 100, handler, 0),
-            Rect(15, 305, 55, 55): Jakob(100, 100, handler, 0),
-            Rect(15, 385, 55, 55): Greg(100, 100, handler, 0),
-            Rect(15, 505, 55, 55): Shed(100, 100, handler, 0)
+            Rect(15, 15, 55, 55): David(150, 100, handler, 0),
+            Rect(15, 85, 55, 55): Will(150, 100, handler, 0),
+            Rect(15, 160, 55, 55): Kyle(150, 100, handler, 0),
+            Rect(15, 230, 55, 55): JaccobBonkley(150, 100, handler, 0),
+            Rect(15, 305, 55, 55): Jakob(150, 100, handler, 0),
+            Rect(15, 385, 55, 55): Greg(150, 100, handler, 0),
+            Rect(15, 505, 55, 55): Shed(150, 100, handler, 0)
         }
 
     def update(self, screen):
@@ -57,6 +57,6 @@ class PlayerSelectionState(State):
                 else:
                     self.player2 = self.rects[key]
                     self.player2.setPlayerNum(2)
-                    self.player2.setX(200)
+                    self.player2.setX(850)
                     self.handler.getStateManager().getState("GameState").setPlayers(self.player1, self.player2)
                     self.handler.getStateManager().setCurrentState("GameState")
