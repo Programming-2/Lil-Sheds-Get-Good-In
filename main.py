@@ -1,6 +1,6 @@
 import pygame
 import os
-from levels.GrassLevel import GrassLevel
+from levels.IceLevel import IceLevel
 from handler import Handler
 from states.GameState import GameState
 from states.ControlState import ControlState
@@ -22,7 +22,7 @@ screen = pygame.display.set_mode(size)
 os.environ['SDL_VIDEO_CENTERED'] = '1'
 
 # Loading level
-level = GrassLevel(screen)
+level = IceLevel(screen)
 
 # Loading Images
 background_image = pygame.image.load(level.getBackImg()).convert()
