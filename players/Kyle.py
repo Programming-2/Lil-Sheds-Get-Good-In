@@ -14,7 +14,7 @@ class Kyle(Player):
         name = "Kyle"
         defense = .5
 
-        super().__init__(health, damage, winQuote, loseQuote, name, x, y, handler.getPlatformArray(), handler.getAttackList(), handler, playNum, defense)
+        super().__init__(health, damage, winQuote, loseQuote, name, x, y, handler.getPlatformArray(), handler.getAttackList(), handler, defense)
 
         self.attacksprite = pygame.image.load("media/PlatformSprite.png")
 

@@ -9,8 +9,8 @@ class Handler:
         self.stateManager = stateManager
         self.platformArray = platformArray
         self.done = False
-        self.player1 = Will(0, 0, self, 0)
-        self.player2 = Will(0, 0, self, 0)
+        self.player1 = Will(0, 0, self)
+        self.player2 = Will(0, 0, self)
         self.projectileimage = pygame.image.load("media/projectileTest.png")
 
     def getAttackList(self):
