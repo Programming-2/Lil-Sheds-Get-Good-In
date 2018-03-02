@@ -1,5 +1,5 @@
 import pygame
-import colors
+import Colors
 
 
 class Timer:
@@ -18,8 +18,8 @@ class Timer:
             self.current_time -= 1
 
         if self.current_time > 10:
-            text = self.font.render(str(self.current_time), False, colors.colors.get("BLACK"))
+            text = self.font.render(str(self.current_time), False, Colors.colors.get("BLACK"))
             screen.blit(text, (self.screensize[0] / 2 - 20, 10))
         if self.current_time <= 10:
-            text = self.font.render(str(self.current_time), False, colors.colors.get("RED"))
+            text = self.font.render(str(self.current_time), False, Colors.colors.get("RED"))
             screen.blit(text, (self.screensize[0] / 2 - 20, 10))

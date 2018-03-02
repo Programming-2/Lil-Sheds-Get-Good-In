@@ -1,7 +1,7 @@
 import pygame
 import os
 from levels.IceLevel import IceLevel
-from handler import Handler
+from Handler import Handler
 from states.GameState import GameState
 from states.ControlState import ControlState
 from states.EndGameState import EndGameState

@@ -8,7 +8,7 @@ from players.JaccobBonkley import JaccobBonkley
 from players.Jakob import Jakob
 from players.Greg import Greg
 from players.Shed import Shed
-from colors import colors
+from Colors import colors
 
 
 class PlayerSelectionState(State):

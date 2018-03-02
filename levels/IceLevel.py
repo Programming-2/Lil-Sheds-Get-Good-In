@@ -1,6 +1,6 @@
 import pygame
 from levels.Level import Level
-from platform import Platform
+from Platform import Platform
 
 
 class IceLevel(Level):
