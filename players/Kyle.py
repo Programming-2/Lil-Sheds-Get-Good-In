@@ -16,5 +16,7 @@ class Kyle(Player):
 
         super().__init__(health, damage, winQuote, loseQuote, name, x, y, handler.getPlatformArray(), handler.getAttackList(), handler, playNum, defense)
 
+        self.attacksprite = pygame.image.load("media/PlatformSprite.png")
+
     def special(self):
         pass  # special here (reflects attacks, own do less damage for duration)
