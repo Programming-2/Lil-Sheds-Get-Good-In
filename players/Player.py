@@ -67,6 +67,7 @@ class Player(pygame.sprite.Sprite):
             self.ychange += self.gravity
 
     def update(self, screen):
+        self.screen = screen
         self.gravityUpdate()
         self.moveX()
         self.moveY()

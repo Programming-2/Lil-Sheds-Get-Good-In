@@ -1,5 +1,7 @@
 import pygame
 from players.Player import Player
+from Platform import Platform
+from Colors import colors
 
 
 class Kyle(Player):
@@ -19,4 +21,26 @@ class Kyle(Player):
         self.attacksprite = pygame.image.load("media/PlatformSprite.png")
 
     def special(self):
-        pass  # special here (reflects attacks, own do less damage for duration)
+        seconds = (1) / 1000
+        self.specialplatform = Platform(self.screen, self.x - 50, self.y + self.height + 10, self.width + 100, 25)
+        self.handler.getPlatformArray().add(self.specialplatform)
+        # pygame.draw.rect()
+        print(self.specialplatform.rect)
+
+    def update(self, screen):
+        self.screen = screen
+        self.gravityUpdate()
+        self.moveX()
+        self.moveY()
+        screen.blit(self.sprite, [self.x, self.y])
+
+        if self.xchange > 0:
+            self.facing = 1
+        elif self.xchange < 0:
+            self.facing = -1
+
+        self.attackUpdate(screen)
+
+        for p in self.handler.getPlatformArray():
+            if p.height == 25:
+                pygame.draw.rect(screen, colors.get("BLACK"), p.rect)
