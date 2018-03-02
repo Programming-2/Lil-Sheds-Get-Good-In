@@ -38,6 +38,10 @@ class GameState(State):
         self.count = 0
         self.end_time = 0
 
+    def reloadLevel(self):
+        self.platformArray = self.handler.getLevel().platformGroup
+        self.background_image = pygame.image.load(self.handler.getLevel().getBackImg()).convert()
+
     def setPlayers(self, player1, player2):
         self.player1 = player1
         self.player2 = player2

@@ -71,8 +71,7 @@ class PlayerSelectionState(State):
                         self.player2.setPlayerNum(2)
                         self.player2.setX(850)
                         self.handler.getStateManager().getState("GameState").setPlayers(self.player1, self.player2)
-                        self.handler.getStateManager().setCurrentState("GameState")
-                        # self.handler.getStateManager().setCurrentState("MapSelectionState")
+                        self.handler.getStateManager().setCurrentState("MapSelectionState")
                 else:
                     pygame.draw.rect(screen, colors["GREEN"], key)
 
