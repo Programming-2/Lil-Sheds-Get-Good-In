@@ -40,7 +40,12 @@ class GameState(State):
 
     def reloadLevel(self):
         self.platformArray = self.handler.getLevel().platformGroup
+
+        self.testProjectile = pygame.image.load("media/projectileTest.png").convert()
         self.background_image = pygame.image.load(self.handler.getLevel().getBackImg()).convert()
+        self.kosprite = pygame.image.load("media/KO.png")
+
+        self.handler.setPlatformArray(self.platformArray)
 
     def setPlayers(self, player1, player2):
         self.player1 = player1
