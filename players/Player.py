@@ -40,6 +40,9 @@ class Player(pygame.sprite.Sprite):
         self.special_total_cooldown = 1
         self.bullet_speed = 15
 
+    def setPlatArray(self, arr):
+        self.platArray = arr
+
     def jump(self):
         if self.jumpCount <= 1:
             self.ychange = -10
