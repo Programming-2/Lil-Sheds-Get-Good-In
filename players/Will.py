@@ -47,7 +47,7 @@ class Will(Player):
         if self.special_available:
             self.special_active = True
 
-    def attack(self, image, screen, player):
+    def attack(self, screen, player):
         self.rangedavailable = True
 
     def update(self, screen):
