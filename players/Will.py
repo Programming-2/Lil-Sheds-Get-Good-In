@@ -121,7 +121,6 @@ class Will(Player):
                 self.bullet_speed = secondsheld * 8
                 self.attackavailable = True
             if self.attackavailable:
-                print(self.bullet_speed)
                 if self.facing == -1:
                     self.handler.getAttackList().add(Attack(self.x - 25, self.y, self.bullet_speed * self.facing, 0, "ranged", self.damage, 3, 5, self.screen, self.attacksprite, 20, self.handler, self))
                     self.rangedavailable = False
