@@ -7,7 +7,7 @@ from Attack import Attack
 
 class Player(pygame.sprite.Sprite):
 
-    def __init__(self, health, damage, winQuote, loseQuote, name, x, y, platArray, attackList, handler, playNum, defense):
+    def __init__(self, health, damage, winQuote, loseQuote, name, x, y, platArray, attackList, handler, defense):
         super().__init__()
         self.sprite = pygame.image.load("media/" + name + ".png").convert()
         self.stansprite = pygame.image.load("media/" + name + ".png").convert()
@@ -36,7 +36,6 @@ class Player(pygame.sprite.Sprite):
         self.stunned = False
         self.sleeping = False
         self.facing = 1  # -1 for left, 1 for right
-        self.playNum = playNum
         self.special_cooldown = 0
         self.special_total_cooldown = 1
         self.bullet_speed = 15
@@ -135,11 +134,11 @@ class Player(pygame.sprite.Sprite):
                 pygame.sprite.spritecollide(self, self.attackList, True)
                 self.takeDamage(e.damage)
 
-    def attack(self, screen, player):
+    def attack(self, screen):
         if self.facing == -1:
-            self.handler.getAttackList().add(Attack(self.x - 50, self.y, self.bullet_speed * self.facing, 0, "ranged", self.damage, 3, 5, screen, self.attacksprite, 20, self.handler, player))
+            self.handler.getAttackList().add(Attack(self.x - 50, self.y, self.bullet_speed * self.facing, 0, "ranged", self.damage, 3, 5, screen, self.attacksprite, 20, self.handler))
         elif self.facing == 1:
-            self.handler.getAttackList().add(Attack(self.x + self.width + 30, self.y, self.bullet_speed * self.facing, 0, "ranged", self.damage, 3, 5, screen, self.attacksprite, 20, self.handler, player))
+            self.handler.getAttackList().add(Attack(self.x + self.width + 30, self.y, self.bullet_speed * self.facing, 0, "ranged", self.damage, 3, 5, screen, self.attacksprite, 20, self.handler))
 
     def special(self):
         pass  # abstract

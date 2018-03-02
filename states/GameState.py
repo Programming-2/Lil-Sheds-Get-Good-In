@@ -51,7 +51,7 @@ class GameState(State):
         self.p2cdbar = CooldownBar(self.screen, self.player2)
 
     def update(self, screen):
-        screen.blit(self.background_image, [0, 0])  # Jakob's mistake
+        screen.blit(self.background_image, [0, 0])# Jakob's mistake
         keys = pygame.key.get_pressed()
 
         if keys[pygame.K_a] and not (self.player1.sleeping or self.player1.stunned):
@@ -68,15 +68,17 @@ class GameState(State):
                 self.handler.setDone(True)
             elif event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_g and not self.player1.sleeping:
-                    self.player1.attack(screen, "1")
+                    self.player1.attack(screen)
                     self.player1.rangedstarttime = pygame.time.get_ticks()
                     self.player1.released = False
                 elif event.key == pygame.K_f and not self.player1.sleeping:
                     self.player1.special()
                 elif event.key == pygame.K_RSHIFT and not self.player2.sleeping:
-                    self.player2.attack(screen, "2")
+                    self.player2.attack(screen)
                     self.player2.rangedstarttime = pygame.time.get_ticks()
                     self.player2.released = False
+                elif event.key == pygame.K_RETURN and not self.player2.sleeping:
+                    self.player2.special()
                 elif event.key == pygame.K_r and not self.player1.sleeping:
                     self.player1MeleeAttack.p1_melee_attack()
                 elif event.key == pygame.K_RCTRL and not self.player2.sleeping:
