@@ -16,6 +16,7 @@ class David(Player):
 
         super().__init__(health, damage, winQuote, loseQuote, name, x, y, handler.getPlatformArray(), handler.getAttackList(), handler, playNum,
                          defense)
+        self.attacksprite = pygame.image.load("media/DavidAttack.png")
 
     def special(self):
         pass  # add special here (Puts enemy to sleep)
