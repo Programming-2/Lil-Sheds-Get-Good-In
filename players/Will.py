@@ -37,7 +37,6 @@ class Will(Player):
         self.special_count = 0
         self.special_start_time = 0
         self.released = False
-        self.bulletspeed = 10
         self.damage = damage
 
     def special(self):
@@ -103,31 +102,32 @@ class Will(Player):
             secondsheld = (self.rangedendtime - self.rangedstarttime) / 1000
             if secondsheld <= 1 and self.released:
                 self.damage = 10
-                self.bulletspeed = 10
+                self.bullet_speed = 10
                 self.attackavailable = True
             elif secondsheld <= 2 and self.released:
                 self.damage = 25
-                self.bulletspeed = 15
+                self.bullet_speed = 15
                 self.attackavailable = True
             elif secondsheld <= 3 and self.released:
                 self.damage = 60
-                self.bulletspeed = 20
+                self.bullet_speed = 20
                 self.attackavailable = True
             elif secondsheld <= 4 and self.released:
                 self.damage = 120
-                self.bulletspeed = 25
+                self.bullet_speed = 25
                 self.attackavailable = True
             elif secondsheld > 4 and self.released:
                 self.damage = secondsheld * 40
-                self.bulletspeed = secondsheld * 8
+                self.bullet_speed = secondsheld * 8
                 self.attackavailable = True
             if self.attackavailable:
+                print(self.bullet_speed)
                 if self.facing == -1:
-                    self.handler.getAttackList().add(Attack(self.x - 25, self.y, 15 * self.facing, 0, "ranged", self.damage, 3, 5, self.screen, self.attacksprite, 20, self.handler, self))
+                    self.handler.getAttackList().add(Attack(self.x - 25, self.y, self.bullet_speed * self.facing, 0, "ranged", self.damage, 3, 5, self.screen, self.attacksprite, 20, self.handler, self))
                     self.rangedavailable = False
                     self.attackavailable = False
                 elif self.facing == 1:
-                    self.handler.getAttackList().add(Attack(self.x + self.width + 5, self.y, 15 * self.facing, 0, "ranged", self.damage, 3, 5, self.screen, self.attacksprite, 20, self.handler, self))
+                    self.handler.getAttackList().add(Attack(self.x + self.width + 5, self.y, self.bullet_speed * self.facing, 0, "ranged", self.damage, 3, 5, self.screen, self.attacksprite, 20, self.handler, self))
                     self.rangedavailable = False
                     self.attackavailable = False
 
