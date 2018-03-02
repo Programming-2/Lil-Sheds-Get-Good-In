@@ -11,14 +11,14 @@ font = pygame.font.SysFont("Comic Sans MS", 36)
 
 class GameState(State):
 
-    def __init__(self, name, level, screen, handler, attackUpdateList):
+    def __init__(self, name, screen, handler, attackUpdateList):
         super().__init__(name)
-        self.platformArray = level.platformGroup
+        self.platformArray = handler.getLevel().platformGroup
         self.attackUpdateList = attackUpdateList
 
         self.timer = Timer(300, screen)
         self.testProjectile = pygame.image.load("media/projectileTest.png").convert()
-        self.background_image = pygame.image.load(level.getBackImg()).convert()
+        self.background_image = pygame.image.load(handler.getLevel().getBackImg()).convert()
         self.kosprite = pygame.image.load("media/KO.png")
         self.handler = handler
 
@@ -26,8 +26,6 @@ class GameState(State):
 
         self.player1 = self.handler.player1
         self.player2 = self.handler.player2
-        self.player2.facing = -1
-
         self.player1MeleeAttack = Attack(self.player1.x, self.player1.y, "melee attack", 5, 2, 2, screen, 120, handler, self.player1)
         self.player2MeleeAttack = Attack(self.player2.x, self.player2.x, "melee attack", 5, 2, 2, screen, 120, handler, self.player2)
 
@@ -45,6 +43,7 @@ class GameState(State):
         self.player2 = player2
         self.handler.setPlayer1(self.player1)
         self.handler.setPlayer2(self.player2)
+        self.player2.facing = -1
         self.p1hpbar = HealthBar(self.screen, "topleft", self.player1.health)
         self.p2hpbar = HealthBar(self.screen, "topright", self.player2.health)
         self.p1cdbar = CooldownBar(self.screen, self.player1)

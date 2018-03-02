@@ -4,13 +4,14 @@ from players.Will import Will
 
 class Handler:
 
-    def __init__(self, attackList, stateManager, platformArray):
+    def __init__(self, attackList, stateManager, platformArray, level):
         self.attackList = attackList
         self.stateManager = stateManager
         self.platformArray = platformArray
         self.done = False
         self.player1 = Will(0, 0, self)
         self.player2 = Will(0, 0, self)
+        self.level = level
         self.projectileimage = pygame.image.load("media/projectileTest.png")
 
     def getAttackList(self):
@@ -48,3 +49,9 @@ class Handler:
 
     def getProjectileImage(self):
         return self.projectileimage
+
+    def getLevel(self):
+        return self.level
+
+    def setLevel(self, level):
+        self.level = level

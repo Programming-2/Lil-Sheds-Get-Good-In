@@ -3,7 +3,7 @@ from levels.Level import Level
 from Platform import Platform
 
 
-class GrassLevel(Level):
+class LavaLevel(Level):
 
     def __init__(self, screen):
         super().__init__(screen, "media/LavaMap.png")
