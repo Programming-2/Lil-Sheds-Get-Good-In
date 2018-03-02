@@ -24,6 +24,10 @@ class Will(Player):
         self.startdefense = defense
         self.specialsprite = pygame.image.load("media/WillSpecial.png")
         self.attacksprite = pygame.image.load("media/projectileTest.png")
+        self.attack1 = pygame.image.load("media/Will/Attack1.png")
+        self.attack2 = pygame.image.load("media/Will/Attack2.png")
+        self.attack3 = pygame.image.load("media/Will/Attack3.png")
+        self.attack4 = pygame.image.load("media/Will/Attack4.png")
         self.rangedcount = 0
         self.rangedavailable = False
         self.rangedstarttime = 0
@@ -103,22 +107,27 @@ class Will(Player):
             if secondsheld <= 1 and self.released:
                 self.damage = 10
                 self.bullet_speed = 10
+                self.attacksprite = self.attack1
                 self.attackavailable = True
             elif secondsheld <= 2 and self.released:
                 self.damage = 25
                 self.bullet_speed = 15
+                self.attacksprite = self.attack2
                 self.attackavailable = True
             elif secondsheld <= 3 and self.released:
                 self.damage = 60
                 self.bullet_speed = 20
+                self.attacksprite = self.attack3
                 self.attackavailable = True
             elif secondsheld <= 4 and self.released:
                 self.damage = 120
                 self.bullet_speed = 25
+                self.attacksprite = self.attack4
                 self.attackavailable = True
             elif secondsheld > 4 and self.released:
                 self.damage = secondsheld * 40
-                self.bullet_speed = secondsheld * 8
+                self.bullet_speed = 30
+                self.attacksprite = self.attack4
                 self.attackavailable = True
             if self.attackavailable:
                 if self.facing == -1:
