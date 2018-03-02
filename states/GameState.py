@@ -51,7 +51,7 @@ class GameState(State):
         self.p2cdbar = CooldownBar(self.screen, self.player2)
 
     def update(self, screen):
-        screen.blit(self.background_image, [0, 0])  # Jakob's mistake
+        screen.blit(self.background_image, [0, 0])# Jakob's mistake
         keys = pygame.key.get_pressed()
 
         if keys[pygame.K_a] and not (self.player1.sleeping or self.player1.stunned):
