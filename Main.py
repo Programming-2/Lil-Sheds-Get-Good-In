@@ -62,6 +62,7 @@ stateDict = {
 stateManager.setStateDict(stateDict)
 # End State Declaration
 
+# Vars
 done = False
 game_won = False
 stateManager.setCurrentState("MainMenuState")
