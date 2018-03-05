@@ -1,7 +1,7 @@
 import pygame
 from players.Player import Player
-from Platform import Platform
-from Colors import colors
+from src.Platform import Platform
+from utils.Colors import colors
 
 
 class Kyle(Player):

@@ -1,6 +1,6 @@
 import pygame
-import Colors
-from Attack import Attack
+from utils import Colors
+from src.Attack import Attack
 
 # TODO Figure out why sprite draws weird/gets cut
 

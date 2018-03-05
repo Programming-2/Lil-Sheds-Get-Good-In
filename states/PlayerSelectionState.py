@@ -1,6 +1,6 @@
 import pygame
 from states.State import State
-from Rect import Rect
+from utils.Rect import Rect
 from players.David import David
 from players.Will import Will
 from players.Kyle import Kyle
@@ -8,7 +8,7 @@ from players.JaccobBonkley import JaccobBonkley
 from players.Jakob import Jakob
 from players.Greg import Greg
 from players.Shed import Shed
-from Colors import colors
+from utils.Colors import colors
 
 
 class PlayerSelectionState(State):

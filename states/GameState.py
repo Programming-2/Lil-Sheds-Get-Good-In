@@ -1,10 +1,10 @@
 import pygame
 from states.State import State
-from Colors import colors
-from HealthBar import HealthBar
-from CoolDownBars import CooldownBar
-from Timer import Timer
-from MeleeAttack import Attack
+from utils.Colors import colors
+from src.HealthBar import HealthBar
+from src.CoolDownBars import CooldownBar
+from utils.Timer import Timer
+from src.MeleeAttack import Attack
 
 font = pygame.font.SysFont("Comic Sans MS", 36)
 

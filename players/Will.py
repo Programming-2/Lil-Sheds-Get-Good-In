@@ -1,5 +1,5 @@
 import pygame
-from Attack import Attack
+from src.Attack import Attack
 from players.Player import Player
 
 

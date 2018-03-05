@@ -1,4 +1,4 @@
-from Entity import Entity
+from src.Entity import Entity
 
 
 class Attack(Entity):

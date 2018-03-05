@@ -1,10 +1,10 @@
 import pygame
 from states.State import State
-from Rect import Rect
+from utils.Rect import Rect
 from levels.GrassLevel import GrassLevel
 from levels.IceLevel import IceLevel
 from levels.LavaLevel import LavaLevel
-from Colors import colors
+from utils.Colors import colors
 
 
 class MapSelectionState(State):

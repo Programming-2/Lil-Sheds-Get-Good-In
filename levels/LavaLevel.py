@@ -1,6 +1,6 @@
 import pygame
 from levels.Level import Level
-from Platform import Platform
+from src.Platform import Platform
 
 
 class LavaLevel(Level):

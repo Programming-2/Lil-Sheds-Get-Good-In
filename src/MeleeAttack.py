@@ -1,7 +1,3 @@
-import pygame
-from Entity import Entity
-
-
 class Attack:
 
     def __init__(self, player_x, player_y, attack_name, damage, full_cooldown, cooldown, screen, range, handler, player):

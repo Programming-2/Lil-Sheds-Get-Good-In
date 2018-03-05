@@ -1,5 +1,5 @@
 import pygame
-import Colors
+from utils import Colors
 
 
 class Timer:
