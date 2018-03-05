@@ -11,6 +11,9 @@ font = pygame.font.SysFont("Comic Sans MS", 36)
 
 class GameState(State):
 
+    # TODO Organize Game State
+    # TODO Create a better way to order when things are rendered
+
     def __init__(self, name, screen, handler, attackUpdateList):
         super().__init__(name)
         self.platformArray = handler.getLevel().platformGroup
