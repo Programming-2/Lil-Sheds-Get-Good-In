@@ -13,6 +13,7 @@ class PausedState(State):
     def update(self, screen):
         pressed = False
 
+        # 381, 214
         screen.blit(self.img, [0, 0])
 
         for event in pygame.event.get():
