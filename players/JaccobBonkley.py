@@ -5,7 +5,7 @@ class JaccobBonkley(Player):
 
     # TODO Give real data
 
-    def __init__(self, x, y, handler):
+    def __init__(self, x, y, handler, playNum):
         health = 80
         damage = 25
         defense = .8
@@ -16,4 +16,5 @@ class JaccobBonkley(Player):
         super().__init__(health, damage, winQuote, loseQuote, name, x, y, handler.getPlatformArray(), handler.getAttackList(), handler, defense)
 
         self.movespeed = 10
+        self.playNum = playNum
         self.bullet_speed = 20

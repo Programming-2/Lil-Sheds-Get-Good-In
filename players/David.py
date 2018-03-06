@@ -6,7 +6,7 @@ class David(Player):
 
     # TODO Give real data
 
-    def __init__(self, x, y, handler):
+    def __init__(self, x, y, handler, playNum):
         health = 150
         damage = 10
         winQuote = "I always start the party"
