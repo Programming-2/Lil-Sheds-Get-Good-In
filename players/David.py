@@ -24,3 +24,4 @@ class David(Player):
 
     def special(self):
         if self.playNum == 1:
+            pass

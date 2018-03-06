@@ -32,6 +32,7 @@ testProjectile = pygame.image.load("media/projectileTest.png").convert()
 testControlScreen = pygame.image.load("media/ControlScreen.png").convert()
 playerSelectScreen = pygame.image.load("media/LilShedCharacterSelect.png")
 mapSelectionScreen = pygame.image.load("media/MapSelection.png")
+pauseScreen = pygame.image.load("media/PauseScreen.png").convert()
 
 # Setting up screen stuff
 pygame.display.set_caption("Lil' Shed's Get Good In™")
@@ -59,7 +60,7 @@ stateDict = {
     "MainMenuState": MainMenuState("MainMenuState", mainMenu, handler),
     "MapSelectionState": MapSelectionState("MapSelectionState", handler, screen, mapSelectionScreen),
     "PlayerSelectionState": PlayerSelectionState("PlayerSelectionState", handler, playerSelectScreen),
-    "PausedState": PausedState("PausedState", handler)
+    "PausedState": PausedState("PausedState", handler, pauseScreen)
 }
 stateManager.setStateDict(stateDict)
 # End State Declaration

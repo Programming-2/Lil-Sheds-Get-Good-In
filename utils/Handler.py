@@ -57,3 +57,4 @@ class Handler:
         self.level = level
 
     def setMoveSpeed(self, movespeed):
+        pass
