@@ -14,7 +14,7 @@ class Kyle(Player):
         winQuote = "Are the platforms fixed yet?"
         loseQuote = "I\'d better try to fix that... emphasis on try"
         name = "Kyle"
-        defense = .5
+        defense = .1
 
         super().__init__(health, damage, winQuote, loseQuote, name, x, y, handler.getPlatformArray(), handler.getAttackList(), handler, defense)
 
