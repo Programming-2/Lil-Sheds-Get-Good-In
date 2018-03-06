@@ -1,7 +1,7 @@
 import pygame
 from players.Player import Player
-from src.Platform import Platform
-from utils.Colors import colors
+from Platform import Platform
+from Colors import colors
 
 
 class Kyle(Player):
@@ -21,7 +21,6 @@ class Kyle(Player):
         self.attacksprite = pygame.image.load("media/PlatformSprite.png")
 
     def special(self):
-        seconds = (1) / 1000
         self.specialplatform = Platform(self.screen, self.x - 50, self.y + self.height + 10, self.width + 100, 25)
         self.handler.getPlatformArray().add(self.specialplatform)
         # pygame.draw.rect()
