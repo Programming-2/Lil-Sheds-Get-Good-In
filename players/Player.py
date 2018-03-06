@@ -43,6 +43,9 @@ class Player(pygame.sprite.Sprite):
     def setPlatArray(self, arr):
         self.platArray = arr
 
+    def setMoveSpeed(self, movespeed):
+        self.movespeed = movespeed
+
     def jump(self):
         if self.jumpCount <= 1:
             self.ychange = -10

@@ -55,3 +55,5 @@ class Handler:
 
     def setLevel(self, level):
         self.level = level
+
+    def setMoveSpeed(self, movespeed):
