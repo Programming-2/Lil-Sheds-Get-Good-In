@@ -8,7 +8,8 @@ from states.EndGameState import EndGameState
 from states.MainMenuState import MainMenuState
 from states.MapSelectionState import MapSelectionState
 from states.PlayerSelectionState import PlayerSelectionState
-from states.StateManager import StateManager
+from utils.StateManager import StateManager
+from states.PausedState import PausedState
 
 pygame.init()
 
@@ -57,7 +58,8 @@ stateDict = {
     "EndGameState": EndGameState("EndGameState"),
     "MainMenuState": MainMenuState("MainMenuState", mainMenu, handler),
     "MapSelectionState": MapSelectionState("MapSelectionState", handler, screen, mapSelectionScreen),
-    "PlayerSelectionState": PlayerSelectionState("PlayerSelectionState", handler, playerSelectScreen)
+    "PlayerSelectionState": PlayerSelectionState("PlayerSelectionState", handler, playerSelectScreen),
+    "PausedState": PausedState("PausedState", handler)
 }
 stateManager.setStateDict(stateDict)
 # End State Declaration

@@ -110,6 +110,8 @@ class GameState(State):
                     self.player2.gravity *= 4
                 elif event.key == pygame.K_RETURN:
                     self.player2.special()
+                elif event.key == pygame.K_ESCAPE:
+                    self.handler.getStateManager().setCurrentState("PausedState")
             elif event.type == pygame.KEYUP:
                 if event.key == pygame.K_s:
                     self.player1.unduck()

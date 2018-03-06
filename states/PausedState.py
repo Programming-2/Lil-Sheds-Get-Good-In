@@ -4,8 +4,13 @@ from states.State import State
 
 class PausedState(State):
 
-    def __init__(self, name):
+    def __init__(self, name, handler):
         super().__init__(name)
 
+        self.handler = handler
+
     def update(self, screen):
-        pass
+
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                self.handler.setDone(True)
