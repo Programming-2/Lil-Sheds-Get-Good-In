@@ -14,15 +14,20 @@ class Kyle(Player):
         winQuote = "Are the platforms fixed yet?"
         loseQuote = "I\'d better try to fix that... emphasis on try"
         name = "Kyle"
-        defense = .1
+        defense = .6
 
         super().__init__(health, damage, winQuote, loseQuote, name, x, y, handler.getPlatformArray(), handler.getAttackList(), handler, defense)
 
         self.attacksprite = pygame.image.load("media/PlatformSprite.png")
+        self.platformcount = 0
 
     def special(self):
+        if self.platformcount == 1:
+            self.handler.getPlatformArray().remove(self.specialplatform)
+            self.platformcount = 0
         self.specialplatform = Platform(self.screen, self.x - 50, self.y + self.height + 10, self.width + 100, 25)
         self.handler.getPlatformArray().add(self.specialplatform)
+        self.platformcount += 1
         # pygame.draw.rect()
         print(self.specialplatform.rect)
 
