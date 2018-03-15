@@ -9,3 +9,7 @@ class State:
     @abstractmethod
     def update(self, screen):
         pass
+
+    @abstractmethod
+    def resetState(self):
+        pass

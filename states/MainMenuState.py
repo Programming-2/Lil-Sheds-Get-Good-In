@@ -9,6 +9,9 @@ class MainMenuState(State):
         self.menuImage = mainMenu
         self.handler = handler
 
+    def resetState(self):
+        pass
+
     def update(self, screen):
         pressed = False
 

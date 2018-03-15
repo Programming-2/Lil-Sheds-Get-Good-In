@@ -24,6 +24,9 @@ class MapSelectionState(State):
             Rect(18, 304, 1064, 114): LavaLevel(screen)
         }
 
+    def resetState(self):
+        self.map = None
+
     def update(self, screen):
         pressed = False
 
@@ -42,6 +45,7 @@ class MapSelectionState(State):
 
         # Button to return to the main menu
         if (715 < pygame.mouse.get_pos()[0] < 1055 and pressed) and (600 < pygame.mouse.get_pos()[1] < 750 and pressed):
+            self.handler.getStateManager().resetStates()
             self.handler.getStateManager().setCurrentState("MainMenuState")
 
         # Looks at keys in rects dict, and determines if the mouse if clicking that rect

@@ -19,6 +19,10 @@ class StateManager:
     def getState(self, name):
         return self.states[name]
 
+    def resetStates(self):
+        for k in self.states:
+            self.states[k].resetState()
+
     # Should be called by main loop
     def update(self, screen):
         self.currentState.update(screen)
