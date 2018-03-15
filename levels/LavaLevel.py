@@ -20,6 +20,8 @@ class LavaLevel(Level):
         self.p7 = Platform(screen, 438, 316, 322, 32)
         self.p8 = Platform(screen, 510, 288, 52, 27)
         self.p9 = Platform(screen, 659, 256, 78, 59)
+        self.p10 = Platform(screen, 175, 410, 170, 35)
+        self.p11 = Platform(screen, 65, 548, 115, 37)
         self.platformGroup = pygame.sprite.Group()
         self.platformGroup.add(self.lWall)
         self.platformGroup.add(self.rWall)
@@ -32,6 +34,8 @@ class LavaLevel(Level):
         self.platformGroup.add(self.p7)
         self.platformGroup.add(self.p8)
         self.platformGroup.add(self.p9)
+        self.platformGroup.add(self.p10)
+        self.platformGroup.add(self.p11)
 
     def update(self):
         pass
