@@ -28,8 +28,6 @@ class Kyle(Player):
         self.specialplatform = Platform(self.screen, self.x - 50, self.y + self.height + 10, self.width + 100, 25)
         self.handler.getPlatformArray().add(self.specialplatform)
         self.platformcount += 1
-        # pygame.draw.rect()
-        print(self.specialplatform.rect)
 
     def update(self, screen):
         self.screen = screen
