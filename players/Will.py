@@ -53,7 +53,6 @@ class Will(Player):
     def update(self, screen):
         self.screen = screen
         if not self.special_active:
-            self.gravity = self.startgravity
             self.gravityUpdate()
             self.moveX()
             self.moveY()
