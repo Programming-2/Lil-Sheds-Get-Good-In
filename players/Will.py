@@ -9,13 +9,13 @@ class Will(Player):
 
     def __init__(self, x, y, handler):
         health = 110
-        damage = 100
+        damage = 55
         winQuote = "yikes"
         loseQuote = "yikes"
         name = "Will"
         defense = .5
 
-        super().__init__(health, damage, winQuote, loseQuote, name, x, y, handler.getPlatformArray(), handler.getAttackList(), handler,  defense)
+        super().__init__(health, damage, winQuote, loseQuote, name, x, y, handler.getPlatformArray(), handler.getAttackList(), handler, defense)
 
         self.special_active = False
         self.count = 0
