@@ -9,6 +9,9 @@ class ControlState(State):
         self.handler = handler
         self.testControlScreen = testControlScreen
 
+    def resetState(self):
+        pass
+
     def update(self, screen):
         pressed = False
 

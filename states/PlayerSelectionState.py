@@ -36,6 +36,13 @@ class PlayerSelectionState(State):
             Rect(14, 503, 54, 55): Shed(150, 100, handler,  0)
         }
 
+    def resetState(self):
+        self.firstSelection = True
+        self.player1 = None
+        self.player2 = None
+        self.player1Rect = (0, 0, 0, 0)
+        self.player2Rect = (0, 0, 0, 0)
+
     def update(self, screen):
         pressed = False
 
@@ -54,15 +61,18 @@ class PlayerSelectionState(State):
 
         # Button to return to the main menu
         if (715 < pygame.mouse.get_pos()[0] < 1055 and pressed) and (600 < pygame.mouse.get_pos()[1] < 750 and pressed):
+            self.handler.getStateManager().resetStates()
             self.handler.getStateManager().setCurrentState("MainMenuState")
 
         # Looks at keys in rects dict, and determines if the mouse if clicking that rect
         for key in self.rects:
             if key.contains(pygame.mouse.get_pos()[0], pygame.mouse.get_pos()[1], 10, 10):
+                print(self.firstSelection)
                 if pressed:
                     if self.firstSelection:
                         self.player1 = self.rects[key]
                         self.player1.setPlayerNum(1)
+                        self.player1.setX(200)
                         self.firstSelection = False
                         self.player1Rect = key
                     else:

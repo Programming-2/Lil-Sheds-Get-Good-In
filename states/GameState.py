@@ -41,6 +41,9 @@ class GameState(State):
         self.count = 0
         self.end_time = 0
 
+    def resetState(self):
+        pass
+
     def reloadLevel(self):
         self.platformArray = self.handler.getLevel().platformGroup
 

@@ -10,6 +10,9 @@ class PausedState(State):
         self.img = img
         self.handler = handler
 
+    def resetState(self):
+        pass
+
     def update(self, screen):
         pressed = False
 
@@ -32,4 +35,5 @@ class PausedState(State):
 
         if (383 < pygame.mouse.get_pos()[0] < 678 and pressed) and (541 < pygame.mouse.get_pos()[1] < 641 and pressed):
             # Quit
+            self.handler.getStateManager().resetStates()
             self.handler.getStateManager().setCurrentState("MainMenuState")
