@@ -20,6 +20,7 @@ class David(Player):
         self.attacksprite = pygame.image.load("media/DavidAttack.png")
         self.special_cooldown = 0
         self.special_active = False
+        self.special_available = True
         self.playNum = playNum
 
     def special(self):
