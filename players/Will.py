@@ -9,7 +9,7 @@ class Will(Player):
 
     def __init__(self, x, y, handler):
         health = 110
-        damage = 100
+        damage = 55
         winQuote = "yikes"
         loseQuote = "yikes"
         name = "Will"
