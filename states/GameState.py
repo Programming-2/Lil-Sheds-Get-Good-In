@@ -42,7 +42,23 @@ class GameState(State):
         self.end_time = 0
 
     def resetState(self):
-        pass
+        self.platformArray = self.handler.getLevel().platformGroup
+        self.background_image = pygame.image.load(self.handler.getLevel().getBackImg()).convert()
+        self.timer = Timer(300, self.screen)
+        self.handler.setPlatformArray(self.platformArray)
+
+        self.player1 = self.handler.player1
+        self.player2 = self.handler.player2
+        self.player1MeleeAttack = Attack(self.player1.x, self.player1.y, "melee attack", 5, 2, 2, self.screen, 120, self.handler, self.player1)
+        self.player2MeleeAttack = Attack(self.player2.x, self.player2.x, "melee attack", 5, 2, 2, self.screen, 120, self.handler, self.player2)
+
+        self.handler.setPlayer1(self.player1)
+        self.handler.setPlayer2(self.player2)
+
+        # Timer utils
+        self.count = 0
+        self.end_time = 0
+
 
     def reloadLevel(self):
         self.platformArray = self.handler.getLevel().platformGroup

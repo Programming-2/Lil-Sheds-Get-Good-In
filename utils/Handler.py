@@ -4,10 +4,11 @@ from players.Will import Will
 
 class Handler:
 
-    def __init__(self, attackList, stateManager, platformArray, level):
+    def __init__(self, screen, attackList, stateManager, platformArray, level):
         self.attackList = attackList
         self.stateManager = stateManager
         self.platformArray = platformArray
+        self.screen = screen
         self.done = False
         self.player1 = Will(0, 0, self)
         self.player2 = Will(0, 0, self)
