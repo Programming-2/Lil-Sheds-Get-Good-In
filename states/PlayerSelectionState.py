@@ -67,7 +67,6 @@ class PlayerSelectionState(State):
         # Looks at keys in rects dict, and determines if the mouse if clicking that rect
         for key in self.rects:
             if key.contains(pygame.mouse.get_pos()[0], pygame.mouse.get_pos()[1], 10, 10):
-                print(self.firstSelection)
                 if pressed:
                     if self.firstSelection:
                         self.player1 = self.rects[key]
