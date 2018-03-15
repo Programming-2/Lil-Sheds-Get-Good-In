@@ -46,19 +46,26 @@ class GameState(State):
         self.background_image = pygame.image.load(self.handler.getLevel().getBackImg()).convert()
         self.timer = Timer(300, self.screen)
         self.handler.setPlatformArray(self.platformArray)
-
         self.player1 = self.handler.player1
         self.player2 = self.handler.player2
         self.player1MeleeAttack = Attack(self.player1.x, self.player1.y, "melee attack", 5, 2, 2, self.screen, 120, self.handler, self.player1)
         self.player2MeleeAttack = Attack(self.player2.x, self.player2.x, "melee attack", 5, 2, 2, self.screen, 120, self.handler, self.player2)
-
         self.handler.setPlayer1(self.player1)
         self.handler.setPlayer2(self.player2)
+        self.player2.facing = -1
+        self.p1hpbar = HealthBar(self.screen, "topleft", self.player1.health)
+        self.p2hpbar = HealthBar(self.screen, "topright", self.player2.health)
+        self.p1cdbar = CooldownBar(self.screen, self.player1)
+        self.p2cdbar = CooldownBar(self.screen, self.player2)
+
+        self.player1.x = 150
+        self.player1.y = 100
+        self.player2.x = 950
+        self.player2.y = 100
 
         # Timer utils
         self.count = 0
         self.end_time = 0
-
 
     def reloadLevel(self):
         self.platformArray = self.handler.getLevel().platformGroup
