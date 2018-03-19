@@ -99,13 +99,13 @@ class GameState(State):
         keys = pygame.key.get_pressed()
 
         if keys[pygame.K_a] and not (self.player1.sleeping or self.player1.stunned):
-            self.player1.xchange = -1 * self.player1.movespeed
+            self.player1.xchange = -1 * self.handler.getPlayer1MoveSpeed()
         if keys[pygame.K_d] and not (self.player1.sleeping or self.player1.stunned):
-            self.player1.xchange = self.player1.movespeed
+            self.player1.xchange = self.handler.getPlayer1MoveSpeed()
         if keys[pygame.K_LEFT] and not (self.player2.sleeping or self.player2.stunned):
-            self.player2.xchange = -1 * self.player2.movespeed
+            self.player2.xchange = -1 * self.handler.getPlayer2MoveSpeed()
         if keys[pygame.K_RIGHT] and not (self.player2.sleeping or self.player2.stunned):
-            self.player2.xchange = self.player2.movespeed
+            self.player2.xchange = self.handler.getPlayer2MoveSpeed()
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
