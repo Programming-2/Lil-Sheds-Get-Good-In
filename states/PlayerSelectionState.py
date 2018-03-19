@@ -71,7 +71,7 @@ class PlayerSelectionState(State):
                     if self.firstSelection:
                         self.player1 = self.rects[key]
                         self.player1.setPlayerNum(1)
-                        self.player1.setX(200)
+                        self.player1.setX(150)
                         self.player1.y = 100
                         self.firstSelection = False
                         self.player1Rect = key
@@ -79,7 +79,7 @@ class PlayerSelectionState(State):
                         self.player2 = self.rects[key]
                         self.player2Rect = key
                         self.player2.setPlayerNum(2)
-                        self.player2.setX(850)
+                        self.player2.setX(950)
                         self.player2.y = 100
                         self.handler.getStateManager().getState("GameState").setPlayers(self.player1, self.player2)
                         self.handler.getStateManager().setCurrentState("MapSelectionState")

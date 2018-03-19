@@ -12,6 +12,8 @@ class Handler:
         self.done = False
         self.player1 = Will(0, 0, self)
         self.player2 = Will(0, 0, self)
+        self.player1MoveSpeed = self.player1.movespeed
+        self.player2MoveSpeed = self.player2.movespeed
         self.level = level
         self.projectileimage = pygame.image.load("media/projectileTest.png")
 
@@ -57,5 +59,16 @@ class Handler:
     def setLevel(self, level):
         self.level = level
 
-    def setMoveSpeed(self, movespeed):
-        pass
+    def getPlayer1MoveSpeed(self):
+        return self.player1MoveSpeed
+
+    def setPlayer1MoveSpeed(self, player1MoveSpeed):
+        self.player1MoveSpeed = player1MoveSpeed
+
+    def getPlayer2MoveSpeed(self):
+        return self.player2MoveSpeed
+
+    def setPlayer2MoveSpeed(self, player2MoveSpeed):
+        self.player2MoveSpeed = player2MoveSpeed
+
+

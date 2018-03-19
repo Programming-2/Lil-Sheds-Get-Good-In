@@ -1,5 +1,6 @@
 import pygame
 from players.Player import Player
+from utils.Handler import Handler
 
 
 class David(Player):
@@ -25,4 +26,6 @@ class David(Player):
 
     def special(self):
         if self.playNum == 1:
-            pass
+            self.handler.setPlayer2MoveSpeed(0)
+        if self.playNum == 2:
+            self.handler.setPlayer1MoveSpeed(0)

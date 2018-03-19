@@ -9,6 +9,7 @@ class Player(pygame.sprite.Sprite):
 
     def __init__(self, health, damage, winQuote, loseQuote, name, x, y, platArray, attackList, handler, defense):
         super().__init__()
+        self.i = 0
         self.sprite = pygame.image.load("media/" + name + ".png").convert()
         self.stansprite = pygame.image.load("media/" + name + ".png").convert()
         self.crouchsprite = pygame.image.load("media/" + name + "Crouch.png").convert()
@@ -152,6 +153,11 @@ class Player(pygame.sprite.Sprite):
     def goToSleepForAnExtendedPeriodOfTime(self):
         self.ychange = -5
         self.sleeping = True
+        self.i += 1
+        if self.i == 180:
+            self.i = 0
+            self.handler.getStateManager().resetStates()
+            self.handler.getStateManager().setCurrentState("MainMenuState")
 
     def getX(self):
         return self.x
