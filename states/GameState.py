@@ -42,6 +42,8 @@ class GameState(State):
         self.end_time = 0
 
     def resetState(self):
+        self.player1.sleeping = False
+        self.player2.sleeping = False
         self.platformArray = self.handler.getLevel().platformGroup
         self.background_image = pygame.image.load(self.handler.getLevel().getBackImg()).convert()
         self.timer = Timer(300, self.screen)
@@ -53,6 +55,8 @@ class GameState(State):
         self.handler.setPlayer1(self.player1)
         self.handler.setPlayer2(self.player2)
         self.player2.facing = -1
+        self.player1.health = 100
+        self.player2.health = 100
         self.p1hpbar = HealthBar(self.screen, "topleft", self.player1.health)
         self.p2hpbar = HealthBar(self.screen, "topright", self.player2.health)
         self.p1cdbar = CooldownBar(self.screen, self.player1)
@@ -122,7 +126,6 @@ class GameState(State):
                 elif event.key == pygame.K_r and not self.player1.sleeping:
                     self.player1MeleeAttack.p1_melee_attack()
                 elif event.key == pygame.K_RCTRL and not self.player2.sleeping:
-                    pass
                     self.player2MeleeAttack.p2_melee_attack()
                 elif event.key == pygame.K_w and not (self.player1.sleeping or self.player1.stunned):
                     self.player1.jump()
