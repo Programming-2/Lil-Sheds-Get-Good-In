@@ -155,9 +155,9 @@ class GameState(State):
                     print("END")
 
         if self.player1.y > screen.get_size()[1]:
-            self.player1.health = 0
+            self.player1.takeDamage(1000000000000000000000000000)
         if self.player2.y > screen.get_size()[1]:
-            self.player2.health = 0
+            self.player2.takeDamage(1000000000000000000000000000)
 
         if self.player2.health <= 0:
             self.player2.goToSleepForAnExtendedPeriodOfTime()
