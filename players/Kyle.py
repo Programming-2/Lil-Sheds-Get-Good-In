@@ -18,7 +18,7 @@ class Kyle(Player):
 
         super().__init__(health, damage, winQuote, loseQuote, name, x, y, handler.getPlatformArray(), handler.getAttackList(), handler, defense)
 
-        self.attacksprite = pygame.image.load("media/PlatformSprite.png")
+        self.attacksprite = pygame.image.load("media/projectileTest.png")
         self.platformcount = 0
 
     def special(self):
