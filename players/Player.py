@@ -153,9 +153,8 @@ class Player(pygame.sprite.Sprite):
     def goToSleepForAnExtendedPeriodOfTime(self):
         self.ychange = -5
         self.sleeping = True
-        self.i = 0
         self.i += 1
-        if self.i == 200:
+        if self.i == 180:
             self.i = 0
             self.handler.getStateManager().resetStates()
             self.handler.getStateManager().setCurrentState("MainMenuState")
