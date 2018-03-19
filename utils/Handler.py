@@ -60,13 +60,13 @@ class Handler:
         self.level = level
 
     def getPlayer1MoveSpeed(self):
-        return self.Player1MoveSpeed
+        return self.player1MoveSpeed
 
     def setPlayer1MoveSpeed(self, player1MoveSpeed):
         self.player1MoveSpeed = player1MoveSpeed
 
     def getPlayer2MoveSpeed(self):
-        return self.Player2MoveSpeed
+        return self.player2MoveSpeed
 
     def setPlayer2MoveSpeed(self, player2MoveSpeed):
         self.player2MoveSpeed = player2MoveSpeed
