@@ -2,7 +2,7 @@ import pygame
 from states.State import State
 from utils.Colors import colors
 from src.HealthBar import HealthBar
-from src.CoolDownBars import CooldownBar
+from src.InfoBars import InfoBar
 from utils.Timer import Timer
 from src.MeleeAttack import Attack
 
@@ -59,7 +59,6 @@ class GameState(State):
         self.count = 0
         self.end_time = 0
 
-
     def reloadLevel(self):
         self.platformArray = self.handler.getLevel().platformGroup
 
@@ -80,8 +79,8 @@ class GameState(State):
         self.player2.facing = -1
         self.p1hpbar = HealthBar(self.screen, "topleft", self.player1.health)
         self.p2hpbar = HealthBar(self.screen, "topright", self.player2.health)
-        self.p1cdbar = CooldownBar(self.screen, self.player1)
-        self.p2cdbar = CooldownBar(self.screen, self.player2)
+        self.p1infobar = InfoBar(self.screen, self.player1)
+        self.p2infobar = InfoBar(self.screen, self.player2)
 
     def update(self, screen):
         screen.blit(self.background_image, [0, 0])  # Jakob's mistake
@@ -165,8 +164,8 @@ class GameState(State):
         self.timer.update(screen)
         self.p1hpbar.update(self.player1.health)
         self.p2hpbar.update(self.player2.health)
-        self.p1cdbar.update(self.player1.special_cooldown)
-        self.p2cdbar.update(self.player2.special_cooldown)
+        self.p1infobar.update(self.player1.special_cooldown, self.player1.health)
+        self.p2infobar.update(self.player2.special_cooldown, self.player2.health)
         self.platformArray.update()
         self.handler.setPlayer1(self.player1)
         self.handler.setPlayer2(self.player2)
