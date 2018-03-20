@@ -59,8 +59,8 @@ class GameState(State):
         self.player2.health = 100
         self.p1hpbar = HealthBar(self.screen, "topleft", self.player1.health)
         self.p2hpbar = HealthBar(self.screen, "topright", self.player2.health)
-        self.p1cdbar = CooldownBar(self.screen, self.player1)
-        self.p2cdbar = CooldownBar(self.screen, self.player2)
+        self.p1infobar = InfoBar(self.screen, self.player1)
+        self.p2infobar = InfoBar(self.screen, self.player2)
 
         self.player1.x = 150
         self.player1.y = 100
