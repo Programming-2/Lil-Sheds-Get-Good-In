@@ -22,15 +22,6 @@ class InfoBar(pygame.sprite.Sprite):
         self.arraypos = 0
 
     def update(self, currentcd, currenthp):
-        '''if not self.special_available:
-            self.special_cooldown = 0
-            if self.special_count == 0:
-                self.special_start_time = pygame.time.get_ticks()
-                self.special_count = 1
-            self.special_cooldown = (pygame.time.get_ticks() - self.special_start_time) / 1000
-            if self.special_cooldown >= self.special_total_cooldown:
-                self.special_available = True
-                self.special_count = 0'''
         print("Last tick: " + str(self.lasttickhp))
         print("Current: " + str(currenthp))
         if self.lasttickhp != currenthp:
