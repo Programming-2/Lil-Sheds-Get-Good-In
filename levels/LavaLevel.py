@@ -9,8 +9,8 @@ class LavaLevel(Level):
         super().__init__(screen, "media/LavaMap.png")
 
         # TODO Add platforms
-        self.lWall = Platform(screen, -100, 0, 100, 800)
-        self.rWall = Platform(screen, 1100, 0, 100, 800)
+        self.lWall = Platform(screen, -100, -1000, 100, 1800)
+        self.rWall = Platform(screen, 1100, -1000, 100, 1800)
         self.p1 = Platform(screen, 135, 510, 56, 290)
         self.p2 = Platform(screen, 262, 409, 49, 391)
         self.p3 = Platform(screen, 437, 315, 324, 485)
