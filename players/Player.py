@@ -7,7 +7,7 @@ from src.Attack import Attack
 
 class Player(pygame.sprite.Sprite):
 
-    def __init__(self, health, damage, winQuote, loseQuote, name, x, y, platArray, attackList, handler, defense):
+    def __init__(self, health, damage, winQuote, loseQuote, name, x, y, movespeed, platArray, attackList, handler, defense):
         super().__init__()
         self.i = 0
         self.sprite = pygame.image.load("media/" + name + ".png").convert()
@@ -25,7 +25,7 @@ class Player(pygame.sprite.Sprite):
         self.attackList = attackList
         self.xchange = 0
         self.ychange = 0
-        self.movespeed = 5
+        self.movespeed = movespeed
         self.gravity = 0.25
         self.width = self.sprite.get_width()
         self.height = self.sprite.get_height()
