@@ -14,7 +14,7 @@ class David(Player):
         loseQuote = "Zzz"
         name = "David"
         defense = .5
-        handler = handler
+        self.handler = handler
 
         super().__init__(health, damage, winQuote, loseQuote, name, x, y, handler.getPlatformArray(), handler.getAttackList(), handler,
                          defense)
