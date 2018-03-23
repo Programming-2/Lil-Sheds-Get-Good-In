@@ -9,7 +9,7 @@ class JaccobBonkley(Player):
         health = 70
         damage = 5
         defense = .9
-        movespeed = 500
+        movespeed = 10
         winQuote = "Size doesn't mean everything"
         loseQuote = "It's my team's fault"
         name = "JaccobBonkley"
