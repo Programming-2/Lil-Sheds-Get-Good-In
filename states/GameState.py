@@ -181,7 +181,6 @@ class GameState(State):
         self.handler.setPlayer1(self.player1)
         self.handler.setPlayer2(self.player2)
 
-        # print(self.attackUpdateList)
         pygame.sprite.groupcollide(self.platformArray, self.attackUpdateList, False, True)
 
         self.player1.xchange = 0
@@ -196,10 +195,6 @@ class GameState(State):
                 self.count += 1
             if self.timer.current_time <= self.end_time - 5:
                 self.handler.setDone(True)
-            '''if self.timer.current_time <= self.end_time - 5:
-                # TODO find a new way to break
-                # Maybe just change state
-                self.handler.setDone(True)'''
         elif self.player2.sleeping:
             # player1.dead = True
             text = font.render("Player 1 Wins!", False, colors.get("BLACK"))
