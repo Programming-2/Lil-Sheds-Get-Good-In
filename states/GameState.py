@@ -29,8 +29,8 @@ class GameState(State):
 
         self.player1 = self.handler.player1
         self.player2 = self.handler.player2
-        self.player1MeleeAttack = Attack(self.player1.x, self.player1.y, "melee attack", 5, 2, 2, screen, 120, handler, self.player1)
-        self.player2MeleeAttack = Attack(self.player2.x, self.player2.x, "melee attack", 5, 2, 2, screen, 120, handler, self.player2)
+        self.player1MeleeAttack = Attack(self.player1.rect.x, self.player1.rect.y, "melee attack", 5, 2, 2, screen, 120, handler, self.player1)
+        self.player2MeleeAttack = Attack(self.player2.rect.x, self.player2.rect.x, "melee attack", 5, 2, 2, screen, 120, handler, self.player2)
 
         self.screen = screen
 
@@ -50,8 +50,8 @@ class GameState(State):
         self.handler.setPlatformArray(self.platformArray)
         self.player1 = self.handler.player1
         self.player2 = self.handler.player2
-        self.player1MeleeAttack = Attack(self.player1.x, self.player1.y, "melee attack", 5, 2, 2, self.screen, 120, self.handler, self.player1)
-        self.player2MeleeAttack = Attack(self.player2.x, self.player2.x, "melee attack", 5, 2, 2, self.screen, 120, self.handler, self.player2)
+        self.player1MeleeAttack = Attack(self.player1.rect.x, self.player1.rect.y, "melee attack", 5, 2, 2, self.screen, 120, self.handler, self.player1)
+        self.player2MeleeAttack = Attack(self.player2.rect.x, self.player2.rect.y, "melee attack", 5, 2, 2, self.screen, 120, self.handler, self.player2)
         self.handler.setPlayer1(self.player1)
         self.handler.setPlayer2(self.player2)
         self.player2.facing = -1
@@ -164,10 +164,10 @@ class GameState(State):
 
         if self.player2.health <= 0:
             self.player2.goToSleepForAnExtendedPeriodOfTime()
-            screen.blit(self.kosprite, [self.player2.x - 15, self.player2.y - 80])
+            screen.blit(self.kosprite, [self.player2.rect.x - 15, self.player2.rect.y - 80])
         if self.player1.health <= 0:
             self.player1.goToSleepForAnExtendedPeriodOfTime()
-            screen.blit(self.kosprite, [self.player1.x - 15, self.player1.y - 80])
+            screen.blit(self.kosprite, [self.player1.rect.x - 15, self.player1.rect.y - 80])
         if self.timer.current_time < 1:
             self.platformArray.remove(self.platformArray)
         self.player1.update(screen)

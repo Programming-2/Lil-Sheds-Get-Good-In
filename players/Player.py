@@ -19,8 +19,6 @@ class Player(pygame.sprite.Sprite):
         self.winQuote = winQuote
         self.loseQuote = loseQuote
         self.name = name
-        self.x = x
-        self.y = y
         self.platArray = platArray
         self.attackList = attackList
         self.xchange = 0
@@ -29,7 +27,7 @@ class Player(pygame.sprite.Sprite):
         self.gravity = 0.25
         self.width = self.sprite.get_width()
         self.height = self.sprite.get_height()
-        self.rect = pygame.Rect(self.x, self.y, self.width, self.height)
+        self.rect = pygame.Rect(x, y, self.width, self.height)
         self.jumpCount = 0
         self.takenDamage = 0
         self.handler = handler
@@ -77,7 +75,7 @@ class Player(pygame.sprite.Sprite):
         self.gravityUpdate()
         self.moveX()
         self.moveY()
-        screen.blit(self.sprite, [self.x, self.y])
+        screen.blit(self.sprite, [self.rect.x, self.rect.y])
 
         if self.xchange > 0:
             self.facing = 1
@@ -90,34 +88,31 @@ class Player(pygame.sprite.Sprite):
         return False
 
     def duck(self):
-        self.y += self.stansprite.get_height() - self.crouchsprite.get_height()
+        self.rect.y += self.stansprite.get_height() - self.crouchsprite.get_height()
         self.sprite = self.crouchsprite
         self.width = self.sprite.get_width()
         self.height = self.sprite.get_height()
-        self.rect = pygame.Rect(self.x, self.y, self.width, self.height)
+        self.rect = pygame.Rect(self.rect.x, self.rect.y, self.width, self.height)
 
     def unduck(self):
-        self.y -= self.stansprite.get_height() - self.crouchsprite.get_height()
+        self.rect.y -= self.stansprite.get_height() - self.crouchsprite.get_height()
         self.sprite = self.stansprite
         self.width = self.sprite.get_width()
         self.height = self.sprite.get_height()
-        self.rect = pygame.Rect(self.x, self.y, self.width, self.height)
+        self.rect = pygame.Rect(self.rect.x, self.rect.y, self.width, self.height)
 
     def moveX(self):
-        self.x += self.xchange
-        self.rect.x = self.x
+        self.rect.x += self.xchange
         platList = pygame.sprite.spritecollide(self, self.platArray, False)
         for platform in platList:
             if self.xchange > 0 and self.rect.right < platform.rect.right:  # Moving right and left of platform
                 self.rect.right = platform.rect.left
             elif self.xchange < 0 and self.rect.left > platform.rect.left:  # Moving left and right of platform
                 self.rect.left = platform.rect.right
-            self.x = self.rect.x
             self.xchange = 0
 
     def moveY(self):
-        self.y += self.ychange
-        self.rect.y = self.y
+        self.rect.y += self.ychange
         platList = pygame.sprite.spritecollide(self, self.platArray, False)
         for platform in platList:
             if self.ychange > 0 and self.rect.bottom < platform.rect.bottom:  # Moving down and over platform
@@ -126,7 +121,6 @@ class Player(pygame.sprite.Sprite):
             elif self.ychange < 0 and self.rect.top > platform.rect.top:  # Moving up and under platform
                 self.rect.top = platform.rect.bottom
                 self.resetJump()
-            self.y = self.rect.y
             self.ychange = 0
 
     def attackUpdate(self, screen):
@@ -143,9 +137,9 @@ class Player(pygame.sprite.Sprite):
 
     def attack(self, screen):
         if self.facing == -1:
-            self.handler.getAttackList().add(Attack(self.x - 50, self.y, self.bullet_speed * self.facing, 0, "ranged", self.damage, 3, 5, screen, self.attacksprite, 20, self.handler))
+            self.handler.getAttackList().add(Attack(self.rect.x - 50, self.rect.y, self.bullet_speed * self.facing, 0, "ranged", self.damage, 3, 5, screen, self.attacksprite, 20, self.handler))
         elif self.facing == 1:
-            self.handler.getAttackList().add(Attack(self.x + self.width + 30, self.y, self.bullet_speed * self.facing, 0, "ranged", self.damage, 3, 5, screen, self.attacksprite, 20, self.handler))
+            self.handler.getAttackList().add(Attack(self.rect.x + self.width + 30, self.rect.y, self.bullet_speed * self.facing, 0, "ranged", self.damage, 3, 5, screen, self.attacksprite, 20, self.handler))
 
     def special(self):
         pass  # abstract
@@ -160,16 +154,16 @@ class Player(pygame.sprite.Sprite):
             self.handler.getStateManager().setCurrentState("MainMenuState")
 
     def getX(self):
-        return self.x
+        return self.rect.x
 
     def getY(self):
-        return self.y
+        return self.rect.y
 
     def setPlayerNum(self, num):
         self.playNum = num
 
     def setX(self, x):
-        self.x = x
+        self.rect.x = x
 
     def toString(self):
         return self.name
