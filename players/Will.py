@@ -24,7 +24,7 @@ class Will(Player):
         self.startgravity = self.gravity
         self.startdefense = defense
         self.specialsprite = pygame.image.load("media/WillSpecial.png")
-        self.attacksprite = pygame.image.load("media/projectileTest.png")
+        self.attacksprite = pygame.image.load("media/Will/Attack3.png")
         self.attack1 = pygame.image.load("media/Will/Attack1.png")
         self.attack2 = pygame.image.load("media/Will/Attack2.png")
         self.attack3 = pygame.image.load("media/Will/Attack3.png")
@@ -88,14 +88,14 @@ class Will(Player):
                 self.gravity = 0
             if seconds > 1:
                 self.special_available = False
-                self.handler.getAttackList().add(Attack(self.x + self.width, self.y + self.height - 50, 15, 0, "ranged", self.damage_special, 0, 0, screen, self.attacksprite, 20, self.handler))
-                self.handler.getAttackList().add(Attack(self.x - 30, self.y + self.height - 50, -15, 0, "ranged", self.damage_special, 0, 0, screen, self.attacksprite, 20, self.handler))
-                self.handler.getAttackList().add(Attack(self.x + self.width / 2, self.y + self.height, 0, 15, "ranged", self.damage_special, 0, 0, screen, self.attacksprite, 20, self.handler))
-                self.handler.getAttackList().add(Attack(self.x + self.width / 2, self.y - 30, 0, -15, "ranged", self.damage_special, 0, 0, screen, self.attacksprite, 20, self.handler))
-                self.handler.getAttackList().add(Attack(self.x + self.width, self.y + self.height, 10.65, 10.65, "ranged", self.damage_special, 0, 0, screen, self.attacksprite, 20, self.handler))
-                self.handler.getAttackList().add(Attack(self.x - 30, self.y + self.height + 11, -10.65, 10.65, "ranged", self.damage_special, 0, 0, screen, self.attacksprite, 20, self.handler))
-                self.handler.getAttackList().add(Attack(self.x + self.width, self.y - 30, 10.65, -10.65, "ranged", self.damage_special, 0, 0, screen, self.attacksprite, 20, self.handler))
-                self.handler.getAttackList().add(Attack(self.x - 30, self.y - 30, -10.65, -10.65, "ranged", self.damage_special, 0, 0, screen, self.attacksprite, 20, self.handler))
+                self.handler.getAttackList().add(Attack(self.x + self.width, self.y + self.height - 50, 15, 0, "ranged", self.damage_special, 0, 0, screen, self.attack3, 20, self.handler))
+                self.handler.getAttackList().add(Attack(self.x - 30, self.y + self.height - 50, -15, 0, "ranged", self.damage_special, 0, 0, screen, self.attack3, 20, self.handler))
+                self.handler.getAttackList().add(Attack(self.x + self.width / 2, self.y + self.height, 0, 15, "ranged", self.damage_special, 0, 0, screen, self.attack3, 20, self.handler))
+                self.handler.getAttackList().add(Attack(self.x + self.width / 2, self.y - 30, 0, -15, "ranged", self.damage_special, 0, 0, screen, self.attack3, 20, self.handler))
+                self.handler.getAttackList().add(Attack(self.x + self.width, self.y + self.height, 10.65, 10.65, "ranged", self.damage_special, 0, 0, screen, self.attack3, 20, self.handler))
+                self.handler.getAttackList().add(Attack(self.x - 30, self.y + self.height + 11, -10.65, 10.65, "ranged", self.damage_special, 0, 0, screen, self.attack3, 20, self.handler))
+                self.handler.getAttackList().add(Attack(self.x + self.width, self.y - 30, 10.65, -10.65, "ranged", self.damage_special, 0, 0, screen, self.attack3, 20, self.handler))
+                self.handler.getAttackList().add(Attack(self.x - 30, self.y - 30, -10.65, -10.65, "ranged", self.damage_special, 0, 0, screen, self.attack3, 20, self.handler))
                 self.special_active = False
                 self.gravity = self.startgravity
                 self.defense = self.startdefense
