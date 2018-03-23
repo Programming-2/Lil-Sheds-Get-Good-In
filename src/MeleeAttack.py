@@ -27,7 +27,6 @@ class Attack:
             if abs(self.handler.getPlayer2().getX() - self.handler.getPlayer1().getX()) <= self.range and abs(self.handler.getPlayer2().getY() - self.handler.getPlayer1().getY()) <= self.range:
                 self.handler.getPlayer1().takeDamage(self.damage)
 
-
     def update(self):
         if self.cooldown > 0:
             self.cooldown -= 1

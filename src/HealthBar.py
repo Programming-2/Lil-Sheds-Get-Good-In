@@ -1,4 +1,5 @@
 import pygame
+from utils.Colors import colors
 
 
 class HealthBar(pygame.sprite.Sprite):
@@ -25,7 +26,9 @@ class HealthBar(pygame.sprite.Sprite):
         self.width = 500
         self.height = 50
         self.rect = pygame.Rect(self.x, self.y, self.width, self.height)
-        self.borderrect = pygame.Rect(self.x-5, self.y-5, self.width+10, self.height+10)
+        self.borderrect = pygame.Rect(self.x-5, self.y-5, self.width+10, self.height + 10)
+        pygame.font.init()
+        self.font = pygame.font.SysFont("Arial", 24)
 
     def update(self, currenthp):
         pygame.draw.rect(self.screen, self.BLACK, self.borderrect)
@@ -40,6 +43,10 @@ class HealthBar(pygame.sprite.Sprite):
             pygame.draw.rect(self.screen, self.RED, self.rect)
         if self.position == "topleft":
             self.rect.width = self.width * pct
+            text = self.font.render(str(self.health) + " | " + str(int(currenthp)), False, colors.get("WHITE"))
+            self.screen.blit(text, (20, 20))
         if self.position == "topright":
             self.rect.width = self.width * pct
             self.rect.x = (self.screensize[0] - 10) - self.rect.width
+            text = self.font.render(str(int(currenthp)) + " | " + str(self.health), False, colors.get("WHITE"))
+            self.screen.blit(text, (self.screensize[0] - 125, 20))
