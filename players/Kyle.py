@@ -30,6 +30,7 @@ class Kyle(Player):
             self.specialplatform = Platform(self.screen, self.rect.x - 50, self.rect.y + self.height + 10, self.width + 100, 25)
             self.handler.getPlatformArray().add(self.specialplatform)
             self.platformcount += 1
+        self.health -= 10
 
     def update(self, screen):
         self.screen = screen

@@ -6,10 +6,10 @@ class JaccobBonkley(Player):
     # TODO Give real data
 
     def __init__(self, x, y, handler, playNum):
-        health = 80
-        damage = 25
-        defense = .5
-        movespeed = 20
+        health = 70
+        damage = 5
+        defense = .9
+        movespeed = 500
         winQuote = "Size doesn't mean everything"
         loseQuote = "It's my team's fault"
         name = "JaccobBonkley"
