@@ -35,18 +35,29 @@ class HealthBar(pygame.sprite.Sprite):
         if currenthp < 0:
             currenthp = 0
         pct = currenthp / self.health
-        if pct >= .7:
-            pygame.draw.rect(self.screen, self.GREEN, self.rect)
-        if .3 <= pct <= .69:
-            pygame.draw.rect(self.screen, self.YELLOW, self.rect)
-        if pct < .3:
-            pygame.draw.rect(self.screen, self.RED, self.rect)
+
         if self.position == "topleft":
             self.rect.width = self.width * pct
-            text = self.font.render(str(self.health) + " | " + str(int(currenthp)), False, colors.get("WHITE"))
+            if pct >= .7:
+                pygame.draw.rect(self.screen, self.GREEN, self.rect)
+                text = self.font.render(str(self.health) + " | " + str(int(currenthp)), False, colors.get("WHITE"))
+            if .3 <= pct <= .69:
+                pygame.draw.rect(self.screen, self.YELLOW, self.rect)
+                text = self.font.render(str(self.health) + " | " + str(int(currenthp)), False, colors.get("BLACK"))
+            if pct < .3:
+                pygame.draw.rect(self.screen, self.RED, self.rect)
+                text = self.font.render(str(self.health) + " | " + str(int(currenthp)), False, colors.get("WHITE"))
             self.screen.blit(text, (20, 20))
         if self.position == "topright":
             self.rect.width = self.width * pct
             self.rect.x = (self.screensize[0] - 10) - self.rect.width
-            text = self.font.render(str(int(currenthp)) + " | " + str(self.health), False, colors.get("WHITE"))
+            if pct >= .7:
+                pygame.draw.rect(self.screen, self.GREEN, self.rect)
+                text = self.font.render(str(self.health) + " | " + str(int(currenthp)), False, colors.get("WHITE"))
+            if .3 <= pct <= .69:
+                pygame.draw.rect(self.screen, self.YELLOW, self.rect)
+                text = self.font.render(str(self.health) + " | " + str(int(currenthp)), False, colors.get("BLACK"))
+            if pct < .3:
+                pygame.draw.rect(self.screen, self.RED, self.rect)
+                text = self.font.render(str(self.health) + " | " + str(int(currenthp)), False, colors.get("WHITE"))
             self.screen.blit(text, (self.screensize[0] - 125, 20))
