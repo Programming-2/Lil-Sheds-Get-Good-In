@@ -15,8 +15,9 @@ class Kyle(Player):
         loseQuote = "I\'d better try to fix that... emphasis on try"
         name = "Kyle"
         defense = .6
+        movespeed = 5
 
-        super().__init__(health, damage, winQuote, loseQuote, name, x, y, handler.getPlatformArray(), handler.getAttackList(), handler, defense)
+        super().__init__(health, damage, winQuote, loseQuote, name, x, y, movespeed, handler.getPlatformArray(), handler.getAttackList(), handler, defense)
 
         self.attacksprite = pygame.image.load("media/projectileTest.png")
         self.platformcount = 0
@@ -25,16 +26,18 @@ class Kyle(Player):
         if self.platformcount == 1:
             self.handler.getPlatformArray().remove(self.specialplatform)
             self.platformcount = 0
-        self.specialplatform = Platform(self.screen, self.x - 50, self.y + self.height + 10, self.width + 100, 25)
-        self.handler.getPlatformArray().add(self.specialplatform)
-        self.platformcount += 1
+        if 0 <= self.rect.x <= 1100 and 0 <= self.rect.y <= 800:
+            self.specialplatform = Platform(self.screen, self.rect.x - 50, self.rect.y + self.height + 10, self.width + 100, 25)
+            self.handler.getPlatformArray().add(self.specialplatform)
+            self.platformcount += 1
+        self.health -= 10
 
     def update(self, screen):
         self.screen = screen
         self.gravityUpdate()
         self.moveX()
         self.moveY()
-        screen.blit(self.sprite, [self.x, self.y])
+        screen.blit(self.sprite, [self.rect.x, self.rect.y])
 
         if self.xchange > 0:
             self.facing = 1

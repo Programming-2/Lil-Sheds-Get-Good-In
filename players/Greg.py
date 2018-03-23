@@ -12,8 +12,9 @@ class Greg(Player):
         winQuote = "Broken like Katarina"
         loseQuote = "I don't even care"
         name = "Greg"
+        movespeed = 5
 
-        super().__init__(health, damage, winQuote, loseQuote, name, x, y, handler.getPlatformArray(), handler.getAttackList(), handler, 0.5)
+        super().__init__(health, damage, winQuote, loseQuote, name, x, y, movespeed, handler.getPlatformArray(), handler.getAttackList(), handler, 0.5)
 
     def special(self):
         pass  # special here (reverses enemy controls)

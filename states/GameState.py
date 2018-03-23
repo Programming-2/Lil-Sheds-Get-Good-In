@@ -29,8 +29,8 @@ class GameState(State):
 
         self.player1 = self.handler.player1
         self.player2 = self.handler.player2
-        self.player1MeleeAttack = Attack(self.player1.x, self.player1.y, "melee attack", 5, 2, 2, screen, 120, handler, self.player1)
-        self.player2MeleeAttack = Attack(self.player2.x, self.player2.x, "melee attack", 5, 2, 2, screen, 120, handler, self.player2)
+        self.player1MeleeAttack = Attack(self.player1.rect.x, self.player1.rect.y, "melee attack", 5, 2, 2, screen, 120, handler, self.player1)
+        self.player2MeleeAttack = Attack(self.player2.rect.x, self.player2.rect.x, "melee attack", 5, 2, 2, screen, 120, handler, self.player2)
 
         self.screen = screen
 
@@ -50,8 +50,8 @@ class GameState(State):
         self.handler.setPlatformArray(self.platformArray)
         self.player1 = self.handler.player1
         self.player2 = self.handler.player2
-        self.player1MeleeAttack = Attack(self.player1.x, self.player1.y, "melee attack", 5, 2, 2, self.screen, 120, self.handler, self.player1)
-        self.player2MeleeAttack = Attack(self.player2.x, self.player2.x, "melee attack", 5, 2, 2, self.screen, 120, self.handler, self.player2)
+        self.player1MeleeAttack = Attack(self.player1.rect.x, self.player1.rect.y, "melee attack", 5, 2, 2, self.screen, 120, self.handler, self.player1)
+        self.player2MeleeAttack = Attack(self.player2.rect.x, self.player2.rect.y, "melee attack", 5, 2, 2, self.screen, 120, self.handler, self.player2)
         self.handler.setPlayer1(self.player1)
         self.handler.setPlayer2(self.player2)
         self.player2.facing = -1
@@ -99,13 +99,13 @@ class GameState(State):
         keys = pygame.key.get_pressed()
 
         if keys[pygame.K_a] and not (self.player1.sleeping or self.player1.stunned):
-            self.player1.xchange = -1 * self.handler.getPlayer1MoveSpeed()
+            self.player1.xchange = self.player1.movespeed * -1
         if keys[pygame.K_d] and not (self.player1.sleeping or self.player1.stunned):
-            self.player1.xchange = self.handler.getPlayer1MoveSpeed()
+            self.player1.xchange = self.player1.movespeed
         if keys[pygame.K_LEFT] and not (self.player2.sleeping or self.player2.stunned):
-            self.player2.xchange = -1 * self.handler.getPlayer2MoveSpeed()
+            self.player2.xchange = self.player2.movespeed * -1
         if keys[pygame.K_RIGHT] and not (self.player2.sleeping or self.player2.stunned):
-            self.player2.xchange = self.handler.getPlayer2MoveSpeed()
+            self.player2.xchange = self.player2.movespeed
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -164,10 +164,10 @@ class GameState(State):
 
         if self.player2.health <= 0:
             self.player2.goToSleepForAnExtendedPeriodOfTime()
-            screen.blit(self.kosprite, [self.player2.x - 15, self.player2.y - 80])
+            screen.blit(self.kosprite, [self.player2.rect.x - 15, self.player2.rect.y - 80])
         if self.player1.health <= 0:
             self.player1.goToSleepForAnExtendedPeriodOfTime()
-            screen.blit(self.kosprite, [self.player1.x - 15, self.player1.y - 80])
+            screen.blit(self.kosprite, [self.player1.rect.x - 15, self.player1.rect.y - 80])
         if self.timer.current_time < 1:
             self.platformArray.remove(self.platformArray)
         self.player1.update(screen)
@@ -181,7 +181,6 @@ class GameState(State):
         self.handler.setPlayer1(self.player1)
         self.handler.setPlayer2(self.player2)
 
-        # print(self.attackUpdateList)
         pygame.sprite.groupcollide(self.platformArray, self.attackUpdateList, False, True)
 
         self.player1.xchange = 0
@@ -196,10 +195,6 @@ class GameState(State):
                 self.count += 1
             if self.timer.current_time <= self.end_time - 5:
                 self.handler.setDone(True)
-            '''if self.timer.current_time <= self.end_time - 5:
-                # TODO find a new way to break
-                # Maybe just change state
-                self.handler.setDone(True)'''
         elif self.player2.sleeping:
             # player1.dead = True
             text = font.render("Player 1 Wins!", False, colors.get("BLACK"))

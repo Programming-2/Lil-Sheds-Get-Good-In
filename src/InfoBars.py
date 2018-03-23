@@ -10,11 +10,9 @@ class InfoBar(pygame.sprite.Sprite):
         self.screen = screen
         self.player = player
 
-        self.x = player.x
-        self.y = player.y
         self.width = player.width
         self.height = 10
-        self.rect = pygame.Rect(self.x, self.y, self.width, self.height)
+        self.rect = pygame.Rect(player.rect.x, player.rect.y, self.width, self.height)
         pygame.font.init()
         self.font = pygame.font.SysFont("Comic Sans MS", 16)
         self.lasttickhp = player.health
@@ -34,15 +32,15 @@ class InfoBar(pygame.sprite.Sprite):
             for i in range(0, len(self.damagearray)):
                 if i == 0:
                     text = self.font.render(str(int(self.damagearray[i])), False, colors.get("RED"))
-                    self.screen.blit(text, (self.player.x, self.player.y - 30))
+                    self.screen.blit(text, (self.player.rect.x, self.player.rect.y - 30))
                 if i == 1:
                     text = self.font.render(str(int(self.damagearray[i])), False, colors.get("RED"))
-                    self.screen.blit(text, (self.player.x, self.player.y - 45))
+                    self.screen.blit(text, (self.player.rect.x, self.player.rect.y - 45))
                 if i == 2:
                     text = self.font.render(str(int(self.damagearray[i])), False, colors.get("RED"))
-                    self.screen.blit(text, (self.player.x, self.player.y - 60))
-        self.rect.x = self.player.x
-        self.rect.y = self.player.y - 10
+                    self.screen.blit(text, (self.player.rect.x, self.player.rect.y - 60))
+        self.rect.x = self.player.rect.x
+        self.rect.y = self.player.rect.y - 10
         pct = currentcd / self.player.special_total_cooldown
         self.rect.width = self.width * pct
         if pct > 0:
