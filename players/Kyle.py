@@ -26,7 +26,7 @@ class Kyle(Player):
         if self.platformcount == 1:
             self.handler.getPlatformArray().remove(self.specialplatform)
             self.platformcount = 0
-        self.specialplatform = Platform(self.screen, self.x - 50, self.y + self.height + 10, self.width + 100, 25)
+        self.specialplatform = Platform(self.screen, self.rect.x - 50, self.rect.y + self.height + 10, self.width + 100, 25)
         self.handler.getPlatformArray().add(self.specialplatform)
         self.platformcount += 1
 
@@ -35,7 +35,7 @@ class Kyle(Player):
         self.gravityUpdate()
         self.moveX()
         self.moveY()
-        screen.blit(self.sprite, [self.x, self.y])
+        screen.blit(self.sprite, [self.rect.x, self.rect.y])
 
         if self.xchange > 0:
             self.facing = 1
