@@ -26,9 +26,10 @@ class Kyle(Player):
         if self.platformcount == 1:
             self.handler.getPlatformArray().remove(self.specialplatform)
             self.platformcount = 0
-        self.specialplatform = Platform(self.screen, self.rect.x - 50, self.rect.y + self.height + 10, self.width + 100, 25)
-        self.handler.getPlatformArray().add(self.specialplatform)
-        self.platformcount += 1
+        if 0 <= self.rect.x <= 1100 and 0 <= self.rect.y <= 800:
+            self.specialplatform = Platform(self.screen, self.rect.x - 50, self.rect.y + self.height + 10, self.width + 100, 25)
+            self.handler.getPlatformArray().add(self.specialplatform)
+            self.platformcount += 1
 
     def update(self, screen):
         self.screen = screen
