@@ -14,9 +14,10 @@ class David(Player):
         loseQuote = "Zzz"
         name = "David"
         defense = .5
+        movespeed = 5
         self.handler = handler
 
-        super().__init__(health, damage, winQuote, loseQuote, name, x, y, handler.getPlatformArray(), handler.getAttackList(), handler,
+        super().__init__(health, damage, winQuote, loseQuote, name, x, y, movespeed, handler.getPlatformArray(), handler.getAttackList(), handler,
                          defense)
         self.attacksprite = pygame.image.load("media/DavidAttack.png")
         self.special_cooldown = 0

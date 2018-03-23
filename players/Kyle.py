@@ -15,8 +15,9 @@ class Kyle(Player):
         loseQuote = "I\'d better try to fix that... emphasis on try"
         name = "Kyle"
         defense = .6
+        movespeed = 5
 
-        super().__init__(health, damage, winQuote, loseQuote, name, x, y, handler.getPlatformArray(), handler.getAttackList(), handler, defense)
+        super().__init__(health, damage, winQuote, loseQuote, name, x, y, movespeed, handler.getPlatformArray(), handler.getAttackList(), handler, defense)
 
         self.attacksprite = pygame.image.load("media/projectileTest.png")
         self.platformcount = 0

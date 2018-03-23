@@ -14,8 +14,9 @@ class Will(Player):
         loseQuote = "yikes"
         name = "Will"
         defense = .5
+        movespeed = 5
 
-        super().__init__(health, damage, winQuote, loseQuote, name, x, y, handler.getPlatformArray(), handler.getAttackList(), handler, defense)
+        super().__init__(health, damage, winQuote, loseQuote, name, x, y, movespeed, handler.getPlatformArray(), handler.getAttackList(), handler, defense)
 
         self.special_active = False
         self.count = 0
