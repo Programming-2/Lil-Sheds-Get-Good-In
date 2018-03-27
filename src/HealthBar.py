@@ -53,11 +53,11 @@ class HealthBar(pygame.sprite.Sprite):
             self.rect.x = (self.screensize[0] - 10) - self.rect.width
             if pct >= .7:
                 pygame.draw.rect(self.screen, self.GREEN, self.rect)
-                text = self.font.render(str(self.health) + " | " + str(int(currenthp)), False, colors.get("WHITE"))
+                text = self.font.render(str(int(currenthp)) + " | " + str(self.health), False, colors.get("WHITE"))
             if .3 <= pct <= .69:
                 pygame.draw.rect(self.screen, self.YELLOW, self.rect)
-                text = self.font.render(str(self.health) + " | " + str(int(currenthp)), False, colors.get("BLACK"))
+                text = self.font.render(str(int(currenthp)) + " | " + str(self.health), False, colors.get("BLACK"))
             if pct < .3:
                 pygame.draw.rect(self.screen, self.RED, self.rect)
-                text = self.font.render(str(self.health) + " | " + str(int(currenthp)), False, colors.get("WHITE"))
+                text = self.font.render(str(int(currenthp)) + " | " + str(self.health), False, colors.get("WHITE"))
             self.screen.blit(text, (self.screensize[0] - 125, 20))
