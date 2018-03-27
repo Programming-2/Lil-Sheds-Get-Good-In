@@ -28,7 +28,6 @@ class Greg(Player):
         self.specialsprite = pygame.image.load("media\GregSpecial.png")
         self.damage_special = 5
         self.startgravity = self.gravity
-        self.startdefense = defense
 
     def special(self):
         if self.special_available:
@@ -66,7 +65,6 @@ class Greg(Player):
                 seconds = (pygame.time.get_ticks() - self.start_time) / 1000
                 self.xchange = 0
                 self.ychange = 0
-                self.defense = 0
                 self.gravity = 0
                 self.handler.getAttackList().add(Attack(self.rect.x + self.width, self.rect.y + self.height - 50, 15, 0, "ranged", self.damage_special, 0, 0, screen, self.attacksprite, 20, self.handler))
                 self.handler.getAttackList().add(Attack(self.rect.x - 30, self.rect.y + self.height - 50, -15, 0, "ranged", self.damage_special, 0, 0, screen, self.attacksprite, 20, self.handler))
@@ -80,7 +78,6 @@ class Greg(Player):
                 self.special_active = False
                 self.special_available = False
                 self.gravity = self.startgravity
-                self.defense = self.startdefense
                 self.sprite = self.stansprite
                 self.count = 0
                 self.sprite = self.stansprite
