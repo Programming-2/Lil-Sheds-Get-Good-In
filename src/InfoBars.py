@@ -20,8 +20,6 @@ class InfoBar(pygame.sprite.Sprite):
         self.arraypos = 0
 
     def update(self, currentcd, currenthp):
-        print("Last tick: " + str(self.lasttickhp))
-        print("Current: " + str(currenthp))
         if self.lasttickhp != currenthp:
             if len(self.damagearray) > 3:
                 del(self.damagearray[0])
