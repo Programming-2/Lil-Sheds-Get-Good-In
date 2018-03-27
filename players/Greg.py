@@ -22,10 +22,11 @@ class Greg(Player):
         self.special_available = True
         self.special_active = False
         self.special_total_cooldown = 5
+        self.special_cooldown = self.special_total_cooldown
         self.special_count = 0
         self.special_start_time = 0
         self.specialsprite = pygame.image.load("media\GregSpecial.png")
-        self.damage_special = 50
+        self.damage_special = 5
         self.startgravity = self.gravity
         self.startdefense = defense
 
