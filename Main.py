@@ -1,6 +1,7 @@
 import pygame
 import os
 from levels.IceLevel import IceLevel
+from utils.Colors import colors
 from utils.Handler import Handler
 from states.GameState import GameState
 from states.ControlState import ControlState
@@ -70,9 +71,13 @@ done = False
 game_won = False
 stateManager.setCurrentState("MainMenuState")
 
+font = pygame.font.SysFont("Comic Sans MS", 16)
+
 # Game loop
 while not handler.getDone():
     stateManager.update(screen)
+    text = font.render(str(int(clock.get_fps())), False, colors.get("BLACK"))
+    screen.blit(text, (0, 780))
 
     clock.tick(60)
     pygame.display.flip()
