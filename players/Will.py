@@ -139,16 +139,5 @@ class Will(Player):
                     self.rangedavailable = False
                     self.attackavailable = False
 
-            '''if self.playNum == 1:
-                if pygame.sprite.spritecollide(self.handler.getPlayer2(), self.handler.getAttackList(), False):
-                    print(self.damage)
-                    self.handler.getPlayer2().takeDamage(self.damage)
-                    pygame.sprite.spritecollide(self.handler.getPlayer2(), self.handler.getAttackList(), True)
-            if self.playNum == 2:
-                if pygame.sprite.spritecollide(self.handler.getPlayer1(), self.handler.getAttackList(), False):
-                    print(self.damage)
-                    self.handler.getPlayer1().takeDamage(self.damage)
-                    pygame.sprite.spritecollide(self.handler.getPlayer1(), self.handler.getAttackList(), True)'''
-
         screen.blit(self.sprite, [self.rect.x, self.rect.y])
         self.attackUpdate(screen)

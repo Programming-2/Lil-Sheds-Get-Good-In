@@ -35,7 +35,6 @@ class Greg(Player):
 
     def update(self, screen):
         self.screen = screen
-        screen.blit(self.sprite, [self.rect.x, self.rect.y])
         if not self.special_active:
             self.gravityUpdate()
             self.moveX()
@@ -84,3 +83,6 @@ class Greg(Player):
                 self.sprite = self.stansprite
                 self.count = 0
                 self.sprite = self.stansprite
+
+        screen.blit(self.sprite, [self.rect.x, self.rect.y])
+        self.attackUpdate(screen)
