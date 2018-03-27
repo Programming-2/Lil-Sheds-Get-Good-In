@@ -37,6 +37,11 @@ class GameState(State):
         self.handler.setPlayer1(self.player1)
         self.handler.setPlayer2(self.player2)
 
+        self.joystick1 = pygame.joystick.Joystick(0)
+        self.joystick1.init()
+        self.joystick2 = pygame.joystick.Joystick(1)
+        self.joystick2.init()
+
         # Timer utils
         self.count = 0
         self.end_time = 0
@@ -182,6 +187,12 @@ class GameState(State):
         self.handler.setPlayer2(self.player2)
 
         pygame.sprite.groupcollide(self.platformArray, self.attackUpdateList, False, True)
+
+        if self.joystick1.get_axis(0) > 0.01 or self.joystick1.get_axis(0) < -0.01:
+            self.player1.rect.x = self.player1.rect.x + (self.joystick1.get_axis(0) * 5)
+
+        if self.joystick2.get_axis(0) > 0.01 or self.joystick2.get_axis(0) < -0.01:
+            self.player2.rect.x = self.player2.rect.x + (self.joystick2.get_axis(0) * 5)
 
         self.player1.xchange = 0
         self.player2.xchange = 0

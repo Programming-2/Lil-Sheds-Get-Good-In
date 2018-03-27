@@ -35,6 +35,17 @@ class David(Player):
             self.special_active = True
 
     def update(self, screen):
+        self.moveX()
+        self.moveY()
+        self.gravityUpdate()
+
+        if self.xchange > 0:
+            self.facing = 1
+        elif self.xchange < 0:
+            self.facing = -1
+
+        self.attackUpdate(screen)
+
         if not self.special_available:
             self.special_cooldown = 0
             if self.special_count == 0:
@@ -61,3 +72,4 @@ class David(Player):
                     self.targetMoveSpeed = self.handler.getPlayer1MoveSpeed()
                     self.handler.setPlayer1MoveSpeed(0)
                     self.handler.setPlayer1MoverSpeed(self.targetMoveSpeed)
+        screen.blit(self.sprite, [self.rect.x, self.rect.y])
