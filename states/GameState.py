@@ -42,6 +42,9 @@ class GameState(State):
             self.joystick1.init()
             self.joystick2 = pygame.joystick.Joystick(1)
             self.joystick2.init()
+            self.useJoysticks = True
+        else:
+            self.useJoysticks = False
 
         # Timer utils
         self.count = 0
@@ -192,11 +195,12 @@ class GameState(State):
         self.player1.xchange = 0
         self.player2.xchange = 0
 
-        if self.joystick1.get_axis(0) > 0.01 or self.joystick1.get_axis(0) < -0.01:
-            self.player1.xchange = (self.joystick1.get_axis(0) * 5)
+        if self.useJoysticks:
+            if self.joystick1.get_axis(0) > 0.01 or self.joystick1.get_axis(0) < -0.01:
+                self.player1.xchange = (self.joystick1.get_axis(0) * 5)
 
-        if self.joystick2.get_axis(0) > 0.01 or self.joystick2.get_axis(0) < -0.01:
-            self.player2.xchange = (self.joystick2.get_axis(0) * 5)
+            if self.joystick2.get_axis(0) > 0.01 or self.joystick2.get_axis(0) < -0.01:
+                self.player2.xchange = (self.joystick2.get_axis(0) * 5)
 
         if self.player1.sleeping:
             # player2.dead = True
