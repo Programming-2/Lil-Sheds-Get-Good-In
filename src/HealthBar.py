@@ -54,7 +54,7 @@ class HealthBar(pygame.sprite.Sprite):
             if pct >= .7:
                 pygame.draw.rect(self.screen, self.GREEN, self.rect)
                 text = self.font.render(str(int(currenthp)) + " | " + str(self.health), False, colors.get("WHITE"))
-            if .3 <= pct < 7:
+            if .3 <= pct < .7:
                 pygame.draw.rect(self.screen, self.YELLOW, self.rect)
                 text = self.font.render(str(int(currenthp)) + " | " + str(self.health), False, colors.get("BLACK"))
             if pct < .3:
