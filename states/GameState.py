@@ -195,16 +195,16 @@ class GameState(State):
                 elif self.joystick1.get_button(5) or self.joystick1.get_button(5):
                     self.handler.getStateManager().setCurrentState("PausedState")
             elif self.useJoysticks and event.type == pygame.JOYBUTTONUP:
-                if not self.joystick1.get_button(4):
+                if self.joystick1.get_button(4):
                     self.player1.unduck()
                     self.player1.gravity /= 4
-                elif not self.joystick2.get_button(4):
+                elif self.joystick2.get_button(4):
                     self.player2.unduck()
                     self.player2.gravity /= 4
-                elif not self.joystick1.get_button(0):
+                elif self.joystick1.get_button(0):
                     self.player1.rangedendtime = pygame.time.get_ticks()
                     self.player1.released = True
-                elif not self.joystick2.get_button(0):
+                elif self.joystick2.get_button(0):
                     self.player2.rangedendtime = pygame.time.get_ticks()
                     self.player2.released = True
 
