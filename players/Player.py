@@ -62,7 +62,7 @@ class Player(pygame.sprite.Sprite):
         return text
 
     def takeDamage(self, takenDamage):
-        self.health -= (takenDamage * self.defense)
+        self.health -= round(takenDamage * self.defense)
 
     def gravityUpdate(self):
         if self.ychange == 0:
