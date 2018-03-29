@@ -178,36 +178,35 @@ class GameState(State):
                     self.player2.released = False
                 elif self.joystick2.get_button(1) and not self.player2.sleeping:
                     self.player2.special()
-                elif self.joystick1.get_button(2) and not self.player1.sleeping:
+                elif self.joystick1.get_button(4) and not self.player1.sleeping:
                     self.player1MeleeAttack.p1_melee_attack()
-                elif self.joystick2.get_button(2) and not self.player2.sleeping:
+                elif self.joystick2.get_button(4) and not self.player2.sleeping:
                     self.player2MeleeAttack.p2_melee_attack()
                 elif self.joystick1.get_button(0) and not (self.player1.sleeping or self.player1.stunned):
                     self.player1.jump()
-                elif self.joystick1.get_button(4) and not (self.player1.sleeping or self.player1.stunned):
+                if self.joystick1.get_button(2) and not (self.player1.sleeping or self.player1.stunned):
                     self.player1.duck()
-                    self.player1.gravity *= 4
-                elif self.joystick2.get_button(0) and not (self.player2.sleeping or self.player2.stunned):
+                    self.player1.gravity = 1
+                if self.joystick2.get_button(0) and not (self.player2.sleeping or self.player2.stunned):
                     self.player2.jump()
-                elif self.joystick2.get_button(4) and not (self.player2.sleeping or self.player2.stunned):
+                if self.joystick2.get_button(2) and not (self.player2.sleeping or self.player2.stunned):
                     self.player2.duck()
-                    self.player2.gravity *= 4
-                elif self.joystick1.get_button(5) or self.joystick1.get_button(5):
+                    self.player2.gravity = 1
+                if self.joystick1.get_button(5) or self.joystick2.get_button(5):
                     self.handler.getStateManager().setCurrentState("PausedState")
             elif self.useJoysticks and event.type == pygame.JOYBUTTONUP:
-                if self.joystick1.get_button(4):
-                    print("Unduck")
-                    self.player1.unduck()
-                    self.player1.gravity /= 4
-                elif self.joystick2.get_button(4):
-                    self.player2.unduck()
-                    self.player2.gravity /= 4
-                elif self.joystick1.get_button(0):
+                print("Joyup")
+                if self.joystick1.get_button(0):
                     self.player1.rangedendtime = pygame.time.get_ticks()
-                    self.player1.released = True
-                elif self.joystick2.get_button(0):
+                if self.joystick2.get_button(0):
                     self.player2.rangedendtime = pygame.time.get_ticks()
-                    self.player2.released = True
+                if event.button == 2 and event.joy == 0:
+                    self.player1.unduck()
+                    self.player1.gravity = 0.25
+                if event.button == 2 and event.joy == 1:
+                    self.player2.unduck()
+                    self.player2.gravity = 0.25
+
 
         if self.player1.y > screen.get_size()[1]:
             self.player1.takeDamage(1000000000000000000000000000)
@@ -244,6 +243,7 @@ class GameState(State):
 
             if self.joystick2.get_axis(0) > 0.01 or self.joystick2.get_axis(0) < -0.01:
                 self.player2.xchange = (self.joystick2.get_axis(0) * 5)
+
 
         if self.player1.sleeping:
             # player2.dead = True

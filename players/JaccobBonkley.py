@@ -7,7 +7,7 @@ class JaccobBonkley(Player):
 
     def __init__(self, x, y, handler, playNum):
         health = 70
-        damage = 5
+        damage = 20
         defense = .9
         movespeed = 10
         winQuote = "Size doesn't mean everything"
