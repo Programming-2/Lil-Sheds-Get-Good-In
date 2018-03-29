@@ -37,6 +37,8 @@ class Player(pygame.sprite.Sprite):
         self.facing = 1  # -1 for left, 1 for right
         self.special_cooldown = 0
         self.special_total_cooldown = 1
+        self.ranged_cooldown = 0
+        self.ranged_total_cooldown = 1
         self.bullet_speed = 15
 
     def setPlatArray(self, arr):
