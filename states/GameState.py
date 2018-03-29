@@ -160,11 +160,9 @@ class GameState(State):
                 elif event.key == pygame.K_g:
                     self.player1.rangedendtime = pygame.time.get_ticks()
                     self.player1.released = True
-                    print("END")
                 elif event.key == pygame.K_RSHIFT:
                     self.player2.rangedendtime = pygame.time.get_ticks()
                     self.player2.released = True
-                    print("END")
             elif self.useJoysticks and event.type == pygame.JOYBUTTONDOWN:
                 if self.joystick1.get_button(3) and not self.player1.sleeping:
                     self.player1.attack(screen)
@@ -195,18 +193,18 @@ class GameState(State):
                 if self.joystick1.get_button(5) or self.joystick2.get_button(5):
                     self.handler.getStateManager().setCurrentState("PausedState")
             elif self.useJoysticks and event.type == pygame.JOYBUTTONUP:
-                print("Joyup")
-                if self.joystick1.get_button(0):
+                if event.button == 3 and event.joy == 0:
                     self.player1.rangedendtime = pygame.time.get_ticks()
-                if self.joystick2.get_button(0):
+                    self.player1.released = True
+                if event.button == 3 and event.joy == 1:
                     self.player2.rangedendtime = pygame.time.get_ticks()
+                    self.player2.released = True
                 if event.button == 2 and event.joy == 0:
                     self.player1.unduck()
                     self.player1.gravity = 0.25
                 if event.button == 2 and event.joy == 1:
                     self.player2.unduck()
                     self.player2.gravity = 0.25
-
 
         if self.player1.y > screen.get_size()[1]:
             self.player1.takeDamage(1000000000000000000000000000)
