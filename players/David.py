@@ -13,8 +13,8 @@ class David(Player):
         winQuote = "I always start the party"
         loseQuote = "Zzz"
         name = "David"
-        defense = .5
-        movespeed = 5
+        defense = .4
+        movespeed = 3
         self.handler = handler
 
         super().__init__(health, damage, winQuote, loseQuote, name, x, y, movespeed, handler.getPlatformArray(), handler.getAttackList(), handler,
