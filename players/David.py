@@ -1,7 +1,5 @@
 import pygame
-from players.Player import Player
-from utils.Handler import Handler
-
+from players.Player import Player\
 
 class David(Player):
 
@@ -13,8 +11,8 @@ class David(Player):
         winQuote = "I always start the party"
         loseQuote = "Zzz"
         name = "David"
-        defense = .5
-        movespeed = 5
+        defense = .4
+        movespeed = 3
         self.handler = handler
 
         super().__init__(health, damage, winQuote, loseQuote, name, x, y, movespeed, handler.getPlatformArray(), handler.getAttackList(), handler,
@@ -22,13 +20,15 @@ class David(Player):
         self.count = 0
         self.start_time = 0
         self.attacksprite = pygame.image.load("media/DavidAttack.png")
-        self.special_cooldown = 0
+        self.special_cooldown = self.special_total_cooldown
+        self.special_total_cooldown = 5
+        self.special_start_time = 0
+        self.special_count = 0
         self.special_active = False
         self.special_available = True
         self.playNum = playNum
         self.targetMoveSpeed = 0
         self.ticks = pygame.time.get_ticks()
-        self.special_time = 120
 
     def special(self):
         if self.special_available:
@@ -63,13 +63,23 @@ class David(Player):
             seconds = 0
             if seconds <= 1:
                 seconds = (pygame.time.get_ticks() - self.start_time) / 1000
-            if seconds > 2:
                 if self.playNum == 1:
+                    self.special_available = False
                     self.targetMoveSpeed = self.handler.getPlayer2MoveSpeed()
                     self.handler.setPlayer2MoveSpeed(0)
-                    self.handler.setPlayer2MoveSpeed(self.targetMoveSpeed)
                 if self.playNum == 2:
+                    self.special_available = False
                     self.targetMoveSpeed = self.handler.getPlayer1MoveSpeed()
                     self.handler.setPlayer1MoveSpeed(0)
-                    self.handler.setPlayer1MoverSpeed(self.targetMoveSpeed)
+
+            if seconds > 1:
+                if self.playNum == 1:
+                    self.handler.setPlayer2MoveSpeed(self.targetMoveSpeed)
+                    self.special_active = False
+                    self.count = 0
+                if self.playNum == 2:
+                    self.handler.setPlayer1MoveSpeed(self.targetMoveSpeed)
+                    self.special_active = False
+                    self.count = 0
+
         screen.blit(self.sprite, [self.rect.x, self.rect.y])
