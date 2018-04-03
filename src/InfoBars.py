@@ -32,13 +32,13 @@ class InfoBar(pygame.sprite.Sprite):
             for i in range(0, len(self.damagearray)):
                 if i == 0:
                     text = self.font.render(str(int(self.damagearray[i])), False, colors.get("RED"))
-                    self.screen.blit(text, (self.player.rect.x + 30, self.player.rect.y - 30))
+                    self.screen.blit(text, (self.player.rect.x + 30, self.player.rect.y - 35))
                 if i == 1:
                     text = self.font.render(str(int(self.damagearray[i])), False, colors.get("RED"))
-                    self.screen.blit(text, (self.player.rect.x + 30, self.player.rect.y - 45))
+                    self.screen.blit(text, (self.player.rect.x + 30, self.player.rect.y - 50))
                 if i == 2:
                     text = self.font.render(str(int(self.damagearray[i])), False, colors.get("RED"))
-                    self.screen.blit(text, (self.player.rect.x + 30, self.player.rect.y - 60))
+                    self.screen.blit(text, (self.player.rect.x + 30, self.player.rect.y - 65))
         self.specialrect.x = self.player.rect.x
         self.specialrect.y = self.player.rect.y - 10
         specialpct = specialcd / self.player.special_total_cooldown
