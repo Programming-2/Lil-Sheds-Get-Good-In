@@ -8,8 +8,6 @@ class RandomLevel(Level):
 
     def __init__(self, screen):
         super().__init__(screen, "media/random_map.png")
-        self.lWall = Platform(screen, -100, -1000, 100, 1800)
-        self.rWall = Platform(screen, 1100, -1000, 100, 1800)
         self.p1 = Platform(screen, (random.randint(0,100)), (random.randint(300,600)), (random.randint(100,150)), (random.randint(300,600)))
         self.p2 = Platform(screen, (random.randint(100,200)), (random.randint(300,600)), (random.randint(200,250)), (random.randint(300,600)))
         self.p3 = Platform(screen, (random.randint(200,300)), (random.randint(300,600)), (random.randint(300,350)),(random.randint(300,600)))
@@ -21,10 +19,6 @@ class RandomLevel(Level):
         self.p9 = Platform(screen, (random.randint(800,900)), (random.randint(300,600)), (random.randint(900,950)),(random.randint(300,600)))
         self.p10 = Platform(screen, (random.randint(900,1000)), (random.randint(300,600)), (random.randint(1000,1050)),(random.randint(300,600)))
         self.p11 = Platform(screen, (random.randint(1000,1100)), (random.randint(300,600)), (random.randint(1000,1100)),(random.randint(300,600)))
-        self.platformGroup = pygame.sprite.Group()
-
-        self.platformGroup.add(self.lWall)
-        self.platformGroup.add(self.rWall)
         self.platformGroup.add(self.p1)
         self.platformGroup.add(self.p2)
         self.platformGroup.add(self.p3)
