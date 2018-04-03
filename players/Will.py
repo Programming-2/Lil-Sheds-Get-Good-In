@@ -31,8 +31,6 @@ class Will(Player):
         self.attack4 = pygame.image.load("media/Will/Attack4.png")
         self.rangedcount = 0
         self.rangedavailable = False
-        self.rangedstarttime = 0
-        self.rangedendtime = 0
         self.ranged_cooldown = 0
         self.ranged_total_cooldown = 5
         self.attackavailable = False
@@ -105,32 +103,30 @@ class Will(Player):
                 self.count = 0
 
         if self.rangedavailable:
-            secondsheld = (self.rangedendtime - self.rangedstarttime) / 1000
             self.tickcounter += 1
             self.ranged_cooldown = self.tickcounter / 60
-            print(self.ranged_cooldown)
-            if secondsheld <= 1 and self.released:
+            if self.ranged_cooldown <= 1 and self.released:
                 self.damage = 10
                 self.bullet_speed = 10
                 self.attacksprite = self.attack1
                 self.attackavailable = True
-            elif secondsheld <= 2 and self.released:
+            elif self.ranged_cooldown <= 2 and self.released:
                 self.damage = 25
                 self.bullet_speed = 15
                 self.attacksprite = self.attack2
                 self.attackavailable = True
-            elif secondsheld <= 3 and self.released:
+            elif self.ranged_cooldown <= 3 and self.released:
                 self.damage = 60
                 self.bullet_speed = 20
                 self.attacksprite = self.attack3
                 self.attackavailable = True
-            elif secondsheld <= 4 and self.released:
+            elif self.ranged_cooldown <= 4 and self.released:
                 self.damage = 120
                 self.bullet_speed = 25
                 self.attacksprite = self.attack4
                 self.attackavailable = True
-            elif secondsheld > 4 and self.released:
-                self.damage = secondsheld * 40
+            elif self.ranged_cooldown > 4 and self.released:
+                self.damage = self.ranged_cooldown * 40
                 self.bullet_speed = 30
                 self.attacksprite = self.attack4
                 self.attackavailable = True

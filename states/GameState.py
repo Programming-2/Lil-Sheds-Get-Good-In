@@ -206,10 +206,10 @@ class GameState(State):
                     self.player2.unduck()
                     self.player2.gravity = 0.25
 
-        if self.player1.y > screen.get_size()[1]:
-            self.player1.takeDamage(1000000000000000000000000000)
-        if self.player2.y > screen.get_size()[1]:
-            self.player2.takeDamage(1000000000000000000000000000)
+        if self.player1.rect.y > screen.get_size()[1]:
+            self.player1.health = 0
+        if self.player2.rect.y > screen.get_size()[1]:
+            self.player2.health = 0
 
         if self.player2.health <= 0:
             self.player2.goToSleepForAnExtendedPeriodOfTime()
