@@ -242,7 +242,6 @@ class GameState(State):
             if self.joystick2.get_axis(0) > 0.01 or self.joystick2.get_axis(0) < -0.01:
                 self.player2.xchange = (self.joystick2.get_axis(0) * 5)
 
-
         if self.player1.sleeping:
             # player2.dead = True
             text = font.render("Player 2 Wins!", False, colors.get("BLACK"))

@@ -6,7 +6,7 @@ class InfoBar(pygame.sprite.Sprite):
     def __init__(self, screen, player):
         super().__init__()
         self.LIGHT_GRAY = (150, 150, 150)
-        self.DARK_GRAY = (200, 200, 200)
+        self.DARK_GRAY = (100, 100, 100)
 
         self.screen = screen
         self.player = player

@@ -73,7 +73,6 @@ class Greg(Player):
             self.special_active = True
 
     def update(self, screen):
-        print(str(self.ranged_cooldown) + " " + str(self.special_cooldown))
         if not self.ranged_available:
             self.ranged_cooldown = 0
             if self.ranged_count == 0:
