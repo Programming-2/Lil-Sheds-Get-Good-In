@@ -42,6 +42,8 @@ class InfoBar(pygame.sprite.Sprite):
         self.specialrect.x = self.player.rect.x
         self.specialrect.y = self.player.rect.y - 10
         specialpct = specialcd / self.player.special_total_cooldown
+        if specialpct > 1:
+            specialpct = 1
         self.specialrect.width = self.width * specialpct
         if specialpct > 0:
             pygame.draw.rect(self.screen, self.LIGHT_GRAY, self.specialrect)
@@ -49,6 +51,8 @@ class InfoBar(pygame.sprite.Sprite):
         self.rangedrect.x = self.player.rect.x
         self.rangedrect.y = self.player.rect.y - 15
         rangedpct = rangedcd / self.player.ranged_total_cooldown
+        if rangedpct > 1:
+            rangedpct = 1
         self.rangedrect.width = self.width * rangedpct
         if rangedpct > 0:
             pygame.draw.rect(self.screen, self.DARK_GRAY, self.rangedrect)
