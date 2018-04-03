@@ -168,19 +168,19 @@ class GameState(State):
                     self.player1.attack(screen)
                     self.player1.rangedstarttime = pygame.time.get_ticks()
                     self.player1.released = False
-                elif self.joystick1.get_button(1) and not self.player1.sleeping:
+                if self.joystick1.get_button(1) and not self.player1.sleeping:
                     self.player1.special()
-                elif self.joystick2.get_button(3) and not self.player2.sleeping:
+                if self.joystick2.get_button(3) and not self.player2.sleeping:
                     self.player2.attack(screen)
                     self.player2.rangedstarttime = pygame.time.get_ticks()
                     self.player2.released = False
-                elif self.joystick2.get_button(1) and not self.player2.sleeping:
+                if self.joystick2.get_button(1) and not self.player2.sleeping:
                     self.player2.special()
-                elif self.joystick1.get_button(4) and not self.player1.sleeping:
+                if self.joystick1.get_button(4) and not self.player1.sleeping:
                     self.player1MeleeAttack.p1_melee_attack()
-                elif self.joystick2.get_button(4) and not self.player2.sleeping:
+                if self.joystick2.get_button(4) and not self.player2.sleeping:
                     self.player2MeleeAttack.p2_melee_attack()
-                elif self.joystick1.get_button(0) and not (self.player1.sleeping or self.player1.stunned):
+                if self.joystick1.get_button(0) and not (self.player1.sleeping or self.player1.stunned):
                     self.player1.jump()
                 if self.joystick1.get_button(2) and not (self.player1.sleeping or self.player1.stunned):
                     self.player1.duck()
