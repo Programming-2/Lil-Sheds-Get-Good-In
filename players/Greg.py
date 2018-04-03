@@ -45,9 +45,9 @@ class Greg(Player):
         if self.ranged_available:
             self.attacking = True
             if self.facing == 1:
-                if self.rect.x <= 900:
+                if self.rect.x < 900:
                     self.rect.x += 200
-                elif self.rect.x > 900:
+                elif self.rect.x >= 900:
                     self.rect.x += (1100 - self.rect.x - self.width)
                 if self.handler.getPlayer1().name == "Greg":
                     if self.attackradius + (self.width * .5) >= self.handler.getPlayer2().rect.x - self.rect.x >= -self.attackradius + (self.width * .5) and self.attackradius + (self.width * .5) >= self.handler.getPlayer2().rect.y - self.rect.y >= -self.attackradius + (self.width * .5):
@@ -56,9 +56,9 @@ class Greg(Player):
                     if self.attackradius + (self.width * .5) >= self.handler.getPlayer1().rect.x - self.rect.x >= -self.attackradius + (self.height * .5) and self.attackradius + (self.width * .5) >= self.handler.getPlayer1().rect.y - self.rect.y >= -self.attackradius + (self.height * .5):
                         self.handler.getPlayer1().takeDamage(25)
             if self.facing == -1:
-                if self.rect.x >= 200:
+                if self.rect.x > 200:
                     self.rect.x -= 200
-                elif self.rect.x < 200:
+                elif self.rect.x <= 200:
                     self.rect.x = 0
                 if self.handler.getPlayer1().name == "Greg":
                     if 150 >= self.handler.getPlayer2().rect.x - self.rect.x >= -150:
