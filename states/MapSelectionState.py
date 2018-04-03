@@ -23,7 +23,7 @@ class MapSelectionState(State):
             Rect(18, 18, 1064, 114): GrassLevel(screen),
             Rect(18, 160, 1064, 115): IceLevel(screen),
             Rect(18, 304, 1064, 114): LavaLevel(screen),
-            Rect(18, 464, 1064, 114): RandomLevel(screen)
+            Rect(18, 464, 10, 114): RandomLevel(screen)
         }
 
     def resetState(self):

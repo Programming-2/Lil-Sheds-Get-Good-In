@@ -1,5 +1,6 @@
 import pygame
 from utils.Colors import colors
+from utils.Handler import Handler
 
 
 class HealthBar(pygame.sprite.Sprite):
@@ -8,20 +9,21 @@ class HealthBar(pygame.sprite.Sprite):
     GREEN = (0, 255, 0)
     YELLOW = (255, 255, 0)
 
-    def __init__(self, screen, position, health):
+    def __init__(self, screen, position, health, handler):
         super().__init__()
         self.screen = screen
         self.position = position
         self.screensize = screen.get_size()
         self.health = health
+        self.handler = handler
 
         if position == "topleft":
             self.x = 10
-            self.y = 10
+            self.y = 40
 
         if position == "topright":
             self.x = self.screensize[0] - 510
-            self.y = 10
+            self.y = 40
 
         self.width = 500
         self.height = 50
@@ -46,7 +48,9 @@ class HealthBar(pygame.sprite.Sprite):
             if pct < .3:
                 pygame.draw.rect(self.screen, self.RED, self.rect)
                 text = self.font.render(str(int(currenthp)) + " | " + str(self.health), False, colors.get("WHITE"))
-            self.screen.blit(text, (20, 20))
+            self.screen.blit(text, (20, 50))
+            text = self.font.render(self.handler.getPlayer1().name, False, colors.get("BLACK"))
+            self.screen.blit(text, (5, 5))
         if self.position == "topright":
             self.rect.width = self.width * pct
             self.rect.x = (self.screensize[0] - 10) - self.rect.width
@@ -59,4 +63,6 @@ class HealthBar(pygame.sprite.Sprite):
             if pct < .3:
                 pygame.draw.rect(self.screen, self.RED, self.rect)
                 text = self.font.render(str(int(currenthp)) + " | " + str(self.health), False, colors.get("WHITE"))
-            self.screen.blit(text, (self.screensize[0] - 125, 20))
+            self.screen.blit(text, (self.screensize[0] - 125, 50))
+            text = self.font.render(self.handler.getPlayer2().name, False, colors.get("BLACK"))
+            self.screen.blit(text, (self.screensize[0] - (len(self.handler.getPlayer2().name) * 14), 5))
