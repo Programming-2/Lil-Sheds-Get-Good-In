@@ -50,10 +50,10 @@ class Greg(Player):
                 elif self.rect.x > 900:
                     self.rect.x += (1100 - self.rect.x - self.width)
                 if self.handler.getPlayer1().name == "Greg":
-                    if self.attackradius + (self.width * .5) >= self.handler.getPlayer2().rect.x - self.rect.x >= -self.attackradius + (self.width * .5):
+                    if self.attackradius + (self.width * .5) >= self.handler.getPlayer2().rect.x - self.rect.x >= -self.attackradius + (self.width * .5) and self.attackradius + (self.width * .5) >= self.handler.getPlayer2().rect.y - self.rect.y >= -self.attackradius + (self.width * .5):
                         self.handler.getPlayer2().takeDamage(25)
                 elif self.handler.getPlayer2().name == "Greg":
-                    if self.attackradius + (self.width * .5) >= self.handler.getPlayer1().rect.x - self.rect.x >= -self.attackradius + (self.width * .5):
+                    if self.attackradius + (self.width * .5) >= self.handler.getPlayer1().rect.x - self.rect.x >= -self.attackradius + (self.height * .5) and self.attackradius + (self.width * .5) >= self.handler.getPlayer1().rect.y - self.rect.y >= -self.attackradius + (self.height * .5):
                         self.handler.getPlayer1().takeDamage(25)
             if self.facing == -1:
                 if self.rect.x >= 200:
