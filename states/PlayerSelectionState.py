@@ -8,6 +8,7 @@ from players.JaccobBonkley import JaccobBonkley
 from players.Jakob import Jakob
 from players.Greg import Greg
 from players.Shed import Shed
+from players.Collin import Collin
 from utils.Colors import colors
 
 
@@ -33,7 +34,8 @@ class PlayerSelectionState(State):
             Rect(14, 231, 54, 55): JaccobBonkley(150, 100, handler, 0),
             Rect(14, 303, 54, 55): Jakob(150, 100, handler, 0),
             Rect(14, 388, 54, 55): Greg(150, 100, handler),
-            Rect(14, 503, 54, 55): Shed(150, 100, handler,  0)
+            Rect(14, 503, 54, 55): Shed(150, 100, handler,  0),
+            Rect(1050, 750, 50, 50): Collin(150, 100, handler, 0)
         }
 
     def resetState(self):
