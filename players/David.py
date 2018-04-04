@@ -1,5 +1,6 @@
 import pygame
-from players.Player import Player\
+from players.Player import Player
+
 
 class David(Player):
 
