@@ -31,9 +31,8 @@ class Will(Player):
         self.attack4 = pygame.image.load("media/Will/Attack4.png")
         self.rangedcount = 0
         self.rangedavailable = False
-        self.rangedstarttime = 0
-        self.rangedendtime = 0
-        self.rangedcooldown = 0
+        self.ranged_cooldown = 0
+        self.ranged_total_cooldown = 5
         self.attackavailable = False
         self.damage_special = 1.5 * damage
         self.special_available = True
@@ -43,6 +42,7 @@ class Will(Player):
         self.special_start_time = 0
         self.released = False
         self.damage = damage
+        self.tickcounter = 0
 
     def special(self):
         if self.special_available:
@@ -103,29 +103,30 @@ class Will(Player):
                 self.count = 0
 
         if self.rangedavailable:
-            secondsheld = (self.rangedendtime - self.rangedstarttime) / 1000
-            if secondsheld <= 1 and self.released:
+            self.tickcounter += 1
+            self.ranged_cooldown = self.tickcounter / 60
+            if self.ranged_cooldown <= 1 and self.released:
                 self.damage = 10
                 self.bullet_speed = 10
                 self.attacksprite = self.attack1
                 self.attackavailable = True
-            elif secondsheld <= 2 and self.released:
+            elif self.ranged_cooldown <= 2 and self.released:
                 self.damage = 25
                 self.bullet_speed = 15
                 self.attacksprite = self.attack2
                 self.attackavailable = True
-            elif secondsheld <= 3 and self.released:
+            elif self.ranged_cooldown <= 3 and self.released:
                 self.damage = 60
                 self.bullet_speed = 20
                 self.attacksprite = self.attack3
                 self.attackavailable = True
-            elif secondsheld <= 4 and self.released:
+            elif self.ranged_cooldown <= 4 and self.released:
                 self.damage = 120
                 self.bullet_speed = 25
                 self.attacksprite = self.attack4
                 self.attackavailable = True
-            elif secondsheld > 4 and self.released:
-                self.damage = secondsheld * 40
+            elif self.ranged_cooldown > 4 and self.released:
+                self.damage = self.ranged_cooldown * 40
                 self.bullet_speed = 30
                 self.attacksprite = self.attack4
                 self.attackavailable = True
@@ -134,10 +135,12 @@ class Will(Player):
                     self.handler.getAttackList().add(Attack(self.rect.x - 25, self.rect.y, self.bullet_speed * self.facing, 0, "ranged", self.damage, 3, 5, self.screen, self.attacksprite, 20, self.handler))
                     self.rangedavailable = False
                     self.attackavailable = False
+                    self.tickcounter = 0
                 elif self.facing == 1:
                     self.handler.getAttackList().add(Attack(self.rect.x + self.width + 5, self.rect.y, self.bullet_speed * self.facing, 0, "ranged", self.damage, 3, 5, self.screen, self.attacksprite, 20, self.handler))
                     self.rangedavailable = False
                     self.attackavailable = False
+                    self.tickcounter = 0
 
         screen.blit(self.sprite, [self.rect.x, self.rect.y])
         self.attackUpdate(screen)

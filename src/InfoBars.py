@@ -6,7 +6,7 @@ class InfoBar(pygame.sprite.Sprite):
     def __init__(self, screen, player):
         super().__init__()
         self.LIGHT_GRAY = (150, 150, 150)
-        self.DARK_GRAY = (200, 200, 200)
+        self.DARK_GRAY = (100, 100, 100)
 
         self.screen = screen
         self.player = player
@@ -32,16 +32,18 @@ class InfoBar(pygame.sprite.Sprite):
             for i in range(0, len(self.damagearray)):
                 if i == 0:
                     text = self.font.render(str(int(self.damagearray[i])), False, colors.get("RED"))
-                    self.screen.blit(text, (self.player.rect.x + 30, self.player.rect.y - 30))
+                    self.screen.blit(text, (self.player.rect.x + 30, self.player.rect.y - 35))
                 if i == 1:
                     text = self.font.render(str(int(self.damagearray[i])), False, colors.get("RED"))
-                    self.screen.blit(text, (self.player.rect.x + 30, self.player.rect.y - 45))
+                    self.screen.blit(text, (self.player.rect.x + 30, self.player.rect.y - 50))
                 if i == 2:
                     text = self.font.render(str(int(self.damagearray[i])), False, colors.get("RED"))
-                    self.screen.blit(text, (self.player.rect.x + 30, self.player.rect.y - 60))
+                    self.screen.blit(text, (self.player.rect.x + 30, self.player.rect.y - 65))
         self.specialrect.x = self.player.rect.x
         self.specialrect.y = self.player.rect.y - 10
         specialpct = specialcd / self.player.special_total_cooldown
+        if specialpct > 1:
+            specialpct = 1
         self.specialrect.width = self.width * specialpct
         if specialpct > 0:
             pygame.draw.rect(self.screen, self.LIGHT_GRAY, self.specialrect)
@@ -49,6 +51,8 @@ class InfoBar(pygame.sprite.Sprite):
         self.rangedrect.x = self.player.rect.x
         self.rangedrect.y = self.player.rect.y - 15
         rangedpct = rangedcd / self.player.ranged_total_cooldown
+        if rangedpct > 1:
+            rangedpct = 1
         self.rangedrect.width = self.width * rangedpct
         if rangedpct > 0:
             pygame.draw.rect(self.screen, self.DARK_GRAY, self.rangedrect)

@@ -66,7 +66,6 @@ class Player(pygame.sprite.Sprite):
     def takeDamage(self, takenDamage):
         self.health -= round(takenDamage * self.defense)
 
-
     def gravityUpdate(self):
         if self.ychange == 0:
             self.ychange = 1

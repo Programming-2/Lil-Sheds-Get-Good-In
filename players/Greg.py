@@ -36,30 +36,24 @@ class Greg(Player):
         self.attackcount = 0
         self.attackradius = 150
         self.ranged_total_cooldown = 2
-        self.ranged_cooldown = 0
+        self.ranged_cooldown = self.ranged_total_cooldown
         self.ranged_available = True
         self.ranged_count = 0
         self.ranged_start_time = 0
 
     def attack(self, screen):
-        if self.ranged_available == True:
+        if self.ranged_available:
             self.attacking = True
             if self.facing == 1:
-                if self.rect.x <= 900:
-                    self.rect.x += 200
-                elif self.rect.x > 900:
-                    self.rect.x += (1100 - self.rect.x - self.width)
+                self.xchange = 200
                 if self.handler.getPlayer1().name == "Greg":
-                    if self.attackradius + (self.width * .5) >= self.handler.getPlayer2().rect.x - self.rect.x >= -self.attackradius + (self.width * .5):
+                    if self.attackradius + (self.width * .5) >= self.handler.getPlayer2().rect.x - self.rect.x >= -self.attackradius + (self.width * .5) and self.attackradius + (self.width * .5) >= self.handler.getPlayer2().rect.y - self.rect.y >= -self.attackradius + (self.width * .5):
                         self.handler.getPlayer2().takeDamage(25)
                 elif self.handler.getPlayer2().name == "Greg":
-                    if self.attackradius + (self.width * .5) >= self.handler.getPlayer1().rect.x - self.rect.x >= -self.attackradius + (self.width * .5):
+                    if self.attackradius + (self.width * .5) >= self.handler.getPlayer1().rect.x - self.rect.x >= -self.attackradius + (self.height * .5) and self.attackradius + (self.width * .5) >= self.handler.getPlayer1().rect.y - self.rect.y >= -self.attackradius + (self.height * .5):
                         self.handler.getPlayer1().takeDamage(25)
             if self.facing == -1:
-                if self.rect.x >= 200:
-                    self.rect.x -= 200
-                elif self.rect.x < 200:
-                    self.rect.x = 0
+                self.xchange = -200
                 if self.handler.getPlayer1().name == "Greg":
                     if 150 >= self.handler.getPlayer2().rect.x - self.rect.x >= -150:
                         self.handler.getPlayer2().takeDamage(25)
@@ -74,7 +68,7 @@ class Greg(Player):
 
     def update(self, screen):
         if not self.ranged_available:
-            self.special_cooldown = 0
+            self.ranged_cooldown = 0
             if self.ranged_count == 0:
                 self.ranged_start_time = pygame.time.get_ticks()
                 self.ranged_count = 1
