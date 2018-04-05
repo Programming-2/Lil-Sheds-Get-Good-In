@@ -6,7 +6,7 @@ class Shed(Player):
 
     # TODO Give real data
 
-    def __init__(self, x, y, handler, playNum):
+    def __init__(self, x, y, handler):
         health = 170
         damage = 5
         winQuote = "Robotics taught me that"

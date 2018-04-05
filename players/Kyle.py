@@ -8,7 +8,7 @@ class Kyle(Player):
 
     # TODO Give real data
 
-    def __init__(self, x, y, handler, playNum):
+    def __init__(self, x, y, handler):
         health = 110
         damage = 15
         winQuote = "Are the platforms fixed yet?"
