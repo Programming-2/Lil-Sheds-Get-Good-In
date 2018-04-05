@@ -165,33 +165,33 @@ class GameState(State):
                     self.player2.rangedendtime = pygame.time.get_ticks()
                     self.player2.released = True
             elif self.useJoysticks and event.type == pygame.JOYBUTTONDOWN:
-                if self.joystick1.get_button(CONTROLLER_RANGED) and not self.player1.sleeping:
+                if event.button == CONTROLLER_RANGED and not self.player1.sleeping and event.joy == 0:
                     self.player1.attack(screen)
                     self.player1.rangedstarttime = pygame.time.get_ticks()
                     self.player1.released = False
-                if self.joystick1.get_button(CONTROLLER_SPECIAL) and not self.player1.sleeping:
+                if event.button == CONTROLLER_SPECIAL and not self.player1.sleeping and event.joy == 0:
                     self.player1.special()
-                if self.joystick2.get_button(CONTROLLER_RANGED) and not self.player2.sleeping:
+                if event.button == CONTROLLER_RANGED and not self.player2.sleeping and event.joy == 1:
                     self.player2.attack(screen)
                     self.player2.rangedstarttime = pygame.time.get_ticks()
                     self.player2.released = False
-                if self.joystick2.get_button(CONTROLLER_SPECIAL) and not self.player2.sleeping:
+                if event.button == CONTROLLER_SPECIAL and not self.player2.sleeping and event.joy == 1:
                     self.player2.special()
-                if self.joystick1.get_button(CONTROLLER_MELEE) and not self.player1.sleeping:
+                if event.button == CONTROLLER_MELEE and not self.player1.sleeping and event.joy == 0:
                     self.player1MeleeAttack.p1_melee_attack()
-                if self.joystick2.get_button(CONTROLLER_MELEE) and not self.player2.sleeping:
+                if event.button == CONTROLLER_MELEE and not self.player2.sleeping and event.joy == 1:
                     self.player2MeleeAttack.p2_melee_attack()
-                if self.joystick1.get_button(CONTROLLER_JUMP) and not (self.player1.sleeping or self.player1.stunned):
+                if event.button == CONTROLLER_JUMP and not (self.player1.sleeping or self.player1.stunned) and event.joy == 0:
                     self.player1.jump()
-                if self.joystick1.get_button(CONTROLLER_CROUCH) and not (self.player1.sleeping or self.player1.stunned):
+                if event.button == CONTROLLER_CROUCH and not (self.player1.sleeping or self.player1.stunned) and event.joy == 0:
                     self.player1.duck()
                     self.player1.gravity = 1
-                if self.joystick2.get_button(CONTROLLER_JUMP) and not (self.player2.sleeping or self.player2.stunned):
+                if event.button == CONTROLLER_JUMP and not (self.player2.sleeping or self.player2.stunned) and event.joy == 1:
                     self.player2.jump()
-                if self.joystick2.get_button(CONTROLLER_CROUCH) and not (self.player2.sleeping or self.player2.stunned):
+                if event.button == CONTROLLER_CROUCH and not (self.player2.sleeping or self.player2.stunned) and event.joy == 1:
                     self.player2.duck()
                     self.player2.gravity = 1
-                if self.joystick1.get_button(CONTROLLER_PAUSE) or self.joystick2.get_button(CONTROLLER_PAUSE):
+                if event.button == CONTROLLER_PAUSE:
                     self.handler.getStateManager().setCurrentState("PausedState")
             elif self.useJoysticks and event.type == pygame.JOYBUTTONUP:
                 if event.button == CONTROLLER_RANGED and event.joy == 0:
