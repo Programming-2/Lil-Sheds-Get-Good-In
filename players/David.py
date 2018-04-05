@@ -6,7 +6,7 @@ class David(Player):
 
     # TODO Give real data
 
-    def __init__(self, x, y, handler, playNum):
+    def __init__(self, x, y, handler):
         health = 150
         damage = 10
         winQuote = "I always start the party"
@@ -28,7 +28,6 @@ class David(Player):
         self.special_count = 0
         self.special_active = False
         self.special_available = True
-        self.playNum = playNum
         self.targetMoveSpeed = 0
         self.ticks = pygame.time.get_ticks()
 
@@ -61,7 +60,7 @@ class David(Player):
 
         if self.special_active and not self.sleeping:
             self.start_time = pygame.time.get_ticks()
-            if self.playNum == 1:
+            if self.handler.getPlayer1().name == "David":
                 if self.a != 1:
                     self.special_available = False
                     self.targetMoveSpeed = self.handler.getPlayer2MoveSpeed()
@@ -70,7 +69,7 @@ class David(Player):
                         self.handler.setPlayer2MoveSpeed(self.targetMoveSpeed)
                         self.special_active = False
                         self.a = 1
-            if self.playNum == 2:
+            else:
                 if self.a != 1:
                     self.special_available = False
                     self.targetMoveSpeed = self.handler.getPlayer1MoveSpeed()
