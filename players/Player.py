@@ -13,7 +13,8 @@ class Player(pygame.sprite.Sprite):
         self.sprite = pygame.image.load("media/" + name + ".png").convert()
         self.stansprite = pygame.image.load("media/" + name + ".png").convert()
         self.crouchsprite = pygame.image.load("media/" + name + "Crouch.png").convert()
-        self.attacksprite = pygame.image.load("media/projectileTest.png")
+        self.rightAttackSprite = pygame.image.load("media/projectileRight.png")
+        self.leftAttackSprite = pygame.image.load("media/projectileLeft.png")
         self.damage = damage
         self.health = health
         self.winQuote = winQuote
@@ -139,9 +140,9 @@ class Player(pygame.sprite.Sprite):
 
     def attack(self, screen):
         if self.facing == -1:
-            self.handler.getAttackList().add(Attack(self.rect.x - 50, self.rect.y, self.bullet_speed * self.facing, 0, "ranged", self.damage, 3, 5, screen, self.attacksprite, 20, self.handler))
+            self.handler.getAttackList().add(Attack(self.rect.x - 50, self.rect.y, self.bullet_speed * self.facing, 0, "ranged", self.damage, 3, 5, screen, self.leftAttackSprite, 20, self.handler))
         elif self.facing == 1:
-            self.handler.getAttackList().add(Attack(self.rect.x + self.width + 30, self.rect.y, self.bullet_speed * self.facing, 0, "ranged", self.damage, 3, 5, screen, self.attacksprite, 20, self.handler))
+            self.handler.getAttackList().add(Attack(self.rect.x + self.width + 30, self.rect.y, self.bullet_speed * self.facing, 0, "ranged", self.damage, 3, 5, screen, self.rightAttackSprite, 20, self.handler))
 
     def special(self):
         pass  # abstract
@@ -160,9 +161,6 @@ class Player(pygame.sprite.Sprite):
 
     def getY(self):
         return self.rect.y
-
-    def setPlayerNum(self, num):
-        self.playNum = num
 
     def setX(self, x):
         self.rect.x = x
