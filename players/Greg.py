@@ -26,9 +26,10 @@ class Greg(Player):
         self.special_cooldown = self.special_total_cooldown
         self.special_count = 0
         self.special_start_time = 0
-        self.specialsprite = pygame.image.load("media\GregSpecial.png")
-        self.specialframe1 = pygame.image.load("media\GregSpecial1.png")
-        self.specialframe2 = pygame.image.load("media\GregSpecial2.png")
+        self.attacksprite = pygame.image.load("media/Misc/projectileTest.png")
+        self.specialsprite = pygame.image.load("media/Players/Greg/GregSpecial.png")
+        self.specialframe1 = pygame.image.load("media/Players/Greg/GregSpecial1.png")
+        self.specialframe2 = pygame.image.load("media/Players/Greg/GregSpecial2.png")
         self.specialnum = 1
         self.damage_special = 25
         self.startgravity = self.gravity

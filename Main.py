@@ -28,12 +28,12 @@ level = IceLevel(screen)
 
 # Loading Images
 background_image = pygame.image.load(level.getBackImg()).convert()
-mainMenu = pygame.image.load("media/LilShedTitleScreen.png").convert()
-testProjectile = pygame.image.load("media/projectileTest.png").convert()
-testControlScreen = pygame.image.load("media/ControlScreen.png").convert()
-playerSelectScreen = pygame.image.load("media/LilShedCharacterSelect.png")
-mapSelectionScreen = pygame.image.load("media/MapSelection.png")
-pauseScreen = pygame.image.load("media/PauseScreen2.png")
+mainMenu = pygame.image.load("media/Screens/LilShedTitleScreen.png").convert()
+testProjectile = pygame.image.load("media/Misc/projectileTest.png").convert()
+testControlScreen = pygame.image.load("media/Screens/ControlScreen.png").convert()
+playerSelectScreen = pygame.image.load("media/Screens/LilShedCharacterSelect.png")
+mapSelectionScreen = pygame.image.load("media/Screens/MapSelection.png")
+pauseScreen = pygame.image.load("media/Screens/PauseScreen2.png")
 
 # Setting up screen stuff
 pygame.display.set_caption("Lil' Shed's Get Good In™")

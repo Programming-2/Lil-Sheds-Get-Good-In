@@ -6,7 +6,7 @@ from src.Platform import Platform
 class IceLevel(Level):
 
     def __init__(self, screen):
-        super().__init__(screen, "media/SnowMap.png")
+        super().__init__(screen, "media/Levels/SnowMap.png")
 
         # TODO Add platforms
         self.ground1 = Platform(screen, 0, 473, 225, 200)

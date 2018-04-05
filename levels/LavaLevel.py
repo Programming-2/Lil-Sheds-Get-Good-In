@@ -6,7 +6,7 @@ from src.Platform import Platform
 class LavaLevel(Level):
 
     def __init__(self, screen):
-        super().__init__(screen, "media/LavaMap.png")
+        super().__init__(screen, "media/Levels/LavaMap.png")
 
         # TODO Add platforms
         self.p1 = Platform(screen, 135, 510, 56, 290)

@@ -10,11 +10,11 @@ class Player(pygame.sprite.Sprite):
     def __init__(self, health, damage, winQuote, loseQuote, name, x, y, movespeed, platArray, attackList, handler, defense):
         super().__init__()
         self.i = 0
-        self.sprite = pygame.image.load("media/" + name + ".png").convert()
-        self.stansprite = pygame.image.load("media/" + name + ".png").convert()
-        self.crouchsprite = pygame.image.load("media/" + name + "Crouch.png").convert()
-        self.rightAttackSprite = pygame.image.load("media/projectileRight.png")
-        self.leftAttackSprite = pygame.image.load("media/projectileLeft.png")
+        self.sprite = pygame.image.load("media/Players/" + name + "/" + name + ".png").convert()
+        self.stansprite = pygame.image.load("media/Players/" + name + "/" + name + ".png").convert()
+        self.crouchsprite = pygame.image.load("media/Players/" + name + "/" + name + "Crouch.png").convert()
+        self.rightAttackSprite = pygame.image.load("media/Misc/projectileRight.png")
+        self.leftAttackSprite = pygame.image.load("media/Misc/projectileLeft.png")
         self.damage = damage
         self.health = health
         self.winQuote = winQuote

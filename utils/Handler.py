@@ -15,7 +15,7 @@ class Handler:
         self.player1MoveSpeed = self.player1.movespeed
         self.player2MoveSpeed = self.player2.movespeed
         self.level = level
-        self.projectileimage = pygame.image.load("media/projectileTest.png")
+        self.projectileimage = pygame.image.load("media/Misc/projectileTest.png")
 
     def getAttackList(self):
         return self.attackList
@@ -70,5 +70,3 @@ class Handler:
 
     def setPlayer2MoveSpeed(self, player2MoveSpeed):
         self.player2MoveSpeed = player2MoveSpeed
-
-

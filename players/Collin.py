@@ -20,8 +20,8 @@ class Collin(Player):
         self.attacking = False
         self.enemydistx = 0
         self.enemydisty = 0
-        self.left_attack = pygame.image.load("media/CollinRangedLeft.png")
-        self.right_attack = pygame.image.load("media/CollinRangedRight.png")
+        self.left_attack = pygame.image.load("media/Players/Collin/CollinRangedLeft.png")
+        self.right_attack = pygame.image.load("media/Players/Collin/CollinRangedRight.png")
 
     def attack(self, screen):
         self.attacking = True

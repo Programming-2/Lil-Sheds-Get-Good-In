@@ -21,9 +21,9 @@ class GameState(State):
         self.attackUpdateList = attackUpdateList
 
         self.timer = Timer(300, screen)
-        self.testProjectile = pygame.image.load("media/projectileTest.png").convert()
+        self.testProjectile = pygame.image.load("media/Misc/projectileTest.png").convert()
         self.background_image = pygame.image.load(handler.getLevel().getBackImg()).convert()
-        self.kosprite = pygame.image.load("media/KO.png")
+        self.kosprite = pygame.image.load("media/Misc/KO.png")
         self.handler = handler
 
         handler.setPlatformArray(self.platformArray)
@@ -84,9 +84,9 @@ class GameState(State):
     def reloadLevel(self):
         self.platformArray = self.handler.getLevel().platformGroup
 
-        self.testProjectile = pygame.image.load("media/projectileTest.png").convert()
+        self.testProjectile = pygame.image.load("media/Misc/projectileTest.png").convert()
         self.background_image = pygame.image.load(self.handler.getLevel().getBackImg()).convert()
-        self.kosprite = pygame.image.load("media/KO.png")
+        self.kosprite = pygame.image.load("media/Misc/KO.png")
 
         self.handler.setPlatformArray(self.platformArray)
 

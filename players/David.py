@@ -20,8 +20,8 @@ class David(Player):
         self.start_time = 0
         self.current_time = 0
         self.const = 0
-        self.attacksprite = pygame.image.load("media/DavidAttack.png")
-        self.specialsprite = pygame.image.load("media/DavidSpecial.png")
+        self.attacksprite = pygame.image.load("media/Players/David/DavidAttack.png")
+        self.specialsprite = pygame.image.load("media/Players/David/DavidSpecial.png")
         self.special_cooldown = self.special_total_cooldown
         self.special_total_cooldown = 5
         self.special_start_time = 0
