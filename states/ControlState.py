@@ -24,5 +24,5 @@ class ControlState(State):
 
         screen.blit(self.testControlScreen, [0, 0])
 
-        if (0 < pygame.mouse.get_pos()[0] < 1100 and pressed) and (745 < pygame.mouse.get_pos()[1] < 800 and pressed):
+        if (0 < pygame.mouse.get_pos()[0] < 565 and pressed) and (745 < pygame.mouse.get_pos()[1] < 800 and pressed):
             self.handler.getStateManager().setCurrentState("MainMenuState")
