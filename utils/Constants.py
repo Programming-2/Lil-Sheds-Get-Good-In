@@ -1,0 +1,13 @@
+CONTROLLER_JUMP = 0
+CONTROLLER_CROUCH = 1
+CONTROLLER_SPECIAL = 2
+CONTROLLER_START = 3
+CONTROLLER_MELEE = 4
+CONTROLLER_RANGED = 5
+
+# Button 0 is A
+# Button 1 is B
+# Button 2 is X
+# Button 3 is Y
+# Button 4 is LB
+# Button 5 is RB
