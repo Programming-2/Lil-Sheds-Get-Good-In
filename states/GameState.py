@@ -5,6 +5,7 @@ from src.HealthBar import HealthBar
 from src.InfoBars import InfoBar
 from utils.Timer import Timer
 from src.MeleeAttack import Attack
+from utils.Constants import *
 
 font = pygame.font.SysFont("Comic Sans MS", 36)
 
@@ -164,45 +165,45 @@ class GameState(State):
                     self.player2.rangedendtime = pygame.time.get_ticks()
                     self.player2.released = True
             elif self.useJoysticks and event.type == pygame.JOYBUTTONDOWN:
-                if self.joystick1.get_button(3) and not self.player1.sleeping:
+                if self.joystick1.get_button(CONTROLLER_RANGED) and not self.player1.sleeping:
                     self.player1.attack(screen)
                     self.player1.rangedstarttime = pygame.time.get_ticks()
                     self.player1.released = False
-                if self.joystick1.get_button(1) and not self.player1.sleeping:
+                if self.joystick1.get_button(CONTROLLER_SPECIAL) and not self.player1.sleeping:
                     self.player1.special()
-                if self.joystick2.get_button(3) and not self.player2.sleeping:
+                if self.joystick2.get_button(CONTROLLER_RANGED) and not self.player2.sleeping:
                     self.player2.attack(screen)
                     self.player2.rangedstarttime = pygame.time.get_ticks()
                     self.player2.released = False
-                if self.joystick2.get_button(1) and not self.player2.sleeping:
+                if self.joystick2.get_button(CONTROLLER_SPECIAL) and not self.player2.sleeping:
                     self.player2.special()
-                if self.joystick1.get_button(4) and not self.player1.sleeping:
+                if self.joystick1.get_button(CONTROLLER_MELEE) and not self.player1.sleeping:
                     self.player1MeleeAttack.p1_melee_attack()
-                if self.joystick2.get_button(4) and not self.player2.sleeping:
+                if self.joystick2.get_button(CONTROLLER_MELEE) and not self.player2.sleeping:
                     self.player2MeleeAttack.p2_melee_attack()
-                if self.joystick1.get_button(0) and not (self.player1.sleeping or self.player1.stunned):
+                if self.joystick1.get_button(CONTROLLER_JUMP) and not (self.player1.sleeping or self.player1.stunned):
                     self.player1.jump()
-                if self.joystick1.get_button(2) and not (self.player1.sleeping or self.player1.stunned):
+                if self.joystick1.get_button(CONTROLLER_CROUCH) and not (self.player1.sleeping or self.player1.stunned):
                     self.player1.duck()
                     self.player1.gravity = 1
-                if self.joystick2.get_button(0) and not (self.player2.sleeping or self.player2.stunned):
+                if self.joystick2.get_button(CONTROLLER_JUMP) and not (self.player2.sleeping or self.player2.stunned):
                     self.player2.jump()
-                if self.joystick2.get_button(2) and not (self.player2.sleeping or self.player2.stunned):
+                if self.joystick2.get_button(CONTROLLER_CROUCH) and not (self.player2.sleeping or self.player2.stunned):
                     self.player2.duck()
                     self.player2.gravity = 1
-                if self.joystick1.get_button(5) or self.joystick2.get_button(5):
+                if self.joystick1.get_button(CONTROLLER_PAUSE) or self.joystick2.get_button(CONTROLLER_PAUSE):
                     self.handler.getStateManager().setCurrentState("PausedState")
             elif self.useJoysticks and event.type == pygame.JOYBUTTONUP:
-                if event.button == 3 and event.joy == 0:
+                if event.button == CONTROLLER_RANGED and event.joy == 0:
                     self.player1.rangedendtime = pygame.time.get_ticks()
                     self.player1.released = True
-                if event.button == 3 and event.joy == 1:
+                if event.button == CONTROLLER_RANGED and event.joy == 1:
                     self.player2.rangedendtime = pygame.time.get_ticks()
                     self.player2.released = True
-                if event.button == 2 and event.joy == 0:
+                if event.button == CONTROLLER_CROUCH and event.joy == 0:
                     self.player1.unduck()
                     self.player1.gravity = 0.25
-                if event.button == 2 and event.joy == 1:
+                if event.button == CONTROLLER_CROUCH and event.joy == 1:
                     self.player2.unduck()
                     self.player2.gravity = 0.25
 
