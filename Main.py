@@ -61,7 +61,7 @@ stateDict = {
     "MainMenuState": MainMenuState("MainMenuState", mainMenu, handler),
     "MapSelectionState": MapSelectionState("MapSelectionState", handler, screen, mapSelectionScreen),
     "PlayerSelectionState": PlayerSelectionState("PlayerSelectionState", handler, playerSelectScreen),
-    "PausedState": PausedState("PausedState", handler, pauseScreen)
+    "PausedState": PausedState("PausedState", handler, pauseScreen),
 }
 stateManager.setStateDict(stateDict)
 # End State Declaration
