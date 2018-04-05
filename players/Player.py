@@ -162,9 +162,6 @@ class Player(pygame.sprite.Sprite):
     def getY(self):
         return self.rect.y
 
-    def setPlayerNum(self, num):
-        self.playNum = num
-
     def setX(self, x):
         self.rect.x = x
 

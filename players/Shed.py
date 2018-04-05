@@ -11,7 +11,7 @@ class Shed(Player):
         damage = 5
         winQuote = "Robotics taught me that"
         loseQuote = "I could've been watching Robotics competitions"
-        name = "Jakob"
+        name = "Lil' Shed"
         movespeed = 5
         defense = .7
 
