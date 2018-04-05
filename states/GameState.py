@@ -236,14 +236,13 @@ class GameState(State):
         self.player2.xchange = 0
 
         if self.useJoysticks:
-            if self.joystick1.get_axis(0) > 0.01 or self.joystick1.get_axis(0) < -0.01:
+            if (self.joystick1.get_axis(0) > 0.01 or self.joystick1.get_axis(0) < -0.01) and not (self.player1.sleeping or self.player1.stunned):
                 self.player1.xchange = (self.joystick1.get_axis(0) * 5)
 
-            if self.joystick2.get_axis(0) > 0.01 or self.joystick2.get_axis(0) < -0.01:
+            if (self.joystick2.get_axis(0) > 0.01 or self.joystick2.get_axis(0) < -0.01) and not (self.player2.sleeping or self.player2.stunned):
                 self.player2.xchange = (self.joystick2.get_axis(0) * 5)
 
         if self.player1.sleeping:
-            # player2.dead = True
             text = font.render("Player 2 Wins!", False, colors.get("BLACK"))
             screen.blit(text, ((screen.get_size()[0] / 2 - 125), (screen.get_size()[1] / 2 - 200)))
             if self.count == 0:
@@ -252,7 +251,6 @@ class GameState(State):
             if self.timer.current_time <= self.end_time - 5:
                 self.handler.setDone(True)
         elif self.player2.sleeping:
-            # player1.dead = True
             text = font.render("Player 1 Wins!", False, colors.get("BLACK"))
             screen.blit(text, ((screen.get_size()[0] / 2 - 125), (screen.get_size()[1] / 2 - 200)))
             if self.count == 0:
