@@ -5,8 +5,6 @@ from players.Player import Player
 
 class Will(Player):
 
-    # TODO Give real data
-
     def __init__(self, x, y, handler):
         health = 110
         damage = 55

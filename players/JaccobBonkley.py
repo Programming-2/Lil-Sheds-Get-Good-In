@@ -3,8 +3,6 @@ from players.Player import Player
 
 class JaccobBonkley(Player):
 
-    # TODO Give real data
-
     def __init__(self, x, y, handler):
         health = 70
         damage = 20
