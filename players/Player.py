@@ -1,6 +1,8 @@
 import pygame
 from utils import Colors
 from src.Attack import Attack
+from src.Cooldown import Cooldown
+from utils.Colors import colors
 
 # TODO Figure out why sprite draws weird/gets cut
 
@@ -13,8 +15,8 @@ class Player(pygame.sprite.Sprite):
         self.sprite = pygame.image.load("media/Players/" + name + "/" + name + ".png").convert()
         self.stansprite = pygame.image.load("media/Players/" + name + "/" + name + ".png").convert()
         self.crouchsprite = pygame.image.load("media/Players/" + name + "/" + name + "Crouch.png").convert()
-        self.rightAttackSprite = pygame.image.load("media/Misc/projectileRight.png")
-        self.leftAttackSprite = pygame.image.load("media/Misc/projectileLeft.png")
+        self.rightAttackSprite = pygame.image.load("media/Misc/projectileRight.png").convert_alpha()
+        self.leftAttackSprite = pygame.image.load("media/Misc/projectileLeft.png").convert_alpha()
         self.damage = damage
         self.health = health
         self.winQuote = winQuote
@@ -36,10 +38,8 @@ class Player(pygame.sprite.Sprite):
         self.stunned = False
         self.sleeping = False
         self.facing = 1  # -1 for left, 1 for right
-        self.special_cooldown = 0
-        self.special_total_cooldown = 1
-        self.ranged_cooldown = 0
-        self.ranged_total_cooldown = 1
+        self.special_cooldown = Cooldown(0)
+        self.ranged_cooldown = Cooldown(0)
         self.bullet_speed = 15
 
     def setPlatArray(self, arr):

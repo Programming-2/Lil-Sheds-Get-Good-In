@@ -1,5 +1,6 @@
 import pygame
 from players.Player import Player
+from src.Cooldown import Cooldown
 
 
 class David(Player):
@@ -7,8 +8,8 @@ class David(Player):
     # TODO Give real data
 
     def __init__(self, x, y, handler):
-        health = 100
-        damage = 10
+        health = 120
+        damage = 15
         winQuote = "I always start the party"
         loseQuote = "Zzz"
         name = "David"
@@ -17,23 +18,17 @@ class David(Player):
         self.handler = handler
 
         super().__init__(health, damage, winQuote, loseQuote, name, x, y, movespeed, handler.getPlatformArray(), handler.getAttackList(), handler, defense)
-        self.start_time = 0
-        self.current_time = 0
-        self.const = 0
-        self.attacksprite = pygame.image.load("media/Players/David/DavidAttack.png")
-        self.specialsprite = pygame.image.load("media/Players/David/DavidSpecial.png")
-        self.special_cooldown = self.special_total_cooldown
-        self.special_total_cooldown = 5
-        self.special_start_time = 0
-        self.special_count = 0
+
+        self.attacksprite = pygame.image.load("media/Players/David/DavidAttack.png").convert()
+        self.specialsprite = pygame.image.load("media/Players/David/DavidSpecial.png").convert_alpha()
+        # special
+        self.special_cooldown = Cooldown(5)
+        self.special_duration = Cooldown(2)
         self.special_active = False
-        self.special_available = True
         self.targetMoveSpeed = 0
-        self.ticks = pygame.time.get_ticks()
-        self.seconds = 0
 
     def special(self):
-        if self.special_available:
+        if self.special_cooldown.isDone():
             self.special_active = True
 
     def update(self, screen):
@@ -47,38 +42,24 @@ class David(Player):
             self.facing = -1
 
         self.attackUpdate(screen)
-        self.current_time = pygame.time.get_ticks()
 
-        if not self.special_available:
-            self.special_cooldown = 0
-            if self.special_count == 0:
-                self.special_start_time = pygame.time.get_ticks()
-                self.special_count = 1
-            self.special_cooldown = (pygame.time.get_ticks() - self.special_start_time) / 1000
-            if self.special_cooldown >= self.special_total_cooldown:
-                self.special_available = True
-                self.special_count = 0
+        if not self.special_cooldown.isDone():
+            self.special_cooldown.update()
 
         if self.special_active and not self.sleeping:
-            if self.const == 0:
-                self.start_time = pygame.time.get_ticks()
-                self.const += 1
-                self.seconds = 0
-            if self.seconds <= 1:
+            self.special_duration.update()
+            if not self.special_duration.isDone():
                 screen.blit(self.specialsprite, (0, 0))
-                self.seconds = (pygame.time.get_ticks() - self.start_time) / 1000
                 if self.handler.getPlayer1().name == "David":
                     self.handler.getPlayer2().stunned = True
                 if self.handler.getPlayer2().name == "David":
                     self.handler.getPlayer1().stunned = True
-            if self.seconds > 1:
+            else:
                 self.special_active = False
-                self.const = 0
-                self.special_available = False
-                self.seconds = 0
                 if self.handler.getPlayer1().name == "David":
                     self.handler.getPlayer2().stunned = False
                 if self.handler.getPlayer2().name == "David":
                     self.handler.getPlayer1().stunned = False
+                self.special_cooldown.update()
 
         screen.blit(self.sprite, [self.rect.x, self.rect.y])

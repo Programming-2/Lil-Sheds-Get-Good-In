@@ -23,7 +23,7 @@ class GameState(State):
         self.timer = Timer(300, screen)
         self.testProjectile = pygame.image.load("media/Misc/projectileTest.png").convert()
         self.background_image = pygame.image.load(handler.getLevel().getBackImg()).convert()
-        self.kosprite = pygame.image.load("media/Misc/KO.png")
+        self.kosprite = pygame.image.load("media/Misc/KO.png").convert()
         self.handler = handler
 
         handler.setPlatformArray(self.platformArray)
@@ -69,13 +69,17 @@ class GameState(State):
         self.player2.health = 100
         self.p1hpbar = HealthBar(self.screen, "topleft", self.player1.health, self.handler)
         self.p2hpbar = HealthBar(self.screen, "topright", self.player2.health, self.handler)
-        self.p1infobar = InfoBar(self.screen, self.player1)
-        self.p2infobar = InfoBar(self.screen, self.player2)
+        self.p1infobar = InfoBar(self.screen, self.player1, self.handler)
+        self.p2infobar = InfoBar(self.screen, self.player2, self.handler)
 
-        self.player1.x = 150
-        self.player1.y = 100
-        self.player2.x = 950
-        self.player2.y = 100
+        self.player1.rect.x = 150
+        self.player1.rect.y = 100
+        self.player2.rect.x = 950
+        self.player2.rect.y = 100
+        self.player1.xchange = 0
+        self.player1.ychange = 0
+        self.player2.xchange = 0
+        self.player2.ychange = 0
 
         # Timer utils
         self.count = 0
@@ -101,8 +105,8 @@ class GameState(State):
         self.player2.facing = -1
         self.p1hpbar = HealthBar(self.screen, "topleft", self.player1.health, self.handler)
         self.p2hpbar = HealthBar(self.screen, "topright", self.player2.health, self.handler)
-        self.p1infobar = InfoBar(self.screen, self.player1)
-        self.p2infobar = InfoBar(self.screen, self.player2)
+        self.p1infobar = InfoBar(self.screen, self.player1, self.handler)
+        self.p2infobar = InfoBar(self.screen, self.player2, self.handler)
 
     def update(self, screen):
         screen.blit(self.background_image, [0, 0])  # Jakob's mistake
@@ -223,11 +227,14 @@ class GameState(State):
         self.player1.update(screen)
         self.player2.update(screen)
         self.timer.update(screen)
-        self.p1infobar.update(self.player1.ranged_cooldown, self.player1.special_cooldown, self.player1.health)
-        self.p2infobar.update(self.player2.ranged_cooldown, self.player2.special_cooldown, self.player2.health)
+        self.p1infobar.update(self.player1.ranged_cooldown.getCurrentCooldown(), self.player1.special_cooldown.getCurrentCooldown(), self.player1.health)
+        self.p2infobar.update(self.player2.ranged_cooldown.getCurrentCooldown(), self.player2.special_cooldown.getCurrentCooldown(), self.player2.health)
         self.p1hpbar.update(self.player1.health)
         self.p2hpbar.update(self.player2.health)
         self.platformArray.update()
+        for p in self.platformArray:
+            if p.platform_cooldown.isDone() and p.duration != -1:
+                self.platformArray.remove(p)
         self.handler.setPlayer1(self.player1)
         self.handler.setPlayer2(self.player2)
 
@@ -246,6 +253,10 @@ class GameState(State):
         if self.player1.sleeping:
             text = font.render("Player 2 Wins!", False, colors.get("BLACK"))
             screen.blit(text, ((screen.get_size()[0] / 2 - 125), (screen.get_size()[1] / 2 - 200)))
+            text = font.render(self.handler.getPlayer1().loseQuote, False, colors.get("BLACK"))
+            screen.blit(text, (self.handler.getPlayer1().rect.x, self.handler.getPlayer1().rect.y - 100))
+            text = font.render(self.handler.getPlayer2().winQuote, False, colors.get("BLACK"))
+            screen.blit(text, (self.handler.getPlayer2().rect.x, self.handler.getPlayer2().rect.y - 100))
             if self.count == 0:
                 self.end_time = self.timer.current_time
                 self.count += 1
@@ -254,6 +265,10 @@ class GameState(State):
         elif self.player2.sleeping:
             text = font.render("Player 1 Wins!", False, colors.get("BLACK"))
             screen.blit(text, ((screen.get_size()[0] / 2 - 125), (screen.get_size()[1] / 2 - 200)))
+            text = font.render(self.handler.getPlayer2().loseQuote, False, colors.get("BLACK"))
+            screen.blit(text, (self.handler.getPlayer2().rect.x, self.handler.getPlayer2().rect.y - 100))
+            text = font.render(self.handler.getPlayer1().winQuote, False, colors.get("BLACK"))
+            screen.blit(text, (self.handler.getPlayer1().rect.x, self.handler.getPlayer1().rect.y - 100))
             if self.count == 0:
                 self.end_time = self.timer.current_time
                 self.count += 1

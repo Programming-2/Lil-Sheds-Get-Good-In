@@ -1,6 +1,7 @@
 import pygame
 from players.Player import Player
 from src.Attack import Attack
+from src.Cooldown import Cooldown
 from utils.Handler import Handler
 
 
@@ -20,70 +21,56 @@ class Greg(Player):
         super().__init__(health, damage, winQuote, loseQuote, name, x, y, movespeed, handler.getPlatformArray(), handler.getAttackList(), handler, defense)
 
         self.count = 0
-        self.special_available = True
         self.special_active = False
-        self.special_total_cooldown = 5
-        self.special_cooldown = self.special_total_cooldown
-        self.special_count = 0
-        self.special_start_time = 0
-        self.attacksprite = pygame.image.load("media/Misc/projectileTest.png")
-        self.specialsprite = pygame.image.load("media/Players/Greg/GregSpecial.png")
-        self.specialframe1 = pygame.image.load("media/Players/Greg/GregSpecial1.png")
-        self.specialframe2 = pygame.image.load("media/Players/Greg/GregSpecial2.png")
+        self.special_cooldown = Cooldown(5)
+        self.attacksprite = pygame.image.load("media/Misc/fist.png").convert()
+        self.specialsprite = pygame.image.load("media/Players/Greg/GregSpecial.png").convert()
+        self.specialframe1 = pygame.image.load("media/Players/Greg/GregSpecial1.png").convert_alpha()
+        self.specialframe2 = pygame.image.load("media/Players/Greg/GregSpecial2.png").convert_alpha()
         self.specialnum = 1
+        self.damage_ranged = 40
         self.damage_special = 25
         self.startgravity = self.gravity
         self.attacking = False
         self.attackcount = 0
-        self.attackradius = 150
-        self.ranged_total_cooldown = 2
-        self.ranged_cooldown = self.ranged_total_cooldown
-        self.ranged_available = True
-        self.ranged_count = 0
-        self.ranged_start_time = 0
+        self.attackradius = 100
+        self.ranged_cooldown = Cooldown(2)
 
     def attack(self, screen):
-        if self.ranged_available:
+        if self.ranged_cooldown.isDone():
             self.attacking = True
             if self.facing == 1:
-                self.xchange = 200
+                self.rect.x += 200
                 if self.handler.getPlayer1().name == "Greg":
                     if self.attackradius + (self.width * .5) >= self.handler.getPlayer2().rect.x - self.rect.x >= -self.attackradius + (self.width * .5) and self.attackradius + (self.width * .5) >= self.handler.getPlayer2().rect.y - self.rect.y >= -self.attackradius + (self.width * .5):
-                        self.handler.getPlayer2().takeDamage(25)
+                        self.handler.getPlayer2().takeDamage(self.damage_ranged)
                 elif self.handler.getPlayer2().name == "Greg":
                     if self.attackradius + (self.width * .5) >= self.handler.getPlayer1().rect.x - self.rect.x >= -self.attackradius + (self.height * .5) and self.attackradius + (self.width * .5) >= self.handler.getPlayer1().rect.y - self.rect.y >= -self.attackradius + (self.height * .5):
-                        self.handler.getPlayer1().takeDamage(25)
+                        self.handler.getPlayer1().takeDamage(self.damage_ranged)
             if self.facing == -1:
-                self.xchange = -200
+                self.rect.x -= 200
                 if self.handler.getPlayer1().name == "Greg":
                     if 150 >= self.handler.getPlayer2().rect.x - self.rect.x >= -150:
-                        self.handler.getPlayer2().takeDamage(25)
+                        self.handler.getPlayer2().takeDamage(self.damage_ranged)
                 elif self.handler.getPlayer2().name == "Greg":
                     if 150 >= self.handler.getPlayer1().rect.x - self.rect.x >= -150:
-                        self.handler.getPlayer1().takeDamage(25)
-            self.ranged_available = False
+                        self.handler.getPlayer1().takeDamage(self.damage_ranged)
+            self.ranged_cooldown.update()
 
     def special(self):
-        if self.special_available:
+        if self.special_cooldown.isDone():
             self.special_active = True
 
     def update(self, screen):
-        if not self.ranged_available:
-            self.ranged_cooldown = 0
-            if self.ranged_count == 0:
-                self.ranged_start_time = pygame.time.get_ticks()
-                self.ranged_count = 1
-            self.ranged_cooldown = (pygame.time.get_ticks() - self.ranged_start_time) / 1000
-            if self.ranged_cooldown >= 2:
-                self.ranged_available = True
-                self.ranged_count = 0
+        if not self.ranged_cooldown.isDone():
+            self.ranged_cooldown.update()
         if self.attacking:
             if self.attackcount % 2 == 1:
                 screen.blit(self.specialframe1, (self.rect.x - 125, self.rect.y - 125))
             if self.attackcount % 2 == 0:
                 screen.blit(self.specialframe2, (self.rect.x - 125, self.rect.y - 125))
             self.attackcount += 1
-            if self.attackcount > 4:
+            if self.attackcount > 6:
                 self.attacking = False
                 self.attackcount = 1
         self.screen = screen
@@ -97,15 +84,8 @@ class Greg(Player):
             elif self.xchange < 0:
                 self.facing = -1
 
-        if not self.special_available:
-            self.special_cooldown = 0
-            if self.special_count == 0:
-                self.special_start_time = pygame.time.get_ticks()
-                self.special_count = 1
-            self.special_cooldown = (pygame.time.get_ticks() - self.special_start_time) / 1000
-            if self.special_cooldown >= self.special_total_cooldown:
-                self.special_available = True
-                self.special_count = 0
+        if not self.special_cooldown.isDone():
+            self.special_cooldown.update()
 
         if self.special_active and not self.sleeping:
             self.sprite = self.specialsprite
