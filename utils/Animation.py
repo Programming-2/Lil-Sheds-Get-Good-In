@@ -7,9 +7,9 @@
 class Animation:
 
     def __init__(self, startingNode):
-        self.currectAnimation = startingNode
+        self.currentAnimation = startingNode
 
-    def getCurrectAnimationFrame(self):
-        returnNode = self.currectAnimation
-        self.currectAnimation = self.currectAnimation.getNextNode()
+    def getCurrentAnimationFrame(self):
+        returnNode = self.currentAnimation
+        self.currentAnimation = self.currentAnimation.getNextNode()
         return returnNode

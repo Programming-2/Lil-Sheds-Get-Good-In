@@ -4,7 +4,6 @@ from utils.Colors import colors
 from src.HealthBar import HealthBar
 from src.InfoBars import InfoBar
 from utils.Timer import Timer
-from src.MeleeAttack import MeleeAttack
 from utils.Constants import *
 from utils.SoundLoader import *
 
@@ -52,29 +51,43 @@ class GameState(State):
 
     def resetState(self):
         self.player1.sleeping = False
+
         self.player2.sleeping = False
+
         self.platformArray = self.handler.getLevel().platformGroup
+
         self.background_image = pygame.image.load(self.handler.getLevel().getBackImg()).convert()
+
         self.timer = Timer(300, self.screen)
+
         self.handler.setPlatformArray(self.platformArray)
+
         self.player1 = self.handler.player1
         self.player2 = self.handler.player2
+
         self.handler.setPlayer1(self.player1)
         self.handler.setPlayer2(self.player2)
+
         self.player2.facing = -1
+
         self.player1.health = 100
         self.player2.health = 100
+
         self.p1hpbar = HealthBar(self.screen, "topleft", self.player1.health, self.handler)
         self.p2hpbar = HealthBar(self.screen, "topright", self.player2.health, self.handler)
+
         self.p1infobar = InfoBar(self.screen, self.player1, self.handler)
         self.p2infobar = InfoBar(self.screen, self.player2, self.handler)
 
         self.player1.rect.x = 150
         self.player1.rect.y = 100
+
         self.player2.rect.x = 950
         self.player2.rect.y = 100
+
         self.player1.xchange = 0
         self.player1.ychange = 0
+
         self.player2.xchange = 0
         self.player2.ychange = 0
 
@@ -97,11 +110,15 @@ class GameState(State):
     def setPlayers(self, player1, player2):
         self.player1 = player1
         self.player2 = player2
+
         self.handler.setPlayer1(self.player1)
         self.handler.setPlayer2(self.player2)
+
         self.player2.facing = -1
+
         self.p1hpbar = HealthBar(self.screen, "topleft", self.player1.health, self.handler)
         self.p2hpbar = HealthBar(self.screen, "topright", self.player2.health, self.handler)
+
         self.p1infobar = InfoBar(self.screen, self.player1, self.handler)
         self.p2infobar = InfoBar(self.screen, self.player2, self.handler)
 
@@ -128,14 +145,19 @@ class GameState(State):
                     self.player1.released = False
                 elif event.key == pygame.K_f and not self.player1.sleeping:
                     self.player1.special()
+                elif event.key == pygame.K_r and not self.player1.sleeping:
+                    self.player1.meleeAttack()
+                elif event.key == pygame.K_w and not (self.player1.sleeping or self.player1.stunned):
+                    self.player1.jump()
+                elif event.key == pygame.K_s and not (self.player1.sleeping or self.player1.stunned):
+                    self.player1.duck()
+                    self.player1.gravity *= 4
                 elif event.key == pygame.K_RSHIFT and not self.player2.sleeping:
                     self.player2.attack(screen)
                     self.player2.rangedstarttime = pygame.time.get_ticks()
                     self.player2.released = False
                 elif event.key == pygame.K_RETURN and not self.player2.sleeping:
                     self.player2.special()
-                elif event.key == pygame.K_r and not self.player1.sleeping:
-                    self.player1.meleeAttack()
                 elif event.key == pygame.K_RCTRL and not self.player2.sleeping:
                     self.player2.meleeAttack()
                 elif event.key == pygame.K_w and not (self.player1.sleeping or self.player1.stunned):
@@ -164,14 +186,20 @@ class GameState(State):
                 if event.key == pygame.K_s:
                     self.player1.unduck()
                     self.player1.gravity /= 4
+<<<<<<< HEAD
                     self.player1.duckreleased = True
                 elif event.key == pygame.K_DOWN:
                     self.player2.unduck()
                     self.player2.gravity /= 4
                     self.player2.duckreleased = True
+=======
+>>>>>>> ddef43066ff14d49bc0d4dfefd663ec26fadd51a
                 elif event.key == pygame.K_g:
                     self.player1.rangedendtime = pygame.time.get_ticks()
                     self.player1.released = True
+                elif event.key == pygame.K_DOWN:
+                    self.player2.unduck()
+                    self.player2.gravity /= 4
                 elif event.key == pygame.K_RSHIFT:
                     self.player2.rangedendtime = pygame.time.get_ticks()
                     self.player2.released = True
@@ -182,16 +210,8 @@ class GameState(State):
                     self.player1.released = False
                 if event.button == CONTROLLER_SPECIAL and not self.player1.sleeping and event.joy == 0:
                     self.player1.special()
-                if event.button == CONTROLLER_RANGED and not self.player2.sleeping and event.joy == 1:
-                    self.player2.attack(screen)
-                    self.player2.rangedstarttime = pygame.time.get_ticks()
-                    self.player2.released = False
-                if event.button == CONTROLLER_SPECIAL and not self.player2.sleeping and event.joy == 1:
-                    self.player2.special()
                 if event.button == CONTROLLER_MELEE and not self.player1.sleeping and event.joy == 0:
                     self.player1MeleeAttack.p1_melee_attack()
-                if event.button == CONTROLLER_MELEE and not self.player2.sleeping and event.joy == 1:
-                    self.player2MeleeAttack.p2_melee_attack()
                 if event.button == CONTROLLER_JUMP and not (self.player1.sleeping or self.player1.stunned) and event.joy == 0:
                     self.player1.jump()
                 if event.button == CONTROLLER_CROUCH and not (self.player1.sleeping or self.player1.stunned) and event.joy == 0:
@@ -199,21 +219,29 @@ class GameState(State):
                     self.player1.gravity = 1
                 if event.button == CONTROLLER_JUMP and not (self.player2.sleeping or self.player2.stunned) and event.joy == 1:
                     self.player2.jump()
+                if event.button == CONTROLLER_MELEE and not self.player2.sleeping and event.joy == 1:
+                    self.player2MeleeAttack.p2_melee_attack()
                 if event.button == CONTROLLER_CROUCH and not (self.player2.sleeping or self.player2.stunned) and event.joy == 1:
                     self.player2.duck()
                     self.player2.gravity = 1
+                if event.button == CONTROLLER_RANGED and not self.player2.sleeping and event.joy == 1:
+                    self.player2.attack(screen)
+                    self.player2.rangedstarttime = pygame.time.get_ticks()
+                    self.player2.released = False
+                if event.button == CONTROLLER_SPECIAL and not self.player2.sleeping and event.joy == 1:
+                    self.player2.special()
                 if event.button == CONTROLLER_PAUSE:
                     self.handler.getStateManager().setCurrentState("PausedState")
             elif self.useJoysticks and event.type == pygame.JOYBUTTONUP:
                 if event.button == CONTROLLER_RANGED and event.joy == 0:
                     self.player1.rangedendtime = pygame.time.get_ticks()
                     self.player1.released = True
-                if event.button == CONTROLLER_RANGED and event.joy == 1:
-                    self.player2.rangedendtime = pygame.time.get_ticks()
-                    self.player2.released = True
                 if event.button == CONTROLLER_CROUCH and event.joy == 0:
                     self.player1.unduck()
                     self.player1.gravity = 0.25
+                if event.button == CONTROLLER_RANGED and event.joy == 1:
+                    self.player2.rangedendtime = pygame.time.get_ticks()
+                    self.player2.released = True
                 if event.button == CONTROLLER_CROUCH and event.joy == 1:
                     self.player2.unduck()
                     self.player2.gravity = 0.25
@@ -229,19 +257,27 @@ class GameState(State):
         if self.player1.health <= 0:
             self.player1.goToSleepForAnExtendedPeriodOfTime()
             screen.blit(self.kosprite, [self.player1.rect.x - 15, self.player1.rect.y - 80])
+
         if self.timer.current_time < 1:
             self.platformArray.remove(self.platformArray)
+
         self.player1.update(screen)
         self.player2.update(screen)
+
         self.timer.update(screen)
+
         self.p1infobar.update(self.player1.ranged_cooldown.getCurrentCooldown(), self.player1.special_cooldown.getCurrentCooldown(), self.player1.health)
         self.p2infobar.update(self.player2.ranged_cooldown.getCurrentCooldown(), self.player2.special_cooldown.getCurrentCooldown(), self.player2.health)
+
         self.p1hpbar.update(self.player1.health)
         self.p2hpbar.update(self.player2.health)
+
         self.platformArray.update()
+
         for p in self.platformArray:
             if p.platform_cooldown.isDone() and p.duration != -1:
                 self.platformArray.remove(p)
+
         self.handler.setPlayer1(self.player1)
         self.handler.setPlayer2(self.player2)
 
