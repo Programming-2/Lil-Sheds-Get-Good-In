@@ -189,7 +189,7 @@ class GameState(State):
                 if event.button == CONTROLLER_SPECIAL and not self.player1.sleeping and event.joy == 0:
                     self.player1.special()
                 if event.button == CONTROLLER_MELEE and not self.player1.sleeping and event.joy == 0:
-                    self.player1MeleeAttack.p1_melee_attack()
+                    self.player1.meleeAttack()
                 if event.button == CONTROLLER_JUMP and not (self.player1.sleeping or self.player1.stunned) and event.joy == 0:
                     self.player1.jump()
                 if event.button == CONTROLLER_CROUCH and not (self.player1.sleeping or self.player1.stunned) and event.joy == 0:
@@ -198,7 +198,7 @@ class GameState(State):
                 if event.button == CONTROLLER_JUMP and not (self.player2.sleeping or self.player2.stunned) and event.joy == 1:
                     self.player2.jump()
                 if event.button == CONTROLLER_MELEE and not self.player2.sleeping and event.joy == 1:
-                    self.player2MeleeAttack.p2_melee_attack()
+                    self.player2.meleeAttack()
                 if event.button == CONTROLLER_CROUCH and not (self.player2.sleeping or self.player2.stunned) and event.joy == 1:
                     self.player2.duck()
                     self.player2.gravity = 1
