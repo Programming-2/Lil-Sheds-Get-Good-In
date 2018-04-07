@@ -4,8 +4,6 @@ from players.Player import Player
 
 class Shed(Player):
 
-    # TODO Give real data
-
     def __init__(self, x, y, handler):
         health = 170
         damage = 5

@@ -5,8 +5,6 @@ from src.Cooldown import Cooldown
 
 class Jakob(Player):
 
-    # TODO Give real data
-
     def __init__(self, x, y, handler):
         health = 100
         damage = 15

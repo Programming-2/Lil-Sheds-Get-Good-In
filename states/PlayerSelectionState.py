@@ -59,8 +59,6 @@ class PlayerSelectionState(State):
         # Drawing background image
         screen.blit(self.img, [0, 0])
 
-        # TODO Make going to main menu reset selections
-
         # Button to return to the main menu
         if (715 < pygame.mouse.get_pos()[0] < 1055 and pressed) and (600 < pygame.mouse.get_pos()[1] < 750 and pressed):
             self.handler.getStateManager().resetStates()

@@ -15,7 +15,7 @@ from states.PausedState import PausedState
 pygame.init()
 
 # TODO Centralize image loading
-# TODO Standardize naming conventions and casing c
+# TODO Standardize naming conventions and casing
 # TODO Determine better keybinds
 
 # Screen init

@@ -4,8 +4,6 @@ from src.Attack import Attack
 from src.Cooldown import Cooldown
 from utils.Colors import colors
 
-# TODO Figure out why sprite draws weird/gets cut
-
 
 class Player(pygame.sprite.Sprite):
 

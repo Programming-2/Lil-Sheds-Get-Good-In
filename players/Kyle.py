@@ -7,8 +7,6 @@ from utils.Colors import colors
 
 class Kyle(Player):
 
-    # TODO Give real data
-
     def __init__(self, x, y, handler):
         health = 110
         damage = 15
