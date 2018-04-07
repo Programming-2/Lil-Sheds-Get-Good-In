@@ -4,7 +4,6 @@ from utils.Colors import colors
 from src.HealthBar import HealthBar
 from src.InfoBars import InfoBar
 from utils.Timer import Timer
-from src.MeleeAttack import MeleeAttack
 from utils.Constants import *
 from utils.SoundLoader import *
 
@@ -52,29 +51,43 @@ class GameState(State):
 
     def resetState(self):
         self.player1.sleeping = False
+
         self.player2.sleeping = False
+
         self.platformArray = self.handler.getLevel().platformGroup
+
         self.background_image = pygame.image.load(self.handler.getLevel().getBackImg()).convert()
+
         self.timer = Timer(300, self.screen)
+
         self.handler.setPlatformArray(self.platformArray)
+
         self.player1 = self.handler.player1
         self.player2 = self.handler.player2
+
         self.handler.setPlayer1(self.player1)
         self.handler.setPlayer2(self.player2)
+
         self.player2.facing = -1
+
         self.player1.health = 100
         self.player2.health = 100
+
         self.p1hpbar = HealthBar(self.screen, "topleft", self.player1.health, self.handler)
         self.p2hpbar = HealthBar(self.screen, "topright", self.player2.health, self.handler)
+
         self.p1infobar = InfoBar(self.screen, self.player1, self.handler)
         self.p2infobar = InfoBar(self.screen, self.player2, self.handler)
 
         self.player1.rect.x = 150
         self.player1.rect.y = 100
+
         self.player2.rect.x = 950
         self.player2.rect.y = 100
+
         self.player1.xchange = 0
         self.player1.ychange = 0
+
         self.player2.xchange = 0
         self.player2.ychange = 0
 
@@ -97,11 +110,15 @@ class GameState(State):
     def setPlayers(self, player1, player2):
         self.player1 = player1
         self.player2 = player2
+
         self.handler.setPlayer1(self.player1)
         self.handler.setPlayer2(self.player2)
+
         self.player2.facing = -1
+
         self.p1hpbar = HealthBar(self.screen, "topleft", self.player1.health, self.handler)
         self.p2hpbar = HealthBar(self.screen, "topright", self.player2.health, self.handler)
+
         self.p1infobar = InfoBar(self.screen, self.player1, self.handler)
         self.p2infobar = InfoBar(self.screen, self.player2, self.handler)
 
@@ -219,19 +236,27 @@ class GameState(State):
         if self.player1.health <= 0:
             self.player1.goToSleepForAnExtendedPeriodOfTime()
             screen.blit(self.kosprite, [self.player1.rect.x - 15, self.player1.rect.y - 80])
+
         if self.timer.current_time < 1:
             self.platformArray.remove(self.platformArray)
+
         self.player1.update(screen)
         self.player2.update(screen)
+
         self.timer.update(screen)
+
         self.p1infobar.update(self.player1.ranged_cooldown.getCurrentCooldown(), self.player1.special_cooldown.getCurrentCooldown(), self.player1.health)
         self.p2infobar.update(self.player2.ranged_cooldown.getCurrentCooldown(), self.player2.special_cooldown.getCurrentCooldown(), self.player2.health)
+
         self.p1hpbar.update(self.player1.health)
         self.p2hpbar.update(self.player2.health)
+
         self.platformArray.update()
+
         for p in self.platformArray:
             if p.platform_cooldown.isDone() and p.duration != -1:
                 self.platformArray.remove(p)
+
         self.handler.setPlayer1(self.player1)
         self.handler.setPlayer2(self.player2)
 
