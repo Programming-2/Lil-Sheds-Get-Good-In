@@ -42,6 +42,9 @@ class Player(pygame.sprite.Sprite):
         self.bullet_speed = 15
         self.meleeattack = MeleeAttack(20, self, self.handler)
 
+        self.jumpreleased = False
+        self.duckreleased = False
+
     def setPlatArray(self, arr):
         self.platArray = arr
 
