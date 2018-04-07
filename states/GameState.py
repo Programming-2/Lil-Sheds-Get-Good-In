@@ -185,14 +185,11 @@ class GameState(State):
                 if event.key == pygame.K_s:
                     self.player1.unduck()
                     self.player1.gravity /= 4
-<<<<<<< HEAD
                     self.player1.duckreleased = True
                 elif event.key == pygame.K_DOWN:
                     self.player2.unduck()
                     self.player2.gravity /= 4
                     self.player2.duckreleased = True
-=======
->>>>>>> ddef43066ff14d49bc0d4dfefd663ec26fadd51a
                 elif event.key == pygame.K_g:
                     self.player1.rangedendtime = pygame.time.get_ticks()
                     self.player1.released = True
