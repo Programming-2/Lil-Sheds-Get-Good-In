@@ -1,4 +1,3 @@
-import pygame
 from states.State import State
 from utils.Colors import colors
 from src.HealthBar import HealthBar
