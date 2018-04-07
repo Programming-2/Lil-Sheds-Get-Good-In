@@ -58,8 +58,6 @@ class GameState(State):
         self.handler.setPlatformArray(self.platformArray)
         self.player1 = self.handler.player1
         self.player2 = self.handler.player2
-        self.player1MeleeAttack = Attack(self.player1.rect.x, self.player1.rect.y, "melee attack", 5, 2, 2, self.screen, 120, self.handler, self.player1)
-        self.player2MeleeAttack = Attack(self.player2.rect.x, self.player2.rect.y, "melee attack", 5, 2, 2, self.screen, 120, self.handler, self.player2)
         self.handler.setPlayer1(self.player1)
         self.handler.setPlayer2(self.player2)
         self.player2.facing = -1
