@@ -4,7 +4,7 @@ from utils.Colors import colors
 from src.HealthBar import HealthBar
 from src.InfoBars import InfoBar
 from utils.Timer import Timer
-from src.MeleeAttack import Attack
+from src.MeleeAttack import MeleeAttack
 from utils.Constants import *
 
 font = pygame.font.SysFont("Comic Sans MS", 36)
@@ -30,8 +30,6 @@ class GameState(State):
 
         self.player1 = self.handler.player1
         self.player2 = self.handler.player2
-        self.player1MeleeAttack = Attack(self.player1.rect.x, self.player1.rect.y, "melee attack", 5, 2, 2, screen, 120, handler, self.player1)
-        self.player2MeleeAttack = Attack(self.player2.rect.x, self.player2.rect.x, "melee attack", 5, 2, 2, screen, 120, handler, self.player2)
 
         self.screen = screen
 
@@ -138,9 +136,9 @@ class GameState(State):
                 elif event.key == pygame.K_RETURN and not self.player2.sleeping:
                     self.player2.special()
                 elif event.key == pygame.K_r and not self.player1.sleeping:
-                    self.player1MeleeAttack.p1_melee_attack()
+                    self.player1.meleeAttack()
                 elif event.key == pygame.K_RCTRL and not self.player2.sleeping:
-                    self.player2MeleeAttack.p2_melee_attack()
+                    self.player2.meleeAttack()
                 elif event.key == pygame.K_w and not (self.player1.sleeping or self.player1.stunned):
                     self.player1.jump()
                 elif event.key == pygame.K_s and not (self.player1.sleeping or self.player1.stunned):

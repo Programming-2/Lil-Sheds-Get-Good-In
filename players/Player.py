@@ -1,6 +1,7 @@
 import pygame
 from utils import Colors
 from src.Attack import Attack
+from src.MeleeAttack import MeleeAttack
 from src.Cooldown import Cooldown
 from utils.Colors import colors
 
@@ -39,6 +40,7 @@ class Player(pygame.sprite.Sprite):
         self.special_cooldown = Cooldown(0)
         self.ranged_cooldown = Cooldown(0)
         self.bullet_speed = 15
+        self.meleeattack = MeleeAttack(20, self, self.handler)
 
     def setPlatArray(self, arr):
         self.platArray = arr
@@ -141,6 +143,9 @@ class Player(pygame.sprite.Sprite):
             self.handler.getAttackList().add(Attack(self.rect.x - 50, self.rect.y, self.bullet_speed * self.facing, 0, "ranged", self.damage, 3, 5, screen, self.leftAttackSprite, 20, self.handler))
         elif self.facing == 1:
             self.handler.getAttackList().add(Attack(self.rect.x + self.width + 30, self.rect.y, self.bullet_speed * self.facing, 0, "ranged", self.damage, 3, 5, screen, self.rightAttackSprite, 20, self.handler))
+
+    def meleeAttack(self):
+        self.meleeattack.attack()
 
     def special(self):
         pass  # abstract
