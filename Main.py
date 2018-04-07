@@ -11,6 +11,7 @@ from states.MapSelectionState import MapSelectionState
 from states.PlayerSelectionState import PlayerSelectionState
 from utils.StateManager import StateManager
 from states.PausedState import PausedState
+from utils.SoundLoader import *
 
 pygame.init()
 
@@ -72,6 +73,10 @@ game_won = False
 stateManager.setCurrentState("MainMenuState")
 
 font = pygame.font.SysFont("Comic Sans MS", 16)
+
+pygame.mixer.music.load(STEAMPOWEREDLOCATION)
+pygame.mixer.music.set_volume(0.5)
+pygame.mixer.music.play(-1)
 
 # Game loop
 while not handler.getDone():
