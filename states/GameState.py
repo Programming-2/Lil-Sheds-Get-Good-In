@@ -128,21 +128,21 @@ class GameState(State):
                     self.player1.released = False
                 elif event.key == pygame.K_f and not self.player1.sleeping:
                     self.player1.special()
+                elif event.key == pygame.K_r and not self.player1.sleeping:
+                    self.player1.meleeAttack()
+                elif event.key == pygame.K_w and not (self.player1.sleeping or self.player1.stunned):
+                    self.player1.jump()
+                elif event.key == pygame.K_s and not (self.player1.sleeping or self.player1.stunned):
+                    self.player1.duck()
+                    self.player1.gravity *= 4
                 elif event.key == pygame.K_RSHIFT and not self.player2.sleeping:
                     self.player2.attack(screen)
                     self.player2.rangedstarttime = pygame.time.get_ticks()
                     self.player2.released = False
                 elif event.key == pygame.K_RETURN and not self.player2.sleeping:
                     self.player2.special()
-                elif event.key == pygame.K_r and not self.player1.sleeping:
-                    self.player1.meleeAttack()
                 elif event.key == pygame.K_RCTRL and not self.player2.sleeping:
                     self.player2.meleeAttack()
-                elif event.key == pygame.K_w and not (self.player1.sleeping or self.player1.stunned):
-                    self.player1.jump()
-                elif event.key == pygame.K_s and not (self.player1.sleeping or self.player1.stunned):
-                    self.player1.duck()
-                    self.player1.gravity *= 4
                 elif event.key == pygame.K_UP and not (self.player2.sleeping or self.player2.stunned):
                     self.player2.jump()
                 elif event.key == pygame.K_DOWN and not (self.player2.sleeping or self.player2.stunned):
@@ -156,12 +156,12 @@ class GameState(State):
                 if event.key == pygame.K_s:
                     self.player1.unduck()
                     self.player1.gravity /= 4
-                elif event.key == pygame.K_DOWN:
-                    self.player2.unduck()
-                    self.player2.gravity /= 4
                 elif event.key == pygame.K_g:
                     self.player1.rangedendtime = pygame.time.get_ticks()
                     self.player1.released = True
+                elif event.key == pygame.K_DOWN:
+                    self.player2.unduck()
+                    self.player2.gravity /= 4
                 elif event.key == pygame.K_RSHIFT:
                     self.player2.rangedendtime = pygame.time.get_ticks()
                     self.player2.released = True
@@ -172,16 +172,8 @@ class GameState(State):
                     self.player1.released = False
                 if event.button == CONTROLLER_SPECIAL and not self.player1.sleeping and event.joy == 0:
                     self.player1.special()
-                if event.button == CONTROLLER_RANGED and not self.player2.sleeping and event.joy == 1:
-                    self.player2.attack(screen)
-                    self.player2.rangedstarttime = pygame.time.get_ticks()
-                    self.player2.released = False
-                if event.button == CONTROLLER_SPECIAL and not self.player2.sleeping and event.joy == 1:
-                    self.player2.special()
                 if event.button == CONTROLLER_MELEE and not self.player1.sleeping and event.joy == 0:
                     self.player1MeleeAttack.p1_melee_attack()
-                if event.button == CONTROLLER_MELEE and not self.player2.sleeping and event.joy == 1:
-                    self.player2MeleeAttack.p2_melee_attack()
                 if event.button == CONTROLLER_JUMP and not (self.player1.sleeping or self.player1.stunned) and event.joy == 0:
                     self.player1.jump()
                 if event.button == CONTROLLER_CROUCH and not (self.player1.sleeping or self.player1.stunned) and event.joy == 0:
@@ -189,21 +181,29 @@ class GameState(State):
                     self.player1.gravity = 1
                 if event.button == CONTROLLER_JUMP and not (self.player2.sleeping or self.player2.stunned) and event.joy == 1:
                     self.player2.jump()
+                if event.button == CONTROLLER_MELEE and not self.player2.sleeping and event.joy == 1:
+                    self.player2MeleeAttack.p2_melee_attack()
                 if event.button == CONTROLLER_CROUCH and not (self.player2.sleeping or self.player2.stunned) and event.joy == 1:
                     self.player2.duck()
                     self.player2.gravity = 1
+                if event.button == CONTROLLER_RANGED and not self.player2.sleeping and event.joy == 1:
+                    self.player2.attack(screen)
+                    self.player2.rangedstarttime = pygame.time.get_ticks()
+                    self.player2.released = False
+                if event.button == CONTROLLER_SPECIAL and not self.player2.sleeping and event.joy == 1:
+                    self.player2.special()
                 if event.button == CONTROLLER_PAUSE:
                     self.handler.getStateManager().setCurrentState("PausedState")
             elif self.useJoysticks and event.type == pygame.JOYBUTTONUP:
                 if event.button == CONTROLLER_RANGED and event.joy == 0:
                     self.player1.rangedendtime = pygame.time.get_ticks()
                     self.player1.released = True
-                if event.button == CONTROLLER_RANGED and event.joy == 1:
-                    self.player2.rangedendtime = pygame.time.get_ticks()
-                    self.player2.released = True
                 if event.button == CONTROLLER_CROUCH and event.joy == 0:
                     self.player1.unduck()
                     self.player1.gravity = 0.25
+                if event.button == CONTROLLER_RANGED and event.joy == 1:
+                    self.player2.rangedendtime = pygame.time.get_ticks()
+                    self.player2.released = True
                 if event.button == CONTROLLER_CROUCH and event.joy == 1:
                     self.player2.unduck()
                     self.player2.gravity = 0.25
