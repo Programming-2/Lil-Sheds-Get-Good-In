@@ -159,19 +159,40 @@ class GameState(State):
                     self.player2.special()
                 elif event.key == pygame.K_RCTRL and not self.player2.sleeping:
                     self.player2.meleeAttack()
+                elif event.key == pygame.K_w and not (self.player1.sleeping or self.player1.stunned):
+                    self.player1.jump()
+                    self.player1.jumpreleased = False
+                elif event.key == pygame.K_s and not (self.player1.sleeping or self.player1.stunned):
+                    self.player1.duck()
+                    self.player1.gravity *= 4
+                    self.player1.duckreleased = False
                 elif event.key == pygame.K_UP and not (self.player2.sleeping or self.player2.stunned):
                     self.player2.jump()
+                    self.player2.duckreleased = False
                 elif event.key == pygame.K_DOWN and not (self.player2.sleeping or self.player2.stunned):
                     self.player2.duck()
                     self.player2.gravity *= 4
+                    self.player2.duckreleased = False
                 elif event.key == pygame.K_RETURN:
                     self.player2.special()
                 elif event.key == pygame.K_ESCAPE:
                     self.handler.getStateManager().setCurrentState("PausedState")
             elif event.type == pygame.KEYUP:
+                if event.key == pygame.K_w:
+                    self.player1.jumpreleased = True
+                elif event.key == pygame.K_UP:
+                    self.player2.jumpreleased = True
                 if event.key == pygame.K_s:
                     self.player1.unduck()
                     self.player1.gravity /= 4
+<<<<<<< HEAD
+                    self.player1.duckreleased = True
+                elif event.key == pygame.K_DOWN:
+                    self.player2.unduck()
+                    self.player2.gravity /= 4
+                    self.player2.duckreleased = True
+=======
+>>>>>>> ddef43066ff14d49bc0d4dfefd663ec26fadd51a
                 elif event.key == pygame.K_g:
                     self.player1.rangedendtime = pygame.time.get_ticks()
                     self.player1.released = True
