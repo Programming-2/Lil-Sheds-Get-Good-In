@@ -6,6 +6,7 @@ class Highscores:
     def __init__(self):
         self.orderedScores = []
         self.scores = {}
+        self.loadScores()
 
     def updateUser(self, name, wins, losses):
         if name in self.scores:
@@ -26,6 +27,23 @@ class Highscores:
 
         self.orderedScores.append(name)
 
+    def loadScores(self):
+        file = open("highscores.txt", "r")
+        line = file.readline()
+        while line is not None:
+            line = line.split(" ")
+            name = line[0]
+            wins = line[1]
+            losses = line[2]
+            self.orderedScores.append(name)
+            self.scores[name] = Score(name + " " + str(wins) + " " + str(losses))
+            line = file.readline()
+        file.close()
+
     def writeScores(self):
-        # TODO Write scores to file
-        pass
+        file = open("highscores.txt", "w")
+        for name in reversed(self.scores):
+            wins = self.scores.get(name).getWins()
+            losses = self.scores.get(name).getLosses()
+            file.write(name + " " + str(wins) + " " + str(losses))
+        file.close()
