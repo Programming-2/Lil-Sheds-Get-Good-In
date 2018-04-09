@@ -15,3 +15,6 @@ class JaccobBonkley(Player):
         super().__init__(health, damage, winQuote, loseQuote, name, x, y, movespeed, handler.getPlatformArray(), handler.getAttackList(), handler, defense)
 
         self.bullet_speed = 20
+
+    def special(self):
+        pass

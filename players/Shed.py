@@ -45,18 +45,19 @@ class Shed(Player):
         self.screen = screen
         self.moveX()
         self.moveY()
+        self.gravityUpdate()
         screen.blit(self.sprite, [self.rect.x, self.rect.y])
 
         if self.xchange > 0:
             self.facing = 1
         elif self.xchange < 0:
             self.facing = -1
-
+        print(str(self.jumpreleased) + " " + str(self.jump_pressed))
         if self.jump_pressed and not self.jumpreleased:
-            self.ychange -= 0.25
+            self.gravity = -5
         if self.duck_pressed and not self.duckreleased:
-            self.ychange += 0.25
+            self.gravity = 5
         if self.jumpreleased and self.ychange < 0:
-            self.ychange += 0.25
+            self.gravity = 5
         if self.duckreleased and self.ychange > 0:
-            self.ychange -= 0.25
+            self.gravity = -5
