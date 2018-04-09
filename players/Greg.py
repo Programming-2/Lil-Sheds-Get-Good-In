@@ -1,6 +1,7 @@
 import pygame
 from players.Player import Player
 from src.Attack import Attack
+from src.CustomAttack import CustomAttack
 from src.Cooldown import Cooldown
 from utils.Handler import Handler
 
@@ -100,15 +101,15 @@ class Greg(Player):
                 self.ychange = 0
                 self.gravity = 0
                 if self.specialnum == 1:
-                    self.handler.getAttackList().add(Attack(self.rect.x + self.width, self.rect.y + self.height - 50, 15, 0, "ranged", self.damage_special, 0, 0, screen, self.attacksprite, 20, self.handler))
+                    self.handler.getAttackList().add(CustomAttack(self, self.damage_special, self.handler, 15, 0))
                 if self.specialnum == 2:
-                    self.handler.getAttackList().add(Attack(self.rect.x - 30, self.rect.y + self.height - 50, -15, 0, "ranged", self.damage_special, 0, 0, screen, self.attacksprite, 20, self.handler))
+                    self.handler.getAttackList().add(CustomAttack(self, self.damage_special, self.handler, 15, 15))
                 if self.specialnum == 3:
-                    self.handler.getAttackList().add(Attack(self.rect.x + self.width / 2, self.rect.y + self.height, 0, 15, "ranged", self.damage_special, 0, 0, screen, self.attacksprite, 20, self.handler))
+                    self.handler.getAttackList().add(CustomAttack(self, self.damage_special, self.handler, 0, 15))
                 if self.specialnum == 4:
-                    self.handler.getAttackList().add(Attack(self.rect.x + self.width / 2, self.rect.y - 30, 0, -15, "ranged", self.damage_special, 0, 0, screen, self.attacksprite, 20, self.handler))
+                    self.handler.getAttackList().add(CustomAttack(self, self.damage_special, self.handler, -15, 15))
                 if self.specialnum == 5:
-                    self.handler.getAttackList().add(Attack(self.rect.x + self.width, self.rect.y + self.height, 10.65, 10.65, "ranged", self.damage_special, 0, 0, screen, self.attacksprite, 20, self.handler))
+                    self.handler.getAttackList().add(CustomAttack(self, self.damage_special, self.handler, 15, 0))
                 if self.specialnum == 6:
                     self.handler.getAttackList().add(Attack(self.rect.x - 30, self.rect.y + self.height + 11, -10.65, 10.65, "ranged", self.damage_special, 0, 0, screen, self.attacksprite, 20, self.handler))
                 if self.specialnum == 7:

@@ -14,8 +14,9 @@ class Player(pygame.sprite.Sprite):
         self.sprite = pygame.image.load("media/Players/" + name + "/" + name + ".png").convert()
         self.stansprite = pygame.image.load("media/Players/" + name + "/" + name + ".png").convert()
         self.crouchsprite = pygame.image.load("media/Players/" + name + "/" + name + "Crouch.png").convert()
-        self.rightAttackSprite = pygame.image.load("media/Misc/projectileRight.png").convert_alpha()
-        self.leftAttackSprite = pygame.image.load("media/Misc/projectileLeft.png").convert_alpha()
+        self.attacksprite = pygame.image.load("media/Misc/projectileRight.png")
+        self.rightAttackSprite = self.attacksprite
+        self.leftAttackSprite = pygame.transform.rotate(self.attacksprite, 180)
         self.damage = damage
         self.health = health
         self.winQuote = winQuote
@@ -130,22 +131,10 @@ class Player(pygame.sprite.Sprite):
             self.ychange = 0
 
     def attackUpdate(self, screen):
-        for e in self.attackList:
-            if e.x < 0 or e.x > screen.get_size()[0]:
-                self.attackList.remove(e)
-            if e.y < 0 or e.y > screen.get_size()[1]:
-                self.attackList.remove(e)
-            e.render(screen)
-            e.move()
-            if pygame.sprite.spritecollide(self, self.attackList, False):
-                pygame.sprite.spritecollide(self, self.attackList, True)
-                self.takeDamage(e.damage)
+        self.attackList.update(screen)
 
     def attack(self, screen):
-        if self.facing == -1:
-            self.handler.getAttackList().add(Attack(self.rect.x - 50, self.rect.y, self.bullet_speed * self.facing, 0, "ranged", self.damage, 3, 5, screen, self.leftAttackSprite, 20, self.handler))
-        elif self.facing == 1:
-            self.handler.getAttackList().add(Attack(self.rect.x + self.width + 30, self.rect.y, self.bullet_speed * self.facing, 0, "ranged", self.damage, 3, 5, screen, self.rightAttackSprite, 20, self.handler))
+        self.handler.getAttackList().add(Attack(self, self.damage, self.handler))
 
     def meleeAttack(self):
         self.meleeattack.attack()

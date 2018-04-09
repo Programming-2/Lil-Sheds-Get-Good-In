@@ -1,5 +1,6 @@
 import pygame
 from src.Attack import Attack
+from src.CustomAttack import CustomAttack
 from players.Player import Player
 from src.Cooldown import Cooldown
 
@@ -35,11 +36,25 @@ class Will(Player):
         self.damage_special = 1.5 * damage
         self.special_available = True
         self.special_cooldown = Cooldown(5)
+        self.special_duration = Cooldown(1)
         self.special_count = 0
         self.special_start_time = 0
         self.released = False
         self.damage = damage
         self.tickcounter = 0
+
+        # attacks
+        self.basic = Attack(self, self.damage, self.handler)
+        self.basic.attacksprite = self.attacksprite
+        self.special1 = CustomAttack(self, self.damage_special, self.handler, 15, 0)
+        self.special2 = CustomAttack(self, self.damage_special, self.handler, 15, 15)
+        self.special3 = CustomAttack(self, self.damage_special, self.handler, 0, 15)
+        self.special4 = CustomAttack(self, self.damage_special, self.handler, -15, 15)
+        self.special5 = CustomAttack(self, self.damage_special, self.handler, -15, 0)
+        self.special6 = CustomAttack(self, self.damage_special, self.handler, -15, -15)
+        self.special7 = CustomAttack(self, self.damage_special, self.handler, 0, -15)
+        self.special8 = CustomAttack(self, self.damage_special, self.handler, 15, -15)
+        self.special_list = [self.special1, self.special2, self.special3, self.special4, self.special5, self.special6, self.special7, self.special8]
 
     def special(self):
         if self.special_cooldown.isDone():
@@ -65,72 +80,74 @@ class Will(Player):
 
         if self.special_active and not self.sleeping:
             self.sprite = self.specialsprite
-            if self.count == 0:
-                self.start_time = pygame.time.get_ticks()
-                self.count += 1
-            seconds = 0
-            if seconds <= 1:
+            self.special_duration.update()
+            if not self.special_duration.isDone():
                 self.rangedavailable = False
-                seconds = (pygame.time.get_ticks() - self.start_time) / 1000
                 self.xchange = 0
                 self.ychange = 0
                 self.defense = 0
                 self.gravity = 0
-            if seconds > 1:
-                self.special_available = False
-                self.handler.getAttackList().add(Attack(self.rect.x + self.width, self.rect.y + self.height - 50, 15, 0, "ranged", self.damage_special, 0, 0, screen, self.attack3, 20, self.handler))
-                self.handler.getAttackList().add(Attack(self.rect.x - 30, self.rect.y + self.height - 50, -15, 0, "ranged", self.damage_special, 0, 0, screen, self.attack3, 20, self.handler))
-                self.handler.getAttackList().add(Attack(self.rect.x + self.width / 2, self.rect.y + self.height, 0, 15, "ranged", self.damage_special, 0, 0, screen, self.attack3, 20, self.handler))
-                self.handler.getAttackList().add(Attack(self.rect.x + self.width / 2, self.rect.y - 30, 0, -15, "ranged", self.damage_special, 0, 0, screen, self.attack3, 20, self.handler))
-                self.handler.getAttackList().add(Attack(self.rect.x + self.width, self.rect.y + self.height, 10.65, 10.65, "ranged", self.damage_special, 0, 0, screen, self.attack3, 20, self.handler))
-                self.handler.getAttackList().add(Attack(self.rect.x - 30, self.rect.y + self.height + 11, -10.65, 10.65, "ranged", self.damage_special, 0, 0, screen, self.attack3, 20, self.handler))
-                self.handler.getAttackList().add(Attack(self.rect.x + self.width, self.rect.y - 30, 10.65, -10.65, "ranged", self.damage_special, 0, 0, screen, self.attack3, 20, self.handler))
-                self.handler.getAttackList().add(Attack(self.rect.x - 30, self.rect.y - 30, -10.65, -10.65, "ranged", self.damage_special, 0, 0, screen, self.attack3, 20, self.handler))
+            else:
+                for attack in self.special_list:
+                    attack.updatePlayer()
+                    attack.rect.x += ((.5 * self.width) - (.5 * attack.left_attack.get_width()))
+                    attack.rect.y += ((.5 * self.height) - (.5 * attack.left_attack.get_height()))
+                    self.handler.getAttackList().add(attack)
                 self.special_active = False
                 self.gravity = self.startgravity
                 self.defense = self.startdefense
                 self.sprite = self.stansprite
                 self.count = 0
+                self.special_cooldown.update()
 
         if self.rangedavailable:
             self.tickcounter += 1
             self.ranged_cooldown.current_cooldown = self.tickcounter / 60
             if self.ranged_cooldown.current_cooldown <= 1 and self.released:
-                self.damage = 10
-                self.bullet_speed = 10
-                self.attacksprite = self.attack1
-                self.attackavailable = True
+                attack = Attack(self, self.damage, self.handler)
+                attack.damage = 10
+                attack.travel_speed = 10
+                attack.left_attack = self.attack1
+                attack.right_attack = self.attack1
+                self.handler.getAttackList().add(attack)
+                self.rangedavailable = False
+                self.tickcounter = 0
             elif self.ranged_cooldown.current_cooldown <= 2 and self.released:
-                self.damage = 25
-                self.bullet_speed = 15
-                self.attacksprite = self.attack2
-                self.attackavailable = True
+                attack = Attack(self, self.damage, self.handler)
+                attack.damage = 25
+                attack.travel_speed = 15
+                attack.left_attack = self.attack2
+                attack.right_attack = self.attack2
+                self.handler.getAttackList().add(attack)
+                self.rangedavailable = False
+                self.tickcounter = 0
             elif self.ranged_cooldown.current_cooldown <= 3 and self.released:
-                self.damage = 60
-                self.bullet_speed = 20
-                self.attacksprite = self.attack3
-                self.attackavailable = True
+                attack = Attack(self, self.damage, self.handler)
+                attack.damage = 60
+                attack.travel_speed = 20
+                attack.left_attack = self.attack3
+                attack.right_attack = self.attack3
+                self.handler.getAttackList().add(attack)
+                self.rangedavailable = False
+                self.tickcounter = 0
             elif self.ranged_cooldown.current_cooldown <= 4 and self.released:
-                self.damage = 120
-                self.bullet_speed = 25
-                self.attacksprite = self.attack4
-                self.attackavailable = True
+                attack = Attack(self, self.damage, self.handler)
+                attack.damage = 120
+                attack.travel_speed = 25
+                attack.left_attack = self.attack4
+                attack.right_attack = self.attack4
+                self.handler.getAttackList().add(attack)
+                self.rangedavailable = False
+                self.tickcounter = 0
             elif self.ranged_cooldown.current_cooldown > 4 and self.released:
-                self.damage = self.ranged_cooldown.current_cooldown * 40
-                self.bullet_speed = 30
-                self.attacksprite = self.attack4
-                self.attackavailable = True
-            if self.attackavailable:
-                if self.facing == -1:
-                    self.handler.getAttackList().add(Attack(self.rect.x - 25, self.rect.y, self.bullet_speed * self.facing, 0, "ranged", self.damage, 3, 5, self.screen, self.attacksprite, 20, self.handler))
-                    self.rangedavailable = False
-                    self.attackavailable = False
-                    self.tickcounter = 0
-                elif self.facing == 1:
-                    self.handler.getAttackList().add(Attack(self.rect.x + self.width + 5, self.rect.y, self.bullet_speed * self.facing, 0, "ranged", self.damage, 3, 5, self.screen, self.attacksprite, 20, self.handler))
-                    self.rangedavailable = False
-                    self.attackavailable = False
-                    self.tickcounter = 0
+                attack = Attack(self, self.damage, self.handler)
+                attack.damage = self.ranged_cooldown.current_cooldown * 40
+                attack.travel_speed = self.ranged_cooldown.current_cooldown * 7
+                attack.left_attack = self.attack4
+                attack.right_attack = self.attack4
+                self.handler.getAttackList().add(attack)
+                self.rangedavailable = False
+                self.tickcounter = 0
 
         screen.blit(self.sprite, [self.rect.x, self.rect.y])
         self.attackUpdate(screen)
