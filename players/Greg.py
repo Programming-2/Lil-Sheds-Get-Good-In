@@ -22,6 +22,7 @@ class Greg(Player):
         self.count = 0
         self.special_active = False
         self.special_cooldown = Cooldown(5)
+        self.special_duration = Cooldown(1)
         self.attacksprite = pygame.image.load("media/Misc/fist.png").convert()
         self.specialsprite = pygame.image.load("media/Players/Greg/GregSpecial.png").convert()
         self.specialframe1 = pygame.image.load("media/Players/Greg/GregSpecial1.png").convert_alpha()
@@ -88,15 +89,11 @@ class Greg(Player):
 
         if self.special_active and not self.sleeping:
             self.sprite = self.specialsprite
-            if self.count == 0:
-                self.start_time = pygame.time.get_ticks()
-                self.count += 1
-            seconds = 0
-            if seconds <= 1:
+            self.special_duration.update()
+            if not self.special_duration.isDone():
                 self.specialnum += 1
                 if self.specialnum > 8:
                     self.specialnum = 1
-                seconds = (pygame.time.get_ticks() - self.start_time) / 1000
                 self.xchange = 0
                 self.ychange = 0
                 self.gravity = 0
@@ -109,20 +106,19 @@ class Greg(Player):
                 if self.specialnum == 4:
                     self.handler.getAttackList().add(CustomAttack(self, self.damage_special, self.handler, -15, 15))
                 if self.specialnum == 5:
-                    self.handler.getAttackList().add(CustomAttack(self, self.damage_special, self.handler, 15, 0))
+                    self.handler.getAttackList().add(CustomAttack(self, self.damage_special, self.handler, -15, 0))
                 if self.specialnum == 6:
-                    self.handler.getAttackList().add(Attack(self.rect.x - 30, self.rect.y + self.height + 11, -10.65, 10.65, "ranged", self.damage_special, 0, 0, screen, self.attacksprite, 20, self.handler))
+                    self.handler.getAttackList().add(CustomAttack(self, self.damage_special, self.handler, -15, -15))
                 if self.specialnum == 7:
-                    self.handler.getAttackList().add(Attack(self.rect.x + self.width, self.rect.y - 30, 10.65, -10.65, "ranged", self.damage_special, 0, 0, screen, self.attacksprite, 20, self.handler))
+                    self.handler.getAttackList().add(CustomAttack(self, self.damage_special, self.handler, 0, -15))
                 if self.specialnum == 8:
-                    self.handler.getAttackList().add(Attack(self.rect.x - 30, self.rect.y - 30, -10.65, -10.65, "ranged", self.damage_special, 0, 0, screen, self.attacksprite, 20, self.handler))
-            if seconds > 1:
+                    self.handler.getAttackList().add(CustomAttack(self, self.damage_special, self.handler, 15, -15))
+            if self.special_duration.isDone():
                 self.special_active = False
-                self.special_available = False
                 self.gravity = self.startgravity
                 self.sprite = self.stansprite
-                self.count = 0
                 self.sprite = self.stansprite
+                self.special_cooldown.update()
 
         screen.blit(self.sprite, [self.rect.x, self.rect.y])
         self.attackUpdate(screen)

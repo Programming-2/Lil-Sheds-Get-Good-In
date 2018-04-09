@@ -31,7 +31,7 @@ class Attack(pygame.sprite.Sprite):
         self.direction = self.player.facing
 
     def update(self, screen):
-        self.changex = self.travel_speed * self.direction
+        # self.changex = self.travel_speed * self.direction
         self.rect.x += self.changex
         self.rect.y += self.changey
         if self.direction == -1:
