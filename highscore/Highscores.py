@@ -14,7 +14,8 @@ class Highscores:
         else:
             self.scores[name] = Score(name, wins, losses)
 
-        # TODO Removed old instance when player is moved up
+        if name in self.orderedScores:
+            self.orderedScores.remove(name)
 
         compWinPercent = wins / losses
         for i in range(0, len(self.orderedScores)):
