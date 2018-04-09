@@ -180,16 +180,16 @@ class GameState(State):
             elif event.type == pygame.KEYUP:
                 if event.key == pygame.K_w:
                     self.player1.jumpreleased = True
+                    self.player1.jump_pressed = False
                 elif event.key == pygame.K_UP:
                     self.player2.jumpreleased = True
+                    self.player2.jump_pressed = False
                 if event.key == pygame.K_s:
                     self.player1.unduck()
                     self.player1.gravity /= 4
-                    self.player1.duckreleased = True
                 elif event.key == pygame.K_DOWN:
                     self.player2.unduck()
                     self.player2.gravity /= 4
-                    self.player2.duckreleased = True
                 elif event.key == pygame.K_g:
                     self.player1.rangedendtime = pygame.time.get_ticks()
                     self.player1.released = True

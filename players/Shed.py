@@ -34,30 +34,32 @@ class Shed(Player):
 
     def jump(self):
         self.jump_pressed = True
+        self.jumpreleased = False
 
     def duck(self):
         self.duck_pressed = True
+        self.duckreleased = False
 
     def unduck(self):
-        pass
+        self.duckreleased = True
+        self.duck_pressed = False
 
     def update(self, screen):
         self.screen = screen
         self.moveX()
         self.moveY()
-        self.gravityUpdate()
         screen.blit(self.sprite, [self.rect.x, self.rect.y])
 
         if self.xchange > 0:
             self.facing = 1
         elif self.xchange < 0:
             self.facing = -1
-        print(str(self.jumpreleased) + " " + str(self.jump_pressed))
+
         if self.jump_pressed and not self.jumpreleased:
-            self.gravity = -5
+            self.ychange -= 0.2
         if self.duck_pressed and not self.duckreleased:
-            self.gravity = 5
-        if self.jumpreleased and self.ychange < 0:
-            self.gravity = 5
-        if self.duckreleased and self.ychange > 0:
-            self.gravity = -5
+            self.ychange += 0.2
+        if self.jumpreleased and round(self.ychange, 1) < 0:
+            self.ychange += 0.1
+        if self.duckreleased and round(self.ychange, 1) > 0:
+            self.ychange -= 0.1
