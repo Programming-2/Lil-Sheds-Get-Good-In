@@ -3,8 +3,7 @@ from utils import Colors
 from src.Attack import Attack
 from src.MeleeAttack import MeleeAttack
 from src.Cooldown import Cooldown
-from soundCheck import Sound
-from utils.Colors import colors
+from utils.Sound import Sound
 
 
 class Player(pygame.sprite.Sprite):

@@ -1,10 +1,10 @@
+import pygame
 from states.State import State
 from utils.Colors import colors
 from src.HealthBar import HealthBar
 from src.InfoBars import InfoBar
 from utils.Timer import Timer
 from utils.Constants import *
-from utils.SoundLoader import *
 
 font = pygame.font.SysFont("Comic Sans MS", 36)
 

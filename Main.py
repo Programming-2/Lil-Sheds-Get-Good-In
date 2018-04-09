@@ -11,7 +11,6 @@ from states.MapSelectionState import MapSelectionState
 from states.PlayerSelectionState import PlayerSelectionState
 from utils.StateManager import StateManager
 from states.PausedState import PausedState
-from utils.SoundLoader import *
 
 pygame.init()
 
