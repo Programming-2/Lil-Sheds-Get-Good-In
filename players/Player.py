@@ -19,6 +19,7 @@ class Player(pygame.sprite.Sprite):
         self.rightAttackSprite = self.attacksprite
         self.leftAttackSprite = pygame.transform.rotate(self.attacksprite, 180)
         self.damage = damage
+        self.maxHP = health
         self.health = health
         self.winQuote = winQuote
         self.loseQuote = loseQuote

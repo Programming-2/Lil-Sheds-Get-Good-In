@@ -69,8 +69,8 @@ class GameState(State):
 
         self.player2.facing = -1
 
-        self.player1.health = 100
-        self.player2.health = 100
+        self.player1.health = self.player1.maxHP
+        self.player2.health = self.player2.maxHP
 
         self.p1hpbar = HealthBar(self.screen, "topleft", self.player1.health, self.handler)
         self.p2hpbar = HealthBar(self.screen, "topright", self.player2.health, self.handler)
