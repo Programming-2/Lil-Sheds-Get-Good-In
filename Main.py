@@ -74,10 +74,6 @@ stateManager.setCurrentState("MainMenuState")
 
 font = pygame.font.SysFont("Comic Sans MS", 16)
 
-pygame.mixer.music.load(STEAMPOWEREDLOCATION)
-pygame.mixer.music.set_volume(0.5)
-# pygame.mixer.music.play(-1)
-
 # Game loop
 while not handler.getDone():
     stateManager.update(screen)

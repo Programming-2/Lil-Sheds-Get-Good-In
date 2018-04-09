@@ -296,7 +296,6 @@ class GameState(State):
             screen.blit(text, (self.handler.getPlayer1().rect.x, self.handler.getPlayer1().rect.y - 100))
             text = font.render(self.handler.getPlayer2().winQuote, False, colors.get("BLACK"))
             screen.blit(text, (self.handler.getPlayer2().rect.x, self.handler.getPlayer2().rect.y - 100))
-            DEATHSOUND.play()
             if self.count == 0:
                 self.end_time = self.timer.current_time
                 self.count += 1
@@ -309,7 +308,6 @@ class GameState(State):
             screen.blit(text, (self.handler.getPlayer2().rect.x, self.handler.getPlayer2().rect.y - 100))
             text = font.render(self.handler.getPlayer1().winQuote, False, colors.get("BLACK"))
             screen.blit(text, (self.handler.getPlayer1().rect.x, self.handler.getPlayer1().rect.y - 100))
-            DEATHSOUND.play()
             if self.count == 0:
                 self.end_time = self.timer.current_time
                 self.count += 1
