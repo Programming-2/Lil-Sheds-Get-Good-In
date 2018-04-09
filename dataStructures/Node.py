@@ -7,5 +7,8 @@ class Node:
     def getNextNode(self):
         return self.nextNode
 
+    def setNextNode(self, node):
+        self.nextNode = node
+
     def getData(self):
         return self.data
