@@ -28,22 +28,25 @@ class Highscores:
         self.orderedScores.append(name)
 
     def loadScores(self):
-        file = open("highscores.txt", "r")
+        try:
+            file = open("highscores.txt", "r")
+        except FileNotFoundError:
+            return
         line = file.readline()
-        while line is not None:
+        while not line == "":
             line = line.split(" ")
             name = line[0]
             wins = line[1]
             losses = line[2]
             self.orderedScores.append(name)
-            self.scores[name] = Score(name + " " + str(wins) + " " + str(losses))
+            self.scores[name] = Score(name, int(wins), int(losses))
             line = file.readline()
         file.close()
 
     def writeScores(self):
         file = open("highscores.txt", "w")
-        for name in reversed(self.scores):
+        for name in reversed(self.orderedScores):
             wins = self.scores.get(name).getWins()
             losses = self.scores.get(name).getLosses()
-            file.write(name + " " + str(wins) + " " + str(losses))
+            file.write(name + " " + str(wins) + " " + str(losses) + "\n")
         file.close()
