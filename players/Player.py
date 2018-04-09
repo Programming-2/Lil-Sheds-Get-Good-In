@@ -14,7 +14,6 @@ class Player(pygame.sprite.Sprite):
         self.sprite = pygame.image.load("media/Players/" + name + "/" + name + ".png").convert()
         self.stansprite = pygame.image.load("media/Players/" + name + "/" + name + ".png").convert()
         self.crouchsprite = pygame.image.load("media/Players/" + name + "/" + name + "Crouch.png").convert()
-        self.attacksprite = pygame.image.load("media/Misc/projectileRight.png")
         self.rightAttackSprite = self.attacksprite
         self.leftAttackSprite = pygame.transform.rotate(self.attacksprite, 180)
         self.damage = damage
