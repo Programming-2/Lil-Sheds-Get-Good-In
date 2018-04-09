@@ -1,4 +1,4 @@
 Kyle 6 8
-Will 8 5
-Dave 5 2
-Jakob 10 3
+Will 8 6
+Jakob 11 3
+Dave 10 2
