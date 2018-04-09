@@ -30,3 +30,6 @@ class LinkedList:
         if currentNode is None:
             raise ValueError("Data not in list")
         return currentNode
+
+    def getHead(self):
+        return self.head
