@@ -11,5 +11,5 @@ class CustomAttack(Attack):
 
         self.changex = x_speed
         self.changey = y_speed
-        self.rect.x = self.player.rect.x
-        self.rect.y = self.player.rect.y
+        self.rect.x = self.player.rect.x + (self.player.width * .5) - (self.attacksprite.get_width() * .5)
+        self.rect.y = self.player.rect.y + (self.player.height * .5) - (self.attacksprite.get_height() * .5)
