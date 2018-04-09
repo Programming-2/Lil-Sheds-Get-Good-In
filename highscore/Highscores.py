@@ -26,7 +26,6 @@ class Highscores:
 
         self.orderedScores.append(name)
 
-
     def writeScores(self):
         # TODO Write scores to file
         pass
