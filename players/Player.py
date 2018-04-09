@@ -3,6 +3,7 @@ from utils import Colors
 from src.Attack import Attack
 from src.MeleeAttack import MeleeAttack
 from src.Cooldown import Cooldown
+from soundCheck import Sound
 from utils.Colors import colors
 
 
@@ -15,6 +16,7 @@ class Player(pygame.sprite.Sprite):
         self.stansprite = pygame.image.load("media/Players/" + name + "/" + name + ".png").convert()
         self.crouchsprite = pygame.image.load("media/Players/" + name + "/" + name + "Crouch.png").convert()
         self.attacksprite = pygame.image.load("media/Misc/projectileRight.png")
+        self.hitSound = Sound("Big_Explosion_Cut_Off")
         self.rightAttackSprite = self.attacksprite
         self.leftAttackSprite = pygame.transform.rotate(self.attacksprite, 180)
         self.damage = damage
@@ -70,6 +72,7 @@ class Player(pygame.sprite.Sprite):
 
     def takeDamage(self, takenDamage):
         self.health -= round(takenDamage * self.defense)
+        self.hitSound.playSound()
 
     def gravityUpdate(self):
         if self.ychange == 0:
