@@ -38,7 +38,7 @@ class Greg(Player):
         if self.ranged_cooldown.isDone():
             self.attacking = True
             if self.facing == 1:
-                self.rect.x += 200
+                self.xchange = 200
                 if self.handler.getPlayer1().name == "Greg":
                     if self.attackradius + (self.width * .5) >= self.handler.getPlayer2().rect.x - self.rect.x >= -self.attackradius + (self.width * .5) and self.attackradius + (self.width * .5) >= self.handler.getPlayer2().rect.y - self.rect.y >= -self.attackradius + (self.width * .5):
                         self.handler.getPlayer2().takeDamage(self.damage_ranged)
@@ -46,7 +46,7 @@ class Greg(Player):
                     if self.attackradius + (self.width * .5) >= self.handler.getPlayer1().rect.x - self.rect.x >= -self.attackradius + (self.height * .5) and self.attackradius + (self.width * .5) >= self.handler.getPlayer1().rect.y - self.rect.y >= -self.attackradius + (self.height * .5):
                         self.handler.getPlayer1().takeDamage(self.damage_ranged)
             if self.facing == -1:
-                self.rect.x -= 200
+                self.xchange = -200
                 if self.handler.getPlayer1().name == "Greg":
                     if 150 >= self.handler.getPlayer2().rect.x - self.rect.x >= -150:
                         self.handler.getPlayer2().takeDamage(self.damage_ranged)
