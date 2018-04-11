@@ -28,6 +28,8 @@ class Shed(Player):
         self.special_cooldown = Cooldown(8)
         self.special_active = False
 
+        self.keys = None
+
     def special(self):
         if self.special_cooldown.isDone():
             self.special_active = True
@@ -63,3 +65,7 @@ class Shed(Player):
             self.ychange += 0.1
         if self.duckreleased and round(self.ychange, 1) > 0:
             self.ychange -= 0.1
+        if self.xchange > 0:
+            self.xchange -= 0.1
+        if self.xchange < 0:
+            self.xchange += 0.1
