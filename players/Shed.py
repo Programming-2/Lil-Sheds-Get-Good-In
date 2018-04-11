@@ -69,3 +69,5 @@ class Shed(Player):
             self.xchange -= 0.1
         if self.xchange < 0:
             self.xchange += 0.1
+        if self.rect.y <= 0 and self.ychange < 0:
+            self.ychange = 0
