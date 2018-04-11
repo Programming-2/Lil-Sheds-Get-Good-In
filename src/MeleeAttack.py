@@ -9,7 +9,6 @@ class MeleeAttack():
         self.attackrange = 100
 
     def attack(self):
-        print(str(self.handler.getPlayer2().rect.x - self.player.rect.x) + " facing " + str(self.player.facing))
         if self.player.facing == 1:
             if self.handler.getPlayer1().name == self.player.name:
                 if 0 < self.handler.getPlayer2().rect.x - self.player.rect.x < self.attackrange and -self.player.height <= self.handler.getPlayer2().rect.y - self.player.rect.y < self.player.height:
