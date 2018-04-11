@@ -25,14 +25,14 @@ class Attack(pygame.sprite.Sprite):
         self.name = player.name
         self.damage = player.damage
 
-    def updatePlayer(self):
+    def updateAttack(self):
         self.rect.x = self.player.rect.x
         self.rect.y = self.player.rect.y
         self.direction = self.player.facing
 
     def update(self, screen):
         # self.changex = self.travel_speed * self.direction
-        self.rect.x += self.changex
+        self.rect.x += self.travel_speed * self.direction
         self.rect.y += self.changey
         if self.direction == -1:
             screen.blit(self.left_attack, (self.rect.x, self.rect.y))
