@@ -33,7 +33,7 @@ testProjectile = pygame.image.load("media/Misc/projectileTest.png").convert()
 testControlScreen = pygame.image.load("media/Screens/ControlScreen.png").convert()
 playerSelectScreen = pygame.image.load("media/Screens/LilShedCharacterSelect.png").convert()
 mapSelectionScreen = pygame.image.load("media/Screens/MapSelection.png").convert()
-pauseScreen = pygame.image.load("media/Screens/PauseScreen2.png").convert()
+pauseScreen = pygame.image.load("media/Screens/PauseScreen2.png").convert_alpha()
 
 # Setting up screen stuff
 pygame.display.set_caption("Lil' Shed's Get Good In™")
