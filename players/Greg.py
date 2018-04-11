@@ -41,11 +41,17 @@ class Greg(Player):
             self.attacking = True
             targetPlayer = self.handler.getOtherPlayer(self)
             if self.facing == 1:
-                self.rect.x += 200
+                if self.rect.x <= 900 - self.width:
+                    self.rect.x += 200
+                elif self.rect.x > 900 - self.width:
+                    self.rect.x += (1100 - self.rect.x - self.width)
                 if self.attackradius + (self.width * .5) >= targetPlayer.rect.x - self.rect.x >= -self.attackradius + (self.width * .5) and self.attackradius + (self.width * .5) >= self.handler.getPlayer2().rect.y - self.rect.y >= -self.attackradius + (self.width * .5):
                     targetPlayer.takeDamage(self.damage_ranged)
             if self.facing == -1:
-                self.rect.x += -200
+                if self.rect.x >= 200:
+                    self.rect.x += -200
+                elif self.rect.x < 200:
+                    self.rect.x += -self.rect.x
                 if 150 >= targetPlayer.rect.x - self.rect.x >= -150:
                     targetPlayer.takeDamage(self.damage_ranged)
             self.ranged_cooldown.update()
