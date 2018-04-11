@@ -34,6 +34,8 @@ class Shed(Player):
         self.specialx = 5
         self.specialy = 15
 
+        self.keys = None
+
     def special(self):
         if self.special_cooldown.isDone():
             self.special_active = True

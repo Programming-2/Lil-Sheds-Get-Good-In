@@ -134,6 +134,11 @@ class GameState(State):
         if keys[pygame.K_RIGHT] and not (self.player2.sleeping or self.player2.stunned):
             self.player2.xchange = self.player2.movespeed
 
+        if self.player1.name == "Lil' Shed":
+            self.player1.keys = keys
+        if self.player2.name == "Lil' Shed":
+            self.player2.keys = keys
+
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 self.handler.setDone(True)
@@ -279,15 +284,17 @@ class GameState(State):
 
         pygame.sprite.groupcollide(self.platformArray, self.attackUpdateList, False, True)
 
-        self.player1.xchange = 0
-        self.player2.xchange = 0
+        if self.player1.name != "Lil' Shed":
+            self.player1.xchange = 0
+        if self.player2.name != "Lil' Shed":
+            self.player2.xchange = 0
 
         if self.useJoysticks:
             if (self.joystick1.get_axis(0) > 0.01 or self.joystick1.get_axis(0) < -0.01) and not (self.player1.sleeping or self.player1.stunned):
-                self.player1.xchange = (self.joystick1.get_axis(0) * 5)
+                self.player1.xchange = (self.joystick1.get_axis(0) * self.player1.movespeed)
 
             if (self.joystick2.get_axis(0) > 0.01 or self.joystick2.get_axis(0) < -0.01) and not (self.player2.sleeping or self.player2.stunned):
-                self.player2.xchange = (self.joystick2.get_axis(0) * 5)
+                self.player2.xchange = (self.joystick2.get_axis(0) * self.player2.movespeed)
 
             if (self.joystick1.get_axis(1) > 0.01 or self.joystick1.get_axis(1) < -0.01) and not (self.player1.sleeping or self.player1.stunned) and self.player1.name == "Lil' Shed":
                 self.player1.ychange = (self.joystick1.get_axis(1) * 7)

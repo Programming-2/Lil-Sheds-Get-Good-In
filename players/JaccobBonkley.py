@@ -2,6 +2,7 @@ import pygame
 import random
 from players.Player import Player
 from src.Cooldown import Cooldown
+from dataStructures.CircularQueue import CircularQueue
 
 class JaccobBonkley(Player):
 
@@ -18,11 +19,20 @@ class JaccobBonkley(Player):
         super().__init__(health, damage, winQuote, loseQuote, name, x, y, movespeed, handler.getPlatformArray(), handler.getAttackList(), handler, defense)
 
         self.bullet_speed = 20
-        self.special_cooldown = Cooldown(5)
-        self.special_duration = Cooldown(2)
+        self.special_cooldown = Cooldown(1)
+        self.special_duration = Cooldown(1)
         self.number = 0
         self.special_active = False
-        self.keyboard = pygame.image.load("media/Misc/Keyboard.png").convert()
+        self.keyboard = pygame.image.load("media/Misc/Keyboard.png").convert_alpha()
+
+        self.keyboardAnimation = CircularQueue()
+        for a in range(0,-90,-5):
+            self.keyboardAnimation.addData(pygame.transform.rotate(self.keyboard, a))
+
+        self.keyboardAnimation2 = CircularQueue()
+        for b in range(0, 90, 5):
+            self.keyboardAnimation.addData(pygame.transform.rotate(self.keyboard, b))
+        #print(CircularQueue.queue)
 
 
     def special(self):
@@ -49,12 +59,14 @@ class JaccobBonkley(Player):
             self.special_duration.update()
             if self.number == 5:
                 if not self.special_duration.isDone():
-                    pygame.transform.rotate(self.keyboard, 90)
-                    screen.blit(self.keyboard, [self.rect.x + 50,self.rect.y+10])
+                    if self.facing == 1:
+                        screen.blit(self.keyboardAnimation.get(),(self.rect.x + 70, self.rect.y - 50))
+                    if self.facing == -1:
+                        screen.blit(self.keyboardAnimation2.get(),(self.rect.x + 70, self.rect.y - 50))
                 else:
                     self.special_active = False
-                    self.handler.getPlayer1().stunned = False
-                    self.handler.getPlayer2().stunned = False
+                    #self.handler.getPlayer1().stunned = False
+                    #self.handler.getPlayer2().stunned = False
                     self.special_cooldown.update()
             else:
                 pass
