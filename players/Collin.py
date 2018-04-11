@@ -1,5 +1,6 @@
 import pygame
 from players.Player import Player
+from dataStructures.CircularQueue import CircularQueue
 
 
 class Collin(Player):
@@ -21,10 +22,16 @@ class Collin(Player):
         self.attacking = False
         self.enemydistx = 0
         self.enemydisty = 0
-        self.left_attack1 = pygame.image.load("media/Players/Collin/CollinRangedLeft1.png").convert_alpha()
-        self.left_attack2 = pygame.image.load("media/Players/Collin/CollinRangedLeft2.png").convert_alpha()
-        self.right_attack1 = pygame.image.load("media/Players/Collin/CollinRangedRight1.png").convert_alpha()
-        self.right_attack2 = pygame.image.load("media/Players/Collin/CollinRangedRight2.png").convert_alpha()
+        left_attack1 = pygame.image.load("media/Players/Collin/CollinRangedLeft1.png").convert_alpha()
+        left_attack2 = pygame.image.load("media/Players/Collin/CollinRangedLeft2.png").convert_alpha()
+        right_attack1 = pygame.image.load("media/Players/Collin/CollinRangedRight1.png").convert_alpha()
+        right_attack2 = pygame.image.load("media/Players/Collin/CollinRangedRight2.png").convert_alpha()
+        self.leftAnimation = CircularQueue()
+        self.leftAnimation.addData(left_attack1)
+        self.leftAnimation.addData(left_attack2)
+        self.rightAnimation = CircularQueue()
+        self.rightAnimation.addData(right_attack1)
+        self.rightAnimation.addData(right_attack2)
 
         # special
 
@@ -57,18 +64,12 @@ class Collin(Player):
             self.enemydistx = self.rect.x - targetPlayer.rect.x
             self.enemydisty = self.rect.y - targetPlayer.rect.y
             if self.facing == -1:
-                if self.currenttick % 4 < 2:
-                    screen.blit(self.left_attack1, (self.rect.x - 330, self.rect.y + 15))
-                if self.currenttick % 4 >= 2:
-                    screen.blit(self.left_attack2, (self.rect.x - 330, self.rect.y + 15))
+                screen.blit(self.leftAnimation.get(), (self.rect.x - 330, self.rect.y + 15))
                 if 330 > self.enemydistx > 0 > self.enemydisty > -60:
                     if self.currenttick % 5 == 0:
                         targetPlayer.takeDamage(self.damage)
             if self.facing == 1:
-                if self.currenttick % 4 < 2:
-                    screen.blit(self.right_attack1, (self.rect.x + self.width, self.rect.y + 15))
-                if self.currenttick % 4 >= 2:
-                    screen.blit(self.right_attack2, (self.rect.x + self.width, self.rect.y + 15))
+                screen.blit(self.rightAnimation.get(), (self.rect.x + self.width, self.rect.y + 15))
                 if 0 > self.enemydistx > -330 - self.width and 0 > self.enemydisty > -60:
                     if self.currenttick % 5 == 0:
                         targetPlayer.takeDamage(self.damage)
