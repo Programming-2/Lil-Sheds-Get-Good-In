@@ -208,16 +208,16 @@ class GameState(State):
                     self.player1.special()
                 if event.button == CONTROLLER_MELEE and not self.player1.sleeping and event.joy == 0:
                     self.player1.meleeAttack()
-                if event.button == CONTROLLER_JUMP and not (self.player1.sleeping or self.player1.stunned) and event.joy == 0:
+                if event.button == CONTROLLER_JUMP and not (self.player1.sleeping or self.player1.stunned) and event.joy == 0 and self.player1.name != "Lil' Shed":
                     self.player1.jump()
-                if event.button == CONTROLLER_CROUCH and not (self.player1.sleeping or self.player1.stunned) and event.joy == 0:
+                if event.button == CONTROLLER_CROUCH and not (self.player1.sleeping or self.player1.stunned) and event.joy == 0 and self.player1.name != "Lil' Shed":
                     self.player1.duck()
                     self.player1.gravity = 1
-                if event.button == CONTROLLER_JUMP and not (self.player2.sleeping or self.player2.stunned) and event.joy == 1:
+                if event.button == CONTROLLER_JUMP and not (self.player2.sleeping or self.player2.stunned) and event.joy == 1 and self.player2.name != "Lil' Shed":
                     self.player2.jump()
                 if event.button == CONTROLLER_MELEE and not self.player2.sleeping and event.joy == 1:
                     self.player2.meleeAttack()
-                if event.button == CONTROLLER_CROUCH and not (self.player2.sleeping or self.player2.stunned) and event.joy == 1:
+                if event.button == CONTROLLER_CROUCH and not (self.player2.sleeping or self.player2.stunned) and event.joy == 1 and self.player2.name != "Lil' Shed":
                     self.player2.duck()
                     self.player2.gravity = 1
                 if event.button == CONTROLLER_RANGED and not self.player2.sleeping and event.joy == 1:
@@ -232,13 +232,13 @@ class GameState(State):
                 if event.button == CONTROLLER_RANGED and event.joy == 0:
                     self.player1.rangedendtime = pygame.time.get_ticks()
                     self.player1.released = True
-                if event.button == CONTROLLER_CROUCH and event.joy == 0:
+                if event.button == CONTROLLER_CROUCH and event.joy == 0 and self.player1.name != "Lil' Shed":
                     self.player1.unduck()
                     self.player1.gravity = 0.25
                 if event.button == CONTROLLER_RANGED and event.joy == 1:
                     self.player2.rangedendtime = pygame.time.get_ticks()
                     self.player2.released = True
-                if event.button == CONTROLLER_CROUCH and event.joy == 1:
+                if event.button == CONTROLLER_CROUCH and event.joy == 1 and self.player2.name != "Lil' Shed":
                     self.player2.unduck()
                     self.player2.gravity = 0.25
 
@@ -288,6 +288,12 @@ class GameState(State):
 
             if (self.joystick2.get_axis(0) > 0.01 or self.joystick2.get_axis(0) < -0.01) and not (self.player2.sleeping or self.player2.stunned):
                 self.player2.xchange = (self.joystick2.get_axis(0) * 5)
+
+            if (self.joystick1.get_axis(1) > 0.01 or self.joystick1.get_axis(1) < -0.01) and not (self.player1.sleeping or self.player1.stunned) and self.player1.name == "Lil' Shed":
+                self.player1.ychange = (self.joystick1.get_axis(1) * 7)
+
+            if (self.joystick2.get_axis(1) > 0.01 or self.joystick2.get_axis(1) < -0.01) and not (self.player2.sleeping or self.player2.stunned) and self.player2.name == "Lil' Shed":
+                self.player2.ychange = (self.joystick2.get_axis(1) * 7)
 
         if self.player1.sleeping:
             text = font.render("Player 2 Wins!", False, colors.get("BLACK"))

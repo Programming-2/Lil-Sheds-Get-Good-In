@@ -22,6 +22,7 @@ class JaccobBonkley(Player):
         self.special_duration = Cooldown(2)
         self.number = 0
         self.special_active = False
+        self.keyboard = pygame.image.load("media/Misc/Keyboard.png").convert()
 
 
     def special(self):
@@ -48,8 +49,8 @@ class JaccobBonkley(Player):
             self.special_duration.update()
             if self.number == 5:
                 if not self.special_duration.isDone():
-                    self.handler.getPlayer1().stunned = True
-                    self.handler.getPlayer2().stunned = True
+                    pygame.transform.rotate(self.keyboard, 90)
+                    screen.blit(self.keyboard, [self.rect.x + 50,self.rect.y+10])
                 else:
                     self.special_active = False
                     self.handler.getPlayer1().stunned = False
