@@ -61,9 +61,9 @@ class Collin(Player):
                     screen.blit(self.left_attack1, (self.rect.x - 330, self.rect.y + 15))
                 if self.currenttick % 4 >= 2:
                     screen.blit(self.left_attack2, (self.rect.x - 330, self.rect.y + 15))
-                if 0 < self.enemydistx < 330 and 0 < self.enemydisty < 60:
+                if 330 > self.enemydistx > 0 > self.enemydisty > -60:
                     if self.currenttick % 5 == 0:
-                        self.handler.getPlayer2().takeDamage(self.damage)
+                        targetPlayer.takeDamage(self.damage)
             if self.facing == 1:
                 if self.currenttick % 4 < 2:
                     screen.blit(self.right_attack1, (self.rect.x + self.width, self.rect.y + 15))
@@ -71,7 +71,7 @@ class Collin(Player):
                     screen.blit(self.right_attack2, (self.rect.x + self.width, self.rect.y + 15))
                 if 0 > self.enemydistx > -330 - self.width and 0 > self.enemydisty > -60:
                     if self.currenttick % 5 == 0:
-                        self.handler.getPlayer2().takeDamage(self.damage)
+                        targetPlayer.takeDamage(self.damage)
         else:
             self.movespeed = 5
         self.currenttick += 1
