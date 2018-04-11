@@ -89,7 +89,7 @@ class Will(Player):
                 self.gravity = 0
             else:
                 for attack in self.special_list:
-                    attack.updatePlayer()
+                    attack.updateAttack()
                     attack.rect.x += ((.5 * self.width) - (.5 * attack.left_attack.get_width()))
                     attack.rect.y += ((.5 * self.height) - (.5 * attack.left_attack.get_height()))
                     self.handler.getAttackList().add(attack)
