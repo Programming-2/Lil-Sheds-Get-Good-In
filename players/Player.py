@@ -165,3 +165,6 @@ class Player(pygame.sprite.Sprite):
 
     def toString(self):
         return self.name
+
+    def __eq__(self, other):
+        return other.toString() == self.name

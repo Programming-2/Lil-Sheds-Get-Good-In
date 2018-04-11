@@ -70,3 +70,9 @@ class Handler:
 
     def setPlayer2MoveSpeed(self, player2MoveSpeed):
         self.player2MoveSpeed = player2MoveSpeed
+
+    def getOtherPlayer(self, currentPlayer):
+        if currentPlayer == self.player1:
+            return self.player2
+        else:
+            return self.player1
