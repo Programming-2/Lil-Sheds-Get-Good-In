@@ -133,6 +133,12 @@ class Player(pygame.sprite.Sprite):
                 self.resetJump()
             self.ychange = 0
 
+    def moveLeft(self):
+        self.xchange = self.movespeed * -1
+
+    def moveRight(self):
+        self.xchange = self.movespeed
+
     def attackUpdate(self, screen):
         self.attackList.update(screen)
 
