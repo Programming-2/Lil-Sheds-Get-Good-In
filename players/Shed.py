@@ -34,7 +34,8 @@ class Shed(Player):
         self.specialx = 5
         self.specialy = 15
 
-        self.keys = None
+        self.movingLeft = False
+        self.movingRight = False
 
     def special(self):
         if self.special_cooldown.isDone():
@@ -51,6 +52,16 @@ class Shed(Player):
     def unduck(self):
         self.duckreleased = True
         self.duck_pressed = False
+
+    def moveLeft(self):
+        if self.xchange > self.movespeed * -1:
+            self.xchange -= .2
+        self.movingLeft = True
+
+    def moveRight(self):
+        if self.xchange < self.movespeed:
+            self.xchange += .2
+        self.movingRight = True
 
     def update(self, screen):
         self.tick += 1
