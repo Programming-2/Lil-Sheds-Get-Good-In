@@ -20,17 +20,18 @@ class JaccobBonkley(Player):
 
         self.bullet_speed = 20
         self.special_cooldown = Cooldown(1)
-        self.special_duration = Cooldown(.3)
+        self.special_duration = Cooldown(.4)
         self.number = 0
         self.special_active = False
         self.keyboard = pygame.image.load("media/Misc/Keyboard.png").convert_alpha()
+        keyboardActive = 0
 
         self.keyboardAnimation = CircularQueue()
         for a in range(0,-90, -5):
             self.keyboardAnimation.addData(pygame.transform.rotate(self.keyboard, a))
 
         self.keyboardAnimation2 = CircularQueue()
-        for b in range(0, 90, 5):
+        for b in range(-90, 0, 5):
             self.keyboardAnimation2.addData(pygame.transform.rotate(self.keyboard, b))
 
 
@@ -62,11 +63,13 @@ class JaccobBonkley(Player):
                         screen.blit(self.keyboardAnimation.get(), (self.rect.x + 70, self.rect.y - 50))
                     if self.facing == -1:
                         screen.blit(self.keyboardAnimation2.get(), (self.rect.x - 70, self.rect.y - 50))
+
                 else:
                     self.special_active = False
                     #self.handler.getPlayer1().stunned = False
                     #self.handler.getPlayer2().stunned = False
                     self.special_cooldown.update()
+                    keyboardActive = 0
             else:
                 pass
 
