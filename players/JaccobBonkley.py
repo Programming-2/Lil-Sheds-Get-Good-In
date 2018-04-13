@@ -26,13 +26,12 @@ class JaccobBonkley(Player):
         self.keyboard = pygame.image.load("media/Misc/Keyboard.png").convert_alpha()
 
         self.keyboardAnimation = CircularQueue()
-        for a in range(0,-90,-5):
+        for a in range(0,-90, -5):
             self.keyboardAnimation.addData(pygame.transform.rotate(self.keyboard, a))
 
         self.keyboardAnimation2 = CircularQueue()
         for b in range(0, 90, 5):
-            self.keyboardAnimation.addData(pygame.transform.rotate(self.keyboard, b))
-        #print(CircularQueue.queue)
+            self.keyboardAnimation2.addData(pygame.transform.rotate(self.keyboard, b))
 
 
     def special(self):
@@ -60,9 +59,9 @@ class JaccobBonkley(Player):
             if self.number == 5:
                 if not self.special_duration.isDone():
                     if self.facing == 1:
-                        screen.blit(self.keyboardAnimation.get(),(self.rect.x + 70, self.rect.y - 50))
+                        screen.blit(self.keyboardAnimation.get(), (self.rect.x + 70, self.rect.y - 50))
                     if self.facing == -1:
-                        screen.blit(self.keyboardAnimation2.get(),(self.rect.x + 70, self.rect.y - 50))
+                        screen.blit(self.keyboardAnimation2.get(), (self.rect.x + 70, self.rect.y - 50))
                 else:
                     self.special_active = False
                     #self.handler.getPlayer1().stunned = False
