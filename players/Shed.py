@@ -83,6 +83,10 @@ class Shed(Player):
             self.ychange += 0.1
         if self.duckreleased and round(self.ychange, 1) > 0:
             self.ychange -= 0.1
+        if not self.movingLeft and round(self.xchange, 1) < 0:
+            self.xchange += 0.1
+        if not self.movingRight and round(self.xchange, 1) > 0:
+            self.xchange -= 0.1
 
         if self.special_active and not self.sleeping:
             if self.tick % 5 == 0:
@@ -155,3 +159,6 @@ class Shed(Player):
 
         if not self.special_cooldown.isDone():
             self.special_cooldown.update()
+
+        self.movingLeft = False
+        self.movingRight = False
