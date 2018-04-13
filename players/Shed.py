@@ -20,7 +20,6 @@ class Shed(Player):
 
         # Misc
         self.tick = 0
-        self.special_tick = 1
         self.jump_pressed = False
         self.duck_pressed = False
 
@@ -33,6 +32,9 @@ class Shed(Player):
         self.special_duration = Cooldown(3)
         self.specialx = 5
         self.specialy = 15
+        self.special_phase = 1
+        self.special_x_change = 2
+        self.special_y_change = 2
 
         self.movingLeft = False
         self.movingRight = False
@@ -44,6 +46,10 @@ class Shed(Player):
     def jump(self):
         self.jump_pressed = True
         self.jumpreleased = False
+
+    def unjump(self):
+        self.jumpreleased = True
+        self.jump_pressed = False
 
     def duck(self):
         self.duck_pressed = True
@@ -87,20 +93,53 @@ class Shed(Player):
             self.xchange += 0.1
         if not self.movingRight and round(self.xchange, 1) > 0:
             self.xchange -= 0.1
+        if self.rect.y <= 0 and self.ychange < 0:
+            self.ychange = 0
 
         if self.special_active and not self.sleeping:
-            if self.tick % 5 == 0:
-                self.special_tick += 1
-            print(self.special_tick)
             self.movespeed = 0
             self.ychange = 0
+            self.xchange = 0
             self.special_duration.update()
-            if not self.special_duration.isDone():
-                for x in range(1, 17):
+            if self.special_phase != 7:
+                if self.tick % 5 == 0:
                     self.handler.getAttackList().add(CustomAttack(self, self.damage, self.handler, self.specialx, self.specialy))
                     self.handler.getAttackList().add(CustomAttack(self, self.damage, self.handler, -self.specialx, self.specialy))
-                    self.specialx += 2
-                    self.specialy -= 2
+                    if self.special_phase == 1:
+                        self.special_x_change = 2
+                        self.special_y_change = 2
+                        if self.specialx >= 19:
+                            self.special_phase = 2
+                    elif self.special_phase == 2:
+                        self.special_x_change = -2
+                        self.special_y_change = 2
+                        if self.specialx <= 3:
+                            self.special_phase = 3
+                    elif self.special_phase == 3:
+                        self.special_x_change = 2
+                        self.special_y_change = -2
+                        if self.specialx >= 19:
+                            self.special_phase = 4
+                    elif self.special_phase == 4:
+                        self.special_x_change = -2
+                        self.special_y_change = -2
+                        if self.specialx <= 5:
+                            self.special_phase = 5
+                    elif self.special_phase == 5:
+                        self.special_x_change = 2
+                        self.special_y_change = 2
+                        if self.specialx >= 19:
+                            self.special_phase = 6
+                    elif self.special_phase == 6:
+                        self.special_x_change = -2
+                        self.special_y_change = 2
+                        if self.specialx <= 3:
+                            self.special_phase = 7
+
+                    self.specialx += self.special_x_change
+                    self.specialy -= self.special_y_change
+
+                print(self.specialx, self.specialy)
 
                 '''if self.special_tick == 1:
                     self.handler.getAttackList().add(CustomAttack(self, self.damage, self.handler, 5, 15))
@@ -156,6 +195,9 @@ class Shed(Player):
                 self.special_cooldown.update()
                 self.movespeed = 5
                 self.special_active = False
+                self.specialx = 5
+                self.specialy = 15
+                self.special_phase = 1
 
         if not self.special_cooldown.isDone():
             self.special_cooldown.update()
