@@ -16,6 +16,7 @@ class Player(pygame.sprite.Sprite):
         self.crouchsprite = pygame.image.load("media/Players/" + name + "/" + name + "Crouch.png").convert()
         self.attacksprite = pygame.image.load("media/Misc/projectileRight.png")
         self.hitSound = Sound("Big_Explosion_Cut_Off")
+        self.attacksound = Sound("GunFiring")
         self.rightAttackSprite = self.attacksprite
         self.leftAttackSprite = pygame.transform.rotate(self.attacksprite, 180)
         self.damage = damage
