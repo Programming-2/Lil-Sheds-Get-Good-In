@@ -1,5 +1,6 @@
 import pygame
 from src.Entity import Entity
+from utils.Sound import Sound
 
 
 class Attack(pygame.sprite.Sprite):
@@ -24,6 +25,8 @@ class Attack(pygame.sprite.Sprite):
             self.rect.x += player.width
         self.name = player.name
         self.damage = player.damage
+        self.attacksound = Sound("GunFiring")
+        self.spawned = True
 
     def updateAttack(self):
         self.rect.x = self.player.rect.x
@@ -31,6 +34,9 @@ class Attack(pygame.sprite.Sprite):
         self.direction = self.player.facing
 
     def update(self, screen):
+        if self.spawned:
+            self.attacksound.playSound()
+            self.spawned = False
         # self.changex = self.travel_speed * self.direction
         self.rect.x += self.travel_speed * self.direction
         self.rect.y += self.changey
