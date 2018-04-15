@@ -1,6 +1,8 @@
 import pygame
 from players.Player import Player
 from dataStructures.CircularQueue import CircularQueue
+from src.CustomAttack import CustomAttack
+from src.Cooldown import Cooldown
 
 
 class Collin(Player):
@@ -22,6 +24,7 @@ class Collin(Player):
         self.attacking = False
         self.enemydistx = 0
         self.enemydisty = 0
+        # media
         left_attack1 = pygame.image.load("media/Players/Collin/CollinRangedLeft1.png").convert_alpha()
         left_attack2 = pygame.image.load("media/Players/Collin/CollinRangedLeft2.png").convert_alpha()
         right_attack1 = pygame.image.load("media/Players/Collin/CollinRangedRight1.png").convert_alpha()
@@ -34,6 +37,10 @@ class Collin(Player):
         self.rightAnimation.addData(right_attack2)
 
         # special
+        self.special_sprite = pygame.image.load("media/Players/Collin/CollinSpecial.png")
+        self.special_cooldown = Cooldown(5)
+        self.special_damage = 50
+        self.special_active = False
 
     def attack(self, screen):
         self.attacking = True
@@ -43,6 +50,7 @@ class Collin(Player):
             self.special_active = True
 
     def update(self, screen):
+        self.currenttick += 1
         # original
         self.screen = screen
         self.gravityUpdate()
@@ -75,4 +83,17 @@ class Collin(Player):
                         targetPlayer.takeDamage(self.damage)
         else:
             self.movespeed = 5
-        self.currenttick += 1
+
+        if self.special_active and not self.stunned:
+            print(self.special_damage)
+            if self.facing == 1:
+                rose = CustomAttack(self, self.special_damage, self.handler, 5, -5, self.special_sprite, .25)
+                rose.rect.y -= 40
+            elif self.facing == -1:
+                rose = CustomAttack(self, self.special_damage, self.handler, -5, -5, self.special_sprite, .25)
+                rose.rect.y -= 40
+            self.handler.getAttackList().add(rose)
+            self.special_cooldown.update()
+        if not self.special_cooldown.isDone():
+            self.special_active = False
+            self.special_cooldown.update()

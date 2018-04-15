@@ -22,7 +22,6 @@ class Attack(pygame.sprite.Sprite):
         if self.direction == 1:
             self.rect.x += player.width
         self.name = player.name
-        self.damage = player.damage
         self.spawned = True
 
     def updateAttack(self):
