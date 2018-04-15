@@ -1,6 +1,3 @@
-import pygame
-
-
 class Cooldown():
     def __init__(self, cooldownduration):
         self.total_cooldown = cooldownduration

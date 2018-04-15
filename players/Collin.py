@@ -6,7 +6,7 @@ from dataStructures.CircularQueue import CircularQueue
 class Collin(Player):
     def __init__(self, x, y, handler):
         health = 120
-        damage = 7
+        damage = 10
         winQuote = "ROOOOOOSE"
         loseQuote = "at least I still have Kaitlin"
         name = "Collin"

@@ -1,6 +1,5 @@
 import pygame
 from utils.Colors import colors
-from utils.Handler import Handler
 
 
 class HealthBar(pygame.sprite.Sprite):
@@ -28,7 +27,7 @@ class HealthBar(pygame.sprite.Sprite):
         self.width = 500
         self.height = 50
         self.rect = pygame.Rect(self.x, self.y, self.width, self.height)
-        self.borderrect = pygame.Rect(self.x-5, self.y-5, self.width+10, self.height + 10)
+        self.borderrect = pygame.Rect(self.x - 5, self.y - 5, self.width + 10, self.height + 10)
         pygame.font.init()
         self.font = pygame.font.SysFont("Arial", 24)
 

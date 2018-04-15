@@ -1,6 +1,4 @@
 import pygame
-from src.Entity import Entity
-from utils.Sound import Sound
 
 
 class Attack(pygame.sprite.Sprite):

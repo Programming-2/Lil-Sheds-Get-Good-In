@@ -1,4 +1,3 @@
-import pygame
 from levels.Level import Level
 from src.Platform import Platform
 

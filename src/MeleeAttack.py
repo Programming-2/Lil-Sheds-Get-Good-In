@@ -1,6 +1,3 @@
-import pygame
-
-
 class MeleeAttack():
     def __init__(self, damage, player, handler):
         self.damage = damage

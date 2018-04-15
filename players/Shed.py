@@ -1,7 +1,5 @@
-import pygame
 from players.Player import Player
 from src.Cooldown import Cooldown
-from src.Attack import Attack
 from src.CustomAttack import CustomAttack
 
 

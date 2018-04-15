@@ -1,9 +1,7 @@
 import pygame
 from players.Player import Player
-from src.Attack import Attack
 from src.CustomAttack import CustomAttack
 from src.Cooldown import Cooldown
-from utils.Handler import Handler
 
 
 class Greg(Player):

@@ -4,6 +4,7 @@ from players.Player import Player
 from src.Cooldown import Cooldown
 from dataStructures.CircularQueue import CircularQueue
 
+
 class JaccobBonkley(Player):
 
     def __init__(self, x, y, handler):
@@ -24,16 +25,14 @@ class JaccobBonkley(Player):
         self.number = 0
         self.special_active = False
         self.keyboard = pygame.image.load("media/Misc/Keyboard.png").convert_alpha()
-        keyboardActive = 0
 
         self.keyboardAnimation = CircularQueue()
-        for a in range(0,-90, -5):
+        for a in range(0, -90, -5):
             self.keyboardAnimation.addData(pygame.transform.rotate(self.keyboard, a))
 
         self.keyboardAnimation2 = CircularQueue()
         for b in range(-90, 0, 5):
             self.keyboardAnimation2.addData(pygame.transform.rotate(self.keyboard, b))
-
 
     def special(self):
         if self.special_cooldown.isDone():
@@ -66,10 +65,9 @@ class JaccobBonkley(Player):
 
                 else:
                     self.special_active = False
-                    #self.handler.getPlayer1().stunned = False
-                    #self.handler.getPlayer2().stunned = False
+                    # self.handler.getPlayer1().stunned = False
+                    # self.handler.getPlayer2().stunned = False
                     self.special_cooldown.update()
-                    keyboardActive = 0
             else:
                 pass
 
