@@ -38,6 +38,9 @@ class Collin(Player):
 
         # special
         self.special_sprite = pygame.image.load("media/Players/Collin/CollinSpecial.png")
+        self.specialAnimation = CircularQueue()
+        for i in range(0, 10):
+            self.specialAnimation.addData(pygame.transform.rotate(self.special_sprite, i * 15))
         self.special_cooldown = Cooldown(5)
         self.special_damage = 50
         self.special_active = False
@@ -87,10 +90,10 @@ class Collin(Player):
         if self.special_active and not self.stunned:
             print(self.special_damage)
             if self.facing == 1:
-                rose = CustomAttack(self, self.special_damage, self.handler, 5, -5, self.special_sprite, .25)
+                rose = CustomAttack(self, self.special_damage, self.handler, 5, -5, None, .25, self.specialAnimation)
                 rose.rect.y -= 40
             elif self.facing == -1:
-                rose = CustomAttack(self, self.special_damage, self.handler, -5, -5, self.special_sprite, .25)
+                rose = CustomAttack(self, self.special_damage, self.handler, -5, -5, None, .25, self.specialAnimation)
                 rose.rect.y -= 40
             self.handler.getAttackList().add(rose)
             self.special_cooldown.update()

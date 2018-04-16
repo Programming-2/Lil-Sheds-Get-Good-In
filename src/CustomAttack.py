@@ -3,17 +3,17 @@ from src.Attack import Attack
 
 
 class CustomAttack(Attack):
-    def __init__(self, player, damage, handler, x_speed, y_speed, image=None, ychange=0):
+    def __init__(self, player, damage, handler, x_speed, y_speed, image=None, ychange=0, animationQueue = None):
         self.player = player
         self.damage = damage
         self.handler = handler
+        self.animationQueue = animationQueue
 
         super().__init__(self.player, self.damage, self.handler)
 
         self.attacksprite = pygame.image.load("media/Misc/Projectile.png")
 
-        if image:
-            print("YAY")
+        if image is not None:
             self.attacksprite = image
 
         self.left_attack = pygame.transform.flip(self.attacksprite, False, True)
@@ -26,14 +26,18 @@ class CustomAttack(Attack):
         self.rect.y = self.player.rect.y + (self.player.height * .5) - (self.attacksprite.get_height() * .5)
 
     def update(self, screen):
-        print(self.damage)
         self.rect.x += self.changex
         self.changey += self.cust_y_change
         self.rect.y += self.changey
-        if self.direction == -1:
-            screen.blit(self.left_attack, (self.rect.x, self.rect.y))
-        if self.direction == 1:
-            screen.blit(self.right_attack, (self.rect.x, self.rect.y))
+        if self.animationQueue is not None:
+            screen.blit(self.animationQueue.get(), (self.rect.x, self.rect.y))
+        else:
+            if self.direction == -1:
+                screen.blit(self.left_attack, (self.rect.x, self.rect.y))
+            if self.direction == 1:
+                screen.blit(self.right_attack, (self.rect.x, self.rect.y))
+
         if pygame.sprite.collide_rect(self.handler.getOtherPlayer(self.player), self):
             self.handler.getOtherPlayer(self.player).takeDamage(self.damage)
             self.handler.getAttackList().remove(self)
+
