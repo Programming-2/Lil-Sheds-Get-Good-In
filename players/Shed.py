@@ -137,58 +137,6 @@ class Shed(Player):
                     self.specialx += self.special_x_change
                     self.specialy -= self.special_y_change
 
-                print(self.specialx, self.specialy)
-
-                '''if self.special_tick == 1:
-                    self.handler.getAttackList().add(CustomAttack(self, self.damage, self.handler, 5, 15))
-                    self.handler.getAttackList().add(CustomAttack(self, self.damage, self.handler, -5, 15))
-                elif self.special_tick == 2:
-                    self.handler.getAttackList().add(CustomAttack(self, self.damage, self.handler, 7, 13))
-                    self.handler.getAttackList().add(CustomAttack(self, self.damage, self.handler, -7, 13))
-                elif self.special_tick == 3:
-                    self.handler.getAttackList().add(CustomAttack(self, self.damage, self.handler, 9, 11))
-                    self.handler.getAttackList().add(CustomAttack(self, self.damage, self.handler, -9, 11))
-                elif self.special_tick == 4:
-                    self.handler.getAttackList().add(CustomAttack(self, self.damage, self.handler, 11, 9))
-                    self.handler.getAttackList().add(CustomAttack(self, self.damage, self.handler, -11, 9))
-                elif self.special_tick == 5:
-                    self.handler.getAttackList().add(CustomAttack(self, self.damage, self.handler, 13, 7))
-                    self.handler.getAttackList().add(CustomAttack(self, self.damage, self.handler, -13, 7))
-                elif self.special_tick == 6:
-                    self.handler.getAttackList().add(CustomAttack(self, self.damage, self.handler, 15, 5))
-                    self.handler.getAttackList().add(CustomAttack(self, self.damage, self.handler, -15, 5))
-                elif self.special_tick == 7:
-                    self.handler.getAttackList().add(CustomAttack(self, self.damage, self.handler, 17, 3))
-                    self.handler.getAttackList().add(CustomAttack(self, self.damage, self.handler, -17, 3))
-                elif self.special_tick == 8:
-                    self.handler.getAttackList().add(CustomAttack(self, self.damage, self.handler, 19, 1))
-                    self.handler.getAttackList().add(CustomAttack(self, self.damage, self.handler, -19, 1))
-                elif self.special_tick == 9:
-                    self.handler.getAttackList().add(CustomAttack(self, self.damage, self.handler, 19, -1))
-                    self.handler.getAttackList().add(CustomAttack(self, self.damage, self.handler, -19, -1))
-                elif self.special_tick == 10:
-                    self.handler.getAttackList().add(CustomAttack(self, self.damage, self.handler, 17, -3))
-                    self.handler.getAttackList().add(CustomAttack(self, self.damage, self.handler, -17, -3))
-                elif self.special_tick == 11:
-                    self.handler.getAttackList().add(CustomAttack(self, self.damage, self.handler, 15, -5))
-                    self.handler.getAttackList().add(CustomAttack(self, self.damage, self.handler, -15, -5))
-                elif self.special_tick == 12:
-                    self.handler.getAttackList().add(CustomAttack(self, self.damage, self.handler, 13, -7))
-                    self.handler.getAttackList().add(CustomAttack(self, self.damage, self.handler, -13, -7))
-                elif self.special_tick == 13:
-                    self.handler.getAttackList().add(CustomAttack(self, self.damage, self.handler, 11, -9))
-                    self.handler.getAttackList().add(CustomAttack(self, self.damage, self.handler, -11, -9))
-                elif self.special_tick == 14:
-                    self.handler.getAttackList().add(CustomAttack(self, self.damage, self.handler, 9, -11))
-                    self.handler.getAttackList().add(CustomAttack(self, self.damage, self.handler, -9, -11))
-                elif self.special_tick == 15:
-                    self.handler.getAttackList().add(CustomAttack(self, self.damage, self.handler, 7, -13))
-                    self.handler.getAttackList().add(CustomAttack(self, self.damage, self.handler, -7, -13))
-                elif self.special_tick == 16:
-                    self.handler.getAttackList().add(CustomAttack(self, self.damage, self.handler, 5, -15))
-                    self.handler.getAttackList().add(CustomAttack(self, self.damage, self.handler, 5, -15))
-                else:
-                    self.special_tick = 1'''
             else:
                 self.special_cooldown.update()
                 self.movespeed = 5

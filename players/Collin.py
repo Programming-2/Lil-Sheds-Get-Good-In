@@ -88,7 +88,6 @@ class Collin(Player):
             self.movespeed = 5
 
         if self.special_active and not self.stunned:
-            print(self.special_damage)
             if self.facing == 1:
                 rose = CustomAttack(self, self.special_damage, self.handler, 5, -5, None, .25, self.specialAnimation)
                 rose.rect.y -= 40
