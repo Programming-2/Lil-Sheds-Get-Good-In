@@ -39,8 +39,8 @@ class Collin(Player):
         # special
         self.special_sprite = pygame.image.load("media/Players/Collin/CollinSpecial.png")
         self.specialAnimation = CircularQueue()
-        for i in range(0, 10):
-            self.specialAnimation.addData(pygame.transform.rotate(self.special_sprite, i * 15))
+        for i in range(0, 72):
+            self.specialAnimation.addData(pygame.transform.rotate(self.special_sprite, i * 5))
         self.special_cooldown = Cooldown(5)
         self.special_damage = 50
         self.special_active = False

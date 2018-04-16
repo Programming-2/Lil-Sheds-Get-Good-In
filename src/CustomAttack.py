@@ -3,7 +3,7 @@ from src.Attack import Attack
 
 
 class CustomAttack(Attack):
-    def __init__(self, player, damage, handler, x_speed, y_speed, image=None, ychange=0, animationQueue = None):
+    def __init__(self, player, damage, handler, x_speed, y_speed, image=None, ychange=0, animationQueue=None):
         self.player = player
         self.damage = damage
         self.handler = handler
