@@ -60,6 +60,9 @@ class Player(pygame.sprite.Sprite):
             self.ychange = -10
             self.jumpCount += 1
 
+    def unjump(self):
+        pass
+
     def resetJump(self):
         self.jumpCount = 0
 
@@ -104,6 +107,7 @@ class Player(pygame.sprite.Sprite):
         self.width = self.sprite.get_width()
         self.height = self.sprite.get_height()
         self.rect = pygame.Rect(self.rect.x, self.rect.y, self.width, self.height)
+        self.gravity = 1
 
     def unduck(self):
         self.rect.y -= self.stansprite.get_height() - self.crouchsprite.get_height()
@@ -111,6 +115,7 @@ class Player(pygame.sprite.Sprite):
         self.width = self.sprite.get_width()
         self.height = self.sprite.get_height()
         self.rect = pygame.Rect(self.rect.x, self.rect.y, self.width, self.height)
+        self.gravity = 0.25
 
     def moveX(self):
         self.rect.x += self.xchange

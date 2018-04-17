@@ -23,7 +23,7 @@ class Jakob(Player):
         self.attacksprite = pygame.image.load("media/Players/David/DavidAttack.png").convert()
         self.specialsprite = pygame.image.load("media/Players/David/DavidSpecial.png").convert()
         self.special_cooldown = Cooldown(3)
-        self.special_duration = Cooldown(1)
+        self.special_duration = Cooldown(5)
         self.special_start_time = 0
         self.special_count = 0
         self.special_active = False
@@ -34,6 +34,21 @@ class Jakob(Player):
 
     def special(self):
         if self.special_cooldown.isDone():
+            if not self.special_active:
+                if not self.player:
+                    temp1 = self.handler.getPlayer2().duck
+                    self.handler.getPlayer2().duck = self.handler.getPlayer2().jump
+                    self.handler.getPlayer2().jump = temp1
+                    temp2 = self.handler.getPlayer2().unduck
+                    self.handler.getPlayer2().unduck = self.handler.getPlayer2().unjump
+                    self.handler.getPlayer2().unjump = temp2
+                else:
+                    temp1 = self.handler.getPlayer1().duck
+                    self.handler.getPlayer1().duck = self.handler.getPlayer1().jump
+                    self.handler.getPlayer1().jump = temp1
+                    temp2 = self.handler.getPlayer1().unduck
+                    self.handler.getPlayer1().unduck = self.handler.getPlayer1().unjump
+                    self.handler.getPlayer1().unjump = temp2
             self.special_active = True
 
     def update(self, screen):
@@ -57,8 +72,9 @@ class Jakob(Player):
             if not self.special_duration.isDone():
                 if not self.player:
                     self.handler.getPlayer2().xchange *= -1
-                if self.player:
+                else:
                     self.handler.getPlayer1().xchange *= -1
+
             else:
                 self.special_active = False
                 self.special_cooldown.update()
