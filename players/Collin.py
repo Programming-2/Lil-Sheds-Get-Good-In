@@ -35,6 +35,8 @@ class Collin(Player):
         self.rightAnimation = CircularQueue()
         self.rightAnimation.addData(right_attack1)
         self.rightAnimation.addData(right_attack2)
+        self.rightAttImg = self.rightAnimation.get()
+        self.leftAttImg = self.leftAnimation.get()
 
         # special
         self.special_sprite = pygame.image.load("media/Players/Collin/CollinSpecial.png")
@@ -75,12 +77,16 @@ class Collin(Player):
             self.enemydistx = self.rect.x - targetPlayer.rect.x
             self.enemydisty = self.rect.y - targetPlayer.rect.y
             if self.facing == -1:
-                screen.blit(self.leftAnimation.get(), (self.rect.x - 330, self.rect.y + 15))
+                if self.currenttick % 4 == 0:
+                    self.leftAttImg = self.leftAnimation.get()
+                screen.blit(self.leftAttImg, (self.rect.x - 330, self.rect.y + 15))
                 if 330 > self.enemydistx > 0 > self.enemydisty > -60:
                     if self.currenttick % 5 == 0:
                         targetPlayer.takeDamage(self.damage)
             if self.facing == 1:
-                screen.blit(self.rightAnimation.get(), (self.rect.x + self.width, self.rect.y + 15))
+                if self.currenttick % 4 == 0:
+                    self.rightAttImg = self.rightAnimation.get()
+                screen.blit(self.rightAttImg, (self.rect.x + self.width, self.rect.y + 15))
                 if 0 > self.enemydistx > -330 - self.width and 0 > self.enemydisty > -60:
                     if self.currenttick % 5 == 0:
                         targetPlayer.takeDamage(self.damage)
