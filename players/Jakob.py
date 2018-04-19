@@ -30,25 +30,32 @@ class Jakob(Player):
         self.targetMoveSpeed = 0
         self.ticks = pygame.time.get_ticks()
         self.seconds = 0
-        self.player = (self.handler.getPlayer1().name == "Jakob")
+
+    def reverseP1(self):
+        temp1 = self.handler.getPlayer1().duck
+        self.handler.getPlayer1().duck = self.handler.getPlayer1().jump
+        self.handler.getPlayer1().jump = temp1
+        temp2 = self.handler.getPlayer1().unduck
+        self.handler.getPlayer1().unduck = self.handler.getPlayer1().unjump
+        self.handler.getPlayer1().unjump = temp2
+        self.handler.getPlayer1().movespeed *= -1
+
+    def reverseP2(self):
+        temp1 = self.handler.getPlayer2().duck
+        self.handler.getPlayer2().duck = self.handler.getPlayer2().jump
+        self.handler.getPlayer2().jump = temp1
+        temp2 = self.handler.getPlayer2().unduck
+        self.handler.getPlayer2().unduck = self.handler.getPlayer2().unjump
+        self.handler.getPlayer2().unjump = temp2
+        self.handler.getPlayer2().movespeed *= -1
 
     def special(self):
         if self.special_cooldown.isDone():
             if not self.special_active:
-                if not self.player:
-                    temp1 = self.handler.getPlayer2().duck
-                    self.handler.getPlayer2().duck = self.handler.getPlayer2().jump
-                    self.handler.getPlayer2().jump = temp1
-                    temp2 = self.handler.getPlayer2().unduck
-                    self.handler.getPlayer2().unduck = self.handler.getPlayer2().unjump
-                    self.handler.getPlayer2().unjump = temp2
+                if self.handler.getPlayer1().name == "Jakob":
+                    self.reverseP2()
                 else:
-                    temp1 = self.handler.getPlayer1().duck
-                    self.handler.getPlayer1().duck = self.handler.getPlayer1().jump
-                    self.handler.getPlayer1().jump = temp1
-                    temp2 = self.handler.getPlayer1().unduck
-                    self.handler.getPlayer1().unduck = self.handler.getPlayer1().unjump
-                    self.handler.getPlayer1().unjump = temp2
+                    self.reverseP1()
             self.special_active = True
 
     def update(self, screen):
@@ -69,14 +76,12 @@ class Jakob(Player):
 
         if self.special_active and not self.sleeping:
             self.special_duration.update()
-            if not self.special_duration.isDone():
-                if not self.player:
-                    self.handler.getPlayer2().xchange *= -1
-                else:
-                    self.handler.getPlayer1().xchange *= -1
-
-            else:
+            if self.special_duration.isDone():
                 self.special_active = False
                 self.special_cooldown.update()
+                if self.handler.getPlayer1().name == "Jakob":
+                    self.reverseP2()
+                else:
+                    self.reverseP1()
 
         screen.blit(self.sprite, [self.rect.x, self.rect.y])
