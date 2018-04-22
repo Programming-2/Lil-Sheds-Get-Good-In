@@ -95,12 +95,12 @@ class Collin(Player):
 
         if self.special_active and not self.stunned:
             if self.facing == 1:
-                rose = CustomAttack(self, self.special_damage, self.handler, 5, -5, None, .25, self.specialAnimation)
-                rose.rect.y -= 40
+                self.rose = CustomAttack(self, self.special_damage, self.handler, 5, -5, self.special_sprite, .15, self.specialAnimation)
+                self.rose.rect.y -= 20
             elif self.facing == -1:
-                rose = CustomAttack(self, self.special_damage, self.handler, -5, -5, None, .25, self.specialAnimation)
-                rose.rect.y -= 40
-            self.handler.getAttackList().add(rose)
+                self.rose = CustomAttack(self, self.special_damage, self.handler, -5, -5, self.special_sprite, .15, self.specialAnimation)
+                self.rose.rect.y -= 20
+            self.handler.getAttackList().add(self.rose)
             self.special_cooldown.update()
         if not self.special_cooldown.isDone():
             self.special_active = False

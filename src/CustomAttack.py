@@ -17,7 +17,7 @@ class CustomAttack(Attack):
         self.changex = x_speed
         self.changey = y_speed
         self.cust_y_change = ychange
-        self.rect = pygame.Rect(self.player_x, self.player_y, self.left_attack.get_width(), self.left_attack.get_height())
+        self.rect = pygame.Rect(self.player_x, self.player_y, self.attacksprite.get_width(), self.attacksprite.get_height())
         self.rect.x = self.player.rect.x + (self.player.width * .5) - (self.attacksprite.get_width() * .5)
         self.rect.y = self.player.rect.y + (self.player.height * .5) - (self.attacksprite.get_height() * .5)
 
