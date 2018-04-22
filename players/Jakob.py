@@ -23,7 +23,7 @@ class Jakob(Player):
         self.attacksprite = pygame.image.load("media/Players/David/DavidAttack.png").convert()
         self.specialsprite = pygame.image.load("media/Players/David/DavidSpecial.png").convert()
         self.special_cooldown = Cooldown(3)
-        self.special_duration = Cooldown(5)
+        self.special_duration = Cooldown(1)
         self.special_start_time = 0
         self.special_count = 0
         self.special_active = False
@@ -31,31 +31,19 @@ class Jakob(Player):
         self.ticks = pygame.time.get_ticks()
         self.seconds = 0
 
-    def reverseP1(self):
-        temp1 = self.handler.getPlayer1().duck
-        self.handler.getPlayer1().duck = self.handler.getPlayer1().jump
-        self.handler.getPlayer1().jump = temp1
-        temp2 = self.handler.getPlayer1().unduck
-        self.handler.getPlayer1().unduck = self.handler.getPlayer1().unjump
-        self.handler.getPlayer1().unjump = temp2
-        self.handler.getPlayer1().movespeed *= -1
-
-    def reverseP2(self):
-        temp1 = self.handler.getPlayer2().duck
-        self.handler.getPlayer2().duck = self.handler.getPlayer2().jump
-        self.handler.getPlayer2().jump = temp1
-        temp2 = self.handler.getPlayer2().unduck
-        self.handler.getPlayer2().unduck = self.handler.getPlayer2().unjump
-        self.handler.getPlayer2().unjump = temp2
-        self.handler.getPlayer2().movespeed *= -1
+    def reverse(self):
+        temp1 = self.handler.getOtherPlayer(self).duck
+        self.handler.getOtherPlayer(self).duck = self.handler.getOtherPlayer(self).jump
+        self.handler.getOtherPlayer(self).jump = temp1
+        temp2 = self.handler.getOtherPlayer(self).unduck
+        self.handler.getOtherPlayer(self).unduck = self.handler.getOtherPlayer(self).unjump
+        self.handler.getOtherPlayer(self).unjump = temp2
+        self.handler.getOtherPlayer(self).movespeed *= -1
 
     def special(self):
         if self.special_cooldown.isDone():
             if not self.special_active:
-                if self.handler.getPlayer1().name == "Jakob":
-                    self.reverseP2()
-                else:
-                    self.reverseP1()
+                self.reverse()
             self.special_active = True
 
     def update(self, screen):
@@ -79,9 +67,6 @@ class Jakob(Player):
             if self.special_duration.isDone():
                 self.special_active = False
                 self.special_cooldown.update()
-                if self.handler.getPlayer1().name == "Jakob":
-                    self.reverseP2()
-                else:
-                    self.reverseP1()
+                self.reverse()
 
         screen.blit(self.sprite, [self.rect.x, self.rect.y])
