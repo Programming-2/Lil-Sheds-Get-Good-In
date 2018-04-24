@@ -4,7 +4,7 @@ from players.Will import Will
 
 class Handler:
 
-    def __init__(self, screen, attackList, stateManager, platformArray, level):
+    def __init__(self, screen, attackList, stateManager, platformArray, level, keyManager):
         self.attackList = attackList
         self.stateManager = stateManager
         self.platformArray = platformArray
@@ -16,6 +16,7 @@ class Handler:
         self.player2MoveSpeed = self.player2.movespeed
         self.level = level
         self.projectileimage = pygame.image.load("media/Misc/projectileTest.png")
+        self.keyManager = keyManager
 
     def getAttackList(self):
         return self.attackList
@@ -76,3 +77,6 @@ class Handler:
             return self.player2
         else:
             return self.player1
+
+    def getKeyManager(self):
+        return self.keyManager
