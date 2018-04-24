@@ -8,8 +8,8 @@ class Shed(Player):
     def __init__(self, x, y, handler):
         health = 200
         damage = 20
-        winQuote = "Robotics taught me that"
-        loseQuote = "I could've been watching Robotics competitions"
+        winQuote = "OH YEAHHHH!"
+        loseQuote = "IMPOSSIBLE!"
         name = "Lil' Shed"
         movespeed = 5
         defense = .7
@@ -74,9 +74,9 @@ class Shed(Player):
         self.moveY()
         screen.blit(self.sprite, [self.rect.x, self.rect.y])
 
-        if self.xchange > 0:
+        if self.movingRight:
             self.facing = 1
-        elif self.xchange < 0:
+        elif self.movingLeft:
             self.facing = -1
 
         if self.jump_pressed and not self.jumpreleased:
@@ -100,7 +100,7 @@ class Shed(Player):
             self.xchange = 0
             self.special_duration.update()
             if self.special_phase != 7:
-                if self.tick % 5 == 0:
+                if self.tick % 4 == 0:
                     self.handler.getAttackList().add(CustomAttack(self, self.damage, self.handler, self.specialx, self.specialy))
                     self.handler.getAttackList().add(CustomAttack(self, self.damage, self.handler, -self.specialx, self.specialy))
                     if self.special_phase == 1:
