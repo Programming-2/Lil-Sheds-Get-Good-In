@@ -1,4 +1,4 @@
-from dataStructures.Node import Node
+from datastructures.Node import Node
 
 
 class LinkedList:

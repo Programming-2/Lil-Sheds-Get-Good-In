@@ -1,3 +1,5 @@
-from inputManager.KeyboardManager import KeyboardManager
+from inputmanager.KeyboardManager import KeyboardManager
 
 keyboardManager = KeyboardManager()
+
+
