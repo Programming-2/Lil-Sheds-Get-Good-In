@@ -11,7 +11,6 @@ from states.MapSelectionState import MapSelectionState
 from states.PlayerSelectionState import PlayerSelectionState
 from utils.StateManager import StateManager
 from states.PausedState import PausedState
-from inputmanager.KeyboardManager import KeyboardManager
 
 pygame.init()
 
@@ -51,11 +50,8 @@ attackUpdateList = pygame.sprite.Group()
 # Init state manager
 stateManager = StateManager(None)
 
-# Key Manager 
-keyManager = KeyboardManager()
-
 # Init handler
-handler = Handler(screen, attackUpdateList, stateManager, None, level, keyManager)
+handler = Handler(screen, attackUpdateList, stateManager, None, level)
 
 # State Declaration
 stateDict = {
