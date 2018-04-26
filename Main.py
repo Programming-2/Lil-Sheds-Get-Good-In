@@ -52,7 +52,7 @@ attackUpdateList = pygame.sprite.Group()
 # Init state manager
 stateManager = StateManager(None)
 
-# Key Manager 
+# Key Manager
 keyManager = KeyboardManager()
 
 # Init handler
