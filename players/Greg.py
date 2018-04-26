@@ -15,6 +15,7 @@ class Greg(Player):
         movespeed = 5
         defense = .7
 
+
         super().__init__(health, damage, winQuote, loseQuote, name, x, y, movespeed, handler.getPlatformArray(), handler.getAttackList(), handler, defense)
 
         self.count = 0
@@ -45,6 +46,7 @@ class Greg(Player):
                     self.rect.x += (1100 - self.rect.x - self.width)
                 if self.attackradius + (self.width * .5) >= targetPlayer.rect.x - self.rect.x >= -self.attackradius + (self.width * .5) and self.attackradius + (self.width * .5) >= self.handler.getPlayer2().rect.y - self.rect.y >= -self.attackradius + (self.width * .5):
                     targetPlayer.takeDamage(self.damage_ranged)
+                    self.gregMeleeHit.playSound()
             if self.facing == -1:
                 if self.rect.x >= 200:
                     self.rect.x += -200
@@ -52,6 +54,7 @@ class Greg(Player):
                     self.rect.x += -self.rect.x
                 if 150 >= targetPlayer.rect.x - self.rect.x >= -150:
                     targetPlayer.takeDamage(self.damage_ranged)
+                    self.gregMeleeHit.playSound()
             self.ranged_cooldown.update()
 
     def special(self):
