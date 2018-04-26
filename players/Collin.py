@@ -68,8 +68,6 @@ class Collin(Player):
         elif self.xchange < 0:
             self.facing = -1
 
-        self.attackUpdate(screen)
-
         # attacks
         if self.attacking and not self.released:
             self.movespeed = 2

@@ -150,4 +150,3 @@ class Will(Player):
                 self.tickcounter = 0
 
         screen.blit(self.sprite, [self.rect.x, self.rect.y])
-        self.attackUpdate(screen)
