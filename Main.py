@@ -83,7 +83,7 @@ while not handler.getDone():
     text = font.render(str(int(clock.get_fps())), False, colors.get("BLACK"))
     screen.blit(text, (0, 780))
 
-    clock.tick(6)
+    clock.tick(60)
     pygame.display.flip()
 
 pygame.quit()
