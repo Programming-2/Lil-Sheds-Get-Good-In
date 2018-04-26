@@ -3,6 +3,7 @@ from src.Attack import Attack
 from src.CustomAttack import CustomAttack
 from players.Player import Player
 from src.Cooldown import Cooldown
+from utils.Sound import Sound
 
 
 class Will(Player):
@@ -29,6 +30,7 @@ class Will(Player):
         self.attack2 = pygame.image.load("media/Players/Will/Attack2.png").convert_alpha()
         self.attack3 = pygame.image.load("media/Players/Will/Attack3.png").convert_alpha()
         self.attack4 = pygame.image.load("media/Players/Will/Attack4.png").convert_alpha()
+        self.BIGGnoise = Sound("BIGGDeathSound")
         self.rangedcount = 0
         self.rangedavailable = False
         self.ranged_cooldown = Cooldown(5)
@@ -148,5 +150,6 @@ class Will(Player):
                 self.handler.getAttackList().add(attack)
                 self.rangedavailable = False
                 self.tickcounter = 0
+                self.BIGGnoise.playSound()
 
         screen.blit(self.sprite, [self.rect.x, self.rect.y])
