@@ -98,8 +98,6 @@ class Player(pygame.sprite.Sprite):
         elif self.xchange < 0:
             self.facing = -1
 
-        self.attackUpdate(screen)
-
     def checkEntityCollision(self):
         return False
 

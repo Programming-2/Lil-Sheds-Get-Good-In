@@ -46,8 +46,6 @@ class Kyle(Player):
         elif self.xchange < 0:
             self.facing = -1
 
-        self.attackUpdate(screen)
-
         for p in self.handler.getPlatformArray():
             if p.height == 25:
                 pygame.draw.rect(screen, colors.get("BLACK"), p.rect)

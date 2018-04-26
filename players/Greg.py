@@ -121,4 +121,3 @@ class Greg(Player):
                 self.special_cooldown.update()
 
         screen.blit(self.sprite, [self.rect.x, self.rect.y])
-        self.attackUpdate(screen)

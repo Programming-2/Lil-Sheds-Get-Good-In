@@ -39,8 +39,6 @@ class David(Player):
         elif self.xchange < 0:
             self.facing = -1
 
-        self.attackUpdate(screen)
-
         if not self.special_cooldown.isDone():
             self.special_cooldown.update()
 
