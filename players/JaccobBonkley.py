@@ -2,7 +2,7 @@ import pygame
 import random
 from players.Player import Player
 from src.Cooldown import Cooldown
-from dataStructures.CircularQueue import CircularQueue
+from datastructures.CircularQueue import CircularQueue
 
 
 class JaccobBonkley(Player):

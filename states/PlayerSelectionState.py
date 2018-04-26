@@ -10,6 +10,7 @@ from players.Greg import Greg
 from players.Shed import Shed
 from players.Collin import Collin
 from utils.Colors import colors
+from utils.Sound import Sound
 
 
 class PlayerSelectionState(State):
@@ -23,6 +24,8 @@ class PlayerSelectionState(State):
         self.player2 = None
         self.player1Rect = Rect(0, 0, 0, 0)
         self.player2Rect = Rect(0, 0, 0, 0)
+        self.hoverOver = Sound("Beep2")
+        self.hoverPlay = 0
 
         # TODO Fix bug with duplicated players or made it so same player cannot be selected twice
 
@@ -84,6 +87,11 @@ class PlayerSelectionState(State):
                         # self.handler.getStateManager().setCurrentState("GameState")
                 else:
                     pygame.draw.rect(screen, colors["GREEN"], key)
+                    if self.hoverPlay == 0:
+                        self.hoverOver.playSound()
+                        self.hoverPlay += 1
+            else:
+                self.hoverPlay = 0
 
         # Colors selected player black
         pygame.draw.rect(screen, colors["BLACK"], self.player1Rect)

@@ -13,6 +13,7 @@ from utils.StateManager import StateManager
 from states.PausedState import PausedState
 from inputmanager.KeyboardManager import KeyboardManager
 
+
 pygame.init()
 
 # TODO Centralize image loading

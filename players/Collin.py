@@ -1,6 +1,6 @@
 import pygame
 from players.Player import Player
-from dataStructures.CircularQueue import CircularQueue
+from datastructures.CircularQueue import CircularQueue
 from src.CustomAttack import CustomAttack
 from src.Cooldown import Cooldown
 
