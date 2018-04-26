@@ -141,11 +141,6 @@ class GameState(State):
         if keys[pygame.K_RIGHT] and not (self.player2.sleeping or self.player2.stunned):
             self.player2.moveRight()
 
-        if self.player1.name == "Lil' Shed":
-            self.player1.keys = keys
-        if self.player2.name == "Lil' Shed":
-            self.player2.keys = keys
-
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 self.handler.setDone(True)
