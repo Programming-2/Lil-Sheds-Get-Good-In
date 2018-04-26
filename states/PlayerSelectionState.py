@@ -71,12 +71,14 @@ class PlayerSelectionState(State):
         for key in self.rects:
             if key.contains(pygame.mouse.get_pos()[0], pygame.mouse.get_pos()[1], 10, 10):
                 if pressed:
+                    self.hoverOver.playSound()
                     if self.firstSelection:
                         self.player1 = self.rects[key]
                         self.player1.setX(150)
                         self.player1.y = 100
                         self.firstSelection = False
                         self.player1Rect = key
+                        self.hoverPlay = 0
                     else:
                         self.player2 = self.rects[key]
                         self.player2Rect = key
@@ -85,13 +87,9 @@ class PlayerSelectionState(State):
                         self.handler.getStateManager().getState("GameState").setPlayers(self.player1, self.player2)
                         self.handler.getStateManager().setCurrentState("MapSelectionState")
                         # self.handler.getStateManager().setCurrentState("GameState")
+                        self.hoverPlay = 0
                 else:
                     pygame.draw.rect(screen, colors["GREEN"], key)
-                    if self.hoverPlay == 0:
-                        self.hoverOver.playSound()
-                        self.hoverPlay += 1
-            else:
-                self.hoverPlay = 0
 
         # Colors selected player black
         pygame.draw.rect(screen, colors["BLACK"], self.player1Rect)
