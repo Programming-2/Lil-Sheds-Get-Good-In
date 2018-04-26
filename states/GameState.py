@@ -186,7 +186,7 @@ class GameState(State):
                 elif event.key == pygame.K_RSHIFT:
                     self.player2.rangedendtime = pygame.time.get_ticks()
                     self.player2.released = True
-            elif self.useJoysticksP1 and event.type == pygame.JOYBUTTONDOWN:
+            if self.useJoysticksP1 and event.type == pygame.JOYBUTTONDOWN:
                 if event.button == CONTROLLER_RANGED and not self.player1.sleeping and event.joy == 0:
                     self.player1.attack(screen)
                     self.player1.rangedstarttime = pygame.time.get_ticks()
@@ -199,7 +199,7 @@ class GameState(State):
                     self.player1.jump()
                 if event.button == CONTROLLER_CROUCH and not (self.player1.sleeping or self.player1.stunned) and event.joy == 0 and self.player1.name != "Lil' Shed":
                     self.player1.duck()
-            elif self.useJoysticksP2 and event.type == pygame.JOYBUTTONDOWN:
+            if self.useJoysticksP2 and event.type == pygame.JOYBUTTONDOWN:
                 if event.button == CONTROLLER_JUMP and not (self.player2.sleeping or self.player2.stunned) and event.joy == 1 and self.player2.name != "Lil' Shed":
                     self.player2.jump()
                 if event.button == CONTROLLER_MELEE and not self.player2.sleeping and event.joy == 1:
@@ -214,7 +214,7 @@ class GameState(State):
                     self.player2.special()
                 if event.button == CONTROLLER_PAUSE:
                     self.handler.getStateManager().setCurrentState("PausedState")
-            elif self.useJoysticksP1 and event.type == pygame.JOYBUTTONUP:
+            if self.useJoysticksP1 and event.type == pygame.JOYBUTTONUP:
                 if event.button == CONTROLLER_JUMP and not (self.player1.sleeping or self.player1.stunned) and event.joy == 0 and self.player1.name != "Lil' Shed":
                     self.player1.unjump()
                 if event.button == CONTROLLER_RANGED and event.joy == 0:
@@ -222,7 +222,7 @@ class GameState(State):
                     self.player1.released = True
                 if event.button == CONTROLLER_CROUCH and event.joy == 0 and self.player1.name != "Lil' Shed":
                     self.player1.unduck()
-            elif self.useJoysticksP2 and event.type == pygame.JOYBUTTONUP:
+            if self.useJoysticksP2 and event.type == pygame.JOYBUTTONUP:
                 if event.button == CONTROLLER_JUMP and not (self.player2.sleeping or self.player2.stunned) and event.joy == 1 and self.player2.name != "Lil' Shed":
                     self.player2.unjump()
                 if event.button == CONTROLLER_RANGED and event.joy == 1:
