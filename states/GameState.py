@@ -244,6 +244,7 @@ class GameState(State):
 
         self.player1.update(screen)
         self.player2.update(screen)
+        self.player1.attackUpdate(screen)
 
         self.timer.update(screen)
 

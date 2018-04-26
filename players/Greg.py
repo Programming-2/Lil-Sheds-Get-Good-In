@@ -15,7 +15,6 @@ class Greg(Player):
         movespeed = 5
         defense = .7
 
-
         super().__init__(health, damage, winQuote, loseQuote, name, x, y, movespeed, handler.getPlatformArray(), handler.getAttackList(), handler, defense)
 
         self.count = 0
@@ -121,4 +120,3 @@ class Greg(Player):
                 self.special_cooldown.update()
 
         screen.blit(self.sprite, [self.rect.x, self.rect.y])
-        self.attackUpdate(screen)

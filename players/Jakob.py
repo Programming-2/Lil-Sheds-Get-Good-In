@@ -20,8 +20,6 @@ class Jakob(Player):
         self.start_time = 0
         self.current_time = 0
         self.const = 0
-        self.attacksprite = pygame.image.load("media/Players/David/DavidAttack.png").convert()
-        self.specialsprite = pygame.image.load("media/Players/David/DavidSpecial.png").convert()
         self.special_cooldown = Cooldown(5)
         self.special_duration = Cooldown(1)
         self.special_start_time = 0
@@ -56,7 +54,6 @@ class Jakob(Player):
         elif self.xchange < 0:
             self.facing = -1
 
-        self.attackUpdate(screen)
         self.current_time = pygame.time.get_ticks()
 
         if not self.special_cooldown.isDone():
