@@ -8,9 +8,9 @@ class IceLevel(Level):
         super().__init__(screen, "media/Levels/SnowMap.png")
 
         # TODO Add platforms
-        self.ground1 = Platform(screen, 0, 473, 225, 200, -1)
-        self.ground2 = Platform(screen, 224, 576, 616, 200, -1)
-        self.ground3 = Platform(screen, 841, 394, 259, 200, -1)
+        self.ground1 = Platform(screen, 0, 394, 225, 406, -1)
+        self.ground2 = Platform(screen, 224, 576, 616, 224, -1)
+        self.ground3 = Platform(screen, 841, 394, 259, 406, -1)
         self.platformGroup.add(self.ground1)
         self.platformGroup.add(self.ground2)
         self.platformGroup.add(self.ground3)

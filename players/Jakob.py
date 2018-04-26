@@ -22,7 +22,7 @@ class Jakob(Player):
         self.const = 0
         self.attacksprite = pygame.image.load("media/Players/David/DavidAttack.png").convert()
         self.specialsprite = pygame.image.load("media/Players/David/DavidSpecial.png").convert()
-        self.special_cooldown = Cooldown(3)
+        self.special_cooldown = Cooldown(5)
         self.special_duration = Cooldown(1)
         self.special_start_time = 0
         self.special_count = 0

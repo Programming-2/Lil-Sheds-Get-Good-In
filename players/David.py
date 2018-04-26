@@ -21,7 +21,7 @@ class David(Player):
         self.specialsprite = pygame.image.load("media/Players/David/DavidSpecial.png").convert_alpha()
         # special
         self.special_cooldown = Cooldown(5)
-        self.special_duration = Cooldown(2)
+        self.special_duration = Cooldown(1)
         self.special_active = False
         self.targetMoveSpeed = 0
 
