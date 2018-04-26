@@ -2,7 +2,7 @@ import pygame
 import random
 from players.Player import Player
 from src.Cooldown import Cooldown
-from datastructures.CircularQueue import CircularQueue
+from dataStructures.CircularQueue import CircularQueue
 
 
 class JaccobBonkley(Player):
@@ -56,7 +56,7 @@ class JaccobBonkley(Player):
 
         if self.special_active and not self.sleeping:
             self.special_duration.update()
-            if self.number == 5:
+            if self.number != 5:
                 if not self.special_duration.isDone():
                     if self.facing == 1:
                         screen.blit(self.keyboardAnimation.get(), (self.rect.x + 70, self.rect.y - 50))
