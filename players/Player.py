@@ -15,7 +15,7 @@ class Player(pygame.sprite.Sprite):
         self.stansprite = pygame.image.load("media/Players/" + name + "/" + name + ".png").convert()
         self.crouchsprite = pygame.image.load("media/Players/" + name + "/" + name + "Crouch.png").convert()
         self.attacksprite = pygame.image.load("media/Misc/projectileRight.png")
-        self.hitSound = Sound("Big_Explosion_Cut_Off")
+        self.hitSound = Sound("DeathSound")
         self.attacksound = Sound("GunFiring")
         self.gregMeleeHit = Sound("Knife Slice Into Flesh Sound Effect")
         self.rapidFire = Sound("HEAVY MACHINE GUN SOUND EFFECT(1)")
