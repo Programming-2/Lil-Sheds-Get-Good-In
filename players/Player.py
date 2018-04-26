@@ -17,6 +17,8 @@ class Player(pygame.sprite.Sprite):
         self.attacksprite = pygame.image.load("media/Misc/projectileRight.png")
         self.hitSound = Sound("Big_Explosion_Cut_Off")
         self.attacksound = Sound("GunFiring")
+        self.gregMeleeHit = Sound("Knife Slice Into Flesh Sound Effect")
+        self.rapidFire = Sound("HEAVY MACHINE GUN SOUND EFFECT(1)")
         self.rightAttackSprite = self.attacksprite
         self.leftAttackSprite = pygame.transform.rotate(self.attacksprite, 180)
         self.damage = damage

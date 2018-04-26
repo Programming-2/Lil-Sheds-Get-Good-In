@@ -95,6 +95,7 @@ class Shed(Player):
             self.ychange = 0
 
         if self.special_active and not self.sleeping:
+            self.rapidFire.playSound()
             self.movespeed = 0
             self.ychange = 0
             self.xchange = 0
