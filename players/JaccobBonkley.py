@@ -25,6 +25,8 @@ class JaccobBonkley(Player):
         self.number = 0
         self.special_active = False
         self.keyboard = pygame.image.load("media/Misc/Keyboard.png").convert_alpha()
+        self.mr_smo = pygame.image.load("media/Players/TestSprite.png").convert_alpha()
+        self.num = 0
 
         self.keyboardAnimation = CircularQueue()
         for a in range(0, -90, -5):
@@ -49,14 +51,12 @@ class JaccobBonkley(Player):
         elif self.xchange < 0:
             self.facing = -1
 
-        self.attackUpdate(screen)
-
         if not self.special_cooldown.isDone():
             self.special_cooldown.update()
 
         if self.special_active and not self.sleeping:
             self.special_duration.update()
-            if self.number != 5:
+            if self.number == 7:
                 if not self.special_duration.isDone():
                     if self.facing == 1:
                         screen.blit(self.keyboardAnimation.get(), (self.rect.x + 70, self.rect.y - 50))
@@ -65,10 +65,27 @@ class JaccobBonkley(Player):
 
                 else:
                     self.special_active = False
-                    # self.handler.getPlayer1().stunned = False
-                    # self.handler.getPlayer2().stunned = False
+                    self.handler.getPlayer1().stunned = False
+                    self.handler.getPlayer2().stunned = False
                     self.special_cooldown.update()
             else:
-                pass
+                if not self.special_duration.isDone():
+                    self.handler.getPlayer1().stunned = True
+                    self.handler.getPlayer2().stunned = True
+                    if self.facing == 1:
+                        self.num = 0
+                        if self.num != (self.rect.x - 70):
+                            screen.blit(self.mr_smo, (self.num, self.rect.y - 15))
+                            self.num += 1
+                    if self.facing == -1:
+                        self.num = (1100 - self.rect.x)
+                        if self.num != (self.rect.x + 70):
+                            screen.blit(self.mr_smo, (self.num, self.rect.y - 15))
+                            self.num -= 1
+                else:
+                    self.special_active = False
+                    self.handler.getPlayer1().stunned = False
+                    self.handler.getPlayer2().stunned = False
+                    self.special_cooldown.update()
 
         screen.blit(self.sprite, [self.rect.x, self.rect.y])
