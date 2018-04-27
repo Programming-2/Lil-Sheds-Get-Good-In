@@ -21,6 +21,10 @@ class Kyle(Player):
         self.platformcount = 0
         self.special_cooldown = Cooldown(3)
 
+        self.sprite.set_colorkey(colors.get("WHITE"))
+        self.stansprite.set_colorkey(colors.get("WHITE"))
+        self.lstansprite = pygame.transform.flip(self.stansprite, True, False)
+
     def special(self):
         if self.special_cooldown.isDone():
             if self.platformcount == 1:
@@ -43,8 +47,10 @@ class Kyle(Player):
 
         if self.xchange > 0:
             self.facing = 1
+            self.sprite = self.stansprite
         elif self.xchange < 0:
             self.facing = -1
+            self.sprite = self.lstansprite
 
         for p in self.handler.getPlatformArray():
             if p.height == 25:
