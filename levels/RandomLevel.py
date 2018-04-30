@@ -1,6 +1,7 @@
 import random
 from levels.Level import Level
 from src.Platform import Platform
+from utils.Colors import colors
 
 
 class RandomLevel(Level):
