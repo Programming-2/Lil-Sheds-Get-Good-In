@@ -23,7 +23,9 @@ class Kyle(Player):
 
         self.sprite.set_colorkey(colors.get("WHITE"))
         self.stansprite.set_colorkey(colors.get("WHITE"))
+        self.crouchsprite.set_colorkey(colors.get("WHITE"))
         self.lstansprite = pygame.transform.flip(self.stansprite, True, False)
+        self.lcrouchsprite = pygame.transform.flip(self.crouchsprite, True, False)
 
     def special(self):
         if self.special_cooldown.isDone():
@@ -36,6 +38,18 @@ class Kyle(Player):
                 self.platformcount += 1
             self.special_cooldown.update()
 
+    def determineSprite(self):
+        if self.height > 40:
+            if self.facing > 0:
+                self.sprite = self.stansprite
+            else:
+                self.sprite = self.lstansprite
+        else:
+            if self.facing > 0:
+                self.sprite = self.crouchsprite
+            else:
+                self.sprite = self.lcrouchsprite
+
     def update(self, screen):
         if not self.special_cooldown.isDone():
             self.special_cooldown.update()
@@ -43,14 +57,13 @@ class Kyle(Player):
         self.gravityUpdate()
         self.moveX()
         self.moveY()
+        self.determineSprite()
         screen.blit(self.sprite, [self.rect.x, self.rect.y])
 
         if self.xchange > 0:
             self.facing = 1
-            self.sprite = self.stansprite
         elif self.xchange < 0:
             self.facing = -1
-            self.sprite = self.lstansprite
 
         for p in self.handler.getPlatformArray():
             if p.height == 25:
