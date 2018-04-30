@@ -1,6 +1,6 @@
 import pygame
 from states.State import State
-
+from utils.Sound import Sound
 
 class MainMenuState(State):
 
@@ -8,6 +8,8 @@ class MainMenuState(State):
         super().__init__(name)
         self.menuImage = mainMenu
         self.handler = handler
+        self.theme = Sound("videoplayback")
+        self.theme.playSound()
 
     def resetState(self):
         pass
