@@ -21,7 +21,7 @@ class JaccobBonkley(Player):
 
         self.bullet_speed = 20
         self.special_cooldown = Cooldown(1)
-        self.special_duration = Cooldown(.4)
+        self.special_duration = Cooldown(5)
         self.number = 0
         self.special_active = False
         self.keyboard = pygame.image.load("media/Misc/Keyboard.png").convert_alpha()
@@ -78,7 +78,7 @@ class JaccobBonkley(Player):
                             screen.blit(self.mr_smo, (self.num, self.rect.y - 15))
                             self.num += 1
                     if self.facing == -1:
-                        self.num = (1100 - self.rect.x)
+                        self.num = 1040
                         if self.num != (self.rect.x + 70):
                             screen.blit(self.mr_smo, (self.num, self.rect.y - 15))
                             self.num -= 1
