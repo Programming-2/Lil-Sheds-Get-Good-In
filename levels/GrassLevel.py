@@ -1,7 +1,6 @@
 from levels.Level import Level
 from src.Platform import Platform
 
-
 class GrassLevel(Level):
 
     def __init__(self, screen):
