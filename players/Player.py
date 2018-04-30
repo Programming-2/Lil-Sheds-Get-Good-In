@@ -21,6 +21,7 @@ class Player(pygame.sprite.Sprite):
         self.rapidFire = Sound("HEAVY MACHINE GUN SOUND EFFECT(1)")
         self.hoverOver = Sound("Beep2")
         self.deathsound = Sound("LongDeathSound")
+        self.jumpSound = Sound("y2mate.com - cartoon_boing_sound_effect_3_rm_qHuXXvpk")
         self.rightAttackSprite = self.attacksprite
         self.leftAttackSprite = pygame.transform.rotate(self.attacksprite, 180)
         self.damage = damage
@@ -63,6 +64,7 @@ class Player(pygame.sprite.Sprite):
         if self.jumpCount <= 1:
             self.ychange = -10
             self.jumpCount += 1
+            self.jumpSound.playSound()
 
     def unjump(self):
         pass
