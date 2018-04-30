@@ -40,6 +40,8 @@ class JaccobBonkley(Player):
         if self.special_cooldown.isDone():
             self.special_active = True
             self.number = random.randint(1, 6)
+        if not self.special_cooldown.isDone():
+            self.num = 0
 
     def update(self, screen):
         self.moveX()
@@ -73,15 +75,13 @@ class JaccobBonkley(Player):
                     self.handler.getPlayer1().stunned = True
                     self.handler.getPlayer2().stunned = True
                     if self.facing == 1:
-                        self.num = 0
                         if self.num != (self.rect.x - 70):
                             screen.blit(self.mr_smo, (self.num, self.rect.y - 15))
-                            self.num += 1
+                            self.num += 5
                     if self.facing == -1:
-                        self.num = 1040
                         if self.num != (self.rect.x + 70):
-                            screen.blit(self.mr_smo, (self.num, self.rect.y - 15))
-                            self.num -= 1
+                            screen.blit(self.mr_smo, (1400 - self.num, self.rect.y - 15))
+                            self.num += 5
                 else:
                     self.special_active = False
                     self.handler.getPlayer1().stunned = False
