@@ -11,10 +11,10 @@ class Player(pygame.sprite.Sprite):
     def __init__(self, health, damage, winQuote, loseQuote, name, x, y, movespeed, platArray, attackList, handler, defense):
         super().__init__()
         self.i = 0
-        self.sprite = pygame.image.load("media/Players/" + name + "/" + name + ".png").convert()
-        self.stansprite = pygame.image.load("media/Players/" + name + "/" + name + ".png").convert()
-        self.crouchsprite = pygame.image.load("media/Players/" + name + "/" + name + "Crouch.png").convert()
-        self.attacksprite = pygame.image.load("media/Misc/projectileRight.png")
+        self.sprite = pygame.image.load("media/Players/" + name + "/" + name + ".png").convert_alpha()
+        self.stansprite = pygame.image.load("media/Players/" + name + "/" + name + ".png").convert_alpha()
+        self.crouchsprite = pygame.image.load("media/Players/" + name + "/" + name + "Crouch.png").convert_alpha()
+        self.attacksprite = pygame.image.load("media/Misc/projectileRight.png").convert_alpha()
         self.hitSound = Sound("DeathSound")
         self.attacksound = Sound("GunFiring")
         self.gregMeleeHit = Sound("Knife Slice Into Flesh Sound Effect")

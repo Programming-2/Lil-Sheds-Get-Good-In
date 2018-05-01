@@ -4,6 +4,7 @@ from src.CustomAttack import CustomAttack
 from players.Player import Player
 from src.Cooldown import Cooldown
 from utils.Sound import Sound
+from datastructures.CircularQueue import CircularQueue
 
 
 class Will(Player):
@@ -26,6 +27,8 @@ class Will(Player):
         self.startdefense = defense
         self.specialsprite = pygame.image.load("media/Players/Will/WillSpecial.png").convert()
         self.attacksprite = pygame.image.load("media/Players/Will/Attack3.png").convert_alpha()
+        self.rangedsprite1 = pygame.image.load("media/Players/Will/WillRanged1.png").convert_alpha()
+        self.rangedsprite2 = pygame.image.load("media/Players/Will/WillRanged2.png").convert_alpha()
         self.attack1 = pygame.image.load("media/Players/Will/Attack1.png").convert_alpha()
         self.attack2 = pygame.image.load("media/Players/Will/Attack2.png").convert_alpha()
         self.attack3 = pygame.image.load("media/Players/Will/Attack3.png").convert_alpha()
@@ -44,6 +47,12 @@ class Will(Player):
         self.released = False
         self.damage = damage
         self.tickcounter = 0
+        self.ranged_animation = CircularQueue()
+        self.ranged_animation.addData(self.stansprite)
+        self.ranged_animation.addData(self.rangedsprite1)
+        self.ranged_animation.addData(self.rangedsprite2)
+        self.ranged_used = False
+        self.tick = 0
 
         # attacks
         self.basic = Attack(self, self.damage, self.handler)
@@ -66,6 +75,8 @@ class Will(Player):
         self.rangedavailable = True
 
     def update(self, screen):
+        print(self.rangedcount)
+        self.tick += 1
         self.screen = screen
         if not self.special_active:
             self.gravityUpdate()
@@ -113,6 +124,7 @@ class Will(Player):
                 attack.right_attack = self.attack1
                 self.handler.getAttackList().add(attack)
                 self.rangedavailable = False
+                self.ranged_used = True
                 self.tickcounter = 0
             elif self.ranged_cooldown.current_cooldown <= 2 and self.released:
                 attack = Attack(self, self.damage, self.handler)
@@ -122,6 +134,7 @@ class Will(Player):
                 attack.right_attack = self.attack2
                 self.handler.getAttackList().add(attack)
                 self.rangedavailable = False
+                self.ranged_used = True
                 self.tickcounter = 0
             elif self.ranged_cooldown.current_cooldown <= 3 and self.released:
                 attack = Attack(self, self.damage, self.handler)
@@ -131,6 +144,7 @@ class Will(Player):
                 attack.right_attack = self.attack3
                 self.handler.getAttackList().add(attack)
                 self.rangedavailable = False
+                self.ranged_used = True
                 self.tickcounter = 0
             elif self.ranged_cooldown.current_cooldown <= 4 and self.released:
                 attack = Attack(self, self.damage, self.handler)
@@ -140,6 +154,7 @@ class Will(Player):
                 attack.right_attack = self.attack4
                 self.handler.getAttackList().add(attack)
                 self.rangedavailable = False
+                self.ranged_used = True
                 self.tickcounter = 0
             elif self.ranged_cooldown.current_cooldown > 4 and self.released:
                 attack = Attack(self, self.damage, self.handler)
@@ -149,7 +164,18 @@ class Will(Player):
                 attack.right_attack = self.attack4
                 self.handler.getAttackList().add(attack)
                 self.rangedavailable = False
+                self.ranged_used = True
                 self.tickcounter = 0
                 self.BIGGnoise.playSound()
+            self.rangedcount = 0
+
+        if self.ranged_used and self.tick % 10 == 0:
+            self.rangedcount += 1
+            if self.rangedcount <= 3:
+                self.sprite = self.ranged_animation.get()
+            if self.rangedcount == 5:
+                self.ranged_used = False
+                self.rangedcount = 0
+                self.sprite = self.ranged_animation.reset()
 
         screen.blit(self.sprite, [self.rect.x, self.rect.y])
