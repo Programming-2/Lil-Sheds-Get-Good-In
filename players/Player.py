@@ -15,6 +15,8 @@ class Player(pygame.sprite.Sprite):
         self.stansprite = pygame.image.load("media/Players/" + name + "/" + name + ".png").convert_alpha()
         self.crouchsprite = pygame.image.load("media/Players/" + name + "/" + name + "Crouch.png").convert_alpha()
         self.attacksprite = pygame.image.load("media/Misc/projectileRight.png").convert_alpha()
+        self.leftsprite = pygame.transform.flip(self.sprite, True, False)
+        self.rightsprite = self.stansprite
         self.hitSound = Sound("DeathSound")
         self.attacksound = Sound("GunFiring")
         self.gregMeleeHit = Sound("Knife Slice Into Flesh Sound Effect")
@@ -122,6 +124,10 @@ class Player(pygame.sprite.Sprite):
         self.gravity = 0.25
 
     def moveX(self):
+        if self.xchange < 0:
+            self.sprite = self.leftsprite
+        if self.xchange > 0:
+            self.sprite = self.rightsprite
         self.rect.x += self.xchange
         platList = pygame.sprite.spritecollide(self, self.platArray, False)
         for platform in platList:

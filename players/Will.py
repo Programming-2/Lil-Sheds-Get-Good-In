@@ -31,8 +31,14 @@ class Will(Player):
         self.rangedsprite2 = pygame.image.load("media/Players/Will/WillRanged2.png").convert_alpha()
         self.attack1 = pygame.image.load("media/Players/Will/Attack1.png").convert_alpha()
         self.attack2 = pygame.image.load("media/Players/Will/Attack2.png").convert_alpha()
-        self.attack3 = pygame.image.load("media/Players/Will/Attack3.png").convert_alpha()
-        self.attack4 = pygame.image.load("media/Players/Will/Attack4.png").convert_alpha()
+        self.attack_animation = CircularQueue()
+        self.attack_animation.addData(self.attack1)
+        self.attack_animation.addData(self.attack2)
+        self.powerattack1 = pygame.image.load("media/Players/Will/PowerAttack1.png").convert_alpha()
+        self.powerattack2 = pygame.image.load("media/Players/Will/PowerAttack2.png").convert_alpha()
+        self.powerattack_animation = CircularQueue()
+        self.powerattack_animation.addData(self.powerattack1)
+        self.powerattack_animation.addData(self.powerattack2)
         self.BIGGnoise = Sound("BIGGDeathSound")
         self.rangedcount = 0
         self.rangedavailable = False
@@ -47,9 +53,12 @@ class Will(Player):
         self.released = False
         self.damage = damage
         self.tickcounter = 0
-        self.ranged_animation = CircularQueue()
-        self.ranged_animation.addData(self.rangedsprite1)
-        self.ranged_animation.addData(self.rangedsprite2)
+        self.right_ranged_animation = CircularQueue()
+        self.right_ranged_animation.addData(self.rangedsprite1)
+        self.right_ranged_animation.addData(self.rangedsprite2)
+        self.left_ranged_animation = CircularQueue()
+        self.left_ranged_animation.addData(pygame.transform.flip(self.rangedsprite1, True, False))
+        self.left_ranged_animation.addData(pygame.transform.flip(self.rangedsprite2, True, False))
         self.ranged_used = False
         self.tick = 0
 
@@ -118,8 +127,8 @@ class Will(Player):
                 attack = Attack(self, self.damage, self.handler)
                 attack.damage = 10
                 attack.travel_speed = 10
-                attack.left_attack = self.attack1
-                attack.right_attack = self.attack1
+                attack.left_animation = self.attack_animation
+                attack.right_animation = self.attack_animation
                 self.handler.getAttackList().add(attack)
                 self.rangedavailable = False
                 self.ranged_used = True
@@ -128,8 +137,8 @@ class Will(Player):
                 attack = Attack(self, self.damage, self.handler)
                 attack.damage = 25
                 attack.travel_speed = 15
-                attack.left_attack = self.attack2
-                attack.right_attack = self.attack2
+                attack.left_animation = self.attack_animation
+                attack.right_animation = self.attack_animation
                 self.handler.getAttackList().add(attack)
                 self.rangedavailable = False
                 self.ranged_used = True
@@ -138,8 +147,8 @@ class Will(Player):
                 attack = Attack(self, self.damage, self.handler)
                 attack.damage = 60
                 attack.travel_speed = 20
-                attack.left_attack = self.attack3
-                attack.right_attack = self.attack3
+                attack.left_animation = self.attack_animation
+                attack.right_animation = self.attack_animation
                 self.handler.getAttackList().add(attack)
                 self.rangedavailable = False
                 self.ranged_used = True
@@ -148,8 +157,8 @@ class Will(Player):
                 attack = Attack(self, self.damage, self.handler)
                 attack.damage = 120
                 attack.travel_speed = 25
-                attack.left_attack = self.attack4
-                attack.right_attack = self.attack4
+                attack.left_animation = self.attack_animation
+                attack.right_animation = self.attack_animation
                 self.handler.getAttackList().add(attack)
                 self.rangedavailable = False
                 self.ranged_used = True
@@ -158,8 +167,8 @@ class Will(Player):
                 attack = Attack(self, self.damage, self.handler)
                 attack.damage = self.ranged_cooldown.current_cooldown * 40
                 attack.travel_speed = self.ranged_cooldown.current_cooldown * 7
-                attack.left_attack = self.attack4
-                attack.right_attack = self.attack4
+                attack.left_animation = self.powerattack_animation
+                attack.right_animation = self.powerattack_animation
                 self.handler.getAttackList().add(attack)
                 self.rangedavailable = False
                 self.ranged_used = True
@@ -170,10 +179,16 @@ class Will(Player):
         if self.ranged_used and self.tick % 10 == 0:
             self.rangedcount += 1
             if self.rangedcount <= 2:
-                self.sprite = self.ranged_animation.get()
+                if self.facing == 1:
+                    self.sprite = self.right_ranged_animation.get()
+                if self.facing == -1:
+                    self.sprite = self.left_ranged_animation.get()
             if self.rangedcount == 5:
                 self.ranged_used = False
                 self.rangedcount = 0
-                self.sprite = self.stansprite
+                if self.facing == 1:
+                    self.sprite = self.rightsprite
+                if self.facing == -1:
+                    self.sprite = self.leftsprite
 
         screen.blit(self.sprite, [self.rect.x, self.rect.y])
