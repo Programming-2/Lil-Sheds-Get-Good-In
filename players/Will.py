@@ -169,11 +169,11 @@ class Will(Player):
 
         if self.ranged_used and self.tick % 10 == 0:
             self.rangedcount += 1
-            if self.rangedcount <= 3:
+            if self.rangedcount <= 2:
                 self.sprite = self.ranged_animation.get()
             if self.rangedcount == 5:
                 self.ranged_used = False
                 self.rangedcount = 0
-                self.sprite = self.ranged_animation.reset()
+                self.sprite = self.stansprite
 
         screen.blit(self.sprite, [self.rect.x, self.rect.y])
