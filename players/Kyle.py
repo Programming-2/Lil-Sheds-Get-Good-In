@@ -48,6 +48,8 @@ class Kyle(Player):
             self.frame = 0
         self.sprite = self.spriteList[self.frame]
         self.frame += 1
+        if self.facing == -1:
+            self.sprite = pygame.transform.flip(self.sprite, True, False)
 
     def update(self, screen):
         if not self.special_cooldown.isDone():
