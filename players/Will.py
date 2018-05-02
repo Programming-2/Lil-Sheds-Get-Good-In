@@ -48,7 +48,6 @@ class Will(Player):
         self.damage = damage
         self.tickcounter = 0
         self.ranged_animation = CircularQueue()
-        self.ranged_animation.addData(self.stansprite)
         self.ranged_animation.addData(self.rangedsprite1)
         self.ranged_animation.addData(self.rangedsprite2)
         self.ranged_used = False
@@ -75,7 +74,6 @@ class Will(Player):
         self.rangedavailable = True
 
     def update(self, screen):
-        print(self.rangedcount)
         self.tick += 1
         self.screen = screen
         if not self.special_active:
@@ -171,11 +169,11 @@ class Will(Player):
 
         if self.ranged_used and self.tick % 10 == 0:
             self.rangedcount += 1
-            if self.rangedcount <= 3:
+            if self.rangedcount <= 2:
                 self.sprite = self.ranged_animation.get()
             if self.rangedcount == 5:
                 self.ranged_used = False
                 self.rangedcount = 0
-                self.sprite = self.ranged_animation.reset()
+                self.sprite = self.stansprite
 
         screen.blit(self.sprite, [self.rect.x, self.rect.y])

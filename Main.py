@@ -80,6 +80,7 @@ font = pygame.font.SysFont("Comic Sans MS", 16)
 
 # Game loop
 while not handler.getDone():
+    handler.updateTick()
     stateManager.update(screen)
     text = font.render(str(int(clock.get_fps())), False, colors.get("BLACK"))
     screen.blit(text, (0, 780))
