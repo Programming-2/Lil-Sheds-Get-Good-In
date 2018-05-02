@@ -2,22 +2,28 @@ class CircularQueue:
 
     def __init__(self):
         self.queue = []
-        self.original_queue = []
-        self.count = 0
+        self.index = 0
 
     def addData(self, data):
         self.queue.append(data)
-        self.original_queue.append(data)
 
     def get(self):
-        result = self.queue.pop(0)
-        self.queue.append(result)
-        return result
+        output = self.queue[self.index]
+        if self.index + 1 == len(self.queue):
+            self.index = 0
+        else:
+            self.index += 1
+        return output
 
     def size(self):
         return len(self.queue)
 
     def reset(self):
-        self.queue = self.original_queue
-        result = self.queue[0]
-        return result
+        self.index = 0
+
+    def getAnimFrames(self, handler, ticks, reset):
+        if reset:
+            self.reset()
+        if handler.getTicks() % ticks:
+            self.index += 1
+        return self.queue[self.index]

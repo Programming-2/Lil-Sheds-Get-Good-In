@@ -3,6 +3,7 @@ from players.Player import Player
 from src.Platform import Platform
 from src.Cooldown import Cooldown
 from utils.Colors import colors
+import random
 
 
 class Kyle(Player):
@@ -21,11 +22,15 @@ class Kyle(Player):
         self.platformcount = 0
         self.special_cooldown = Cooldown(3)
 
-        self.sprite.set_colorkey(colors.get("WHITE"))
-        self.stansprite.set_colorkey(colors.get("WHITE"))
-        self.crouchsprite.set_colorkey(colors.get("WHITE"))
-        self.lstansprite = pygame.transform.flip(self.stansprite, True, False)
-        self.lcrouchsprite = pygame.transform.flip(self.crouchsprite, True, False)
+        self.spriteList = [pygame.image.load("media/Players/Kyle/Kyle.png").convert_alpha(),
+                           pygame.image.load("media/Players/Kyle/Kyle1.png").convert_alpha(),
+                           pygame.image.load("media/Players/Kyle/Kyle2.png").convert_alpha(),
+                           pygame.image.load("media/Players/Kyle/Kyle3.png").convert_alpha(),
+                           pygame.image.load("media/Players/Kyle/Kyle4.png").convert_alpha(),
+                           pygame.image.load("media/Players/Kyle/Kyle5.png").convert_alpha(),
+                           pygame.image.load("media/Players/Kyle/Kyle6.png").convert_alpha(),
+                           pygame.image.load("media/Players/Kyle/Kyle7.png").convert_alpha()]
+        self.frame = 0
 
     def special(self):
         if self.special_cooldown.isDone():
@@ -39,16 +44,13 @@ class Kyle(Player):
             self.special_cooldown.update()
 
     def determineSprite(self):
-        if self.height > 40:
-            if self.facing > 0:
-                self.sprite = self.stansprite
-            else:
-                self.sprite = self.lstansprite
-        else:
-            if self.facing > 0:
-                self.sprite = self.crouchsprite
-            else:
-                self.sprite = self.lcrouchsprite
+        if self.frame >= len(self.spriteList) or self.xchange == 0:
+            self.frame = 0
+        self.sprite = self.spriteList[self.frame]
+        self.frame += 1
+        if self.facing == -1:
+            self.sprite = pygame.transform.flip(self.sprite, True, False)
+
 
     def update(self, screen):
         if not self.special_cooldown.isDone():
@@ -67,4 +69,4 @@ class Kyle(Player):
 
         for p in self.handler.getPlatformArray():
             if p.height == 25:
-                pygame.draw.rect(screen, colors.get("BLACK"), p.rect)
+                pygame.draw.rect(screen, (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255)), p.rect)
