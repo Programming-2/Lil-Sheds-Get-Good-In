@@ -17,6 +17,7 @@ class Handler:
         self.level = level
         self.projectileimage = pygame.image.load("media/Misc/projectileTest.png")
         self.keyManager = keyManager
+        self.tick = 0
 
     def getAttackList(self):
         return self.attackList
@@ -80,3 +81,9 @@ class Handler:
 
     def getKeyManager(self):
         return self.keyManager
+
+    def updateTick(self):
+        self.tick += 1
+
+    def getTick(self):
+        return self.tick
