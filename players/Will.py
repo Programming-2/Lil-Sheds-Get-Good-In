@@ -75,7 +75,6 @@ class Will(Player):
         self.rangedavailable = True
 
     def update(self, screen):
-        print(self.rangedcount)
         self.tick += 1
         self.screen = screen
         if not self.special_active:
