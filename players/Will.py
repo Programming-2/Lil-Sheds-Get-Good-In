@@ -48,7 +48,6 @@ class Will(Player):
         self.damage = damage
         self.tickcounter = 0
         self.ranged_animation = CircularQueue()
-        self.ranged_animation.addData(self.stansprite)
         self.ranged_animation.addData(self.rangedsprite1)
         self.ranged_animation.addData(self.rangedsprite2)
         self.ranged_used = False
