@@ -37,7 +37,7 @@ class PlayerSelectionState(State):
             Rect(14, 231, 54, 55): JaccobBonkley(150, 100, handler),
             Rect(14, 303, 54, 55): Jakob(150, 100, handler),
             Rect(14, 388, 54, 55): Greg(150, 100, handler),
-            Rect(1050, 750, 50, 50): Collin(150, 100, handler),
+            # Rect(1050, 750, 50, 50): Collin(150, 100, handler),
             Rect(14, 503, 54, 55): Shed(150, 100, handler)
         }
 
@@ -82,12 +82,14 @@ class PlayerSelectionState(State):
                         self.firstSelection = False
                         self.player1Rect = key
                         self.hoverPlay = 0
+                        self.handler.player1 = self.player1
                     else:
                         self.player2 = self.rects[key]
                         self.player2Rect = key
                         self.player2.setX(950)
                         self.player2.y = 100
-                        self.handler.getStateManager().getState("GameState").setPlayers(self.player1, self.player2)
+                        self.handler.player2 = self.player2
+                        self.handler.getStateManager().getState("GameState").setPlayers(self.handler.player1, self.handler.player2)
                         self.handler.getStateManager().setCurrentState("MapSelectionState")
                         # self.handler.getStateManager().setCurrentState("GameState")
                         self.hoverPlay = 0

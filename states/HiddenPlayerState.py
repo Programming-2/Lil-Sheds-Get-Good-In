@@ -13,7 +13,10 @@ class HiddenPlayerState(State):
         super().__init__(name)
         self.handler = handler
         self.img = img
-        self.firstSelection = True
+        if handler.player1 is None:
+            self.firstSelection = True
+        else:
+            self.firstSelection = False
         self.player1 = None
         self.player2 = None
         self.player1Rect = Rect(0, 0, 0, 0)
@@ -85,12 +88,14 @@ class HiddenPlayerState(State):
                         self.firstSelection = False
                         self.player1Rect = key
                         self.hoverPlay = 0
+                        self.handler.player1 = self.player1
                     else:
                         self.player2 = self.rects[key]
                         self.player2Rect = key
                         self.player2.setX(950)
                         self.player2.y = 100
-                        self.handler.getStateManager().getState("GameState").setPlayers(self.player1, self.player2)
+                        self.handler.player2 = self.player2
+                        self.handler.getStateManager().getState("GameState").setPlayers(self.handler.player1, self.handler.player2)
                         self.handler.getStateManager().setCurrentState("MapSelectionState")
                         # self.handler.getStateManager().setCurrentState("GameState")
                         self.hoverPlay = 0
