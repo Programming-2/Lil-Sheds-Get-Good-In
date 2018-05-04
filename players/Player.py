@@ -17,6 +17,8 @@ class Player(pygame.sprite.Sprite):
         self.attacksprite = pygame.image.load("media/Misc/projectileRight.png").convert_alpha()
         self.leftsprite = pygame.transform.flip(self.sprite, True, False)
         self.rightsprite = self.stansprite
+        self.leftcrouchsprite = pygame.transform.flip(self.crouchsprite, True, False)
+        self.rightcrouchsprite = self.crouchsprite
         self.hitSound = Sound("DeathSound")
         self.attacksound = Sound("GunFiring")
         self.gregMeleeHit = Sound("Knife Slice Into Flesh Sound Effect")
@@ -55,6 +57,7 @@ class Player(pygame.sprite.Sprite):
 
         self.jumpreleased = False
         self.duckreleased = False
+        self.crouching = False
 
     def setPlatArray(self, arr):
         self.platArray = arr
@@ -108,26 +111,39 @@ class Player(pygame.sprite.Sprite):
         return False
 
     def duck(self):
+        self.crouching = True
         self.rect.y += self.stansprite.get_height() - self.crouchsprite.get_height()
-        self.sprite = self.crouchsprite
+        if self.facing == 1:
+            self.sprite = self.rightcrouchsprite
+        if self.facing == -1:
+            self.sprite = self.leftcrouchsprite
         self.width = self.sprite.get_width()
         self.height = self.sprite.get_height()
         self.rect = pygame.Rect(self.rect.x, self.rect.y, self.width, self.height)
         self.gravity = 1
 
     def unduck(self):
+        self.crouching = False
         self.rect.y -= self.stansprite.get_height() - self.crouchsprite.get_height()
-        self.sprite = self.stansprite
+        if self.facing == 1:
+            self.sprite = self.rightsprite
+        if self.facing == -1:
+            self.sprite = self.leftsprite
         self.width = self.sprite.get_width()
         self.height = self.sprite.get_height()
         self.rect = pygame.Rect(self.rect.x, self.rect.y, self.width, self.height)
         self.gravity = 0.25
 
     def moveX(self):
-        if self.xchange < 0:
+        if self.xchange < 0 and not self.crouching:
             self.sprite = self.leftsprite
-        if self.xchange > 0:
+        if self.xchange > 0 and not self.crouching:
             self.sprite = self.rightsprite
+        if self.xchange < 0 and self.crouching:
+            self.sprite = self.leftcrouchsprite
+        if self.xchange > 0 and self.crouching:
+            self.sprite = self.rightcrouchsprite
+
         self.rect.x += self.xchange
         platList = pygame.sprite.spritecollide(self, self.platArray, False)
         for platform in platList:
