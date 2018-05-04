@@ -37,12 +37,10 @@ class JaccobBonkley(Player):
         for b in range(-90, -180, -5):
             self.keyboardAnimation2.addData(pygame.transform.rotate(self.keyboard2, b))
 
-
-
     def special(self):
         if self.special_cooldown.isDone():
             self.special_active = True
-            self.number = random.randint(1, 6)
+            self.number = random.randint(1, 5)
         if not self.special_cooldown.isDone():
             self.num = 0
 
@@ -60,8 +58,9 @@ class JaccobBonkley(Player):
             self.special_cooldown.update()
 
         if self.special_active and not self.sleeping:
-            if self.number == 5:
-                self.special_duration.update()
+            self.special_duration.update()
+            print(self.number)
+            if self.number == 7:
                 self.special_duration = Cooldown(1)
                 if not self.special_duration.isDone():
                     if self.facing == 1:
@@ -76,8 +75,8 @@ class JaccobBonkley(Player):
                     self.special_cooldown.update()
                     self.num = 0
             else:
-                self.special_duration = Cooldown(5)
                 if not self.special_duration.isDone():
+                    print("i")
                     self.handler.getPlayer1().stunned = True
                     self.handler.getPlayer2().stunned = True
                     if self.facing == 1:
