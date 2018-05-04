@@ -136,8 +136,6 @@ class Player(pygame.sprite.Sprite):
             self.gravity = 0.25
 
     def moveX(self):
-<<<<<<< HEAD
-=======
         if self.xchange < 0 and not self.crouching:
             self.sprite = self.leftsprite
         if self.xchange > 0 and not self.crouching:
@@ -146,8 +144,6 @@ class Player(pygame.sprite.Sprite):
             self.sprite = self.leftcrouchsprite
         if self.xchange > 0 and self.crouching:
             self.sprite = self.rightcrouchsprite
-
->>>>>>> d527c4fac670b181b06d1bc9be231210bba883bb
         self.rect.x += self.xchange
         platList = pygame.sprite.spritecollide(self, self.platArray, False)
         for platform in platList:
