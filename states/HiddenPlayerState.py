@@ -29,6 +29,16 @@ class HiddenPlayerState(State):
             Rect(14, 503, 54, 55): Shed(150, 100, handler)
         }
 
+        self.color_rects = {
+            colors.get("RED"): Rect(0, 0, 200, 800),
+            colors.get("ORANGE"): Rect(200, 0, 200, 800),
+            colors.get("YELLOW"): Rect(400, 0, 200, 800),
+            colors.get("GREEN"): Rect(600, 0, 200, 800),
+            colors.get("BLUE"): Rect(800, 0, 200, 800),
+            colors.get("PURPLE"): Rect(1000, 0, 200, 800),
+            colors.get("PINK"): Rect(1200, 0, 200, 800),
+        }
+
     def resetState(self):
         self.firstSelection = True
         self.player1 = None
@@ -37,6 +47,12 @@ class HiddenPlayerState(State):
         self.player2Rect = (0, 0, 0, 0)
 
     def update(self, screen):
+        for key in self.color_rects:
+            pygame.draw.rect(screen, key, self.color_rects[key])
+            self.color_rects[key].x += 10
+            if self.color_rects[key].x > 1200:
+                self.color_rects[key].x = -200
+
         pressed = False
 
         # Event look
