@@ -31,7 +31,7 @@ level = IceLevel(screen)
 
 # Loading Images
 background_image = pygame.image.load(level.getBackImg()).convert()
-mainMenu = pygame.image.load("media/Screens/LilShedTitleScreen.png").convert()
+mainMenu = pygame.image.load("media/Screens/NewtitleScreen2.png").convert()
 testProjectile = pygame.image.load("media/Misc/projectileTest.png").convert()
 testControlScreen = pygame.image.load("media/Screens/ControlScreen.png").convert()
 playerSelectScreen = pygame.image.load("media/Screens/LilShedCharacterSelect.png").convert()

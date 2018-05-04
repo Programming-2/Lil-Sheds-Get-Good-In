@@ -144,7 +144,6 @@ class Player(pygame.sprite.Sprite):
             self.sprite = self.leftcrouchsprite
         if self.xchange > 0 and self.crouching:
             self.sprite = self.rightcrouchsprite
-
         self.rect.x += self.xchange
         platList = pygame.sprite.spritecollide(self, self.platArray, False)
         for platform in platList:
