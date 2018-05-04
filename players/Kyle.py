@@ -3,6 +3,7 @@ from players.Player import Player
 from src.Platform import Platform
 from src.Cooldown import Cooldown
 from utils.Colors import colors
+from src.Attack import Attack
 import random
 
 
@@ -10,7 +11,7 @@ class Kyle(Player):
 
     def __init__(self, x, y, handler):
         health = 110
-        damage = 15
+        damage = 45
         winQuote = "Are the platforms fixed yet?"
         loseQuote = "I\'d better try to fix that... emphasis on try"
         name = "Kyle"
@@ -61,6 +62,9 @@ class Kyle(Player):
         self.frame += 1
         if self.facing == -1:
             self.sprite = pygame.transform.flip(self.sprite, True, False)
+
+    def attack(self, screen):
+        self.handler.getAttackList().add(Attack(self, self.damage, self.handler, 5))
 
     def update(self, screen):
         if not self.special_cooldown.isDone():
