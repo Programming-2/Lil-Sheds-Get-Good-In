@@ -161,8 +161,8 @@ class Player(pygame.sprite.Sprite):
     def attack(self, screen):
         self.handler.getAttackList().add(Attack(self, self.damage, self.handler))
 
-    def meleeAttack(self):
-        self.meleeattack.attack()
+    def meleeAttack(self, screen):
+        self.meleeattack.attack(screen)
 
     def special(self):
         pass  # abstract
