@@ -15,10 +15,10 @@ class Cooldown():
 
     def isDone(self):
         return self.done
-    
+
     def changeDuration(self, newDuration):
         self.total_cooldown = newDuration
-    
+
     def changeCurrentCooldown(self, change):
         self.current_cooldown += change
 
