@@ -30,6 +30,14 @@ class Kyle(Player):
                            pygame.image.load("media/Players/Kyle/Kyle5.png").convert_alpha(),
                            pygame.image.load("media/Players/Kyle/Kyle6.png").convert_alpha(),
                            pygame.image.load("media/Players/Kyle/Kyle7.png").convert_alpha()]
+        self.crouchSpriteList = [pygame.image.load("media/Players/Kyle/KyleCrouch.png").convert_alpha(),
+                           pygame.image.load("media/Players/Kyle/KyleCrouch1.png").convert_alpha(),
+                           pygame.image.load("media/Players/Kyle/KyleCrouch2.png").convert_alpha(),
+                           pygame.image.load("media/Players/Kyle/KyleCrouch3.png").convert_alpha(),
+                           pygame.image.load("media/Players/Kyle/KyleCrouch4.png").convert_alpha(),
+                           pygame.image.load("media/Players/Kyle/KyleCrouch5.png").convert_alpha(),
+                           pygame.image.load("media/Players/Kyle/KyleCrouch6.png").convert_alpha(),
+                           pygame.image.load("media/Players/Kyle/KyleCrouch7.png").convert_alpha()]
         self.frame = 0
 
     def special(self):
@@ -46,11 +54,13 @@ class Kyle(Player):
     def determineSprite(self):
         if self.frame >= len(self.spriteList) or self.xchange == 0:
             self.frame = 0
-        self.sprite = self.spriteList[self.frame]
+        if self.height > 40:
+            self.sprite = self.spriteList[self.frame]
+        else:
+            self.sprite = self.crouchSpriteList[self.frame]
         self.frame += 1
         if self.facing == -1:
             self.sprite = pygame.transform.flip(self.sprite, True, False)
-
 
     def update(self, screen):
         if not self.special_cooldown.isDone():

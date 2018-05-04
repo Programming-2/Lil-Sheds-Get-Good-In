@@ -124,10 +124,6 @@ class Player(pygame.sprite.Sprite):
         self.gravity = 0.25
 
     def moveX(self):
-        if self.xchange < 0:
-            self.sprite = self.leftsprite
-        if self.xchange > 0:
-            self.sprite = self.rightsprite
         self.rect.x += self.xchange
         platList = pygame.sprite.spritecollide(self, self.platArray, False)
         for platform in platList:
