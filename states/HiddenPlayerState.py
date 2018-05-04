@@ -25,8 +25,10 @@ class HiddenPlayerState(State):
 
         # Rectangle Dict
         self.rects = {
-            Rect(1050, 750, 50, 50): Collin(150, 100, handler),
-            Rect(14, 503, 54, 55): Shed(150, 100, handler)
+            Rect(23, 89, 60, 60): Collin(150, 100, handler),
+            Rect(23, 214, 60, 60): Shed(150, 100, handler),
+            Rect(23, 336, 60, 60): Shed(150, 100, handler),
+            Rect(23, 465, 60, 60): Shed(150, 100, handler)
         }
 
         self.color_rects = {
