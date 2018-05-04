@@ -44,12 +44,13 @@ class Kyle(Player):
             self.special_cooldown.update()
 
     def determineSprite(self):
-        if self.frame >= len(self.spriteList):
+        if self.frame >= len(self.spriteList) or self.xchange == 0:
             self.frame = 0
         self.sprite = self.spriteList[self.frame]
         self.frame += 1
         if self.facing == -1:
             self.sprite = pygame.transform.flip(self.sprite, True, False)
+
 
     def update(self, screen):
         if not self.special_cooldown.isDone():
