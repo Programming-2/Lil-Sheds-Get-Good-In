@@ -175,6 +175,8 @@ class Will(Player):
                 self.tickcounter = 0
                 self.BIGGnoise.playSound()
             self.rangedcount = 0
+            if self.crouching:
+                self.unduck()
 
         if self.ranged_used and self.tick % 10 == 0:
             self.rangedcount += 1

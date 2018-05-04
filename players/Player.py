@@ -123,16 +123,17 @@ class Player(pygame.sprite.Sprite):
         self.gravity = 1
 
     def unduck(self):
-        self.crouching = False
-        self.rect.y -= self.stansprite.get_height() - self.crouchsprite.get_height()
-        if self.facing == 1:
-            self.sprite = self.rightsprite
-        if self.facing == -1:
-            self.sprite = self.leftsprite
-        self.width = self.sprite.get_width()
-        self.height = self.sprite.get_height()
-        self.rect = pygame.Rect(self.rect.x, self.rect.y, self.width, self.height)
-        self.gravity = 0.25
+        if self.crouching:
+            self.crouching = False
+            self.rect.y -= self.stansprite.get_height() - self.crouchsprite.get_height()
+            if self.facing == 1:
+                self.sprite = self.rightsprite
+            if self.facing == -1:
+                self.sprite = self.leftsprite
+            self.width = self.sprite.get_width()
+            self.height = self.sprite.get_height()
+            self.rect = pygame.Rect(self.rect.x, self.rect.y, self.width, self.height)
+            self.gravity = 0.25
 
     def moveX(self):
         if self.xchange < 0 and not self.crouching:
