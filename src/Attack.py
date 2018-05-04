@@ -36,7 +36,7 @@ class Attack(pygame.sprite.Sprite):
 
     def update(self, screen):
         if self.spawned:
-            # self.player.attacksound.playSound()
+            self.player.attacksound.playSound()
             self.spawned = False
         # self.changex = self.travel_speed * self.direction
         self.rect.x += self.travel_speed * self.direction

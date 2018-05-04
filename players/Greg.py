@@ -51,7 +51,7 @@ class Greg(Player):
                     self.rect.x += -200
                 elif self.rect.x < 200:
                     self.rect.x += -self.rect.x
-                if 150 >= targetPlayer.rect.x - self.rect.x >= -150:
+                if 150 >= targetPlayer.rect.x - self.rect.x >= -150 and 150 >= targetPlayer.rect.y - self.rect.y >= -150:
                     targetPlayer.takeDamage(self.damage_ranged)
                     self.gregMeleeHit.playSound()
             self.ranged_cooldown.update()

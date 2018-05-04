@@ -97,6 +97,9 @@ class GameState(State):
         self.player2.xchange = 0
         self.player2.ychange = 0
 
+        self.player1.unduck()
+        self.player2.unduck()
+
         # Timer utils
         self.count = 0
         self.end_time = 0

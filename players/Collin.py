@@ -74,18 +74,19 @@ class Collin(Player):
             targetPlayer = self.handler.getOtherPlayer(self)
             self.enemydistx = self.rect.x - targetPlayer.rect.x
             self.enemydisty = self.rect.y - targetPlayer.rect.y
+            print(self.enemydisty)
             if self.facing == -1:
                 if self.currenttick % 4 == 0:
                     self.leftAttImg = self.leftAnimation.get()
                 screen.blit(self.leftAttImg, (self.rect.x - 330, self.rect.y + 15))
-                if 330 > self.enemydistx > 0 > self.enemydisty > -60:
+                if 330 > self.enemydistx > 0 and 30 >= self.enemydisty >= -30:
                     if self.currenttick % 5 == 0:
                         targetPlayer.takeDamage(self.damage)
             if self.facing == 1:
                 if self.currenttick % 4 == 0:
                     self.rightAttImg = self.rightAnimation.get()
                 screen.blit(self.rightAttImg, (self.rect.x + self.width, self.rect.y + 15))
-                if 0 > self.enemydistx > -330 - self.width and 0 > self.enemydisty > -60:
+                if 0 > self.enemydistx > -330 - self.width and 30 >= self.enemydisty >= -30:
                     if self.currenttick % 5 == 0:
                         targetPlayer.takeDamage(self.damage)
         else:
