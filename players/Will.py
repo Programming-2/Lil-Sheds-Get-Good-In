@@ -34,11 +34,12 @@ class Will(Player):
         self.attack_animation = CircularQueue()
         self.attack_animation.addData(self.attack1)
         self.attack_animation.addData(self.attack2)
-        self.powerattack1 = pygame.image.load("media/Players/Will/PowerAttack1.png").convert_alpha()
-        self.powerattack2 = pygame.image.load("media/Players/Will/PowerAttack2.png").convert_alpha()
-        self.powerattack_animation = CircularQueue()
-        self.powerattack_animation.addData(self.powerattack1)
-        self.powerattack_animation.addData(self.powerattack2)
+        self.powerattack_animation_right = CircularQueue()
+        self.powerattack_animation_right.addData(pygame.image.load("media/Players/Will/PowerAttack1.png").convert_alpha())
+        self.powerattack_animation_right.addData(pygame.image.load("media/Players/Will/PowerAttack2.png").convert_alpha())
+        self.powerattack_animation_left = CircularQueue()
+        self.powerattack_animation_left.addData(pygame.transform.flip(pygame.image.load("media/Players/Will/PowerAttack1.png").convert_alpha(), True, False))
+        self.powerattack_animation_left.addData(pygame.transform.flip(pygame.image.load("media/Players/Will/PowerAttack2.png").convert_alpha(), True, False))
         self.BIGGnoise = Sound("BIGGDeathSound")
         self.rangedcount = 0
         self.rangedavailable = False
@@ -167,8 +168,8 @@ class Will(Player):
                 attack = Attack(self, self.damage, self.handler)
                 attack.damage = self.ranged_cooldown.current_cooldown * 40
                 attack.travel_speed = self.ranged_cooldown.current_cooldown * 7
-                attack.left_animation = self.powerattack_animation
-                attack.right_animation = self.powerattack_animation
+                attack.left_animation = self.powerattack_animation_left
+                attack.right_animation = self.powerattack_animation_right
                 self.handler.getAttackList().add(attack)
                 self.rangedavailable = False
                 self.ranged_used = True
