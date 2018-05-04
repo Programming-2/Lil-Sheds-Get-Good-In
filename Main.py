@@ -9,6 +9,7 @@ from states.EndGameState import EndGameState
 from states.MainMenuState import MainMenuState
 from states.MapSelectionState import MapSelectionState
 from states.PlayerSelectionState import PlayerSelectionState
+from states.HiddenPlayerState import HiddenPlayerState
 from utils.StateManager import StateManager
 from states.PausedState import PausedState
 from inputmanager.KeyboardManager import KeyboardManager
@@ -36,6 +37,7 @@ testControlScreen = pygame.image.load("media/Screens/ControlScreen.png").convert
 playerSelectScreen = pygame.image.load("media/Screens/LilShedCharacterSelect.png").convert()
 mapSelectionScreen = pygame.image.load("media/Screens/MapSelection.png").convert()
 pauseScreen = pygame.image.load("media/Screens/PauseScreen2.png").convert_alpha()
+hiddenPlayerScreen = pygame.image.load("media/Screens/HiddenCharacterMenu.png").convert_alpha()
 
 # Setting up screen stuff
 pygame.display.set_caption("Lil' Shed's Get Good In™")
@@ -67,6 +69,7 @@ stateDict = {
     "MapSelectionState": MapSelectionState("MapSelectionState", handler, screen, mapSelectionScreen),
     "PlayerSelectionState": PlayerSelectionState("PlayerSelectionState", handler, playerSelectScreen),
     "PausedState": PausedState("PausedState", handler, pauseScreen),
+    "HiddenPlayerState": HiddenPlayerState("HiddenPlayerState", handler, hiddenPlayerScreen)
 }
 stateManager.setStateDict(stateDict)
 # End State Declaration

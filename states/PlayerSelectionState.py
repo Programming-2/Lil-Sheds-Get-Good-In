@@ -67,6 +67,9 @@ class PlayerSelectionState(State):
             self.handler.getStateManager().resetStates()
             self.handler.getStateManager().setCurrentState("MainMenuState")
 
+        # Hidden Character Menu
+        if (1050 < pygame.mouse.get_pos()[0] < 1100 and pressed) and (750 < pygame.mouse.get_pos()[1] < 800 and pressed):
+            self.handler.getStateManager().setCurrentState("HiddenPlayerState")
         # Looks at keys in rects dict, and determines if the mouse if clicking that rect
         for key in self.rects:
             if key.contains(pygame.mouse.get_pos()[0], pygame.mouse.get_pos()[1], 10, 10):
