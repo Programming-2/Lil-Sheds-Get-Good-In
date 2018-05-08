@@ -109,7 +109,7 @@ class JaccobBonkley(Player):
                             screen.blit(self.keyboardAnimation2.get(), (self.rect.x + 70, self.rect.y - 50))
                             if self.health != (self.current_health - 20):
                                 self.takeDamage(40)
-                                self.special_duration = Cooldown(.5)
+                                self.special_duration = Cooldown(.1)
 
                 else:
                     self.special_active = False
