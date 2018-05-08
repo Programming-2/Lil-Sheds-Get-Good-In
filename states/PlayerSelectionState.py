@@ -8,7 +8,6 @@ from players.JaccobBonkley import JaccobBonkley
 from players.Jakob import Jakob
 from players.Greg import Greg
 from players.Shed import Shed
-from players.Collin import Collin
 from utils.Colors import colors
 from utils.Sound import Sound
 
