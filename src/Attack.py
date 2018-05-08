@@ -4,7 +4,7 @@ from datastructures.CircularQueue import CircularQueue
 
 class Attack(pygame.sprite.Sprite):
 
-    def __init__(self, player, damage, handler, travel_speed = 15):
+    def __init__(self, player, damage, handler, travel_speed = 15, changey = 0):
         super().__init__()
         self.player = player
         self.player_x = player.rect.x
@@ -12,7 +12,7 @@ class Attack(pygame.sprite.Sprite):
         self.direction = player.facing
         self.travel_speed = travel_speed
         self.changex = self.travel_speed * self.direction
-        self.changey = 0
+        self.changey = changey
         self.attacksprite = player.attacksprite
         self.left_attack = pygame.transform.rotate(self.attacksprite, 180)
         self.right_attack = player.attacksprite
@@ -34,7 +34,15 @@ class Attack(pygame.sprite.Sprite):
         self.rect.y = self.player.rect.y
         self.direction = self.player.facing
 
+    def checkPlat(self):
+        if self.name != "Lil' Shed":
+            pygame.sprite.groupcollide(self.handler.getPlatformArray(), self, False, True)
+        else:
+            if 0 > self.rect.x > 1100 or 0 > self.rect.y > 800:
+                pygame.sprite.groupcollide(self.handler.getPlatformArray(), self, False, True)
+
     def update(self, screen):
+        self.checkPlat()
         if self.spawned:
             self.player.attacksound.playSound()
             self.spawned = False
