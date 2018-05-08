@@ -8,6 +8,7 @@ class Handler:
         self.attackList = attackList
         self.stateManager = stateManager
         self.platformArray = platformArray
+        self.firstSelection = True
         self.screen = screen
         self.done = False
         self.player1 = Will(0, 0, self)

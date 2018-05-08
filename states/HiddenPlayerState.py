@@ -13,10 +13,6 @@ class HiddenPlayerState(State):
         super().__init__(name)
         self.handler = handler
         self.img = img
-        if handler.player1 is None:
-            self.firstSelection = True
-        else:
-            self.firstSelection = False
         self.player1 = None
         self.player2 = None
         self.player1Rect = Rect(0, 0, 0, 0)
@@ -45,7 +41,7 @@ class HiddenPlayerState(State):
         }
 
     def resetState(self):
-        self.firstSelection = True
+        self.handler.firstSelection = True
         self.player1 = None
         self.player2 = None
         self.player1Rect = (0, 0, 0, 0)
@@ -81,11 +77,11 @@ class HiddenPlayerState(State):
             if key.contains(pygame.mouse.get_pos()[0], pygame.mouse.get_pos()[1], 10, 10):
                 if pressed:
                     self.hoverOver.playSound()
-                    if self.firstSelection:
+                    if self.handler.firstSelection:
                         self.player1 = self.rects[key]
                         self.player1.setX(150)
                         self.player1.y = 100
-                        self.firstSelection = False
+                        self.handler.firstSelection = False
                         self.player1Rect = key
                         self.hoverPlay = 0
                         self.handler.player1 = self.player1

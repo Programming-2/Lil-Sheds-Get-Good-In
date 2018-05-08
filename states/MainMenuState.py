@@ -2,6 +2,7 @@ import pygame
 from states.State import State
 from utils.Sound import Sound
 
+
 class MainMenuState(State):
 
     def __init__(self, name, mainMenu, handler):
