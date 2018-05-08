@@ -7,7 +7,6 @@ from players.Kyle import Kyle
 from players.JaccobBonkley import JaccobBonkley
 from players.Jakob import Jakob
 from players.Greg import Greg
-from players.Shed import Shed
 from utils.Colors import colors
 from utils.Sound import Sound
 
@@ -37,14 +36,14 @@ class PlayerSelectionState(State):
 
         # Rectangle Dict
         self.rects = {
-            Rect(14, 15, 54, 55): David(150, 100, handler),
-            Rect(14, 85, 54, 55): Will(150, 100, handler),
-            Rect(14, 159, 54, 55): Kyle(150, 100, handler),
-            Rect(14, 231, 54, 55): JaccobBonkley(150, 100, handler),
-            Rect(14, 303, 54, 55): Jakob(150, 100, handler),
-            Rect(14, 388, 54, 55): Greg(150, 100, handler),
+            Rect(31, 52, 46, 46): David(150, 100, handler),
+            Rect(31, 142, 46, 46): Greg(150, 100, handler),
+            Rect(31, 225, 46, 46): JaccobBonkley(150, 100, handler),
+            Rect(31, 312, 46, 46): Jakob(150, 100, handler),
+            Rect(31, 395, 46, 47): Kyle(150, 100, handler),
+            Rect(31, 483, 46, 46): Will(150, 100, handler),
             # Rect(1050, 750, 50, 50): Collin(150, 100, handler),
-            Rect(14, 503, 54, 55): Shed(150, 100, handler)
+            # Rect(31, 503, 46, 46): Shed(150, 100, handler)
         }
 
     def resetState(self):
