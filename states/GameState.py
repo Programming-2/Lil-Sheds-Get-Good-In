@@ -190,13 +190,13 @@ class GameState(State):
                     self.player2.rangedendtime = pygame.time.get_ticks()
                     self.player2.released = True
             if self.useJoysticksP1 and event.type == pygame.JOYBUTTONDOWN:
-                if event.button == CONTROLLER_RANGED and not self.player1.sleeping and event.joy == 0:
+                if event.button == CONTROLLER_RANGED and not (self.player1.sleeping or self.player1.stunned) and event.joy == 0:
                     self.player1.attack(screen)
                     self.player1.rangedstarttime = pygame.time.get_ticks()
                     self.player1.released = False
-                if event.button == CONTROLLER_SPECIAL and not self.player1.sleeping and event.joy == 0:
+                if event.button == CONTROLLER_SPECIAL and not (self.player1.sleeping or self.player1.stunned) and event.joy == 0:
                     self.player1.special()
-                if event.button == CONTROLLER_MELEE and not self.player1.sleeping and event.joy == 0:
+                if event.button == CONTROLLER_MELEE and not (self.player1.sleeping or self.player1.stunned) and event.joy == 0:
                     self.player1.meleeAttack(screen)
                 if event.button == CONTROLLER_JUMP and not (self.player1.sleeping or self.player1.stunned) and event.joy == 0 and self.player1.name != "Lil' Shed":
                     self.player1.jump()
@@ -205,15 +205,15 @@ class GameState(State):
             if self.useJoysticksP2 and event.type == pygame.JOYBUTTONDOWN:
                 if event.button == CONTROLLER_JUMP and not (self.player2.sleeping or self.player2.stunned) and event.joy == 1 and self.player2.name != "Lil' Shed":
                     self.player2.jump()
-                if event.button == CONTROLLER_MELEE and not self.player2.sleeping and event.joy == 1:
+                if event.button == CONTROLLER_MELEE and not (self.player2.sleeping or self.player2.stunned) and event.joy == 1:
                     self.player2.meleeAttack(screen)
                 if event.button == CONTROLLER_CROUCH and not (self.player2.sleeping or self.player2.stunned) and event.joy == 1 and self.player2.name != "Lil' Shed":
                     self.player2.duck()
-                if event.button == CONTROLLER_RANGED and not self.player2.sleeping and event.joy == 1:
+                if event.button == CONTROLLER_RANGED and not (self.player2.sleeping or self.player2.stunned) and event.joy == 1:
                     self.player2.attack(screen)
                     self.player2.rangedstarttime = pygame.time.get_ticks()
                     self.player2.released = False
-                if event.button == CONTROLLER_SPECIAL and not self.player2.sleeping and event.joy == 1:
+                if event.button == CONTROLLER_SPECIAL and not (self.player2.sleeping or self.player2.stunned) and event.joy == 1:
                     self.player2.special()
                 if event.button == CONTROLLER_PAUSE:
                     self.handler.getStateManager().setCurrentState("PausedState")
