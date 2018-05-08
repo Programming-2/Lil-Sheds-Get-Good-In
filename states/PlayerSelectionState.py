@@ -7,6 +7,7 @@ from players.Kyle import Kyle
 from players.JaccobBonkley import JaccobBonkley
 from players.Jakob import Jakob
 from players.Greg import Greg
+from players.Shed import Shed
 from utils.Colors import colors
 from utils.Sound import Sound
 
@@ -43,7 +44,7 @@ class PlayerSelectionState(State):
             Rect(31, 395, 46, 47): Kyle(150, 100, handler),
             Rect(31, 483, 46, 46): Will(150, 100, handler),
             # Rect(1050, 750, 50, 50): Collin(150, 100, handler),
-            # Rect(31, 503, 46, 46): Shed(150, 100, handler)
+            Rect(228, 323, 26, 34): Shed(150, 100, handler)
         }
 
     def resetState(self):
@@ -100,6 +101,7 @@ class PlayerSelectionState(State):
         # Hidden Character Menu
         if (1050 < pygame.mouse.get_pos()[0] < 1100 and pressed) and (750 < pygame.mouse.get_pos()[1] < 800 and pressed):
             self.handler.getStateManager().setCurrentState("HiddenPlayerState")
+
         # Looks at keys in rects dict, and determines if the mouse if clicking that rect
         for key in self.rects:
             if key.contains(pygame.mouse.get_pos()[0], pygame.mouse.get_pos()[1], 10, 10):
