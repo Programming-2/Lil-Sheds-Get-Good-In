@@ -36,10 +36,10 @@ class Attack(pygame.sprite.Sprite):
 
     def checkPlat(self):
         if self.name != "Lil' Shed":
-            pygame.sprite.groupcollide(self.handler.getPlatformArray(), self, False, True)
+            pygame.sprite.groupcollide(self.handler.getPlatformArray(), self.handler.getAttackList(), False, True)
         else:
             if 0 > self.rect.x > 1100 or 0 > self.rect.y > 800:
-                pygame.sprite.groupcollide(self.handler.getPlatformArray(), self, False, True)
+                pygame.sprite.groupcollide(self.handler.getPlatformArray(), self.handler.getAttackList(), False, True)
 
     def update(self, screen):
         self.checkPlat()
