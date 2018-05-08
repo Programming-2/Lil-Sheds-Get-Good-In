@@ -3,7 +3,6 @@ from states.State import State
 from utils.Rect import Rect
 from players.Collin import Collin
 from players.Kemul import Kemul
-from players.Shed import Shed
 from players.Jarod import Jarod
 from players.Smo import Smo
 from utils.Colors import colors
