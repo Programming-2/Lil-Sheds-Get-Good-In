@@ -25,6 +25,7 @@ class CustomAttack(Attack):
         self.rect.x += self.changex
         self.changey += self.cust_y_change
         self.rect.y += self.changey
+        self.checkPlat()
         if self.animationQueue is not None:
             screen.blit(self.animationQueue.get(), (self.rect.x, self.rect.y))
         else:

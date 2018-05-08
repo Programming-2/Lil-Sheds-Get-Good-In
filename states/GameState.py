@@ -270,8 +270,6 @@ class GameState(State):
         self.handler.setPlayer1(self.player1)
         self.handler.setPlayer2(self.player2)
 
-        pygame.sprite.groupcollide(self.platformArray, self.attackUpdateList, False, True)
-
         if self.player1.name != "Lil' Shed":
             self.player1.xchange = 0
         if self.player2.name != "Lil' Shed":
