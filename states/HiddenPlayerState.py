@@ -2,7 +2,9 @@ import pygame
 from states.State import State
 from utils.Rect import Rect
 from players.Collin import Collin
-from players.Shed import Shed
+from players.Kemul import Kemul
+from players.Jarod import Jarod
+from players.Smo import Smo
 from utils.Colors import colors
 from utils.Sound import Sound
 
@@ -25,9 +27,9 @@ class HiddenPlayerState(State):
         # Rectangle Dict
         self.rects = {
             Rect(23, 89, 60, 60): Collin(150, 100, handler),
-            Rect(23, 214, 60, 60): Shed(150, 100, handler),
-            Rect(23, 336, 60, 60): Shed(150, 100, handler),
-            Rect(23, 465, 60, 60): Shed(150, 100, handler)
+            Rect(23, 214, 60, 60): Smo(150, 100, handler),
+            Rect(23, 336, 60, 60): Kemul(150, 100, handler),
+            Rect(23, 465, 60, 60): Jarod(150, 100, handler)
         }
 
         self.color_rects = {
