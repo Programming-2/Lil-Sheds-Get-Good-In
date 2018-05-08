@@ -8,7 +8,6 @@ from players.JaccobBonkley import JaccobBonkley
 from players.Jakob import Jakob
 from players.Greg import Greg
 from players.Shed import Shed
-from players.Collin import Collin
 from utils.Colors import colors
 from utils.Sound import Sound
 
@@ -25,6 +24,14 @@ class PlayerSelectionState(State):
         self.player2Rect = Rect(0, 0, 0, 0)
         self.hoverOver = Sound("Beep2")
         self.hoverPlay = 0
+        self.background_color = [0, 0, 0]
+        self.background_rect = pygame.Rect(0, 0, 1100, 800)
+        self.red_change = 1
+        self.green_change = 1
+        self.blue_change = 1
+        self.red_done = False
+        self.green_done = False
+        self.blue_done = False
 
         # TODO Fix bug with duplicated players or made it so same player cannot be selected twice
 
@@ -48,6 +55,31 @@ class PlayerSelectionState(State):
         self.player2Rect = (0, 0, 0, 0)
 
     def update(self, screen):
+        if not self.background_color[0] == 255 and not self.red_done:
+            self.background_color[0] += self.red_change
+        if self.background_color[0] == 255:
+            self.red_done = True
+        if self.red_done:
+            self.background_color[0] -= self.red_change
+        if self.background_color[0] == 0:
+            self.red_done = False
+        if self.red_done and not self.background_color[1] == 255:
+            self.background_color[1] += self.green_change
+        if self.background_color[1] == 255:
+            self.green_done = True
+        if self.green_done:
+            self.background_color[1] -= self.green_change
+        if self.background_color[1] == 0:
+            self.green_done = False
+        if self.green_done and not self.background_color[2] == 255:
+            self.background_color[2] += self.blue_change
+        if self.background_color[2] == 255:
+            self.blue_done = True
+        if self.blue_done:
+            self.background_color[2] -= self.blue_change
+        if self.background_color[2] == 0:
+            self.blue_done = False
+        pygame.draw.rect(screen, self.background_color, self.background_rect)
         pressed = False
 
         # Event look
