@@ -105,6 +105,9 @@ class GameState(State):
         self.end_time = 0
 
     def reloadLevel(self):
+        if len(self.handler.getLevel().platformGroup) == 0:
+            self.handler.getLevel().__init__(self.screen)
+
         self.platformArray = self.handler.getLevel().platformGroup
 
         self.testProjectile = pygame.image.load("media/Misc/projectileTest.png").convert()
