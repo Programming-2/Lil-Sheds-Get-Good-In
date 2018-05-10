@@ -4,7 +4,7 @@ from datastructures.CircularQueue import CircularQueue
 
 class Attack(pygame.sprite.Sprite):
 
-    def __init__(self, player, damage, handler, travel_speed = 15, changey = 0):
+    def __init__(self, player, damage, handler, travel_speed=15, changey=0):
         super().__init__()
         self.player = player
         self.player_x = player.rect.x
