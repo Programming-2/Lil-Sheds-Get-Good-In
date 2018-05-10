@@ -8,7 +8,7 @@ from src.Cooldown import Cooldown
 class Collin(Player):
     def __init__(self, x, y, handler):
         health = 120
-        damage = 10
+        damage = 12
         winQuote = "ROOOOOOSE"
         loseQuote = "at least I still have Kaitlin"
         name = "Collin"
@@ -94,10 +94,10 @@ class Collin(Player):
 
         if self.special_active and not self.stunned:
             if self.facing == 1:
-                self.rose = CustomAttack(self, self.special_damage, self.handler, 5, -5, self.special_sprite, .15, self.specialAnimation)
+                self.rose = CustomAttack(self, self.special_damage, self.handler, 15, -3, self.special_sprite, .15, self.specialAnimation)
                 self.rose.rect.y -= 20
             elif self.facing == -1:
-                self.rose = CustomAttack(self, self.special_damage, self.handler, -5, -5, self.special_sprite, .15, self.specialAnimation)
+                self.rose = CustomAttack(self, self.special_damage, self.handler, -15, -3, self.special_sprite, .15, self.specialAnimation)
                 self.rose.rect.y -= 20
             self.handler.getAttackList().add(self.rose)
             self.special_cooldown.update()
