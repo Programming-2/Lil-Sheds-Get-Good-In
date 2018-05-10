@@ -71,8 +71,7 @@ class HiddenPlayerState(State):
 
         # Button to return to the main menu
         if (715 < pygame.mouse.get_pos()[0] < 1055 and pressed) and (600 < pygame.mouse.get_pos()[1] < 750 and pressed):
-            self.handler.getStateManager().resetStates()
-            self.handler.getStateManager().setCurrentState("MainMenuState")
+            self.handler.getStateManager().setCurrentState("PlayerSelectionState")
 
         # Looks at keys in rects dict, and determines if the mouse if clicking that rect
         for key in self.rects:
