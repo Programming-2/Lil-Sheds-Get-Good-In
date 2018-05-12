@@ -5,6 +5,7 @@ from players.Collin import Collin
 from players.Kemul import Kemul
 from players.Jarod import Jarod
 from players.Smo import Smo
+from players.Reynaldo import Reynaldo
 from utils.Colors import colors
 from utils.Sound import Sound
 
@@ -29,7 +30,8 @@ class HiddenPlayerState(State):
             Rect(23, 89, 60, 60): Collin(150, 100, handler),
             Rect(23, 214, 60, 60): Smo(150, 100, handler),
             Rect(23, 336, 60, 60): Kemul(150, 100, handler),
-            Rect(23, 465, 60, 60): Jarod(150, 100, handler)
+            Rect(23, 465, 60, 60): Jarod(150, 100, handler),
+            Rect(23, 595, 60, 60): Reynaldo(150, 100, handler)
         }
 
         self.color_rects = {
