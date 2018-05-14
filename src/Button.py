@@ -9,8 +9,8 @@ class Button:
         self.y = y
         self.width = width
         self.handler = handler
-        self.button = pygame.image.load("media/Misc/greenButton.png")
-        self.buttonPressed = pygame.image.load("media/Misc/redButton.png")
+        self.button = pygame.image.load("media/Misc/greenButton.png").convert_alpha()
+        self.buttonPressed = pygame.image.load("media/Misc/redButton.png").convert_alpha()
 
     def update(self, screen):
         screen.blit(self.button, [self.x, self.y])
