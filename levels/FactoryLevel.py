@@ -17,15 +17,17 @@ class FactoryLevel(Level):
 
         actionRight = lambda: print("Drop box right")
 
-        self.buttonLeft = Button(actionLeft, 10, 10, 48, None)
-        self.buttonRight = Button(actionRight, 10, 10, 48, None)
+        self.buttonLeft = Button(actionLeft, 10, 10, 48, handler)
+        self.buttonRight = Button(actionRight, 10, 10, 48, handler)
 
         for a in range(0, 5):
             self.conveyorAnimation.addData(self.conveyorOne)
         for a in range(0, 5):
             self.conveyorAnimation.addData(self.conveyorTwo)
+
         self.conveyorOne2 = pygame.transform.flip(self.conveyorOne, True, False)
         self.conveyorTwo2 = pygame.transform.flip(self.conveyorTwo, True, False)
+
         for a in range(0, 5):
             self.conveyorAnimation2.addData(self.conveyorOne2)
         for a in range(0, 5):
