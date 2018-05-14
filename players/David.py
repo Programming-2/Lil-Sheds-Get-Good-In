@@ -30,14 +30,7 @@ class David(Player):
             self.special_active = True
 
     def update(self, screen):
-        self.moveX()
-        self.moveY()
-        self.gravityUpdate()
-
-        if self.xchange > 0:
-            self.facing = 1
-        elif self.xchange < 0:
-            self.facing = -1
+        super().update(screen)
 
         if not self.special_cooldown.isDone():
             self.special_cooldown.update()
@@ -58,4 +51,3 @@ class David(Player):
                     self.handler.getPlayer1().stunned = False
                 self.special_cooldown.update()
 
-        screen.blit(self.sprite, [self.rect.x, self.rect.y])

@@ -69,17 +69,8 @@ class Kyle(Player):
     def update(self, screen):
         if not self.special_cooldown.isDone():
             self.special_cooldown.update()
-        self.screen = screen
-        self.gravityUpdate()
-        self.moveX()
-        self.moveY()
         self.determineSprite()
-        screen.blit(self.sprite, [self.rect.x, self.rect.y])
-
-        if self.xchange > 0:
-            self.facing = 1
-        elif self.xchange < 0:
-            self.facing = -1
+        super().update(screen)
 
         for p in self.handler.getPlatformArray():
             if p.height == 25:

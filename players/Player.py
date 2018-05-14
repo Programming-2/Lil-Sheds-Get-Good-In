@@ -98,8 +98,8 @@ class Player(pygame.sprite.Sprite):
     def update(self, screen):
         self.screen = screen
         self.gravityUpdate()
-        self.moveX()
         self.moveY()
+        self.moveX()
         screen.blit(self.sprite, [self.rect.x, self.rect.y])
 
         if self.xchange > 0:
@@ -164,6 +164,7 @@ class Player(pygame.sprite.Sprite):
                 self.rect.top = platform.rect.bottom
                 self.resetJump()
             self.ychange = 0
+            platform.entMove(self)
 
     def moveLeft(self):
         self.xchange = self.movespeed * -1

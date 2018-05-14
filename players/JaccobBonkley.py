@@ -51,14 +51,7 @@ class JaccobBonkley(Player):
             self.num = 0
 
     def update(self, screen):
-        self.moveX()
-        self.moveY()
-        self.gravityUpdate()
-
-        if self.xchange > 0:
-            self.facing = 1
-        elif self.xchange < 0:
-            self.facing = -1
+        super().update(screen)
 
         if not self.special_cooldown.isDone():
             self.special_cooldown.update()
@@ -118,4 +111,3 @@ class JaccobBonkley(Player):
                     self.special_cooldown.update()
                     self.num = 0
 
-        screen.blit(self.sprite, [self.rect.x, self.rect.y])

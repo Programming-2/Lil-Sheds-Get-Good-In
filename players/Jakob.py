@@ -45,14 +45,7 @@ class Jakob(Player):
             self.special_active = True
 
     def update(self, screen):
-        self.moveX()
-        self.moveY()
-        self.gravityUpdate()
-
-        if self.xchange > 0:
-            self.facing = 1
-        elif self.xchange < 0:
-            self.facing = -1
+        super().update(screen)
 
         self.current_time = pygame.time.get_ticks()
 
@@ -65,5 +58,3 @@ class Jakob(Player):
                 self.special_active = False
                 self.special_cooldown.update()
                 self.reverse()
-
-        screen.blit(self.sprite, [self.rect.x, self.rect.y])

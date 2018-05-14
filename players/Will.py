@@ -85,16 +85,8 @@ class Will(Player):
 
     def update(self, screen):
         self.tick += 1
-        self.screen = screen
         if not self.special_active:
-            self.gravityUpdate()
-            self.moveX()
-            self.moveY()
-
-            if self.xchange > 0:
-                self.facing = 1
-            elif self.xchange < 0:
-                self.facing = -1
+            super().update(screen)
 
         if not self.special_cooldown.isDone():
             self.special_cooldown.update()
@@ -108,6 +100,7 @@ class Will(Player):
                 self.ychange = 0
                 self.defense = 0
                 self.gravity = 0
+                screen.blit(self.sprite, [self.rect.x, self.rect.y])
             else:
                 for attack in self.special_list:
                     attack.updateAttack()

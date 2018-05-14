@@ -57,16 +57,7 @@ class Collin(Player):
     def update(self, screen):
         self.currenttick += 1
         # original
-        self.screen = screen
-        self.gravityUpdate()
-        self.moveX()
-        self.moveY()
-        screen.blit(self.sprite, [self.rect.x, self.rect.y])
-
-        if self.xchange > 0:
-            self.facing = 1
-        elif self.xchange < 0:
-            self.facing = -1
+        super().update(screen)
 
         # attacks
         if self.attacking and not self.released:

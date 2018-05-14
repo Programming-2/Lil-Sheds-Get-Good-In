@@ -8,11 +8,11 @@ class LavaLevel(Level):
         super().__init__(screen, "media/Levels/LavaMap.png")
 
         # TODO Add platforms
-        self.p1 = Platform(screen, 135, 510, 56, 290, -1)
-        self.p2 = Platform(screen, 262, 409, 49, 391, -1)
-        self.p3 = Platform(screen, 437, 315, 324, 485, -1)
-        self.p4 = Platform(screen, 824, 408, 56, 392, -1)
-        self.p5 = Platform(screen, 943, 495, 59, 306, -1)
+        self.p1 = Platform(screen, 135, 510, 56, 290)
+        self.p2 = Platform(screen, 262, 409, 49, 391)
+        self.p3 = Platform(screen, 437, 315, 324, 485)
+        self.p4 = Platform(screen, 824, 408, 56, 392)
+        self.p5 = Platform(screen, 943, 495, 59, 306)
         self.platformGroup.add(self.p1)
         self.platformGroup.add(self.p2)
         self.platformGroup.add(self.p3)
