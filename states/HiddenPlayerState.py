@@ -31,7 +31,7 @@ class HiddenPlayerState(State):
             Rect(23, 214, 60, 60): Smo(150, 100, handler),
             Rect(23, 336, 60, 60): Kemul(150, 100, handler),
             Rect(23, 465, 60, 60): Jarod(150, 100, handler),
-            Rect(23, 595, 60, 60): Reynaldo(150, 100, handler)
+            Rect(818, 45, 35, 35): Reynaldo(150, 100, handler)
         }
 
         self.color_rects = {
