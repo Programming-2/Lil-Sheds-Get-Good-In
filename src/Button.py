@@ -15,7 +15,7 @@ class Button:
     def update(self, screen):
         screen.blit(self.button, [self.x, self.y])
 
-        if (self.handler.player1.isCrouching or self.handler.player2.isCrouching) and self.playerInRange():
+        if (self.handler.player1.crouching or self.handler.player2.crouching) and self.playerInRange():
             self.action()
 
     def playerInRange(self):

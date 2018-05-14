@@ -15,15 +15,15 @@ class FactoryLevel(Level):
         self.platformGroup.add(self.cPlat)
         self.conveyorAnimation = CircularQueue()
         self.conveyorAnimation2 = CircularQueue()
-        self.conveyorOne = pygame.image.load("media/misc/conveyorSpriteOne.png")
-        self.conveyorTwo = pygame.image.load("media/misc/conveyorSpriteTwo.png")
+        self.conveyorOne = pygame.image.load("media/misc/conveyorSpriteOne.png").convert_alpha()
+        self.conveyorTwo = pygame.image.load("media/misc/conveyorSpriteTwo.png").convert_alpha()
 
         actionLeft = lambda: print("Drop box left")
 
         actionRight = lambda: print("Drop box right")
 
-        self.buttonLeft = Button(actionLeft, 10, 10, 48, handler)
-        self.buttonRight = Button(actionRight, 10, 10, 48, handler)
+        self.buttonLeft = Button(actionLeft, 60, 400, 48, handler)
+        self.buttonRight = Button(actionRight, 1000, 400, 48, handler)
 
         for a in range(0, 5):
             self.conveyorAnimation.addData(self.conveyorOne)
