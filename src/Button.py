@@ -25,5 +25,5 @@ class Button:
 
         if (self.x < player1.rect.x < self.x + self.width and self.y - player1.rect.height - 6 < player1.rect.y < self.y + 6) or (self.x < player2.rect.x < self.x + self.width and self.y - player2.rect.height - 6 < player2.rect.y < self.y + 6):
             return True
-
-        return False
+        else:
+            return False

@@ -19,6 +19,9 @@ class Player(pygame.sprite.Sprite):
         self.rightsprite = self.stansprite
         self.leftcrouchsprite = pygame.transform.flip(self.crouchsprite, True, False)
         self.rightcrouchsprite = self.crouchsprite
+        self.rightAttackSprite = self.attacksprite
+        self.leftAttackSprite = pygame.transform.rotate(self.attacksprite, 180)
+
         self.hitSound = Sound("DeathSound")
         self.attacksound = Sound("GunFiring")
         self.gregMeleeHit = Sound("Knife Slice Into Flesh Sound Effect")
@@ -27,8 +30,7 @@ class Player(pygame.sprite.Sprite):
         self.deathsound = Sound("LongDeathSound")
         #self.jumpSound = Sound("y2mate.com - cartoon_boing_sound_effect_3_rm_qHuXXvpk")
         self.BIGGsound = Sound("BIGGDeathSound")
-        self.rightAttackSprite = self.attacksprite
-        self.leftAttackSprite = pygame.transform.rotate(self.attacksprite, 180)
+
         self.damage = damage
         self.maxHP = health
         self.health = health
