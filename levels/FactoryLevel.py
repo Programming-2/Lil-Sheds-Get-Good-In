@@ -9,10 +9,10 @@ class FactoryLevel(Level):
 
     def __init__(self, screen, handler):
         super().__init__(screen, "media/Levels/Factory.png")
-        self.ground = Platform(screen, 0, 650, 1100, 150)
-        self.cPlat = Platform(screen, 350, 400, 400, 50)
-        self.platformGroup.add(self.ground)
-        self.platformGroup.add(self.cPlat)
+        self.plat1 = Platform(screen, 0, 416, 450, 50, speed=2)
+        self.plat2 = Platform(screen, 650, 416, 450, 50, speed=-2)
+        self.platformGroup.add(self.plat1)
+        self.platformGroup.add(self.plat2)
         self.conveyorAnimation = CircularQueue()
         self.conveyorAnimation2 = CircularQueue()
         self.conveyorOne = pygame.image.load("media/misc/conveyorSpriteOne.png").convert_alpha()
@@ -22,8 +22,8 @@ class FactoryLevel(Level):
 
         actionRight = lambda: print("Drop box right")
 
-        self.buttonLeft = Button(actionLeft, 60, 400, 48, handler)
-        self.buttonRight = Button(actionRight, 1000, 400, 48, handler)
+        self.buttonLeft = Button(actionLeft, 60, 390, 48, handler)
+        self.buttonRight = Button(actionRight, 1000, 390, 48, handler)
 
         for a in range(0, 10):
             self.conveyorAnimation.addData(self.conveyorOne)

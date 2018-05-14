@@ -17,6 +17,7 @@ class Button:
 
         if (self.handler.player1.crouching or self.handler.player2.crouching) and self.playerInRange():
             self.action()
+            screen.blit(self.buttonPressed, [self.x, self.y])
 
     def playerInRange(self):
         player1 = self.handler.player1
