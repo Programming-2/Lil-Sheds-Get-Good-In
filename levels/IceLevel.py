@@ -15,5 +15,5 @@ class IceLevel(Level):
         self.platformGroup.add(self.ground2)
         self.platformGroup.add(self.ground3)
 
-    def update(self):
+    def update(self, screen):
         pass

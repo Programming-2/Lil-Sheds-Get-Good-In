@@ -19,5 +19,5 @@ class LavaLevel(Level):
         self.platformGroup.add(self.p4)
         self.platformGroup.add(self.p5)
 
-    def update(self):
+    def update(self, screen):
         pass

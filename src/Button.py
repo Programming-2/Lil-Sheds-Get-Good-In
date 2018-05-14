@@ -1,15 +1,19 @@
+import pygame
+
+
 class Button:
 
-    def __init__(self, action, img, x, y, width, handler):
+    def __init__(self, action, x, y, width, handler):
         self.action = action
-        self.img = img
         self.x = x
         self.y = y
         self.width = width
         self.handler = handler
+        self.button = pygame.image.load("media/Misc/greenButton.png")
+        self.buttonPressed = pygame.image.load("media/Misc/redButton.png")
 
     def update(self, screen):
-        screen.blit(self.img, [self.x, self.y])
+        screen.blit(self.button, [self.x, self.y])
 
         if (self.handler.player1.isCrouching or self.handler.player2.isCrouching) and self.playerInRange():
             self.action()
