@@ -1,6 +1,7 @@
 from levels.Level import Level
 from src.Button import Button
 from datastructures.CircularQueue import CircularQueue
+from src.Platform import Platform
 import pygame
 
 
