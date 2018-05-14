@@ -25,17 +25,17 @@ class FactoryLevel(Level):
         self.buttonLeft = Button(actionLeft, 60, 400, 48, handler)
         self.buttonRight = Button(actionRight, 1000, 400, 48, handler)
 
-        for a in range(0, 5):
+        for a in range(0, 10):
             self.conveyorAnimation.addData(self.conveyorOne)
-        for a in range(0, 5):
+        for a in range(0, 10):
             self.conveyorAnimation.addData(self.conveyorTwo)
 
         self.conveyorOne2 = pygame.transform.flip(self.conveyorOne, True, False)
         self.conveyorTwo2 = pygame.transform.flip(self.conveyorTwo, True, False)
 
-        for a in range(0, 5):
+        for a in range(0, 10):
             self.conveyorAnimation2.addData(self.conveyorOne2)
-        for a in range(0, 5):
+        for a in range(0, 10):
             self.conveyorAnimation2.addData(self.conveyorTwo2)
 
     def update(self, screen):
