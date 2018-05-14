@@ -9,10 +9,10 @@ class FactoryLevel(Level):
 
     def __init__(self, screen, handler):
         super().__init__(screen, "media/Levels/Factory.png")
-        self.ground = Platform(screen, 0, 650, 1100, 150)
-        self.cPlat = Platform(screen, 350, 400, 400, 50)
-        self.platformGroup.add(self.ground)
-        self.platformGroup.add(self.cPlat)
+        self.plat1 = Platform(screen, 0, 416, 450, 50, speed=2)
+        self.plat2 = Platform(screen, 650, 416, 450, 50, speed=-2)
+        self.platformGroup.add(self.plat1)
+        self.platformGroup.add(self.plat2)
         self.conveyorAnimation = CircularQueue()
         self.conveyorAnimation2 = CircularQueue()
         self.conveyorOne = pygame.image.load("media/misc/conveyorSpriteOne.png")
