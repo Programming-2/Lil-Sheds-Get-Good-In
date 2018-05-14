@@ -9,7 +9,7 @@ class MainMenuState(State):
         super().__init__(name)
         self.menuImage = mainMenu
         self.handler = handler
-        self.theme = Sound("videoplayback")
+        self.theme = Sound("Track1")
         self.theme.playSound()
 
     def resetState(self):

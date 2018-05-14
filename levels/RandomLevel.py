@@ -12,5 +12,5 @@ class RandomLevel(Level):
             self.p1 = Platform(screen, (random.randint(0, (i * 100))), (random.randint(300, 600)), (random.randint((i * 100), (i * 100 + 50))), (random.randint(300, 600)), -1)
             self.platformGroup.add(self.p1)
 
-    def update(self):
+    def update(self, screen):
         pass

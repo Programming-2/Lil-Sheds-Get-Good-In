@@ -25,5 +25,5 @@ class Level():
         return self.__backImg
 
     @abstractmethod
-    def update(self):
+    def update(self, screen):
         pass

@@ -11,5 +11,5 @@ class GrassLevel(Level):
         self.platformGroup.add(self.plat1)
         self.platformGroup.add(self.plat2)
 
-    def update(self):
+    def update(self, screen):
         pass
