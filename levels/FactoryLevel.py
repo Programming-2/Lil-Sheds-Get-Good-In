@@ -22,8 +22,8 @@ class FactoryLevel(Level):
 
         actionRight = lambda: print("Drop box right")
 
-        self.buttonLeft = Button(actionLeft, 60, 400, 48, handler)
-        self.buttonRight = Button(actionRight, 1000, 400, 48, handler)
+        self.buttonLeft = Button(actionLeft, 60, 390, 48, handler)
+        self.buttonRight = Button(actionRight, 1000, 390, 48, handler)
 
         for a in range(0, 10):
             self.conveyorAnimation.addData(self.conveyorOne)
