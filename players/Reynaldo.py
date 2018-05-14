@@ -68,9 +68,9 @@ class Reynaldo(Player):
                 y_speed = self.special_travel_speed * math.cos(x_angle)
                 if pygame.Rect.colliderect(self.special_sprite_rect, self.rect):
                     self.special_stage = 3
-                self.special_sprite_rect.x -= x_speed
-                self.special_sprite_rect.y -= y_speed
-                print(math.cos(x_angle), math.sin(y_angle))
+                # self.special_sprite_rect.x -= x_speed
+                # self.special_sprite_rect.y -= y_speed
+                print(x_dist, y_dist, x_angle, x_speed, y_speed)
             if self.special_stage is 3:
                 self.special_count = 0
                 self.special_stage = 1
