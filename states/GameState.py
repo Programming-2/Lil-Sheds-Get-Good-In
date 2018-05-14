@@ -137,6 +137,8 @@ class GameState(State):
     def update(self, screen):
         screen.blit(self.background_image, [0, 0])  # Jakob's mistake
         keys = pygame.key.get_pressed()
+        
+        self.handler.level.update()
 
         if keys[pygame.K_a] and not (self.player1.sleeping or self.player1.stunned):
             self.player1.moveLeft()
