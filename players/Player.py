@@ -25,7 +25,7 @@ class Player(pygame.sprite.Sprite):
         self.rapidFire = Sound("HEAVY MACHINE GUN SOUND EFFECT(1)")
         self.hoverOver = Sound("Beep2")
         self.deathsound = Sound("LongDeathSound")
-        self.jumpSound = Sound("y2mate.com - cartoon_boing_sound_effect_3_rm_qHuXXvpk")
+        #self.jumpSound = Sound("y2mate.com - cartoon_boing_sound_effect_3_rm_qHuXXvpk")
         self.BIGGsound = Sound("BIGGDeathSound")
         self.rightAttackSprite = self.attacksprite
         self.leftAttackSprite = pygame.transform.rotate(self.attacksprite, 180)
@@ -70,7 +70,7 @@ class Player(pygame.sprite.Sprite):
         if self.jumpCount <= 1:
             self.ychange = -10
             self.jumpCount += 1
-            self.jumpSound.playSound()
+            #self.jumpSound.playSound()
 
     def unjump(self):
         pass
@@ -103,8 +103,8 @@ class Player(pygame.sprite.Sprite):
     def update(self, screen):
         self.screen = screen
         self.gravityUpdate()
-        self.moveX()
         self.moveY()
+        self.moveX()
         screen.blit(self.sprite, [self.rect.x, self.rect.y])
 
         if self.xchange > 0:
@@ -169,6 +169,7 @@ class Player(pygame.sprite.Sprite):
                 self.rect.top = platform.rect.bottom
                 self.resetJump()
             self.ychange = 0
+            platform.entMove(self)
 
     def moveLeft(self):
         self.xchange = self.movespeed * -1

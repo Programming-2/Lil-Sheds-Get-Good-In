@@ -72,16 +72,8 @@ class Greg(Player):
             if self.attackcount > 6:
                 self.attacking = False
                 self.attackcount = 1
-        self.screen = screen
         if not self.special_active:
-            self.gravityUpdate()
-            self.moveX()
-            self.moveY()
-
-            if self.xchange > 0:
-                self.facing = 1
-            elif self.xchange < 0:
-                self.facing = -1
+            super().update(screen)
 
         if not self.special_cooldown.isDone():
             self.special_cooldown.update()
@@ -118,5 +110,4 @@ class Greg(Player):
                 self.sprite = self.stansprite
                 self.sprite = self.stansprite
                 self.special_cooldown.update()
-
-        screen.blit(self.sprite, [self.rect.x, self.rect.y])
+            screen.blit(self.sprite, [self.rect.x, self.rect.y])

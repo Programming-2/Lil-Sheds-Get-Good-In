@@ -69,15 +69,7 @@ class Shed(Player):
 
     def update(self, screen):
         self.tick += 1
-        self.screen = screen
-        self.moveX()
-        self.moveY()
-        screen.blit(self.sprite, [self.rect.x, self.rect.y])
-
-        if self.movingRight:
-            self.facing = 1
-        elif self.movingLeft:
-            self.facing = -1
+        super().update(screen)
 
         if self.jump_pressed and not self.jumpreleased:
             self.ychange -= 0.2
