@@ -11,7 +11,7 @@ class Reynaldo(Player):
         winQuote = "Pog Champerino!!!!"
         loseQuote = "I was lagging!"
         name = "Reynaldo"
-        movespeed = 5
+        movespeed = 6
         defense = .5
         self.handler = handler
 
@@ -59,6 +59,7 @@ class Reynaldo(Player):
                 self.special_stage = 2
 
             if self.special_stage is 1:
+                self.movespeed = 10
                 if self.start_direction == 1:
                     self.special_sprite_rect.x += self.special_travel_speed
                 if self.start_direction == -1:
@@ -83,6 +84,7 @@ class Reynaldo(Player):
                 self.special_stage = 1
                 self.special_active = False
                 self.special_hit = False
+                self.movespeed = 6
                 self.special_cooldown.update()
 
         if not self.special_cooldown.isDone():
