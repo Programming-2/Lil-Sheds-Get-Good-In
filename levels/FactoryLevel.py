@@ -20,8 +20,8 @@ class FactoryLevel(Level):
         self.shedsprite = pygame.image.load("media/misc/shedSprite.png")
         self.boxList = []
 
-        actionLeft = lambda: self.boxList.append(FallingShed(handler, 130))
-        actionRight = lambda: self.boxList.append(FallingShed(handler, 920))
+        actionLeft = lambda: self.boxList.append(FallingShed(handler, 920))
+        actionRight = lambda: self.boxList.append(FallingShed(handler, 130))
 
         self.buttonLeft = Button(actionLeft, 60, 400, 48, handler)
         self.buttonRight = Button(actionRight, 1000, 400, 48, handler)
