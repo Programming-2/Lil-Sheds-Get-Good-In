@@ -39,18 +39,9 @@ class FactoryLevel(Level):
         for a in range(0, 10):
             self.conveyorAnimation2.addData(self.conveyorTwo2)
 
-    def dropsheds(self, screen):
-        if Button.playerInRange:
-            screen.blit(self.shedsprite, (300, 300))
-            self.shed = Platform(screen, 300, 300, 80, 90, fallspeed=.1)
-            self.platformGroup.add(self.shed)
-            print("TRUE")
-
     def update(self, screen):
         screen.blit(self.conveyorAnimation.get(), (0, 416))
         screen.blit(self.conveyorAnimation2.get(), (650, 416))
 
         self.buttonLeft.update(screen)
         self.buttonRight.update(screen)
-
-        self.plat1.fall()
