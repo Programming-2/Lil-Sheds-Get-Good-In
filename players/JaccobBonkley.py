@@ -44,7 +44,7 @@ class JaccobBonkley(Player):
             self.special_active = True
             self.number = random.randint(1, 5)
             if self.number == 5:
-                self.special_duration = Cooldown(10)
+                self.special_duration = Cooldown(5)
             else:
                 self.special_duration = Cooldown(.1)
         if not self.special_cooldown.isDone():
@@ -62,16 +62,16 @@ class JaccobBonkley(Player):
                 if not self.special_duration.isDone():
                     if self.facing == 1:
                         screen.blit(self.keyboardAnimation.get(), (self.rect.x + 70, self.rect.y - 50))
-                        if self.handler.getPlayer1().name == "JaccobBonkley" and (self.handler.getPlayer2().rect.x - self.rect.x) <= 170 and self.handler.getPlayer2().rect.y - self.rect.y <= 50:
-                            self.handler.player2.takeDamage(20)
-                        if self.handler.getPlayer2().name == "JaccobBonkley" and (self.handler.getPlayer1().rect.x - self.rect.x) <= 170 and self.handler.getPlayer1().rect.y - self.rect.y <= 50:
-                            self.handler.player1.takeDamage(20)
+                        if self.handler.getPlayer1().name == "JaccobBonkley" and (self.handler.getPlayer2().rect.x - self.rect.x) <= 170 and (self.handler.getPlayer2().rect.y - self.rect.y) <= 50:
+                            self.handler.player2.takeDamage(10)
+                        if self.handler.getPlayer2().name == "JaccobBonkley" and (self.handler.getPlayer1().rect.x - self.rect.x) <= 170 and (self.handler.getPlayer1().rect.y - self.rect.y) <= 50:
+                            self.handler.player1.takeDamage(10)
                     if self.facing == -1:
                         screen.blit(self.keyboardAnimation2.get(), (self.rect.x - 70, self.rect.y - 50))
-                        if self.handler.getPlayer1().name == "JaccobBonkley" and (self.handler.getPlayer2().rect.x - self.rect.x) <= 170 and self.handler.getPlayer2().rect.y - self.rect.y <= 50:
-                            self.handler.player2.takeDamage(20)
-                        if self.handler.getPlayer2().name == "JaccobBonkley" and (self.handler.getPlayer1().rect.x - self.rect.x) <= 170 and self.handler.getPlayer1().rect.y - self.rect.y <= 50:
-                            self.handler.player1.takeDamage(20)
+                        if self.handler.getPlayer1().name == "JaccobBonkley" and (self.rect.x - self.handler.getPlayer2().rect.x) <= -170 and (self.handler.getPlayer2().rect.y - self.rect.y) <= 50:
+                            self.handler.player2.takeDamage(10)
+                        if self.handler.getPlayer2().name == "JaccobBonkley" and (self.rect.x - self.handler.getPlayer1().rect.x) <= -170 and (self.handler.getPlayer1().rect.y - self.rect.y) <= 50:
+                            self.handler.player1.takeDamage(10)
 
                 else:
                     self.special_active = False
@@ -91,7 +91,7 @@ class JaccobBonkley(Player):
                             screen.blit(self.mr_smo, (self.num, self.rect.y - 15))
                             screen.blit(self.keyboardAnimation.get(), (self.rect.x - 70, self.rect.y - 50))
                             if self.health != (self.current_health - 20):
-                                self.takeDamage(30)
+                                self.takeDamage(20)
                                 self.special_duration = Cooldown(.1)
                     if self.facing == -1:
                         if self.num != (1080 - self.rect.x):
@@ -101,7 +101,7 @@ class JaccobBonkley(Player):
                             screen.blit(self.mr_smo, (1150 - self.num, self.rect.y - 15))
                             screen.blit(self.keyboardAnimation2.get(), (self.rect.x + 70, self.rect.y - 50))
                             if self.health != (self.current_health - 20):
-                                self.takeDamage(30)
+                                self.takeDamage(20)
                                 self.special_duration = Cooldown(.1)
 
                 else:
