@@ -46,9 +46,7 @@ class SettingsState(State):
 
     def update(self, screen):
         pressed = False
-
-        if self.settings.useSFX():
-            pass  # pygame.draw.rect()
+        print(self.settings.useSFX(), self.settings.useMusic())
 
         for key in self.color_rects:
             pygame.draw.rect(screen, key, self.color_rects[key])
@@ -73,9 +71,15 @@ class SettingsState(State):
 
         if (39 < pygame.mouse.get_pos()[0] < 91 and pressed) and (66 < pygame.mouse.get_pos()[1] < 118 and pressed):
             self.settings.setSFX()
+            self.settings.write()
 
         if (39 < pygame.mouse.get_pos()[0] < 91 and pressed) and (176 < pygame.mouse.get_pos()[1] < 228 and pressed):
             self.settings.setMusic()
+            self.settings.write()
+
         # Colors selected player black
-        pygame.draw.rect(screen, colors["BLACK"], self.player1Rect)
-        pygame.draw.rect(screen, colors["BLACK"], self.player2Rect)
+        if self.settings.useSFX():
+            pygame.draw.rect(screen, colors.get("BLACK"), Rect(39, 66, 52, 52))
+        
+        if self.settings.useMusic(): 
+            pygame.draw.rect(screen, colors.get("BLACK"), Rect(39, 176, 52, 52))

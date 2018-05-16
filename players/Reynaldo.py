@@ -65,8 +65,9 @@ class Reynaldo(Player):
                 if self.start_direction == -1:
                     self.special_sprite_rect.x -= self.special_travel_speed
             if self.special_stage is 2:
+                pygame.transform.rotate(self.special_sprite, 10)
                 x_dist = self.special_sprite_rect.x - self.rect.x
-                y_dist = self.special_sprite_rect.y - self.rect.y
+                y_dist = self.special_sprite_rect.y - self.rect.y + 30
                 xy_dist = math.sqrt((x_dist * x_dist) + (y_dist * y_dist))
                 y_angle = math.asin(x_dist / xy_dist)
                 x_angle = math.acos(y_dist / xy_dist)
