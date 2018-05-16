@@ -46,7 +46,6 @@ class SettingsState(State):
 
     def update(self, screen):
         pressed = False
-        print(self.settings.useSFX(), self.settings.useMusic())
 
         for key in self.color_rects:
             pygame.draw.rect(screen, key, self.color_rects[key])
