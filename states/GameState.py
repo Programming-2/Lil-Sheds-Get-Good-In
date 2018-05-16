@@ -115,6 +115,7 @@ class GameState(State):
         self.kosprite = pygame.image.load("media/Misc/KO.png")
 
         self.handler.setPlatformArray(self.platformArray)
+        self.handler.getAttackList().empty()
 
         self.player1.setPlatArray(self.handler.getPlatformArray())
         self.player2.setPlatArray(self.handler.getPlatformArray())

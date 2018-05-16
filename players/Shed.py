@@ -7,7 +7,7 @@ class Shed(Player):
 
     def __init__(self, x, y, handler):
         health = 200
-        damage = 20
+        damage = 2
         winQuote = "OH YEAHHHH!"
         loseQuote = "IMPOSSIBLE!"
         name = "Lil' Shed"
@@ -36,6 +36,7 @@ class Shed(Player):
 
         self.movingLeft = False
         self.movingRight = False
+        self.gravity = 0
 
     def special(self):
         if self.special_cooldown.isDone():
