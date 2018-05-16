@@ -20,7 +20,6 @@ class FactoryLevel(Level):
         self.shedsprite = pygame.image.load("media/misc/shedSprite.png")
 
         actionLeft = lambda: print("Drop box left")
-
         actionRight = lambda: print("Drop box right")
 
         self.buttonLeft = Button(actionLeft, 60, 400, 48, handler)
