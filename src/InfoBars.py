@@ -16,7 +16,7 @@ class InfoBar(pygame.sprite.Sprite):
         self.specialrect = pygame.Rect(player.rect.x, player.rect.y, self.width, self.height)
         self.rangedrect = pygame.Rect(player.rect.x, player.rect.y, self.width, self.height / 2)
         pygame.font.init()
-        self.font = pygame.font.SysFont("Comic Sans MS", 16)
+        self.font = pygame.font.SysFont("Boogaloo Regular", 24)
         self.lasttickhp = player.health
         self.damagearray = []
         self.arraypos = 0
@@ -27,19 +27,14 @@ class InfoBar(pygame.sprite.Sprite):
             if len(self.damagearray) > 3:
                 del(self.damagearray[0])
             self.damagearray.reverse()
-            self.damagearray.append(self.lasttickhp - currenthp)
+            self.damagearray.append([self.lasttickhp - currenthp, self.handler.getTick()])
             self.damagearray.reverse()
-        if len(self.damagearray) >= 1:
-            for i in range(0, len(self.damagearray)):
-                if i == 0:
-                    text = self.font.render(str(int(self.damagearray[i])), False, colors.get("RED"))
-                    self.screen.blit(text, (self.player.rect.x + 30, self.player.rect.y - 35))
-                if i == 1:
-                    text = self.font.render(str(int(self.damagearray[i])), False, colors.get("RED"))
-                    self.screen.blit(text, (self.player.rect.x + 30, self.player.rect.y - 50))
-                if i == 2:
-                    text = self.font.render(str(int(self.damagearray[i])), False, colors.get("RED"))
-                    self.screen.blit(text, (self.player.rect.x + 30, self.player.rect.y - 65))
+
+        for obj in self.damagearray:
+            text = self.font.render(str(int(obj[0])), False, colors.get("RED"))
+            self.screen.blit(text, (self.player.rect.x + 20, self.player.rect.y - 35 - (self.handler.getTick() - obj[1])))
+            if self.handler.getTick() - obj[1] > 80:
+                self.damagearray.remove(obj)
 
         if self.player.special_cooldown.getTotalCooldown() > 0:
             self.specialrect.x = self.player.rect.x
