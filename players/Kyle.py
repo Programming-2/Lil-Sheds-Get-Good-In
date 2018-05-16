@@ -53,18 +53,29 @@ class Kyle(Player):
             self.special_cooldown.update()
 
     def determineSprite(self):
+        self.frame += 1
         if self.frame >= len(self.spriteList) or self.xchange == 0:
             self.frame = 0
-        if self.height > 40:
+        if not self.crouching:
             self.sprite = self.spriteList[self.frame]
         else:
             self.sprite = self.crouchSpriteList[self.frame]
-        self.frame += 1
+
         if self.facing == -1:
             self.sprite = pygame.transform.flip(self.sprite, True, False)
 
     def attack(self, screen):
         self.handler.getAttackList().add(Attack(self, self.damage, self.handler, 5))
+
+    def moveX(self):
+        self.rect.x += self.xchange
+        platList = pygame.sprite.spritecollide(self, self.platArray, False)
+        for platform in platList:
+            if self.xchange > 0 and self.rect.right < platform.rect.right:  # Moving right and left of platform
+                self.rect.right = platform.rect.left
+            elif self.xchange < 0 and self.rect.left > platform.rect.left:  # Moving left and right of platform
+                self.rect.left = platform.rect.right
+            self.xchange = 0
 
     def update(self, screen):
         if not self.special_cooldown.isDone():

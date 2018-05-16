@@ -12,8 +12,8 @@ class JaccobBonkley(Player):
         damage = 20
         defense = .5
         movespeed = 10
-        winQuote = "Size doesn't mean everything"
-        loseQuote = "It's my team's fault"
+        winQuote = "Spaghet saved me"
+        loseQuote = "I wrote the spaghet"
         name = "JaccobBonkley"
         self.handler = handler
 
