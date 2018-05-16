@@ -22,6 +22,7 @@ class FallingShed(Entity):
         self.y += self.ychange
         platList = pygame.sprite.spritecollide(self, self.handler.getPlatformArray(), False)
         for platform in platList:
+            print("Collide")
             if self.ychange > 0 and self.rect.bottom < platform.rect.bottom:  # Moving down and over platform
                 self.rect.bottom = platform.rect.top
             self.setChangeY(0)

@@ -20,7 +20,6 @@ class MainMenuState(State):
 
     def update(self, screen):
         if not self.settings.useMusic():
-            print("AAAAAAAAAAAAAAAAAAAAAAAAAAA")
             self.theme.stopSound()
 
         pressed = False
