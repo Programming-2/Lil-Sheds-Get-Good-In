@@ -52,5 +52,3 @@ class FactoryLevel(Level):
 
         self.buttonLeft.update(screen)
         self.buttonRight.update(screen)
-
-        self.plat1.fall()
