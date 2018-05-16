@@ -1,6 +1,7 @@
 import pygame
 from states.State import State
 from utils.Sound import Sound
+from user.settings import Settings
 
 
 class MainMenuState(State):
@@ -10,12 +11,18 @@ class MainMenuState(State):
         self.menuImage = mainMenu
         self.handler = handler
         self.theme = Sound("Track1")
-        self.theme.playSound()
+        self.settings = Settings()
+        if self.settings.useMusic():
+            self.theme.playSound()
 
     def resetState(self):
         pass
 
     def update(self, screen):
+        if not self.settings.useMusic():
+            print("AAAAAAAAAAAAAAAAAAAAAAAAAAA")
+            self.theme.stopSound()
+
         pressed = False
 
         for event in pygame.event.get():

@@ -3,8 +3,8 @@ import json
 
 class Settings():
     def __init__(self):
-        with open("user/preferences.json") as preferences:
-            self.json = json.load(preferences)
+        with open("user/preferences.json", 'r') as outfile:
+            self.json = json.load(outfile)
 
     def setMusic(self):
         if self.json["music"]:
@@ -23,3 +23,7 @@ class Settings():
 
     def useSFX(self):
         return self.json["sfx"]
+
+    def write(self):
+        with open("user/preferences.json", 'w') as outfile:
+            json.dump(self.json, outfile)
