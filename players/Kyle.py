@@ -11,7 +11,7 @@ class Kyle(Player):
 
     def __init__(self, x, y, handler):
         health = 110
-        damage = 45
+        damage = 30
         winQuote = "Are the platforms fixed yet?"
         loseQuote = "I\'d better try to fix that... emphasis on try"
         name = "Kyle"

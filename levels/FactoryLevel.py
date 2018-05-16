@@ -5,7 +5,6 @@ from src.Platform import Platform
 from src.FallingShed import FallingShed
 import pygame
 
-
 class FactoryLevel(Level):
     def __init__(self, screen, handler):
         super().__init__(screen, "media/Levels/Factory.png")
@@ -20,8 +19,8 @@ class FactoryLevel(Level):
         self.shedsprite = pygame.image.load("media/misc/shedSprite.png")
         self.boxList = []
 
-        actionLeft = lambda: self.boxList.append(FallingShed(handler, 130))
-        actionRight = lambda: self.boxList.append(FallingShed(handler, 920))
+        actionLeft = lambda: self.boxList.append(FallingShed(handler, 920))
+        actionRight = lambda: self.boxList.append(FallingShed(handler, 130))
 
         self.buttonLeft = Button(actionLeft, 60, 400, 48, handler)
         self.buttonRight = Button(actionRight, 1000, 400, 48, handler)
@@ -45,7 +44,6 @@ class FactoryLevel(Level):
 
         self.buttonLeft.update(screen)
         self.buttonRight.update(screen)
-
         for e in self.boxList:
             if e.broken:
                 self.boxList.remove(e)
