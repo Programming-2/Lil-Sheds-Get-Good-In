@@ -7,6 +7,7 @@ from players.Jarod import Jarod
 from players.Smo import Smo
 from utils.Colors import colors
 from utils.Sound import Sound
+from user.settings import Settings
 
 
 class SettingsState(State):
@@ -21,6 +22,7 @@ class SettingsState(State):
         self.player2Rect = Rect(0, 0, 0, 0)
         self.hoverOver = Sound("Beep2")
         self.hoverPlay = 0
+        self.settings = Settings()
 
         # TODO Fix bug with duplicated players or made it so same player cannot be selected twice
 
@@ -33,7 +35,7 @@ class SettingsState(State):
         }
 
         self.color_rects = {
-            colors.get("RED"): Rect(0, 0, 200, 800),
+            colors.get("RED"): Rect(0, 0, 200, 1000),
             colors.get("ORANGE"): Rect(200, 0, 200, 800),
             colors.get("YELLOW"): Rect(400, 0, 200, 800),
             colors.get("GREEN"): Rect(600, 0, 200, 800),
@@ -44,6 +46,13 @@ class SettingsState(State):
 
     def update(self, screen):
         pressed = False
+        print(self.settings.useSFX(), self.settings.useMusic())
+
+        for key in self.color_rects:
+            pygame.draw.rect(screen, key, self.color_rects[key])
+            self.color_rects[key].x += 100
+            if self.color_rects[key].x > 1200:
+                self.color_rects[key].x = -200
 
         # Event look
         for event in pygame.event.get():
@@ -58,8 +67,19 @@ class SettingsState(State):
 
         # Button to return to the main menu
         if (715 < pygame.mouse.get_pos()[0] < 1055 and pressed) and (600 < pygame.mouse.get_pos()[1] < 750 and pressed):
-            self.handler.getStateManager().setCurrentState("PlayerSelectionState")
+            self.handler.getStateManager().setCurrentState("MainMenuState")
+
+        if (39 < pygame.mouse.get_pos()[0] < 91 and pressed) and (66 < pygame.mouse.get_pos()[1] < 118 and pressed):
+            self.settings.setSFX()
+            self.settings.write()
+
+        if (39 < pygame.mouse.get_pos()[0] < 91 and pressed) and (176 < pygame.mouse.get_pos()[1] < 228 and pressed):
+            self.settings.setMusic()
+            self.settings.write()
 
         # Colors selected player black
-        pygame.draw.rect(screen, colors["BLACK"], self.player1Rect)
-        pygame.draw.rect(screen, colors["BLACK"], self.player2Rect)
+        if self.settings.useSFX():
+            pygame.draw.rect(screen, colors.get("BLUE"), Rect(39, 66, 52, 52))
+        
+        if self.settings.useMusic(): 
+            pygame.draw.rect(screen, colors.get("BLUE"), Rect(39, 176, 52, 52))

@@ -14,3 +14,6 @@ class Sound:
         # print(useSound)
         if self.useSound:
             self.sound.play()
+    
+    def stopSound(self):
+        self.sound.stop()

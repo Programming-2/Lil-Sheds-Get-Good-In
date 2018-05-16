@@ -36,6 +36,7 @@ class Shed(Player):
 
         self.movingLeft = False
         self.movingRight = False
+        self.gravity = 0
 
     def special(self):
         if self.special_cooldown.isDone():
@@ -97,33 +98,33 @@ class Shed(Player):
                     self.handler.getAttackList().add(CustomAttack(self, self.damage, self.handler, self.specialx, self.specialy))
                     self.handler.getAttackList().add(CustomAttack(self, self.damage, self.handler, -self.specialx, self.specialy))
                     if self.special_phase == 1:
-                        self.special_x_change = 2
-                        self.special_y_change = 2
+                        self.special_x_change = 3
+                        self.special_y_change = 3
                         if self.specialx >= 19:
                             self.special_phase = 2
                     elif self.special_phase == 2:
-                        self.special_x_change = -2
-                        self.special_y_change = 2
+                        self.special_x_change = -3
+                        self.special_y_change = 3
                         if self.specialx <= 3:
                             self.special_phase = 3
                     elif self.special_phase == 3:
-                        self.special_x_change = 2
-                        self.special_y_change = -2
+                        self.special_x_change = 3
+                        self.special_y_change = -3
                         if self.specialx >= 19:
                             self.special_phase = 4
                     elif self.special_phase == 4:
-                        self.special_x_change = -2
-                        self.special_y_change = -2
+                        self.special_x_change = -3
+                        self.special_y_change = -3
                         if self.specialx <= 5:
                             self.special_phase = 5
                     elif self.special_phase == 5:
-                        self.special_x_change = 2
-                        self.special_y_change = 2
+                        self.special_x_change = 3
+                        self.special_y_change = 3
                         if self.specialx >= 19:
                             self.special_phase = 6
                     elif self.special_phase == 6:
-                        self.special_x_change = -2
-                        self.special_y_change = 2
+                        self.special_x_change = -3
+                        self.special_y_change = 3
                         if self.specialx <= 3:
                             self.special_phase = 7
 
