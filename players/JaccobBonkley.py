@@ -110,4 +110,3 @@ class JaccobBonkley(Player):
                     self.handler.getPlayer2().stunned = False
                     self.special_cooldown.update()
                     self.num = 0
-
