@@ -79,7 +79,7 @@ class SettingsState(State):
 
         # Colors selected player black
         if self.settings.useSFX():
-            pygame.draw.rect(screen, colors.get("BLACK"), Rect(39, 66, 52, 52))
+            pygame.draw.rect(screen, colors.get("BLUE"), Rect(39, 66, 52, 52))
         
         if self.settings.useMusic(): 
-            pygame.draw.rect(screen, colors.get("BLACK"), Rect(39, 176, 52, 52))
+            pygame.draw.rect(screen, colors.get("BLUE"), Rect(39, 176, 52, 52))

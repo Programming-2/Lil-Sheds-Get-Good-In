@@ -4,12 +4,12 @@ import pygame
 # Basic structure for entities
 class Entity(pygame.sprite.Sprite):
 
-    def __init__(self, startx, starty, changex, changey, image):
+    def __init__(self, startx, starty, xchange, ychange, image):
         super().__init__()
         self.x = startx
         self.y = starty
-        self.changex = changex
-        self.changey = changey
+        self.xchange = xchange
+        self.ychange = ychange
         self.image = image
         self.image_width = image.get_size()[0]
         self.image_height = image.get_size()[1]
