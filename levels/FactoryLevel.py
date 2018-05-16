@@ -40,7 +40,7 @@ class FactoryLevel(Level):
             self.conveyorAnimation2.addData(self.conveyorTwo2)
 
     def dropsheds(self, screen):
-        if Button.playerInRange():
+        if Button.playerInRange:
             screen.blit(self.shedsprite, (300, 300))
             self.shed = Platform(screen, 300, 300, 80, 90, fallspeed=.1)
             self.platformGroup.add(self.shed)
