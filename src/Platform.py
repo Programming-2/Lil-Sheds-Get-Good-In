@@ -4,7 +4,7 @@ from src.Cooldown import Cooldown
 
 
 class Platform(pygame.sprite.Sprite):
-    def __init__(self, screen, x, y, length, height, duration=-1, speed=0, fallspeed=0):
+    def __init__(self, screen, x, y, length, height, duration=-1, speed=0):
         super().__init__()
         self.screen = screen
         self.x = x
@@ -16,14 +16,9 @@ class Platform(pygame.sprite.Sprite):
         self.duration = duration
         self.speed = speed
         self.platform_cooldown = Cooldown(duration)
-        self.fallspeed = fallspeed
 
     def entMove(self, entity):
         entity.xchange += self.speed
-
-    def fall(self):
-        self.y += self.fallspeed
-        self.fallspeed += .25
 
     def update(self):
         self.rect.topleft = self.x, self.y
