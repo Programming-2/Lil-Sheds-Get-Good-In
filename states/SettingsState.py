@@ -80,5 +80,5 @@ class SettingsState(State):
         if self.settings.useSFX():
             pygame.draw.rect(screen, colors.get("BLUE"), Rect(39, 66, 52, 52))
         
-        if self.settings.useMusic(): 
+        if self.settings.useMusic():
             pygame.draw.rect(screen, colors.get("BLUE"), Rect(39, 176, 52, 52))
