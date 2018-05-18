@@ -17,6 +17,10 @@ class FallingShed(Entity):
     def destroyBox(self):
         print("Destroy Box")
         self.broken = True
+        if pygame.sprite.collide_rect(self.handler.getPlayer1(), self):
+            self.handler.getPlayer1().takeTrueDamage(15)
+        if pygame.sprite.collide_rect(self.handler.getPlayer2(), self):
+            self.handler.getPlayer2().takeTrueDamage(15)
 
     def moveY(self):
         self.y += self.ychange
