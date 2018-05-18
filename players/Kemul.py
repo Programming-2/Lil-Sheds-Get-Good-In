@@ -12,8 +12,8 @@ class Kemul(Player):
     def __init__(self, x, y, handler):
         health = 110
         damage = 55
-        winQuote = "yikes"
-        loseQuote = "yikes"
+        winQuote = "Chewbacca"
+        loseQuote = "Chewbacca"
         name = "Kemul"
         defense = .5
         movespeed = 5
@@ -96,10 +96,6 @@ class Kemul(Player):
             self.special_duration.update()
             if not self.special_duration.isDone():
                 self.rangedavailable = False
-                self.xchange = 0
-                self.ychange = 0
-                self.defense = 0
-                self.gravity = 0
                 screen.blit(self.sprite, [self.rect.x, self.rect.y])
             else:
                 for attack in self.special_list:
