@@ -5,6 +5,8 @@ from players.Player import Player
 from src.Cooldown import Cooldown
 from utils.Sound import Sound
 from datastructures.CircularQueue import CircularQueue
+from animation.Animation import Animation
+from animation.AnimationManager import AnimationManager
 
 
 class Will(Player):
@@ -40,6 +42,32 @@ class Will(Player):
         self.powerattack_animation_left = CircularQueue()
         self.powerattack_animation_left.addData(pygame.transform.flip(pygame.image.load("media/Players/Will/PowerAttack1.png").convert_alpha(), True, False))
         self.powerattack_animation_left.addData(pygame.transform.flip(pygame.image.load("media/Players/Will/PowerAttack2.png").convert_alpha(), True, False))
+        
+        self.walk = [
+            pygame.image.load("media/Players/Will/Will.png"),
+            pygame.image.load("media/Players/Will/Will1.png"),
+            pygame.image.load("media/Players/Will/Will2.png"),
+            pygame.image.load("media/Players/Will/Will3.png")
+        ]
+        self.walkAnimation = Animation(self.handler, self, self.walk)
+
+        self.crouch = [
+            pygame.image.load("media/Players/Will/WillCrouch1.png"),
+            pygame.image.load("media/Players/Will/WillCrouch2.png"),
+            pygame.image.load("media/Players/Will/WillCrouch3.png")
+        ]
+
+        self.crouchAnimation = Animation(self.handler, self, self.crouch)
+
+        self.attack = [
+            pygame.image.load("media/Players/Will/WillRanged1.png").convert_alpha(),
+            pygame.image.load("media/Players/Will/WillRanged2.png").convert_alpha()
+        ]
+
+        self.attackAnimation = Animation(self.handler, self, self.attack)
+
+        self.animation_manager = AnimationManager(self, self.walkAnimation, self.crouchAnimation, self.attackAnimation)
+
         self.BIGGnoise = Sound("BIGGDeathSound")
         self.rangedcount = 0
         self.rangedavailable = False
@@ -76,6 +104,16 @@ class Will(Player):
         self.special8 = CustomAttack(self, self.damage_special, self.handler, 15, -15)
         self.special_list = [self.special1, self.special2, self.special3, self.special4, self.special5, self.special6, self.special7, self.special8]
 
+    def moveX(self):
+        self.rect.x += self.xchange
+        platList = pygame.sprite.spritecollide(self, self.platArray, False)
+        for platform in platList:
+            if self.xchange > 0 and self.rect.right < platform.rect.right:  # Moving right and left of platform
+                self.rect.right = platform.rect.left
+            elif self.xchange < 0 and self.rect.left > platform.rect.left:  # Moving left and right of platform
+                self.rect.left = platform.rect.right
+            self.xchange = 0
+
     def special(self):
         if self.special_cooldown.isDone():
             self.special_active = True
@@ -84,7 +122,9 @@ class Will(Player):
         self.rangedavailable = True
 
     def update(self, screen):
+        self.animation_manager.update()
         self.tick += 1
+
         if not self.special_active:
             super().update(screen)
 
@@ -169,8 +209,6 @@ class Will(Player):
                 self.tickcounter = 0
                 self.BIGGnoise.playSound()
             self.rangedcount = 0
-            if self.crouching:
-                self.unduck()
 
         if self.ranged_used and self.tick % 10 == 0:
             self.rangedcount += 1

@@ -65,7 +65,6 @@ class Collin(Player):
             targetPlayer = self.handler.getOtherPlayer(self)
             self.enemydistx = self.rect.x - targetPlayer.rect.x
             self.enemydisty = self.rect.y - targetPlayer.rect.y
-            print(self.enemydisty)
             if self.facing == -1:
                 if self.currenttick % 4 == 0:
                     self.leftAttImg = self.leftAnimation.get()
