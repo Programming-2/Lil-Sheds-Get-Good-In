@@ -6,6 +6,7 @@ from levels.IceLevel import IceLevel
 from levels.LavaLevel import LavaLevel
 from levels.RandomLevel import RandomLevel
 from levels.FactoryLevel import FactoryLevel
+from levels.Mazelevel import Mazelevel
 from utils.Colors import colors
 
 
@@ -25,7 +26,8 @@ class MapSelectionState(State):
             Rect(18, 160, 1064, 115): IceLevel(screen),
             Rect(18, 304, 1064, 114): LavaLevel(screen),
             Rect(18, 464, 10, 114): RandomLevel(screen),
-            Rect(18, 520, 1064, 114): FactoryLevel(screen, self.handler)
+            Rect(18, 444, 1064, 114): FactoryLevel(screen, self.handler),
+            Rect(20, 464, 40, 114): Mazelevel(screen),
         }
 
     def resetState(self):
