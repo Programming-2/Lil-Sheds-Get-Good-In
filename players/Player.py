@@ -60,7 +60,12 @@ class Player(pygame.sprite.Sprite):
 
         self.jumpreleased = False
         self.duckreleased = False
+
+        # Player states
         self.crouching = False
+        self.attacking = False
+        self.walking = False
+        self.idle = False
 
     def setPlatArray(self, arr):
         self.platArray = arr
@@ -111,8 +116,12 @@ class Player(pygame.sprite.Sprite):
 
         if self.xchange > 0:
             self.facing = 1
+            self.walking = True
         elif self.xchange < 0:
             self.facing = -1
+            self.walking = True
+        else:
+            self.walking = False
 
     def checkEntityCollision(self):
         return False
