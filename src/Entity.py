@@ -6,40 +6,40 @@ class Entity(pygame.sprite.Sprite):
 
     def __init__(self, startx, starty, xchange, ychange, image):
         super().__init__()
-        self.x = startx
-        self.y = starty
         self.xchange = xchange
         self.ychange = ychange
         self.image = image
         self.image_width = image.get_size()[0]
         self.image_height = image.get_size()[1]
-        self.rect = pygame.Rect(self.x, self.y, self.image_width, self.image_height)
+        self.rect = pygame.Rect(startx, starty, self.image_width, self.image_height)
+        self.rect.x = startx
+        self.rect.y = starty
 
     # Used to move entity
     def move(self):
-        self.x += self.changex
-        self.y += self.changey
-        self.rect = pygame.Rect(self.x, self.y, self.image_width, self.image_height)
+        self.rect.x += self.changex
+        self.rect.y += self.changey
+        self.rect = pygame.Rect(self.rect.x, self.rect.y, self.image_width, self.image_height)
 
     # Used to render entity
     def render(self, screen):
-        screen.blit(self.image, [self.x, self.y])
+        screen.blit(self.image, [self.rect.x, self.rect.y])
 
     # Returns x pos of the entity
     def getX(self):
-        return self.x
+        return self.rect.x
 
     # Returns y pos of the entity
     def getY(self):
-        return self.y
+        return self.rect.y
 
     # Sets x pos of the entity
     def setX(self, x):
-        self.x = x
+        self.rect.x = x
 
     # Sets y pos of the entity
     def setY(self, y):
-        self.y = y
+        self.rect.y = y
 
     # Sets change x
     def setChangeX(self, x):
