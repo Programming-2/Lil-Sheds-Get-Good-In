@@ -27,6 +27,7 @@ class Will(Player):
         self.start_time = 0
         self.startgravity = self.gravity
         self.startdefense = defense
+        self.jumpsprite = pygame.image.load("media/Players/Will/WillJump.png").convert_alpha()
         self.specialsprite = pygame.image.load("media/Players/Will/WillSpecial.png").convert()
         self.attacksprite = pygame.image.load("media/Players/Will/Attack3.png").convert_alpha()
         self.rangedsprite1 = pygame.image.load("media/Players/Will/WillRanged1.png").convert_alpha()
@@ -43,29 +44,29 @@ class Will(Player):
         self.powerattack_animation_left.addData(pygame.transform.flip(pygame.image.load("media/Players/Will/PowerAttack1.png").convert_alpha(), True, False))
         self.powerattack_animation_left.addData(pygame.transform.flip(pygame.image.load("media/Players/Will/PowerAttack2.png").convert_alpha(), True, False))
         
-        self.walk = [
+        self.walkSpriteList = [
             pygame.image.load("media/Players/Will/Will.png").convert_alpha(),
             pygame.image.load("media/Players/Will/Will1.png").convert_alpha(),
             pygame.image.load("media/Players/Will/Will2.png").convert_alpha(),
             pygame.image.load("media/Players/Will/Will3.png").convert_alpha()
         ]
-        self.walkAnimation = Animation(self.handler, self, self.walk)
+        self.walkAnimation = Animation(self.handler, self, self.walkSpriteList)
 
-        self.crouch = [
+        self.crouchSpriteList = [
             pygame.image.load("media/Players/Will/WillCrouch.png").convert_alpha(),
             pygame.image.load("media/Players/Will/WillCrouch1.png").convert_alpha(),
             pygame.image.load("media/Players/Will/WillCrouch2.png").convert_alpha(),
             pygame.image.load("media/Players/Will/WillCrouch3.png").convert_alpha()
         ]
 
-        self.crouchAnimation = Animation(self.handler, self, self.crouch)
+        self.crouchAnimation = Animation(self.handler, self, self.crouchSpriteList)
 
-        self.attack = [
+        self.attackSpriteList = [
             pygame.image.load("media/Players/Will/WillRanged1.png").convert_alpha(),
             pygame.image.load("media/Players/Will/WillRanged2.png").convert_alpha()
         ]
 
-        self.attackAnimation = Animation(self.handler, self, self.attack)
+        self.attackAnimation = Animation(self.handler, self, self.attackSpriteList)
 
         self.animation_manager = AnimationManager(self, self.walkAnimation, self.crouchAnimation, self.attackAnimation)
 

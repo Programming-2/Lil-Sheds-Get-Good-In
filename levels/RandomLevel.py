@@ -13,4 +13,5 @@ class RandomLevel(Level):
             self.platformGroup.add(self.p1)
 
     def update(self, screen):
-        pass
+        for plat in self.platformGroup:
+            plat.drawPlat(screen)

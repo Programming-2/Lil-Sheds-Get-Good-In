@@ -15,6 +15,7 @@ class Player(pygame.sprite.Sprite):
         self.stansprite = pygame.image.load("media/Players/" + name + "/" + name + ".png").convert_alpha()
         self.crouchsprite = pygame.image.load("media/Players/" + name + "/" + name + "Crouch.png").convert_alpha()
         self.attacksprite = pygame.image.load("media/Misc/projectileRight.png").convert_alpha()
+        self.jumpsprite = self.stansprite
         self.leftsprite = pygame.transform.flip(self.sprite, True, False)
         self.rightsprite = self.stansprite
         self.leftcrouchsprite = pygame.transform.flip(self.crouchsprite, True, False)
@@ -66,6 +67,7 @@ class Player(pygame.sprite.Sprite):
         self.attacking = False
         self.walking = False
         self.idle = False
+        self.jumping = False
 
     def setPlatArray(self, arr):
         self.platArray = arr
@@ -77,7 +79,8 @@ class Player(pygame.sprite.Sprite):
         if self.jumpCount <= 1:
             self.ychange = -10
             self.jumpCount += 1
-            #self.jumpSound.playSound()
+            self.jumping = True
+            # self.jumpSound.playSound()
 
     def unjump(self):
         pass
@@ -176,6 +179,7 @@ class Player(pygame.sprite.Sprite):
             if self.ychange > 0 and self.rect.bottom < platform.rect.bottom:  # Moving down and over platform
                 self.rect.bottom = platform.rect.top
                 self.resetJump()
+                self.jumping = False
             elif self.ychange < 0 and self.rect.top > platform.rect.top:  # Moving up and under platform
                 self.rect.top = platform.rect.bottom
                 self.resetJump()

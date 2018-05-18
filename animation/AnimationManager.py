@@ -1,3 +1,4 @@
+import pygame
 
 
 class AnimationManager():
@@ -6,11 +7,17 @@ class AnimationManager():
         self.crouch_animation = crouchAnimation
         self.attack_animation = attackAnimation
         self.idle_animation = idleAnimation
+        self.jumpsprite = player.jumpsprite
 
         self.player = player
     
     def update(self):
-        if self.player.crouching:
+        if self.player.jumping:
+            if self.player.facing == 1:
+                self.player.sprite = self.jumpsprite
+            elif self.player.facing == -1:
+                self.player.sprite = pygame.transform.flip(self.jumpsprite, True, False)
+        elif self.player.crouching:
             if self.player.walking:
                 self.crouch_animation.loop(10)
             else:

@@ -37,13 +37,12 @@ class PlayerSelectionState(State):
 
         # Rectangle Dict
         self.rects = {
-            Rect(31, 52, 46, 46): David(150, 100, handler),
-            Rect(31, 142, 46, 46): Greg(150, 100, handler),
-            Rect(31, 225, 46, 46): JaccobBonkley(150, 100, handler),
-            Rect(31, 312, 46, 46): Jakob(150, 100, handler),
-            Rect(31, 395, 46, 47): Kyle(150, 100, handler),
-            Rect(31, 483, 46, 46): Will(150, 100, handler),
-            # Rect(1050, 750, 50, 50): Collin(150, 100, handler),
+            Rect(30, 51, 47, 47): David(150, 100, handler),
+            Rect(30, 141, 47, 47): Greg(150, 100, handler),
+            Rect(30, 225, 47, 47): JaccobBonkley(150, 100, handler),
+            Rect(30, 311, 47, 47): Jakob(150, 100, handler),
+            Rect(30, 395, 47, 47): Kyle(150, 100, handler),
+            Rect(30, 482, 47, 47): Will(150, 100, handler),
             Rect(228, 323, 26, 34): Shed(150, 100, handler)
         }
 

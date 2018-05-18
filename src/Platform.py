@@ -1,7 +1,7 @@
 # Platform class
 import pygame
 from src.Cooldown import Cooldown
-
+from utils.Colors import colors
 
 class Platform(pygame.sprite.Sprite):
     def __init__(self, screen, x, y, length, height, duration=-1, speed=0):
@@ -19,6 +19,9 @@ class Platform(pygame.sprite.Sprite):
 
     def entMove(self, entity):
         entity.xchange += self.speed
+
+    def drawPlat(self, screen):
+        pygame.draw.rect(screen, colors.get("PINK"), self.rect)
 
     def update(self):
         self.rect.topleft = self.x, self.y
