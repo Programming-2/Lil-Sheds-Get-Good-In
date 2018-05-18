@@ -44,17 +44,18 @@ class Will(Player):
         self.powerattack_animation_left.addData(pygame.transform.flip(pygame.image.load("media/Players/Will/PowerAttack2.png").convert_alpha(), True, False))
         
         self.walk = [
-            pygame.image.load("media/Players/Will/Will.png"),
-            pygame.image.load("media/Players/Will/Will1.png"),
-            pygame.image.load("media/Players/Will/Will2.png"),
-            pygame.image.load("media/Players/Will/Will3.png")
+            pygame.image.load("media/Players/Will/Will.png").convert_alpha(),
+            pygame.image.load("media/Players/Will/Will1.png").convert_alpha(),
+            pygame.image.load("media/Players/Will/Will2.png").convert_alpha(),
+            pygame.image.load("media/Players/Will/Will3.png").convert_alpha()
         ]
         self.walkAnimation = Animation(self.handler, self, self.walk)
 
         self.crouch = [
-            pygame.image.load("media/Players/Will/WillCrouch1.png"),
-            pygame.image.load("media/Players/Will/WillCrouch2.png"),
-            pygame.image.load("media/Players/Will/WillCrouch3.png")
+            pygame.image.load("media/Players/Will/WillCrouch.png").convert_alpha(),
+            pygame.image.load("media/Players/Will/WillCrouch1.png").convert_alpha(),
+            pygame.image.load("media/Players/Will/WillCrouch2.png").convert_alpha(),
+            pygame.image.load("media/Players/Will/WillCrouch3.png").convert_alpha()
         ]
 
         self.crouchAnimation = Animation(self.handler, self, self.crouch)
