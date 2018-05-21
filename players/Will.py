@@ -75,12 +75,15 @@ class Will(Player):
         self.rangedavailable = False
         self.ranged_cooldown = Cooldown(5)
         self.attackavailable = False
-        self.damage_special = 1.5 * damage
+
+        # Special
         self.special_available = True
         self.special_cooldown = Cooldown(5)
-        self.special_duration = Cooldown(1)
+        self.special_duration = Cooldown(.25)
         self.special_count = 0
         self.special_start_time = 0
+        self.roll_speed = 10
+
         self.released = False
         self.damage = damage
         self.tickcounter = 0
@@ -92,19 +95,6 @@ class Will(Player):
         self.left_ranged_animation.addData(pygame.transform.flip(self.rangedsprite2, True, False))
         self.ranged_used = False
         self.tick = 0
-
-        # attacks
-        self.basic = Attack(self, self.damage, self.handler)
-        self.basic.attacksprite = self.attacksprite
-        self.special1 = CustomAttack(self, self.damage_special, self.handler, 15, 0)
-        self.special2 = CustomAttack(self, self.damage_special, self.handler, 15, 15)
-        self.special3 = CustomAttack(self, self.damage_special, self.handler, 0, 15)
-        self.special4 = CustomAttack(self, self.damage_special, self.handler, -15, 15)
-        self.special5 = CustomAttack(self, self.damage_special, self.handler, -15, 0)
-        self.special6 = CustomAttack(self, self.damage_special, self.handler, -15, -15)
-        self.special7 = CustomAttack(self, self.damage_special, self.handler, 0, -15)
-        self.special8 = CustomAttack(self, self.damage_special, self.handler, 15, -15)
-        self.special_list = [self.special1, self.special2, self.special3, self.special4, self.special5, self.special6, self.special7, self.special8]
 
     def moveX(self):
         self.rect.x += self.xchange
@@ -119,6 +109,7 @@ class Will(Player):
     def special(self):
         if self.special_cooldown.isDone():
             self.special_active = True
+            self.in_special = True
 
     def attack(self, screen):
         self.rangedavailable = True
@@ -134,27 +125,17 @@ class Will(Player):
             self.special_cooldown.update()
 
         if self.special_active and not self.sleeping:
-            self.sprite = self.specialsprite
             self.special_duration.update()
             if not self.special_duration.isDone():
-                self.rangedavailable = False
-                self.xchange = 0
-                self.ychange = 0
+                self.sprite = self.specialsprite
+                self.stunned = True
                 self.defense = 0
-                self.gravity = 0
-                screen.blit(self.sprite, [self.rect.x, self.rect.y])
+                self.rect.x += self.roll_speed * self.facing
             else:
-                for attack in self.special_list:
-                    attack.updateAttack()
-                    attack.rect.x += ((.5 * self.width) - (.5 * attack.left_attack.get_width()))
-                    attack.rect.y += ((.5 * self.height) - (.5 * attack.left_attack.get_height()))
-                    self.handler.getAttackList().add(attack)
-                self.special_active = False
-                self.gravity = self.startgravity
-                self.defense = self.startdefense
-                self.sprite = self.stansprite
-                self.count = 0
                 self.special_cooldown.update()
+                self.defense = self.startdefense
+                self.stunned = False
+                self.special_active = False
 
         if self.rangedavailable:
             self.tickcounter += 1
@@ -211,20 +192,5 @@ class Will(Player):
                 self.tickcounter = 0
                 self.BIGGnoise.playSound()
             self.rangedcount = 0
-
-        if self.ranged_used and self.tick % 10 == 0:
-            self.rangedcount += 1
-            if self.rangedcount <= 2:
-                if self.facing == 1:
-                    self.sprite = self.right_ranged_animation.get()
-                if self.facing == -1:
-                    self.sprite = self.left_ranged_animation.get()
-            if self.rangedcount == 5:
-                self.ranged_used = False
-                self.rangedcount = 0
-                if self.facing == 1:
-                    self.sprite = self.rightsprite
-                if self.facing == -1:
-                    self.sprite = self.leftsprite
 
         screen.blit(self.sprite, [self.rect.x, self.rect.y])

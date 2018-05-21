@@ -68,6 +68,7 @@ class Player(pygame.sprite.Sprite):
         self.walking = False
         self.idle = False
         self.jumping = False
+        self.in_special = False
 
     def setPlatArray(self, arr):
         self.platArray = arr
