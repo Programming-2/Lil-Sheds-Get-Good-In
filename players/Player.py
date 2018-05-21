@@ -29,7 +29,7 @@ class Player(pygame.sprite.Sprite):
         self.rapidFire = Sound("HEAVY MACHINE GUN SOUND EFFECT(1)")
         self.hoverOver = Sound("Beep2")
         self.deathsound = Sound("LongDeathSound")
-        #self.jumpSound = Sound("y2mate.com - cartoon_boing_sound_effect_3_rm_qHuXXvpk")
+        # self.jumpSound = Sound("y2mate.com - cartoon_boing_sound_effect_3_rm_qHuXXvpk")
         self.BIGGsound = Sound("BIGGDeathSound")
 
         self.damage = damage

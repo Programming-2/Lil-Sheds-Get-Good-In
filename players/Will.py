@@ -29,7 +29,7 @@ class Will(Player):
         self.startdefense = defense
         self.jumpsprite = pygame.image.load("media/Players/Will/WillJump.png").convert_alpha()
         self.specialsprite = pygame.image.load("media/Players/Will/WillSpecial.png").convert()
-        self.attacksprite = pygame.image.load("media/Players/Will/Attack3.png").convert_alpha()
+        self.attacksprite = pygame.image.load("media/Players/Will/Attack2.png").convert_alpha()
         self.rangedsprite1 = pygame.image.load("media/Players/Will/WillRanged1.png").convert_alpha()
         self.rangedsprite2 = pygame.image.load("media/Players/Will/WillRanged2.png").convert_alpha()
         self.attack1 = pygame.image.load("media/Players/Will/Attack1.png").convert_alpha()
@@ -52,6 +52,12 @@ class Will(Player):
         ]
         self.walkAnimation = Animation(self.handler, self, self.walkSpriteList)
 
+        self.specialSpriteList = [
+            pygame.image.load("media/Players/Will/WillSpecial1.png").convert_alpha()
+        ]
+
+        self.specialAnimation = Animation(self.handler, self, self.specialSpriteList)
+
         self.crouchSpriteList = [
             pygame.image.load("media/Players/Will/WillCrouch.png").convert_alpha(),
             pygame.image.load("media/Players/Will/WillCrouch1.png").convert_alpha(),
@@ -68,7 +74,7 @@ class Will(Player):
 
         self.attackAnimation = Animation(self.handler, self, self.attackSpriteList)
 
-        self.animation_manager = AnimationManager(self, self.walkAnimation, self.crouchAnimation, self.attackAnimation)
+        self.animation_manager = AnimationManager(self, self.walkAnimation, self.specialAnimation, self.crouchAnimation, self.attackAnimation)
 
         self.BIGGnoise = Sound("BIGGDeathSound")
         self.rangedcount = 0
@@ -127,7 +133,6 @@ class Will(Player):
         if self.special_active and not self.sleeping:
             self.special_duration.update()
             if not self.special_duration.isDone():
-                self.sprite = self.specialsprite
                 self.stunned = True
                 self.defense = 0
                 self.rect.x += self.roll_speed * self.facing
@@ -192,5 +197,7 @@ class Will(Player):
                 self.tickcounter = 0
                 self.BIGGnoise.playSound()
             self.rangedcount = 0
-
-        screen.blit(self.sprite, [self.rect.x, self.rect.y])
+        try:
+            screen.blit(self.sprite, [self.rect.x, self.rect.y])
+        except TypeError:
+            print(self.sprite)

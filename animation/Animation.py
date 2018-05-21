@@ -16,6 +16,7 @@ class Animation():
         self.image_list.append(image)
 
     def loop(self, delay):
+        print(self.image_list)
         if self.handler.getTick() % delay == 0:
             self.index += 1
             if self.index >= len(self.image_list):

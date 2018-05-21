@@ -26,7 +26,7 @@ class Jarod(Player):
         self.startgravity = self.gravity
         self.startdefense = defense
         self.specialsprite = pygame.image.load("media/Players/Will/WillSpecial.png").convert()
-        self.attacksprite = pygame.image.load("media/Players/Will/Attack3.png").convert_alpha()
+        self.attacksprite = pygame.image.load("media/Players/Will/Attack2.png").convert_alpha()
         self.rangedsprite1 = pygame.image.load("media/Players/Will/WillRanged1.png").convert_alpha()
         self.rangedsprite2 = pygame.image.load("media/Players/Will/WillRanged2.png").convert_alpha()
         self.attack1 = pygame.image.load("media/Players/Will/Attack1.png").convert_alpha()
