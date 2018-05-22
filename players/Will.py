@@ -51,6 +51,7 @@ class Will(Player):
             pygame.image.load("media/Players/Will/Will3.png").convert_alpha()
         ]
         self.walkAnimation = Animation(self.handler, self, self.walkSpriteList)
+        self.walk_animation_delay = 8
 
         self.specialSpriteList = [
             pygame.image.load("media/Players/Will/WillSpecial1.png").convert_alpha(),
@@ -67,6 +68,7 @@ class Will(Player):
         ]
 
         self.crouchAnimation = Animation(self.handler, self, self.crouchSpriteList)
+        self.crouch_animation_delay = 8
 
         self.attackSpriteList = [
             pygame.image.load("media/Players/Will/WillRanged1.png").convert_alpha(),

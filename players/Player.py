@@ -23,6 +23,10 @@ class Player(pygame.sprite.Sprite):
         self.rightAttackSprite = self.attacksprite
         self.leftAttackSprite = pygame.transform.rotate(self.attacksprite, 180)
 
+        self.walk_animation_delay = 10
+        self.special_animation_delay = 10
+        self.crouch_animation_delay = 10
+
         self.hitSound = Sound("DeathSound")
         self.attacksound = Sound("GunFiring")
         self.gregMeleeHit = Sound("Knife Slice Into Flesh Sound Effect")

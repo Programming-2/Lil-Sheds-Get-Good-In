@@ -29,12 +29,12 @@ class Animation:
                 self.player.sprite = pygame.transform.flip(self.image_list[self.index], True, False)
             if self.player.facing == 1:
                 self.player.sprite = self.image_list[self.index]
-        print(self.handler.getTick() - self.start_tick)
 
     def loopFromStart(self, delay):
         if self.loop_once_count == 0:
             self.index = -1
-        if self.handler.getTick() % delay == 0:
+            self.start_tick = self.handler.getTick()
+        if (self.handler.getTick() - self.start_tick) % delay == 0:
             self.index += 1
             if self.index >= len(self.image_list):
                 self.index = 0

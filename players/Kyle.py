@@ -4,6 +4,8 @@ from src.Platform import Platform
 from src.Cooldown import Cooldown
 from utils.Colors import colors
 from src.Attack import Attack
+from animation.Animation import Animation
+from animation.AnimationManager import AnimationManager
 import random
 
 
@@ -23,22 +25,36 @@ class Kyle(Player):
         self.platformcount = 0
         self.special_cooldown = Cooldown(3)
 
-        self.spriteList = [pygame.image.load("media/Players/Kyle/Kyle.png").convert_alpha(),
-                           pygame.image.load("media/Players/Kyle/Kyle1.png").convert_alpha(),
-                           pygame.image.load("media/Players/Kyle/Kyle2.png").convert_alpha(),
-                           pygame.image.load("media/Players/Kyle/Kyle3.png").convert_alpha(),
-                           pygame.image.load("media/Players/Kyle/Kyle4.png").convert_alpha(),
-                           pygame.image.load("media/Players/Kyle/Kyle5.png").convert_alpha(),
-                           pygame.image.load("media/Players/Kyle/Kyle6.png").convert_alpha(),
-                           pygame.image.load("media/Players/Kyle/Kyle7.png").convert_alpha()]
-        self.crouchSpriteList = [pygame.image.load("media/Players/Kyle/KyleCrouch.png").convert_alpha(),
-                           pygame.image.load("media/Players/Kyle/KyleCrouch1.png").convert_alpha(),
-                           pygame.image.load("media/Players/Kyle/KyleCrouch2.png").convert_alpha(),
-                           pygame.image.load("media/Players/Kyle/KyleCrouch3.png").convert_alpha(),
-                           pygame.image.load("media/Players/Kyle/KyleCrouch4.png").convert_alpha(),
-                           pygame.image.load("media/Players/Kyle/KyleCrouch5.png").convert_alpha(),
-                           pygame.image.load("media/Players/Kyle/KyleCrouch6.png").convert_alpha(),
-                           pygame.image.load("media/Players/Kyle/KyleCrouch7.png").convert_alpha()]
+        self.spriteList = [
+            pygame.image.load("media/Players/Kyle/Kyle.png").convert_alpha(),
+            pygame.image.load("media/Players/Kyle/Kyle1.png").convert_alpha(),
+            pygame.image.load("media/Players/Kyle/Kyle2.png").convert_alpha(),
+            pygame.image.load("media/Players/Kyle/Kyle3.png").convert_alpha(),
+            pygame.image.load("media/Players/Kyle/Kyle4.png").convert_alpha(),
+            pygame.image.load("media/Players/Kyle/Kyle5.png").convert_alpha(),
+            pygame.image.load("media/Players/Kyle/Kyle6.png").convert_alpha(),
+            pygame.image.load("media/Players/Kyle/Kyle7.png").convert_alpha()
+        ]
+
+        self.walkAnimation = Animation(self.handler, self, self.spriteList)
+        self.walk_animation_delay = 1
+
+        self.crouchSpriteList = [
+            pygame.image.load("media/Players/Kyle/KyleCrouch.png").convert_alpha(),
+            pygame.image.load("media/Players/Kyle/KyleCrouch1.png").convert_alpha(),
+            pygame.image.load("media/Players/Kyle/KyleCrouch2.png").convert_alpha(),
+            pygame.image.load("media/Players/Kyle/KyleCrouch3.png").convert_alpha(),
+            pygame.image.load("media/Players/Kyle/KyleCrouch4.png").convert_alpha(),
+            pygame.image.load("media/Players/Kyle/KyleCrouch5.png").convert_alpha(),
+            pygame.image.load("media/Players/Kyle/KyleCrouch6.png").convert_alpha(),
+            pygame.image.load("media/Players/Kyle/KyleCrouch7.png").convert_alpha()
+        ]
+
+        self.crouchAnimation = Animation(self.handler, self, self.crouchSpriteList)
+        self.crouch_animation_delay = 1
+
+        self.animation_manager = AnimationManager(self, self.walkAnimation, None, self.crouchAnimation)
+
         self.frame = 0
 
     def special(self):
@@ -51,18 +67,6 @@ class Kyle(Player):
                 self.handler.getPlatformArray().add(self.specialplatform)
                 self.platformcount += 1
             self.special_cooldown.update()
-
-    def determineSprite(self):
-        self.frame += 1
-        if self.frame >= len(self.spriteList) or self.xchange == 0:
-            self.frame = 0
-        if not self.crouching:
-            self.sprite = self.spriteList[self.frame]
-        else:
-            self.sprite = self.crouchSpriteList[self.frame]
-
-        if self.facing == -1:
-            self.sprite = pygame.transform.flip(self.sprite, True, False)
 
     def attack(self, screen):
         self.handler.getAttackList().add(Attack(self, self.damage, self.handler, 5))
@@ -80,7 +84,7 @@ class Kyle(Player):
     def update(self, screen):
         if not self.special_cooldown.isDone():
             self.special_cooldown.update()
-        self.determineSprite()
+        self.animation_manager.update()
         super().update(screen)
 
         for p in self.handler.getPlatformArray():
