@@ -14,7 +14,7 @@ class AnimationManager:
     
     def update(self):
         if self.player.in_special and self.special_animation is not None:
-            self.player.sprite = self.special_animation.displayFirst()
+            self.special_animation.loop(10)
         elif self.player.jumping:
             if self.player.facing == 1:
                 self.player.sprite = self.jumpsprite
