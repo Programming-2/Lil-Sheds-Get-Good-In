@@ -1,7 +1,7 @@
 import pygame
 
 
-class Animation():
+class Animation:
     def __init__(self, handler, player, image_list=None):
         self.image_list = []
         if image_list:

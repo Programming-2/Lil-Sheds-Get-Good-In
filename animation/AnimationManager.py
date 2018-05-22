@@ -1,7 +1,7 @@
 import pygame
 
 
-class AnimationManager():
+class AnimationManager:
     def __init__(self, player, walkAnimation, specialAnimation, crouchAnimation=None, attackAnimation=None, idleAnimation=None):
         self.walk_animation = walkAnimation
         self.crouch_animation = crouchAnimation
