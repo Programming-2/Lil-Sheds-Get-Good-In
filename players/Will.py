@@ -53,7 +53,8 @@ class Will(Player):
         self.walkAnimation = Animation(self.handler, self, self.walkSpriteList)
 
         self.specialSpriteList = [
-            pygame.image.load("media/Players/Will/WillSpecial1.png").convert_alpha()
+            pygame.image.load("media/Players/Will/WillSpecial1.png").convert_alpha(),
+            pygame.image.load("media/Players/Will/WillSpecial.png").convert()
         ]
 
         self.specialAnimation = Animation(self.handler, self, self.specialSpriteList)
@@ -141,6 +142,7 @@ class Will(Player):
                 self.defense = self.startdefense
                 self.stunned = False
                 self.special_active = False
+                self.in_special = False
 
         if self.rangedavailable:
             self.tickcounter += 1
