@@ -1,13 +1,14 @@
 import pygame, math
 from players.Player import Player
 from src.Cooldown import Cooldown
+from src.Attack import Attack
 
 
 class Reynaldo(Player):
 
     def __init__(self, x, y, handler):
         health = 100
-        damage = 10
+        damage = 20
         winQuote = "Pog Champerino!!!!"
         loseQuote = "I was lagging!"
         name = "Reynaldo"
@@ -17,6 +18,11 @@ class Reynaldo(Player):
 
         super().__init__(health, damage, winQuote, loseQuote, name, x, y, movespeed, handler.getPlatformArray(),
                          handler.getAttackList(), handler, defense)
+
+        self.ranged_cooldown = Cooldown(1.5)
+        self.ranged_count = 0
+        self.ranged_active = False
+        self.start_tick = 0
 
         self.special_sprite = pygame.image.load("media/Players/Reynaldo/ReynaldoSpecial.png").convert_alpha()
         self.special_sprite_rect = self.special_sprite.get_rect()
@@ -29,6 +35,11 @@ class Reynaldo(Player):
         self.special_cooldown = Cooldown(5)
         self.special_hit = False
         self.start_direction = 0
+
+    def attack(self, screen):
+        print("BOOM")
+        if self.ranged_cooldown.isDone():
+            self.ranged_active = True
 
     def special(self):
         if self.special_cooldown.isDone():
@@ -45,6 +56,21 @@ class Reynaldo(Player):
             self.facing = -1
 
         screen.blit(self.sprite, [self.rect.x, self.rect.y])
+
+        if self.ranged_cooldown.isDone() and self.ranged_active:
+            if self.ranged_count == 0:
+                self.start_tick = self.handler.getTick()
+                self.ranged_count += 1
+            print(self.handler.getTick() - self.start_tick)
+            if (self.handler.getTick() - self.start_tick) % 5 == 0:
+                self.handler.getAttackList().add(Attack(self, self.damage, self.handler))
+            if (self.handler.getTick() - self.start_tick) == 10:
+                self.ranged_cooldown.update()
+
+        if not self.ranged_cooldown.isDone():
+            self.ranged_cooldown.update()
+            self.ranged_count = 0
+            self.ranged_active = False
 
         if self.special_active:
             if self.special_count == 0:
