@@ -37,7 +37,6 @@ class Reynaldo(Player):
         self.start_direction = 0
 
     def attack(self, screen):
-        print("BOOM")
         if self.ranged_cooldown.isDone():
             self.ranged_active = True
 
@@ -61,7 +60,6 @@ class Reynaldo(Player):
             if self.ranged_count == 0:
                 self.start_tick = self.handler.getTick()
                 self.ranged_count += 1
-            print(self.handler.getTick() - self.start_tick)
             if (self.handler.getTick() - self.start_tick) % 5 == 0:
                 self.handler.getAttackList().add(Attack(self, self.damage, self.handler))
             if (self.handler.getTick() - self.start_tick) == 10:
