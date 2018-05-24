@@ -217,7 +217,7 @@ class Player(pygame.sprite.Sprite):
         if self.i == 180:
             self.i = 0
             self.handler.getStateManager().resetStates()
-            self.handler.getStateManager().setCurrentState("MainMenuState")
+            self.handler.getStateManager().setCurrentState("EndGameState")
 
     def getX(self):
         return self.rect.x

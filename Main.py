@@ -66,7 +66,7 @@ handler = Handler(screen, attackUpdateList, stateManager, None, level, keyManage
 stateDict = {
     "GameState": GameState("GameState", screen, handler, attackUpdateList),
     "ControlState": ControlState("ControlState", handler, testControlScreen),
-    "EndGameState": EndGameState("EndGameState"),
+    "EndGameState": EndGameState("EndGameState", handler),
     "MainMenuState": MainMenuState("MainMenuState", mainMenu, handler),
     "MapSelectionState": MapSelectionState("MapSelectionState", handler, screen, mapSelectionScreen),
     "PlayerSelectionState": PlayerSelectionState("PlayerSelectionState", handler, playerSelectScreen),

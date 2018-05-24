@@ -327,6 +327,7 @@ class GameState(State):
                 self.count += 1
             if self.timer.current_time <= self.end_time - 5:
                 self.handler.setDone(True)
+                self.handler.getStateManager().setCurrentState("EndGameState")
         elif self.player2.sleeping:
             text = font.render("Player 1 Wins!", False, colors.get("BLACK"))
             screen.blit(text, ((screen.get_size()[0] / 2 - 125), (screen.get_size()[1] / 2 - 200)))
@@ -339,3 +340,5 @@ class GameState(State):
                 self.count += 1
             if self.timer.current_time <= self.end_time - 5:
                 self.handler.setDone(True)
+                self.handler.getStateManager().setCurrentState("EndGameState")
+
