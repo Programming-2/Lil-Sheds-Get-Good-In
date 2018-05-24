@@ -38,7 +38,13 @@ class Attack(pygame.sprite.Sprite):
         if self.name != "Lil' Shed":
             pygame.sprite.groupcollide(self.handler.getPlatformArray(), self.handler.getAttackList(), False, True)
         else:
-            if 0 >= self.rect.x >= 1100 or 0 >= self.rect.y >= 800:
+            if self.rect.x > 1100:
+                self.remove(self.handler.getAttackList())
+            elif self.rect.x < 0:
+                self.remove(self.handler.getAttackList())
+            elif self.rect.y > 800:
+                self.remove(self.handler.getAttackList())
+            elif self.rect.y < 0:
                 self.remove(self.handler.getAttackList())
 
     def update(self, screen):

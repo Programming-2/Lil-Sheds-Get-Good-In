@@ -48,4 +48,3 @@ class Kemul(Player):
                 self.caravan_x = 1100
                 self.caravan_loaded = True
                 self.special_cooldown.update()
-                
