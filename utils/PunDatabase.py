@@ -15,5 +15,5 @@ class PunDatabase:
         ]
 
     def getRandomPun(self):
-        randNum = random.randint(0, len(self.puns))
+        randNum = random.randrange(0, len(self.puns))
         return self.puns[randNum]
