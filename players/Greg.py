@@ -11,13 +11,13 @@ class Greg(Player):
     def __init__(self, x, y, handler):
         health = 100
         damage = 15
-        winQuote = "Broken like Katarina"
-        loseQuote = "I don't even care"
+        win_quote = "Broken like Katarina"
+        lose_quote = "I don't even care"
         name = "Greg"
         movespeed = 5
         defense = .7
 
-        super().__init__(health, damage, winQuote, loseQuote, name, x, y, movespeed, handler.getPlatformArray(), handler.getAttackList(), handler, defense)
+        super().__init__(health, damage, win_quote, lose_quote, name, x, y, movespeed, handler.getPlatformArray(), handler.getAttackList(), handler, defense)
 
         self.count = 0
         self.special_active = False

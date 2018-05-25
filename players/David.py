@@ -8,14 +8,14 @@ class David(Player):
     def __init__(self, x, y, handler):
         health = 120
         damage = 15
-        winQuote = "I always start the party!"
-        loseQuote = "Zzz"
+        win_quote = "I always start the party!"
+        lose_quote = "Zzz"
         name = "David"
         defense = .4
         movespeed = 3
         self.handler = handler
 
-        super().__init__(health, damage, winQuote, loseQuote, name, x, y, movespeed, handler.getPlatformArray(), handler.getAttackList(), handler, defense)
+        super().__init__(health, damage, win_quote, lose_quote, name, x, y, movespeed, handler.getPlatformArray(), handler.getAttackList(), handler, defense)
 
         self.attacksprite = pygame.image.load("media/Players/David/DavidAttack.png").convert()
         self.specialsprite = pygame.image.load("media/Players/David/DavidSpecial.png").convert_alpha()

@@ -9,13 +9,13 @@ class Collin(Player):
     def __init__(self, x, y, handler):
         health = 120
         damage = 12
-        winQuote = "ROOOOOOSE"
-        loseQuote = "at least I still have Kaitlin"
+        win_quote = "ROOOOOOSE"
+        lose_quote = "at least I still have Kaitlin"
         name = "Collin"
         movespeed = 5
         defense = .6
 
-        super().__init__(health, damage, winQuote, loseQuote, name, x, y, movespeed, handler.getPlatformArray(), handler.getAttackList(), handler, defense)
+        super().__init__(health, damage, win_quote, lose_quote, name, x, y, movespeed, handler.getPlatformArray(), handler.getAttackList(), handler, defense)
 
         self.handler = handler
         self.currenttick = 0

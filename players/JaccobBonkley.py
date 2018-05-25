@@ -12,12 +12,12 @@ class JaccobBonkley(Player):
         damage = 20
         defense = .5
         movespeed = 10
-        winQuote = "Spaghet saved me"
-        loseQuote = "I wrote the spaghet"
+        win_quote = "Spaghet saved me"
+        lose_quote = "I wrote the spaghet"
         name = "JaccobBonkley"
         self.handler = handler
 
-        super().__init__(health, damage, winQuote, loseQuote, name, x, y, movespeed, handler.getPlatformArray(), handler.getAttackList(), handler, defense)
+        super().__init__(health, damage, win_quote, lose_quote, name, x, y, movespeed, handler.getPlatformArray(), handler.getAttackList(), handler, defense)
 
         self.bullet_speed = 20
         self.special_cooldown = Cooldown(3)

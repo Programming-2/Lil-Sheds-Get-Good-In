@@ -8,7 +8,7 @@ from utils.Sound import Sound
 
 class Player(pygame.sprite.Sprite):
 
-    def __init__(self, health, damage, winQuote, loseQuote, name, x, y, movespeed, platArray, attackList, handler, defense):
+    def __init__(self, health, damage, win_quote, lose_quote, name, x, y, movespeed, plat_array, attack_list, handler, defense):
         super().__init__()
         self.i = 0
         self.sprite = pygame.image.load("media/Players/" + name + "/" + name + ".png").convert_alpha()
@@ -39,11 +39,11 @@ class Player(pygame.sprite.Sprite):
         self.damage = damage
         self.maxHP = health
         self.health = health
-        self.winQuote = winQuote
-        self.loseQuote = loseQuote
+        self.winQuote = win_quote
+        self.loseQuote = lose_quote
         self.name = name
-        self.platArray = platArray
-        self.attackList = attackList
+        self.platArray = plat_array
+        self.attackList = attack_list
         self.xchange = 0
         self.ychange = 0
         self.movespeed = movespeed

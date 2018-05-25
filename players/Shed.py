@@ -8,13 +8,13 @@ class Shed(Player):
     def __init__(self, x, y, handler):
         health = 200
         damage = 20
-        winQuote = "OH YEAHHHH!"
-        loseQuote = "IMPOSSIBLE!"
+        win_quote = "OH YEAHHHH!"
+        lose_quote = "IMPOSSIBLE!"
         name = "Lil' Shed"
         movespeed = 5
         defense = .7
 
-        super().__init__(health, damage, winQuote, loseQuote, name, x, y, movespeed, handler.getPlatformArray(), handler.getAttackList(), handler, defense)
+        super().__init__(health, damage, win_quote, lose_quote, name, x, y, movespeed, handler.getPlatformArray(), handler.getAttackList(), handler, defense)
 
         # Misc
         self.tick = 0

@@ -9,14 +9,14 @@ class Reynaldo(Player):
     def __init__(self, x, y, handler):
         health = 100
         damage = 20
-        winQuote = "Pog Champerino!!!!"
-        loseQuote = "I was lagging!"
+        win_quote = "Pog Champerino!!!!"
+        lose_quote = "I was lagging!"
         name = "Reynaldo"
         movespeed = 6
         defense = .5
         self.handler = handler
 
-        super().__init__(health, damage, winQuote, loseQuote, name, x, y, movespeed, handler.getPlatformArray(),
+        super().__init__(health, damage, win_quote, lose_quote, name, x, y, movespeed, handler.getPlatformArray(),
                          handler.getAttackList(), handler, defense)
 
         self.ranged_cooldown = Cooldown(1.5)

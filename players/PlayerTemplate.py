@@ -8,14 +8,14 @@ class PlayerTemplate(Player):
     def __init__(self, x, y, handler):
         health = 100
         damage = 10
-        winQuote = "Win Quote"
-        loseQuote = "Lose quote"
+        win_quote = "Win Quote"
+        lose_quote = "Lose quote"
         name = "Name"
         movespeed = 5
         defense = .5
         self.handler = handler
 
-        super().__init__(health, damage, winQuote, loseQuote, name, x, y, movespeed, handler.getPlatformArray(),
+        super().__init__(health, damage, win_quote, lose_quote, name, x, y, movespeed, handler.getPlatformArray(),
                          handler.getAttackList(), handler, defense)
 
     def special(self):

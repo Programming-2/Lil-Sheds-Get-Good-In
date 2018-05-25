@@ -15,13 +15,13 @@ class Smo(Player):
     def __init__(self, x, y, handler):
         health = 110
         damage = 55
-        winQuote = "up to the board"
-        loseQuote = "this will delay my victory"
+        win_quote = "up to the board"
+        lose_quote = "this will delay my victory"
         name = "Smo"
         defense = .5
         movespeed = 5
 
-        super().__init__(health, damage, winQuote, loseQuote, name, x, y, movespeed, handler.getPlatformArray(), handler.getAttackList(), handler, defense)
+        super().__init__(health, damage, win_quote, lose_quote, name, x, y, movespeed, handler.getPlatformArray(), handler.getAttackList(), handler, defense)
 
         self.special_active = False
         self.special_range = 300

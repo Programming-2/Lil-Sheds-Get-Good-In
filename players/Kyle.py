@@ -14,13 +14,13 @@ class Kyle(Player):
     def __init__(self, x, y, handler):
         health = 110
         damage = 30
-        winQuote = "Are the platforms fixed yet?"
-        loseQuote = "I\'d better try to fix that... emphasis on try"
+        win_quote = "Are the platforms fixed yet?"
+        lose_quote = "I\'d better try to fix that... emphasis on try"
         name = "Kyle"
         defense = .6
         movespeed = 5
 
-        super().__init__(health, damage, winQuote, loseQuote, name, x, y, movespeed, handler.getPlatformArray(), handler.getAttackList(), handler, defense)
+        super().__init__(health, damage, win_quote, lose_quote, name, x, y, movespeed, handler.getPlatformArray(), handler.getAttackList(), handler, defense)
 
         self.platformcount = 0
         self.special_cooldown = Cooldown(3)

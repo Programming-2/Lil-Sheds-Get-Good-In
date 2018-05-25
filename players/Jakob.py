@@ -8,14 +8,14 @@ class Jakob(Player):
     def __init__(self, x, y, handler):
         health = 100
         damage = 15
-        winQuote = "Robotics taught me that"
-        loseQuote = "I could've been watching Robotics competitions"
+        win_quote = "Robotics taught me that"
+        lose_quote = "I could've been watching Robotics competitions"
         name = "Jakob"
         movespeed = 5
         defense = .5
         self.handler = handler
 
-        super().__init__(health, damage, winQuote, loseQuote, name, x, y, movespeed, handler.getPlatformArray(),
+        super().__init__(health, damage, win_quote, lose_quote, name, x, y, movespeed, handler.getPlatformArray(),
                          handler.getAttackList(), handler, defense)
         self.start_time = 0
         self.current_time = 0
