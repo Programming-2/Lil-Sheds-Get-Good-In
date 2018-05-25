@@ -5,7 +5,10 @@ from players.Player import Player
 from src.Cooldown import Cooldown
 from utils.Sound import Sound
 from datastructures.CircularQueue import CircularQueue
+from utils.PunDatabase import PunDatabase
+from utils.Colors import colors
 
+font = pygame.font.SysFont("Comic Sans MS", 36)
 
 class Smo(Player):
 
@@ -21,15 +24,21 @@ class Smo(Player):
         super().__init__(health, damage, winQuote, loseQuote, name, x, y, movespeed, handler.getPlatformArray(), handler.getAttackList(), handler, defense)
 
         self.special_active = False
-        self.special_range =  50
+        self.special_range = 300
         self.startdefense = defense
         self.rangedcount = 0
         self.rangedavailable = False
         self.attackavailable = False
         self.special_available = True
         self.special_cooldown = Cooldown(5)
-        self.special_duration = Cooldown(1)
+        self.special_duration = Cooldown(3)
         self.damage = damage
+        self.pundatabase = PunDatabase()
+        self.pun = self.pundatabase.getRandomPun()
+        self.target_health = 0
+
+    def GeneratePun(self):
+        self.pun = self.pundatabase.getRandomPun()
 
     def special(self):
         if self.special_cooldown.isDone():
@@ -45,5 +54,18 @@ class Smo(Player):
             self.special_cooldown.update()
 
         if self.special_active and not self.sleeping:
-            pass
-        
+            self.special_duration.update()
+            screen.blit(font.render(self.pun, False, colors.get("BLACK")), (self.rect.x, self.rect.y - 100))
+            if self.handler.getPlayer1().name == "Smo":
+                self.target_health = self.handler.getPlayer2().health
+                if abs(self.rect.x - self.handler.getPlayer2().rect.x) <= self.special_range and abs(self.rect.y - self.handler.getPlayer2().rect.y) <= self. special_range:
+                    if (self.target_health - 10) <= self.handler.getPlayer2().health:
+                        self.handler.player2.takeDamage(10)
+            if self.handler.getPlayer2().name == "Smo":
+                self.target_health = self.handler.getPlayer1().health
+                if abs(self.rect.x - self.handler.getPlayer1().rect.x) <= self.special_range and abs(self.rect.y - self.handler.getPlayer1().rect.y) <= self.special_range:
+                    if (self.target_health - 10) <= self.handler.getPlayer1().health:
+                        self.handler.player1.takeDamage(10)
+            if self.special_duration.isDone():
+                self.special_cooldown.update()
+                self.special_active = False
