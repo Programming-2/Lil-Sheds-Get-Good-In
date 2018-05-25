@@ -33,8 +33,6 @@ class PlayerSelectionState(State):
         self.green_done = False
         self.blue_done = False
 
-        # TODO Fix bug with duplicated players or made it so same player cannot be selected twice
-
         # Rectangle Dict
         self.rects = {
             Rect(30, 51, 47, 47): David(150, 100, handler),

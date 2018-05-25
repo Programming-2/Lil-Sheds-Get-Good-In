@@ -18,8 +18,6 @@ class MapSelectionState(State):
         self.handler = handler
         self.map = None
 
-        # TODO Fix bug with duplicated players or made it so same player cannot be selected twice
-
         # Rectangle Dict
         self.rects = {
             Rect(18, 18, 1064, 114): GrassLevel(screen),

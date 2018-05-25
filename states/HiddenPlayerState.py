@@ -23,8 +23,6 @@ class HiddenPlayerState(State):
         self.hoverOver = Sound("Beep2")
         self.hoverPlay = 0
 
-        # TODO Fix bug with duplicated players or made it so same player cannot be selected twice
-
         # Rectangle Dict
         self.rects = {
             Rect(23, 89, 60, 60): Collin(150, 100, handler),
