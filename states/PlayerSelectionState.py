@@ -115,16 +115,17 @@ class PlayerSelectionState(State):
                         self.hoverPlay = 0
                         self.handler.player1 = self.player1
                     else:
-                        self.player2 = self.rects[key]
-                        self.player2Rect = key
-                        self.player2.setX(950)
-                        self.player2.y = 100
-                        self.handler.player2 = self.player2
-                        self.handler.getStateManager().getState("HiddenPlayerState").resetState()
-                        self.handler.getStateManager().getState("GameState").setPlayers(self.handler.player1, self.handler.player2)
-                        self.handler.getStateManager().setCurrentState("MapSelectionState")
-                        # self.handler.getStateManager().setCurrentState("GameState")
-                        self.hoverPlay = 0
+                        if self.player1.name != self.rects[key].name:
+                            self.player2 = self.rects[key]
+                            self.player2Rect = key
+                            self.player2.setX(950)
+                            self.player2.y = 100
+                            self.handler.player2 = self.player2
+                            self.handler.getStateManager().getState("HiddenPlayerState").resetState()
+                            self.handler.getStateManager().getState("GameState").setPlayers(self.handler.player1, self.handler.player2)
+                            self.handler.getStateManager().setCurrentState("MapSelectionState")
+                            # self.handler.getStateManager().setCurrentState("GameState")
+                            self.hoverPlay = 0
                 else:
                     pygame.draw.rect(screen, colors["GREEN"], key)
 
