@@ -2,6 +2,8 @@ import pygame
 from players.Player import Player
 from src.CustomAttack import CustomAttack
 from src.Cooldown import Cooldown
+from animation.Animation import Animation
+from animation.AnimationManager import AnimationManager
 
 
 class Greg(Player):
@@ -33,6 +35,19 @@ class Greg(Player):
         self.attackcount = 0
         self.attackradius = 100
         self.ranged_cooldown = Cooldown(2)
+        self.walk_animation_delay = 8
+
+        # Animation
+        self.walkSpriteList = [
+            pygame.image.load("media/Players/Greg/Greg1.png").convert_alpha(),
+            pygame.image.load("media/Players/Greg/Greg2.png").convert_alpha(),
+            pygame.image.load("media/Players/Greg/Greg3.png").convert_alpha(),
+            pygame.image.load("media/Players/Greg/Greg4.png").convert_alpha()
+        ]
+
+        self.walkAnimation = Animation(self.handler, self, self.walkSpriteList)
+
+        self.animation_manager = AnimationManager(self, self.walkAnimation)
 
     def attack(self, screen):
         if self.ranged_cooldown.isDone():
@@ -60,7 +75,18 @@ class Greg(Player):
         if self.special_cooldown.isDone():
             self.special_active = True
 
+    def moveX(self):
+        self.rect.x += self.xchange
+        platList = pygame.sprite.spritecollide(self, self.platArray, False)
+        for platform in platList:
+            if self.xchange > 0 and self.rect.right < platform.rect.right:  # Moving right and left of platform
+                self.rect.right = platform.rect.left
+            elif self.xchange < 0 and self.rect.left > platform.rect.left:  # Moving left and right of platform
+                self.rect.left = platform.rect.right
+            self.xchange = 0
+
     def update(self, screen):
+        self.animation_manager.update()
         if not self.ranged_cooldown.isDone():
             self.ranged_cooldown.update()
         if self.attacking:
