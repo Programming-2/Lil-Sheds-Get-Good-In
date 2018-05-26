@@ -13,6 +13,7 @@ from states.HiddenPlayerState import HiddenPlayerState
 from states.SettingsState import SettingsState
 from utils.StateManager import StateManager
 from states.PausedState import PausedState
+from states.Pong import Pong
 from inputmanager.KeyboardManager import KeyboardManager
 
 
@@ -72,7 +73,8 @@ stateDict = {
     "PlayerSelectionState": PlayerSelectionState("PlayerSelectionState", handler, playerSelectScreen),
     "PausedState": PausedState("PausedState", handler, pauseScreen),
     "HiddenPlayerState": HiddenPlayerState("HiddenPlayerState", handler, hiddenPlayerScreen),
-    "SettingsState": SettingsState("SettingsState", handler, settingsState)
+    "SettingsState": SettingsState("SettingsState", handler, settingsState),
+    "Pong": Pong("Pong", handler)
 }
 stateManager.setStateDict(stateDict)
 # End State Declaration

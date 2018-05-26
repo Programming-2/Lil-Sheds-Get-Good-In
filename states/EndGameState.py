@@ -26,6 +26,7 @@ class EndGameState(State):
 
         screen.blit(self.img, [0, 0])
 
+        # TODO something is funky here, doesn't really work properly
         if (403 < pygame.mouse.get_pos()[0] < 696 and pressed) and (496 < pygame.mouse.get_pos()[1] < 590 and pressed):
             self.handler.getStateManager().setCurrentState("MainMenuState")
         if (403 < pygame.mouse.get_pos()[0] < 696) and (496 < pygame.mouse.get_pos()[1] < 590):

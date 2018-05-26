@@ -44,3 +44,6 @@ class MainMenuState(State):
 
         if (403 < pygame.mouse.get_pos()[0] < 646 and pressed) and (717 < pygame.mouse.get_pos()[1] < 784 and pressed):
             self.handler.setDone(True)
+
+        if (1050 < pygame.mouse.get_pos()[0] < 1100 and pressed) and (750 < pygame.mouse.get_pos()[1] < 800 and pressed):
+            self.handler.getStateManager().setCurrentState("Pong")
