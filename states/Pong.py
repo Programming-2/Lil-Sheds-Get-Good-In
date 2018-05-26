@@ -93,3 +93,11 @@ class Pong(State):
         if self.ball_rect.x >= 1100:
             self.left_score += 1
             self.resetState()
+        if self.left_paddle_rect.y < 0:
+            self.left_paddle_rect.y = 0
+        if self.left_paddle_rect.y > 700:
+            self.left_paddle_rect.y = 700
+        if self.right_paddle_rect.y < 0:
+            self.right_paddle_rect.y = 0
+        if self.right_paddle_rect.y > 700:
+            self.right_paddle_rect.y = 700
