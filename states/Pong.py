@@ -46,6 +46,8 @@ class Pong(State):
 
         self.ball_rect.x = self.ball_x
         self.ball_rect.y = self.ball_y
+        self.ball_speed_x = 5
+        self.ball_speed_y = 5
 
     def clear_score(self):
         self.left_score = 0
@@ -85,6 +87,14 @@ class Pong(State):
 
         if pygame.Rect.colliderect(self.ball_rect, self.left_paddle_rect) or pygame.Rect.colliderect(self.ball_rect, self.right_paddle_rect):
             self.ball_speed_x *= -1
+            if self.ball_speed_x > 0:
+                self.ball_speed_x += 1
+            else:
+                self.ball_speed_x -= 1
+            if self.ball_speed_y > 0:
+                self.ball_speed_y += .5
+            else:
+                self.ball_speed_y -= .5
         if self.ball_rect.y <= 0 or self.ball_rect.y >= 780:
             self.ball_speed_y *= -1
         if self.ball_rect.x <= 0:
