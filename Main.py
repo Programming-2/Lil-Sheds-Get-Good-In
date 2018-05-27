@@ -11,9 +11,11 @@ from states.MapSelectionState import MapSelectionState
 from states.PlayerSelectionState import PlayerSelectionState
 from states.HiddenPlayerState import HiddenPlayerState
 from states.SettingsState import SettingsState
+from states.MinigameMenu import MinigameMenu
 from utils.StateManager import StateManager
 from states.PausedState import PausedState
 from states.Pong import Pong
+from states.Tetris import Tetris
 from inputmanager.KeyboardManager import KeyboardManager
 
 
@@ -41,6 +43,7 @@ mapSelectionScreen = pygame.image.load("media/Screens/MapSelection.png").convert
 pauseScreen = pygame.image.load("media/Screens/PauseScreen2.png").convert_alpha()
 hiddenPlayerScreen = pygame.image.load("media/Screens/HiddenCharacterMenu.png").convert_alpha()
 settingsState = pygame.image.load("media/Screens/SettingsState.png").convert_alpha()
+minigameMenu = pygame.image.load("media/Screens/MinigameMenu.png").convert()
 
 # Setting up screen stuff
 pygame.display.set_caption("Lil' Shed's Get Good In™")
@@ -74,7 +77,9 @@ stateDict = {
     "PausedState": PausedState("PausedState", handler, pauseScreen),
     "HiddenPlayerState": HiddenPlayerState("HiddenPlayerState", handler, hiddenPlayerScreen),
     "SettingsState": SettingsState("SettingsState", handler, settingsState),
-    "Pong": Pong("Pong", handler)
+    "MinigameMenu": MinigameMenu("MinigameMenu", handler, minigameMenu),
+    "Pong": Pong("Pong", handler),
+    "Tetris": Tetris("Tetris", handler)
 }
 stateManager.setStateDict(stateDict)
 # End State Declaration
