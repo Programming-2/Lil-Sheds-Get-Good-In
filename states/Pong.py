@@ -62,13 +62,13 @@ class Pong(State):
                     self.resetState()
 
         keys = pygame.key.get_pressed()
-        if keys[pygame.K_w]:
+        if keys[pygame.K_w] and not self.left_paddle_rect.y <= 0:
             self.left_paddle_rect.y -= self.left_paddle_speed
-        if keys[pygame.K_s]:
+        if keys[pygame.K_s]and not self.left_paddle_rect.y >= 700:
             self.left_paddle_rect.y += self.left_paddle_speed
-        if keys[pygame.K_UP]:
+        if keys[pygame.K_UP] and not self.right_paddle_rect.y <= 0:
             self.right_paddle_rect.y -= self.right_paddle_speed
-        if keys[pygame.K_DOWN]:
+        if keys[pygame.K_DOWN] and not self.right_paddle_rect.y >= 700:
             self.right_paddle_rect.y += self.right_paddle_speed
         self.ball_rect.x += self.ball_speed_x
         self.ball_rect.y += self.ball_speed_y
