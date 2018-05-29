@@ -22,7 +22,6 @@ class Jarod(Player):
         self.special_active = False
         self.special_available = False
         self.special_cooldown = Cooldown(5)
-        self.special_duration = Cooldown(1)
         self.damage = damage
         self.rangedavailable = False
         self.released = True
@@ -37,7 +36,7 @@ class Jarod(Player):
 
     def update(self, screen):
         if self.tick != 0:
-            self.xchange = 0
+            self.xchange /= 2
 
         super().update(screen)
 
@@ -56,16 +55,16 @@ class Jarod(Player):
             self.tick += 1
             self.ranged_cooldown.current_cooldown = self.tick / 60
             if self.ranged_cooldown.current_cooldown <= 1:
-                if self.tick % 20 == 0:
+                if self.tick % 15 == 0:
                     self.handler.getAttackList().add(CustomAttack(self, self.damage, self.handler, 12 * self.facing, 0))
             elif self.ranged_cooldown.current_cooldown <= 2:
-                if self.tick % 15 == 0:
-                    self.handler.getAttackList().add(CustomAttack(self, self.damage, self.handler, 12 * self.facing, random.randint(-1, 1)))
-            elif self.ranged_cooldown.current_cooldown <= 3:
                 if self.tick % 12 == 0:
                     self.handler.getAttackList().add(CustomAttack(self, self.damage, self.handler, 12 * self.facing, random.randint(-1, 1)))
-            elif self.ranged_cooldown.current_cooldown <= 4:
+            elif self.ranged_cooldown.current_cooldown <= 3:
                 if self.tick % 8 == 0:
+                    self.handler.getAttackList().add(CustomAttack(self, self.damage, self.handler, 12 * self.facing, random.randint(-1, 1)))
+            elif self.ranged_cooldown.current_cooldown <= 4:
+                if self.tick % 6 == 0:
                     self.handler.getAttackList().add(CustomAttack(self, self.damage, self.handler, 12 * self.facing, random.randint(-2, 2)))
             elif self.ranged_cooldown.current_cooldown > 4:
                 if self.tick % 4 == 0:

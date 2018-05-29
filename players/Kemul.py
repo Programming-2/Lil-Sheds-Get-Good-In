@@ -7,11 +7,11 @@ class Kemul(Player):
 
     def __init__(self, x, y, handler):
         health = 110
-        damage = 55
+        damage = 20
         win_quote = "Chewbacca"
         lose_quote = "Chewbacca"
         name = "Kemul"
-        defense = .5
+        defense = .7
         movespeed = 5
 
         super().__init__(health, damage, win_quote, lose_quote, name, x, y, movespeed, handler.getPlatformArray(), handler.getAttackList(), handler, defense)
