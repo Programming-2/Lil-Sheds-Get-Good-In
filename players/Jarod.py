@@ -20,7 +20,7 @@ class Jarod(Player):
         super().__init__(health, damage, win_quote, lose_quote, name, x, y, movespeed, handler.getPlatformArray(), handler.getAttackList(), handler, defense)
 
         self.special_active = False
-        self.special_available = True
+        self.special_available = False
         self.special_cooldown = Cooldown(5)
         self.special_duration = Cooldown(1)
         self.damage = damage
@@ -36,6 +36,9 @@ class Jarod(Player):
         self.rangedavailable = True
 
     def update(self, screen):
+        if self.tick != 0:
+            self.xchange = 0
+
         super().update(screen)
 
         if not self.special_cooldown.isDone():

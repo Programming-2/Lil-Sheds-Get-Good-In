@@ -8,13 +8,13 @@ from datastructures.CircularQueue import CircularQueue
 from utils.PunDatabase import PunDatabase
 from utils.Colors import colors
 
-font = pygame.font.SysFont("Comic Sans MS", 36)
+font = pygame.font.SysFont("Comic Sans MS", 16)
 
 class Smo(Player):
 
     def __init__(self, x, y, handler):
         health = 110
-        damage = 55
+        damage = 10
         win_quote = "up to the board"
         lose_quote = "this will delay my victory"
         name = "Smo"
@@ -27,15 +27,18 @@ class Smo(Player):
         self.special_range = 300
         self.startdefense = defense
         self.rangedcount = 0
-        self.rangedavailable = False
-        self.attackavailable = False
+        self.rangedavailable = True
+        self.attackavailable = True
         self.special_available = True
         self.special_cooldown = Cooldown(5)
         self.special_duration = Cooldown(3)
         self.damage = damage
         self.pundatabase = PunDatabase()
         self.pun = self.pundatabase.getRandomPun()
-        self.target_health = 0
+        if self.handler.getPlayer1().name == "Smo":
+            self.target_health = self.handler.getPlayer2().health
+        else:
+            self.target_health = self.handler.getPlayer1().health
 
     def GeneratePun(self):
         self.pun = self.pundatabase.getRandomPun()
@@ -44,8 +47,12 @@ class Smo(Player):
         if self.special_cooldown.isDone():
             self.special_active = True
 
-    def attack(self, screen):
-        self.rangedavailable = True
+    def target_health_update(self):
+        if self.handler.getPlayer1().name == "Smo":
+            self.target_health = self.handler.getPlayer2().health
+        else:
+            self.target_health = self.handler.getPlayer1().health
+
 
     def update(self, screen):
         super().update(screen)
@@ -57,15 +64,15 @@ class Smo(Player):
             self.special_duration.update()
             screen.blit(font.render(self.pun, False, colors.get("BLACK")), (self.rect.x, self.rect.y - 100))
             if self.handler.getPlayer1().name == "Smo":
-                self.target_health = self.handler.getPlayer2().health
                 if abs(self.rect.x - self.handler.getPlayer2().rect.x) <= self.special_range and abs(self.rect.y - self.handler.getPlayer2().rect.y) <= self. special_range:
                     if (self.target_health - 10) <= self.handler.getPlayer2().health:
                         self.handler.player2.takeDamage(10)
             if self.handler.getPlayer2().name == "Smo":
-                self.target_health = self.handler.getPlayer1().health
                 if abs(self.rect.x - self.handler.getPlayer1().rect.x) <= self.special_range and abs(self.rect.y - self.handler.getPlayer1().rect.y) <= self.special_range:
                     if (self.target_health - 10) <= self.handler.getPlayer1().health:
                         self.handler.player1.takeDamage(10)
             if self.special_duration.isDone():
+                self.GeneratePun()
                 self.special_cooldown.update()
+                self.target_health_update()
                 self.special_active = False
