@@ -43,7 +43,7 @@ mapSelectionScreen = pygame.image.load("media/Screens/MapSelection.png").convert
 pauseScreen = pygame.image.load("media/Screens/PauseScreen2.png").convert_alpha()
 hiddenPlayerScreen = pygame.image.load("media/Screens/HiddenCharacterMenu.png").convert_alpha()
 settingsState = pygame.image.load("media/Screens/SettingsState.png").convert_alpha()
-# minigameMenu = pygame.image.load("media/Screens/MinigameMenu.png").convert()
+minigameMenu = pygame.image.load("media/Screens/MinigameMenu.png").convert()
 
 # Setting up screen stuff
 pygame.display.set_caption("Lil' Shed's Get Good In™")
@@ -73,13 +73,12 @@ stateDict = {
     "EndGameState": EndGameState("EndGameState", handler),
     "MainMenuState": MainMenuState("MainMenuState", mainMenu, handler),
     "MapSelectionState": MapSelectionState("MapSelectionState", handler, screen, mapSelectionScreen),
-    "PlayerSelectionState": PlayerSelectionState("PlayerSelectionState", handler, playerSelectScreen),
+    "PlayerSelectionState": PlayerSelectionState("PlayerSelectionState", handler, playerSelectScreen, hiddenPlayerScreen),
     "PausedState": PausedState("PausedState", handler, pauseScreen),
-    "HiddenPlayerState": HiddenPlayerState("HiddenPlayerState", handler, hiddenPlayerScreen),
-    "SettingsState": SettingsState("SettingsState", handler, settingsState)
-    # "MinigameMenu": MinigameMenu("MinigameMenu", handler, minigameMenu),
-    # "Pong": Pong("Pong", handler),
-    # "Tetris": Tetris("Tetris", handler)
+    "SettingsState": SettingsState("SettingsState", handler, settingsState),
+    "MinigameMenu": MinigameMenu("MinigameMenu", handler, minigameMenu),
+    "Pong": Pong("Pong", handler),
+    "Tetris": Tetris("Tetris", handler)
 }
 stateManager.setStateDict(stateDict)
 # End State Declaration

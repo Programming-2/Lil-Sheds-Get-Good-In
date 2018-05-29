@@ -3,6 +3,7 @@ from states.State import State
 from utils.Handler import Handler
 from utils.Colors import colors
 
+
 class EndGameState(State):
 
     def __init__(self, name, handler):
@@ -41,6 +42,3 @@ class EndGameState(State):
             self.handler.getStateManager().setCurrentState("MapSelectionState")
         if (403 < pygame.mouse.get_pos()[0] < 696) and (696 < pygame.mouse.get_pos()[1] < 790):
             pygame.draw.rect(screen, colors["GREEN"], [403, 696, 294, 94])
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                self.handler.setDone(True)
