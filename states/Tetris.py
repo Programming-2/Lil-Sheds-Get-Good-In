@@ -13,4 +13,10 @@ class Tetris(State):
         pass
 
     def update(self, screen):
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                self.handler.setDone(True)
+            elif event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_ESCAPE:
+                    self.handler.getStateManager().setCurrentState("MinigameMenu")
         screen.fill(colors.get("BLACK"))
