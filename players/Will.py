@@ -127,9 +127,6 @@ class Will(Player):
         self.animation_manager.update()
         self.tick += 1
 
-        if not self.special_active:
-            super().update(screen)
-
         if not self.special_cooldown.isDone():
             self.special_cooldown.update()
 
@@ -138,13 +135,15 @@ class Will(Player):
             if not self.special_duration.isDone():
                 self.stunned = True
                 self.defense = 0
-                self.rect.x += self.roll_speed * self.facing
+                self.xchange += self.roll_speed * self.facing
             else:
                 self.special_cooldown.update()
                 self.defense = self.startdefense
                 self.stunned = False
                 self.special_active = False
                 self.in_special = False
+
+        super().update(screen)
 
         if self.rangedavailable:
             self.tickcounter += 1
@@ -201,7 +200,3 @@ class Will(Player):
                 self.tickcounter = 0
                 self.BIGGnoise.playSound()
             self.rangedcount = 0
-        try:
-            screen.blit(self.sprite, [self.rect.x, self.rect.y])
-        except TypeError:
-            print(self.sprite)
