@@ -8,7 +8,7 @@ class David(Player):
     def __init__(self, x, y, handler):
         health = 120
         damage = 15
-        win_quote = "No."
+        win_quote = "I always start the party!"
         lose_quote = "Zzz"
         name = "David"
         defense = .4
