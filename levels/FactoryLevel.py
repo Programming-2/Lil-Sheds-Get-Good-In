@@ -8,8 +8,8 @@ import pygame
 class FactoryLevel(Level):
     def __init__(self, screen, handler):
         super().__init__(screen, "media/Levels/Factory.png")
-        self.plat1 = Platform(screen, 0, 416, 450, 50, speed=2)
-        self.plat2 = Platform(screen, 650, 416, 450, 50, speed=-2)
+        self.plat1 = Platform(screen, 0, 416, 412, 50, speed=2)
+        self.plat2 = Platform(screen, 688, 416, 412, 50, speed=-2)
         self.platformGroup.add(self.plat1)
         self.platformGroup.add(self.plat2)
         self.conveyorAnimation = CircularQueue()
@@ -40,7 +40,7 @@ class FactoryLevel(Level):
 
     def update(self, screen):
         screen.blit(self.conveyorAnimation.get(), (0, 416))
-        screen.blit(self.conveyorAnimation2.get(), (650, 416))
+        screen.blit(self.conveyorAnimation2.get(), (688, 416))
 
         self.buttonLeft.update(screen)
         self.buttonRight.update(screen)

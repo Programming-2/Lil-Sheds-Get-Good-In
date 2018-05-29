@@ -341,4 +341,3 @@ class GameState(State):
             if self.timer.current_time <= self.end_time - 5:
                 self.handler.setDone(True)
                 self.handler.getStateManager().setCurrentState("EndGameState")
-
