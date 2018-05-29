@@ -9,7 +9,6 @@ from states.EndGameState import EndGameState
 from states.MainMenuState import MainMenuState
 from states.MapSelectionState import MapSelectionState
 from states.PlayerSelectionState import PlayerSelectionState
-from states.HiddenPlayerState import HiddenPlayerState
 from states.SettingsState import SettingsState
 from states.MinigameMenu import MinigameMenu
 from utils.StateManager import StateManager
