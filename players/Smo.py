@@ -35,10 +35,7 @@ class Smo(Player):
         self.damage = damage
         self.pundatabase = PunDatabase()
         self.pun = self.pundatabase.getRandomPun()
-        if self.handler.getPlayer1().name == "Smo":
-            self.target_health = self.handler.getPlayer2().health
-        else:
-            self.target_health = self.handler.getPlayer1().health
+        self.target_health_update()
 
     def GeneratePun(self):
         self.pun = self.pundatabase.getRandomPun()

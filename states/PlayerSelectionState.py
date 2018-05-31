@@ -76,6 +76,20 @@ class PlayerSelectionState(State):
         self.player1Rect = (0, 0, 0, 0)
         self.player2Rect = (0, 0, 0, 0)
 
+    def resetPlayer(self):
+        self.rects[Rect(30, 51, 47, 47)] = David(150, 100, self.handler)
+        self.rects[Rect(30, 141, 47, 47)] = Greg(150, 100, self.handler)
+        self.rects[Rect(30, 225, 47, 47)] = JaccobBonkley(150, 100, self.handler)
+        self.rects[Rect(30, 311, 47, 47)] = Jakob(150, 100, self.handler)
+        self.rects[Rect(30, 395, 47, 47)] = Kyle(150, 100, self.handler)
+        self.rects[Rect(30, 482, 47, 47)] = Will(150, 100, self.handler)
+        self.rects[Rect(228, 323, 26, 34)] = Shed(150, 100, self.handler)
+        self.hidden_rects[Rect(23, 89, 60, 60)] = Collin(150, 100, self.handler)
+        self.hidden_rects[Rect(23, 214, 60, 60)] = Smo(150, 100, self.handler)
+        self.hidden_rects[Rect(23, 336, 60, 60)] = Kemul(150, 100, self.handler)
+        self.hidden_rects[Rect(23, 465, 60, 60)] = Jarod(150, 100, self.handler)
+        self.hidden_rects[Rect(818, 45, 35, 35)] = Reynaldo(150, 100, self.handler)
+
     def update(self, screen):
         pressed = False
         # Event look

@@ -2,6 +2,7 @@ import pygame
 from states.State import State
 from utils.Handler import Handler
 from utils.Colors import colors
+from states.PlayerSelectionState import PlayerSelectionState
 
 
 class EndGameState(State):
@@ -12,7 +13,7 @@ class EndGameState(State):
         self.handler = handler
 
     def resetState(self):
-        pass
+        self.handler.getStateManager().getState("PlayerSelectionState").resetPlayer()
 
     def update(self, screen):
 
