@@ -2,12 +2,9 @@ import pygame
 from states.State import State
 from utils.Handler import Handler
 from utils.Colors import colors
-<<<<<<< HEAD
 from states.PlayerSelectionState import PlayerSelectionState
-
-=======
 from utils.StateManager import StateManager
->>>>>>> 0575e8f6d70756c50a484718d6db1fee765851f1
+
 
 class EndGameState(State):
 
