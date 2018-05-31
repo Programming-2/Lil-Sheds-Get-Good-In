@@ -63,7 +63,7 @@ stateManager = StateManager(None)
 keyManager = KeyboardManager()
 
 # Init handler
-handler = Handler(screen, attackUpdateList, stateManager, None, level, keyManager)
+handler = Handler(screen, attackUpdateList, stateManager, None, level, keyManager, PlayerSelectionState)
 
 # State Declaration
 stateDict = {
