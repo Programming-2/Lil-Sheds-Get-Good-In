@@ -31,6 +31,7 @@ class GameState(State):
         self.player2 = self.handler.player2
 
         self.screen = screen
+        self.victor = 0
 
         self.handler.setPlayer1(self.player1)
         self.handler.setPlayer2(self.player2)
@@ -328,6 +329,7 @@ class GameState(State):
             if self.timer.current_time <= self.end_time - 5:
                 self.handler.setDone(True)
                 self.handler.getStateManager().setCurrentState("EndGameState")
+            self.victor = 2
         elif self.player2.sleeping:
             text = font.render("Player 1 Wins!", False, colors.get("BLACK"))
             screen.blit(text, ((screen.get_size()[0] / 2 - 125), (screen.get_size()[1] / 2 - 200)))
@@ -341,3 +343,4 @@ class GameState(State):
             if self.timer.current_time <= self.end_time - 5:
                 self.handler.setDone(True)
                 self.handler.getStateManager().setCurrentState("EndGameState")
+            self.victor = 1
