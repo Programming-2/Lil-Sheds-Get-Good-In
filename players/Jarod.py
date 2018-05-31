@@ -28,8 +28,7 @@ class Jarod(Player):
         self.tick = 0
 
     def special(self):
-        if self.special_cooldown.isDone():
-            self.special_active = True
+        pass
 
     def attack(self, screen):
         self.rangedavailable = True
@@ -42,14 +41,6 @@ class Jarod(Player):
 
         if not self.special_cooldown.isDone():
             self.special_cooldown.update()
-
-        if self.special_active and not self.sleeping:
-            self.special_duration.update()
-            if not self.special_duration.isDone():
-                pass
-            else:
-                self.special_active = False
-                self.special_cooldown.update()
 
         if self.rangedavailable and not self.released:
             self.tick += 1
