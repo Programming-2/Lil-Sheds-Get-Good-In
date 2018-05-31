@@ -35,17 +35,18 @@ class Attack(pygame.sprite.Sprite):
         self.direction = self.player.facing
 
     def checkPlat(self):
-        if self.name != "Lil' Shed":
-            pygame.sprite.groupcollide(self.handler.getPlatformArray(), self.handler.getAttackList(), False, True)
-        else:
-            if self.rect.x > 1100:
+        for platform in self.handler.getPlatformArray():
+            if self.name != "Lil' Shed" and pygame.sprite.collide_rect(self, platform):
                 self.remove(self.handler.getAttackList())
-            elif self.rect.x < 0:
-                self.remove(self.handler.getAttackList())
-            elif self.rect.y > 800:
-                self.remove(self.handler.getAttackList())
-            elif self.rect.y < 0:
-                self.remove(self.handler.getAttackList())
+            else:
+                if self.rect.x > 1100:
+                    self.remove(self.handler.getAttackList())
+                elif self.rect.x < 0:
+                    self.remove(self.handler.getAttackList())
+                elif self.rect.y > 800:
+                    self.remove(self.handler.getAttackList())
+                elif self.rect.y < 0:
+                    self.remove(self.handler.getAttackList())
 
     def update(self, screen):
         self.checkPlat()

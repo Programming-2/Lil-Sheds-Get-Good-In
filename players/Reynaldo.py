@@ -45,14 +45,7 @@ class Reynaldo(Player):
             self.special_active = True  # A BIG OLD BOOMERANG AHRI Q THAT DOESNT DO DAMAGE ON THE WAY OUT BUT A LOTTA DAMAGE ON THE WAY BACK
 
     def update(self, screen):
-        self.moveX()
-        self.moveY()
-        self.gravityUpdate()
-
-        if self.xchange > 0:
-            self.facing = 1
-        elif self.xchange < 0:
-            self.facing = -1
+        super().update(screen)
 
         screen.blit(self.sprite, [self.rect.x, self.rect.y])
 

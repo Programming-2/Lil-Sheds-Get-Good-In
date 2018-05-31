@@ -1,13 +1,14 @@
 from players.Player import Player
 from src.Cooldown import Cooldown
 from src.CustomAttack import CustomAttack
+from src.Attack import Attack
 
 
 class Shed(Player):
 
     def __init__(self, x, y, handler):
         health = 200
-        damage = 20
+        damage = 5
         win_quote = "OH YEAHHHH!"
         lose_quote = "IMPOSSIBLE!"
         name = "Lil' Shed"
@@ -25,14 +26,13 @@ class Shed(Player):
         self.ranged_cooldown = Cooldown(0.5)
 
         # Special
-        self.special_cooldown = Cooldown(8)
+        self.special_cooldown = Cooldown(3)
         self.special_active = False
-        self.special_duration = Cooldown(3)
         self.specialx = 5
         self.specialy = 15
         self.special_phase = 1
-        self.special_x_change = 2
-        self.special_y_change = 2
+        self.special_x_change = 1
+        self.special_y_change = 1
 
         self.movingLeft = False
         self.movingRight = False
@@ -68,9 +68,11 @@ class Shed(Player):
             self.xchange += .2
         self.movingRight = True
 
+    def attack(self, screen):
+        self.handler.getAttackList().add(Attack(self, self.damage * 4, self.handler))
+
     def update(self, screen):
         self.tick += 1
-        super().update(screen)
 
         if self.jump_pressed and not self.jumpreleased:
             self.ychange -= 0.2
@@ -92,39 +94,38 @@ class Shed(Player):
             self.movespeed = 0
             self.ychange = 0
             self.xchange = 0
-            self.special_duration.update()
             if self.special_phase != 7:
-                if self.tick % 4 == 0:
+                if self.tick % 2 == 0:
                     self.handler.getAttackList().add(CustomAttack(self, self.damage, self.handler, self.specialx, self.specialy))
                     self.handler.getAttackList().add(CustomAttack(self, self.damage, self.handler, -self.specialx, self.specialy))
                     if self.special_phase == 1:
-                        self.special_x_change = 3
-                        self.special_y_change = 3
+                        self.special_x_change = 1
+                        self.special_y_change = 1
                         if self.specialx >= 19:
                             self.special_phase = 2
                     elif self.special_phase == 2:
-                        self.special_x_change = -3
-                        self.special_y_change = 3
+                        self.special_x_change = -1
+                        self.special_y_change = 1
                         if self.specialx <= 3:
                             self.special_phase = 3
                     elif self.special_phase == 3:
-                        self.special_x_change = 3
-                        self.special_y_change = -3
+                        self.special_x_change = 1
+                        self.special_y_change = -1
                         if self.specialx >= 19:
                             self.special_phase = 4
                     elif self.special_phase == 4:
-                        self.special_x_change = -3
-                        self.special_y_change = -3
+                        self.special_x_change = -1
+                        self.special_y_change = -1
                         if self.specialx <= 5:
                             self.special_phase = 5
                     elif self.special_phase == 5:
-                        self.special_x_change = 3
-                        self.special_y_change = 3
+                        self.special_x_change = 1
+                        self.special_y_change = 1
                         if self.specialx >= 19:
                             self.special_phase = 6
                     elif self.special_phase == 6:
-                        self.special_x_change = -3
-                        self.special_y_change = 3
+                        self.special_x_change = -1
+                        self.special_y_change = 1
                         if self.specialx <= 3:
                             self.special_phase = 7
 
@@ -141,6 +142,8 @@ class Shed(Player):
 
         if not self.special_cooldown.isDone():
             self.special_cooldown.update()
+
+        super().update(screen)
 
         self.movingLeft = False
         self.movingRight = False
