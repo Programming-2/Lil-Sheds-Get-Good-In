@@ -233,3 +233,6 @@ class Player(pygame.sprite.Sprite):
 
     def __eq__(self, other):
         return other.toString() == self.name
+
+    def getHealth(self):
+        return self.health
