@@ -20,12 +20,12 @@ class MapSelectionState(State):
 
         # Rectangle Dict
         self.rects = {
-            Rect(18, 18, 1064, 114): GrassLevel(screen),
-            Rect(18, 160, 1064, 115): IceLevel(screen),
-            Rect(18, 304, 1064, 114): LavaLevel(screen),
-            Rect(18, 664, 100, 114): RandomLevel(screen),
+            Rect(18, 18, 1064, 114): GrassLevel(screen, handler),
+            Rect(18, 160, 1064, 115): IceLevel(screen, handler),
+            Rect(18, 304, 1064, 114): LavaLevel(screen, handler),
+            Rect(18, 664, 100, 114): RandomLevel(screen, handler),
             Rect(18, 444, 1064, 114): FactoryLevel(screen, self.handler),
-            Rect(20, 464, 40, 114): Mazelevel(screen),
+            Rect(20, 464, 40, 114): Mazelevel(screen, handler),
         }
 
     def resetState(self):
@@ -54,7 +54,7 @@ class MapSelectionState(State):
         for key in self.rects:
             if key.contains(pygame.mouse.get_pos()[0], pygame.mouse.get_pos()[1], 10, 10):
                 if pressed:
-                    self.rects[key].__init__(screen)
+                    self.rects[key].__init__(screen, self.handler)
                     self.handler.setLevel(self.rects[key])
                     self.handler.getStateManager().getState("GameState").reloadLevel()
                     self.handler.getStateManager().setCurrentState("GameState")

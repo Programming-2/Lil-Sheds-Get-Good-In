@@ -30,7 +30,7 @@ screen = pygame.display.set_mode(size)
 os.environ['SDL_VIDEO_CENTERED'] = '1'
 
 # Loading level
-level = IceLevel(screen)
+level = IceLevel(screen, None)
 
 # Loading Images
 background_image = pygame.image.load(level.getBackImg()).convert()
