@@ -217,4 +217,3 @@ class PlayerSelectionState(State):
             # Colors selected player black
             pygame.draw.rect(screen, colors["BLACK"], self.player1Rect)
             pygame.draw.rect(screen, colors["BLACK"], self.player2Rect)
-
