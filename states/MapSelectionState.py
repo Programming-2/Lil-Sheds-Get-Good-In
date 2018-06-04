@@ -1,5 +1,4 @@
 import pygame
-import copy
 from states.State import State
 from utils.Rect import Rect
 from levels.GrassLevel import GrassLevel
@@ -55,7 +54,7 @@ class MapSelectionState(State):
         for key in self.rects:
             if key.contains(pygame.mouse.get_pos()[0], pygame.mouse.get_pos()[1], 10, 10):
                 if pressed:
-                    self.handler.setLevel(copy.deepcopy(self.rects[key]))
+                    self.handler.setLevel(self.rects[key])
                     self.handler.getStateManager().getState("GameState").reloadLevel()
                     self.handler.getStateManager().setCurrentState("GameState")
                 else:

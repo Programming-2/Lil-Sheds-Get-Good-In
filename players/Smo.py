@@ -50,6 +50,7 @@ class Smo(Player):
         else:
             self.target_health = self.handler.getPlayer1().health
 
+
     def update(self, screen):
         super().update(screen)
 

@@ -1,5 +1,4 @@
 import pygame
-import copy
 from states.State import State
 from utils.Rect import Rect
 from players.David import David
@@ -27,11 +26,11 @@ class PlayerSelectionState(State):
         self.hidden_img = hidden_img
         self.player1 = None
         self.player2 = None
+        self.player1Rect = Rect(0, 0, 0, 0)
+        self.player2Rect = Rect(0, 0, 0, 0)
         self.hoverOver = Sound("Beep2")
         self.hoverPlay = 0
         self.background_color = [0, 0, 0]
-        self.player1Rect = Rect(0, 0, 0, 0)
-        self.player2Rect = Rect(0, 0, 0, 0)
         self.background_rect = pygame.Rect(0, 0, 1100, 800)
         self.red_change = 1
         self.green_change = 1
@@ -77,6 +76,20 @@ class PlayerSelectionState(State):
         self.player1Rect = (0, 0, 0, 0)
         self.player2Rect = (0, 0, 0, 0)
 
+    def resetPlayer(self):
+        self.rects[Rect(30, 51, 47, 47)] = David(150, 100, self.handler)
+        self.rects[Rect(30, 141, 47, 47)] = Greg(150, 100, self.handler)
+        self.rects[Rect(30, 225, 47, 47)] = JaccobBonkley(150, 100, self.handler)
+        self.rects[Rect(30, 311, 47, 47)] = Jakob(150, 100, self.handler)
+        self.rects[Rect(30, 395, 47, 47)] = Kyle(150, 100, self.handler)
+        self.rects[Rect(30, 482, 47, 47)] = Will(150, 100, self.handler)
+        self.rects[Rect(228, 323, 26, 34)] = Shed(150, 100, self.handler)
+        self.hidden_rects[Rect(23, 89, 60, 60)] = Collin(150, 100, self.handler)
+        self.hidden_rects[Rect(23, 214, 60, 60)] = Smo(150, 100, self.handler)
+        self.hidden_rects[Rect(23, 336, 60, 60)] = Kemul(150, 100, self.handler)
+        self.hidden_rects[Rect(23, 465, 60, 60)] = Jarod(150, 100, self.handler)
+        self.hidden_rects[Rect(818, 45, 35, 35)] = Reynaldo(150, 100, self.handler)
+
     def update(self, screen):
         pressed = False
         # Event look
@@ -92,20 +105,25 @@ class PlayerSelectionState(State):
                     if pressed:
                         self.hoverOver.playSound()
                         if self.handler.firstSelection:
-                            self.player1 = copy.deepcopy(self.rects[key])
+                            self.player1 = self.rects[key]
+                            self.player1.setX(150)
+                            self.player1.y = 100
                             self.handler.firstSelection = False
-                            self.hoverPlay = 0
                             self.player1Rect = key
+                            self.hoverPlay = 0
                             self.handler.player1 = self.player1
                         else:
                             if self.player1.name != self.rects[key].name:
-                                self.player2 = copy.deepcopy(self.rects[key])
-                                self.handler.player2 = self.player2
+                                self.player2 = self.rects[key]
                                 self.player2Rect = key
+                                self.player2.setX(950)
+                                self.player2.y = 100
+                                self.handler.player2 = self.player2
                                 self.handler.getStateManager().getState("PlayerSelectionState").resetState()
                                 self.handler.getStateManager().getState("GameState").setPlayers(self.handler.player1,
                                                                                                 self.handler.player2)
                                 self.handler.getStateManager().setCurrentState("MapSelectionState")
+                                # self.handler.getStateManager().setCurrentState("GameState")
                                 self.hoverPlay = 0
                     else:
                         pygame.draw.rect(screen, colors["GREEN"], key)
@@ -157,23 +175,25 @@ class PlayerSelectionState(State):
                     if pressed:
                         self.hoverOver.playSound()
                         if self.handler.firstSelection:
-                            self.player1 = copy.deepcopy(self.hidden_rects[key])
+                            self.player1 = self.hidden_rects[key]
                             self.player1.setX(150)
                             self.player1.y = 100
-                            self.player1Rect = key
                             self.handler.firstSelection = False
+                            self.player1Rect = key
                             self.hoverPlay = 0
                             self.handler.player1 = self.player1
                         else:
                             if self.player1.name != self.hidden_rects[key].name:
-                                self.player2 = copy.deepcopy(self.hidden_rects[key])
+                                self.player2 = self.hidden_rects[key]
+                                self.player2Rect = key
                                 self.player2.setX(950)
                                 self.player2.y = 100
-                                self.player2Rect = key
                                 self.handler.player2 = self.player2
                                 self.handler.getStateManager().getState("PlayerSelectionState").resetState()
-                                self.handler.getStateManager().getState("GameState").setPlayers(self.handler.player1, self.handler.player2)
+                                self.handler.getStateManager().getState("GameState").setPlayers(self.handler.player1,
+                                                                                                self.handler.player2)
                                 self.handler.getStateManager().setCurrentState("MapSelectionState")
+                                # self.handler.getStateManager().setCurrentState("GameState")
                                 self.hoverPlay = 0
                     else:
                         pygame.draw.rect(screen, colors["GREEN"], key)
