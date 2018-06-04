@@ -54,6 +54,7 @@ class MapSelectionState(State):
         for key in self.rects:
             if key.contains(pygame.mouse.get_pos()[0], pygame.mouse.get_pos()[1], 10, 10):
                 if pressed:
+                    self.rects[key].__init__(screen)
                     self.handler.setLevel(self.rects[key])
                     self.handler.getStateManager().getState("GameState").reloadLevel()
                     self.handler.getStateManager().setCurrentState("GameState")
