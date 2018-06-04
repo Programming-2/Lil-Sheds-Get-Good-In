@@ -30,6 +30,8 @@ class MapSelectionState(State):
 
     def resetState(self):
         self.map = None
+        self.handler.player1.__init__(150, 100, self.handler)
+        self.handler.player2.__init__(950, 100, self.handler)
 
     def update(self, screen):
         pressed = False
