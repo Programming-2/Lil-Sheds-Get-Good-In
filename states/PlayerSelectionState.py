@@ -106,6 +106,7 @@ class PlayerSelectionState(State):
                         self.hoverOver.playSound()
                         if self.handler.firstSelection:
                             self.player1 = self.rects[key]
+                            self.player1.__init__(150, 100, self.handler)
                             self.player1.setX(150)
                             self.player1.y = 100
                             self.handler.firstSelection = False
@@ -115,8 +116,9 @@ class PlayerSelectionState(State):
                         else:
                             if self.player1.name != self.rects[key].name:
                                 self.player2 = self.rects[key]
+                                self.player2.__init__(950, 100, self.handler)
                                 self.player2Rect = key
-                                self.player2.setX(950)
+                                # self.player2.setX(950)
                                 self.player2.y = 100
                                 self.handler.player2 = self.player2
                                 self.handler.getStateManager().getState("PlayerSelectionState").resetState()
@@ -176,7 +178,7 @@ class PlayerSelectionState(State):
                         self.hoverOver.playSound()
                         if self.handler.firstSelection:
                             self.player1 = self.hidden_rects[key]
-                            self.player1.setX(150)
+                            self.player1.__init__(150, 100, self.handler)
                             self.player1.y = 100
                             self.handler.firstSelection = False
                             self.player1Rect = key
@@ -186,7 +188,7 @@ class PlayerSelectionState(State):
                             if self.player1.name != self.hidden_rects[key].name:
                                 self.player2 = self.hidden_rects[key]
                                 self.player2Rect = key
-                                self.player2.setX(950)
+                                self.player2.__init__(950, 100, self.handler)
                                 self.player2.y = 100
                                 self.handler.player2 = self.player2
                                 self.handler.getStateManager().getState("PlayerSelectionState").resetState()
