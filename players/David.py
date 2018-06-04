@@ -17,7 +17,7 @@ class David(Player):
 
         super().__init__(health, damage, win_quote, lose_quote, name, x, y, movespeed, handler.getPlatformArray(), handler.getAttackList(), handler, defense)
 
-        self.attacksprite = pygame.image.load("media/Players/David/DavidAttack.png").convert()
+        self.attacksprite = pygame.image.load("media/Players/David/DavidAttack.png").convert_alpha()
         self.specialsprite = pygame.image.load("media/Players/David/DavidSpecial.png").convert_alpha()
         # special
         self.special_cooldown = Cooldown(5)
