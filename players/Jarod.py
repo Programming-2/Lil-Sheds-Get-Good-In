@@ -10,18 +10,18 @@ class Jarod(Player):
 
     def __init__(self, x, y, handler):
         health = 110
-        damage = 8
+        damage = 2
         win_quote = "yikes"
         lose_quote = "yikes"
         name = "Jarod"
         defense = .5
-        movespeed = 5
+        movespeed = 30
 
         super().__init__(health, damage, win_quote, lose_quote, name, x, y, movespeed, handler.getPlatformArray(), handler.getAttackList(), handler, defense)
 
         self.special_active = False
         self.special_available = False
-        self.special_cooldown = Cooldown(5)
+        self.special_cooldown = Cooldown(15)
         self.damage = damage
         self.rangedavailable = False
         self.released = True
@@ -46,19 +46,22 @@ class Jarod(Player):
             self.tick += 1
             self.ranged_cooldown.current_cooldown = self.tick / 60
             if self.ranged_cooldown.current_cooldown <= 1:
-                if self.tick % 15 == 0:
+                if self.tick % 3 == 0:
                     self.handler.getAttackList().add(CustomAttack(self, self.damage, self.handler, 12 * self.facing, 0))
             elif self.ranged_cooldown.current_cooldown <= 2:
-                if self.tick % 12 == 0:
-                    self.handler.getAttackList().add(CustomAttack(self, self.damage, self.handler, 12 * self.facing, random.randint(-1, 1)))
+                if self.tick % 2 == 0:
+                    self.handler.getAttackList().add(CustomAttack(self, self.damage, self.handler, 12 * self.facing, random.randint(-2, 2)))
             elif self.ranged_cooldown.current_cooldown <= 3:
-                if self.tick % 8 == 0:
-                    self.handler.getAttackList().add(CustomAttack(self, self.damage, self.handler, 12 * self.facing, random.randint(-1, 1)))
+                if self.tick % 1 == 0:
+                    self.handler.getAttackList().add(CustomAttack(self, self.damage, self.handler, 12 * self.facing, random.randint(-4, 4)))
             elif self.ranged_cooldown.current_cooldown <= 4:
-                if self.tick % 6 == 0:
-                    self.handler.getAttackList().add(CustomAttack(self, self.damage, self.handler, 12 * self.facing, random.randint(-2, 2)))
+                if self.tick % 1 == 0:
+                    self.handler.getAttackList().add(CustomAttack(self, self.damage, self.handler, 12 * self.facing, random.randint(-6, 6)))
+                    self.handler.getAttackList().add(CustomAttack(self, self.damage, self.handler, 12 * self.facing, random.randint(-6, 6)))
             elif self.ranged_cooldown.current_cooldown > 4:
-                if self.tick % 4 == 0:
-                    self.handler.getAttackList().add(CustomAttack(self, self.damage, self.handler, 12 * self.facing, random.randint(-2, 2)))
+                if self.tick % 1 == 0:
+                    self.handler.getAttackList().add(CustomAttack(self, self.damage, self.handler, 12 * self.facing, random.randint(-8, 8)))
+                    self.handler.getAttackList().add(CustomAttack(self, self.damage, self.handler, 12 * self.facing, random.randint(-8, 8)))
+                    self.handler.getAttackList().add(CustomAttack(self, self.damage, self.handler, 12 * self.facing, random.randint(-8, 8)))
         else:
             self.tick = 0
