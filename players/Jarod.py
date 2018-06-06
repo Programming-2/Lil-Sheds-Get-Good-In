@@ -9,13 +9,13 @@ import random
 class Jarod(Player):
 
     def __init__(self, x, y, handler):
-        health = 110
+        health = 1100
         damage = 2
         win_quote = "yikes"
         lose_quote = "yikes"
         name = "Jarod"
         defense = .5
-        movespeed = 30
+        movespeed = 40
 
         super().__init__(health, damage, win_quote, lose_quote, name, x, y, movespeed, handler.getPlatformArray(), handler.getAttackList(), handler, defense)
 
@@ -60,8 +60,35 @@ class Jarod(Player):
                     self.handler.getAttackList().add(CustomAttack(self, self.damage, self.handler, 12 * self.facing, random.randint(-6, 6)))
             elif self.ranged_cooldown.current_cooldown > 4:
                 if self.tick % 1 == 0:
-                    self.handler.getAttackList().add(CustomAttack(self, self.damage, self.handler, 12 * self.facing, random.randint(-8, 8)))
-                    self.handler.getAttackList().add(CustomAttack(self, self.damage, self.handler, 12 * self.facing, random.randint(-8, 8)))
-                    self.handler.getAttackList().add(CustomAttack(self, self.damage, self.handler, 12 * self.facing, random.randint(-8, 8)))
+                    self.handler.getAttackList().add(
+                        CustomAttack(self, self.damage, self.handler, 12 * self.facing, random.randint(-8, 8)))
+                    self.handler.getAttackList().add(
+                        CustomAttack(self, self.damage, self.handler, 12 * self.facing, random.randint(-8, 8)))
+                    self.handler.getAttackList().add(
+                        CustomAttack(self, self.damage, self.handler, 12 * self.facing, random.randint(-8, 8)))
+                    self.handler.getAttackList().add(
+                        CustomAttack(self, self.damage, self.handler, 12 * self.facing, random.randint(-8, 8)))
+                    self.handler.getAttackList().add(
+                        CustomAttack(self, self.damage, self.handler, 12 * self.facing, random.randint(-8, 8)))
+                    self.handler.getAttackList().add(
+                        CustomAttack(self, self.damage, self.handler, 12 * self.facing, random.randint(-8, 8)))
+                    self.handler.getAttackList().add(
+                        CustomAttack(self, self.damage, self.handler, 12 * self.facing, random.randint(-8, 8)))
+                    self.handler.getAttackList().add(
+                        CustomAttack(self, self.damage, self.handler, 12 * self.facing, random.randint(-8, 8)))
+                    self.handler.getAttackList().add(
+                        CustomAttack(self, self.damage, self.handler, 12 * self.facing, random.randint(-8, 8)))
+                    self.handler.getAttackList().add(
+                        CustomAttack(self, self.damage, self.handler, 12 * self.facing, random.randint(-8, 8)))
+                    self.handler.getAttackList().add(
+                        CustomAttack(self, self.damage, self.handler, 12 * self.facing, random.randint(-8, 8)))
+                    self.handler.getAttackList().add(
+                        CustomAttack(self, self.damage, self.handler, 12 * self.facing, random.randint(-8, 8)))
+                    self.handler.getAttackList().add(
+                        CustomAttack(self, self.damage, self.handler, 12 * self.facing, random.randint(-8, 8)))
+                    self.handler.getAttackList().add(
+                        CustomAttack(self, self.damage, self.handler, 12 * self.facing, random.randint(-8, 8)))
+                    self.handler.getAttackList().add(
+                        CustomAttack(self, self.damage, self.handler, 12 * self.facing, random.randint(-8, 8)))
         else:
             self.tick = 0
