@@ -16,7 +16,12 @@ class Button:
     def update(self, screen):
         screen.blit(self.button, [self.x, self.y])
 
-        if (self.handler.player1.crouching or self.handler.player2.crouching) and self.playerInRange():
+        if self.handler.player1.crouching and self.playerInRange(self.handler.player1):
+            screen.blit(self.buttonPressed, [self.x, self.y])
+            if self.released:
+                self.released = False
+                self.action()
+        if self.handler.player2.crouching and self.playerInRange(self.handler.player2):
             screen.blit(self.buttonPressed, [self.x, self.y])
             if self.released:
                 self.released = False
@@ -25,11 +30,8 @@ class Button:
         if not((self.handler.player1.crouching or self.handler.player2.crouching) and self.playerInRange()):
             self.released = True
 
-    def playerInRange(self):
-        player1 = self.handler.player1
-        player2 = self.handler.player2
-
-        if (self.x < player1.rect.x < self.x + self.width and self.y - player1.rect.height - 6 < player1.rect.y < self.y + 6) or (self.x < player2.rect.x < self.x + self.width and self.y - player2.rect.height - 6 < player2.rect.y < self.y + 6):
+    def playerInRange(self, player):
+        if self.x < player.rect.x < self.x + self.width and self.y - player.rect.height - 6 < player.rect.y < self.y + 6
             return True
 
         return False
