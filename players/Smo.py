@@ -10,6 +10,7 @@ from utils.Colors import colors
 
 font = pygame.font.SysFont("Comic Sans MS", 16)
 
+
 class Smo(Player):
 
     def __init__(self, x, y, handler):
@@ -49,7 +50,6 @@ class Smo(Player):
             self.target_health = self.handler.getPlayer2().health
         else:
             self.target_health = self.handler.getPlayer1().health
-
 
     def update(self, screen):
         super().update(screen)

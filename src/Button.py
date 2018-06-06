@@ -27,11 +27,11 @@ class Button:
                 self.released = False
                 self.action()
 
-        if not((self.handler.player1.crouching or self.handler.player2.crouching) and self.playerInRange()):
+        if not((self.handler.player1.crouching or self.handler.player2.crouching) and self.playerInRange(self.handler.player1) or self.playerInRange(self.handler.player2)):
             self.released = True
 
     def playerInRange(self, player):
-        if self.x < player.rect.x < self.x + self.width and self.y - player.rect.height - 6 < player.rect.y < self.y + 6
+        if self.x < player.rect.x < self.x + self.width and self.y - player.rect.height - 6 < player.rect.y < self.y + 6:
             return True
 
         return False
