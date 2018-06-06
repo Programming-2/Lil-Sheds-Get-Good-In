@@ -39,7 +39,7 @@ class JaccobBonkley(Player):
             pygame.image.load("media/Players/JaccobBonkley/Bonkley4.png").convert_alpha()
         ]
         self.walkAnimation = Animation(self.handler, self, self.walkSpriteList)
-        self.walk_animation_delay = 8
+        self.walk_animation_delay = 15
 
         self.crouchSpriteList = [
             pygame.image.load("media/Players/JaccobBonkley/JaccobBonkleyCrouch.png").convert_alpha(),
@@ -50,7 +50,7 @@ class JaccobBonkley(Player):
         self.crouchAnimation = Animation(self.handler, self, self.crouchSpriteList)
         self.crouch_animation_delay = 8
 
-        self.animation_manager = AnimationManager(self, self.walkAnimation, self.crouchAnimation)
+        self.animation_manager = AnimationManager(self, self.walkAnimation, None, self.crouchAnimation)
 
         self.keyboardAnimation = CircularQueue()
         for a in range(0, -90, -5):
