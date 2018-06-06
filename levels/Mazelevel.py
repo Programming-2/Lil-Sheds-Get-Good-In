@@ -4,8 +4,8 @@ import time
 
 class Mazelevel(Level):
 
-    def __init__(self, screen):
-        super().__init__(screen, "media/Levels/Mazemap.png")
+    def __init__(self, screen, handler):
+        super().__init__(screen, "media/Levels/Mazemap.png", handler)
 
         self.p1 = Platform(screen, 21, 125, 130, 0)
         self.p2 = Platform(screen, 220, 125, 650, 0)

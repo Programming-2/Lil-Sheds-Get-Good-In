@@ -7,7 +7,7 @@ pygame.init()
 
 
 class Level():
-    def __init__(self, screen, backImg):
+    def __init__(self, screen, backImg, handler):
         self.__screen = screen
         self.__backImg = backImg
         self.lWall = Platform(screen, -500, -1000, 500, 2300)
@@ -19,6 +19,7 @@ class Level():
         self.platformGroup.add(self.rWall)
         self.platformGroup.add(self.ceiling)
         self.platformGroup.add(self.ground)
+        self.handler = handler
 
 
     def getBackImg(self):

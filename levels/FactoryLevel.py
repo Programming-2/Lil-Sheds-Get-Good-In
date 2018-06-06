@@ -5,9 +5,11 @@ from src.Platform import Platform
 from src.FallingShed import FallingShed
 import pygame
 
+
 class FactoryLevel(Level):
+
     def __init__(self, screen, handler):
-        super().__init__(screen, "media/Levels/Factory.png")
+        super().__init__(screen, "media/Levels/Factory.png", handler)
         self.plat1 = Platform(screen, 0, 416, 412, 50, speed=2)
         self.plat2 = Platform(screen, 688, 416, 412, 50, speed=-2)
         self.platformGroup.add(self.plat1)
