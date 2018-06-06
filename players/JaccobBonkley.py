@@ -3,6 +3,8 @@ import random
 from players.Player import Player
 from src.Cooldown import Cooldown
 from datastructures.CircularQueue import CircularQueue
+from animation.Animation import Animation
+from animation.AnimationManager import AnimationManager
 
 
 class JaccobBonkley(Player):
@@ -30,6 +32,26 @@ class JaccobBonkley(Player):
         self.mr_smo = pygame.image.load("media/Players/TestSprite.png").convert_alpha()
         self.num = 0
 
+        self.walkSpriteList = [
+            pygame.image.load("media/Players/JaccobBonkley/JaccobBonkley.png").convert_alpha(),
+            pygame.image.load("media/Players/JaccobBonkley/Bonkley2.png").convert_alpha(),
+            pygame.image.load("media/Players/JaccobBonkley/Bonkley3.png").convert_alpha(),
+            pygame.image.load("media/Players/JaccobBonkley/Bonkley4.png").convert_alpha()
+        ]
+        self.walkAnimation = Animation(self.handler, self, self.walkSpriteList)
+        self.walk_animation_delay = 15
+
+        self.crouchSpriteList = [
+            pygame.image.load("media/Players/JaccobBonkley/JaccobBonkleyCrouch.png").convert_alpha(),
+            pygame.image.load("media/Players/JaccobBonkley/BonkleyCrouch2.png").convert_alpha(),
+            pygame.image.load("media/Players/JaccobBonkley/BonkleyCrouch3.png").convert_alpha(),
+            pygame.image.load("media/Players/JaccobBonkley/BonkleyCrouch4.png").convert_alpha()
+        ]
+        self.crouchAnimation = Animation(self.handler, self, self.crouchSpriteList)
+        self.crouch_animation_delay = 8
+
+        self.animation_manager = AnimationManager(self, self.walkAnimation, None, self.crouchAnimation)
+
         self.keyboardAnimation = CircularQueue()
         for a in range(0, -90, -5):
             self.keyboardAnimation.addData(pygame.transform.rotate(self.keyboard, a))
@@ -51,6 +73,8 @@ class JaccobBonkley(Player):
             self.num = 0
 
     def update(self, screen):
+        self.animation_manager.update()
+
         super().update(screen)
 
         if not self.special_cooldown.isDone():
