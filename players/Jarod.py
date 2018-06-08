@@ -60,7 +60,7 @@ class Jarod(Player):
                 if self.tick % 4 == 0:
                     self.handler.getAttackList().add(CustomAttack(self, self.damage, self.handler, 12 * self.facing, random.randint(-6, 6)))
             elif self.ranged_cooldown.current_cooldown > 4:
-                if self.tick % 3 == 0:
+                if self.tick % 2 == 0:
                     self.handler.getAttackList().add(CustomAttack(self, self.damage, self.handler, 12 * self.facing, random.randint(-8, 8)))
 
         else:
