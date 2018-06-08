@@ -10,7 +10,7 @@ from animation.AnimationManager import AnimationManager
 class JaccobBonkley(Player):
 
     def __init__(self, x, y, handler):
-        health = 70
+        health = 700
         damage = 20
         defense = .5
         movespeed = 10

@@ -14,7 +14,7 @@ font = pygame.font.SysFont("Comic Sans MS", 16)
 class Smo(Player):
 
     def __init__(self, x, y, handler):
-        health = 110
+        health = 1100
         damage = 10
         win_quote = "up to the board"
         lose_quote = "this will delay my victory"

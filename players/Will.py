@@ -12,7 +12,7 @@ from animation.AnimationManager import AnimationManager
 class Will(Player):
 
     def __init__(self, x, y, handler):
-        health = 110
+        health = 1100
         damage = 55
         win_quote = "yikes"
         lose_quote = "yikes"

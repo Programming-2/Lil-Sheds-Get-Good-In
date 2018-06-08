@@ -7,7 +7,7 @@ from src.Attack import Attack
 class Reynaldo(Player):
 
     def __init__(self, x, y, handler):
-        health = 100
+        health = 1000
         damage = 20
         win_quote = "Pog Champerino!!!!"
         lose_quote = "I was lagging!"

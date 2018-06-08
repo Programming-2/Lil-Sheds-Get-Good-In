@@ -6,7 +6,7 @@ from src.Cooldown import Cooldown
 class David(Player):
 
     def __init__(self, x, y, handler):
-        health = 12000
+        health = 1200
         damage = 15
         win_quote = "I do not particularly enjoy social gatherings."
         lose_quote = "Zzz"

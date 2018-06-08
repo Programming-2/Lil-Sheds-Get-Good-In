@@ -7,7 +7,7 @@ from src.Attack import Attack
 class Shed(Player):
 
     def __init__(self, x, y, handler):
-        health = 200
+        health = 2000
         damage = 15
         win_quote = "OH YEAHHHH!"
         lose_quote = "IMPOSSIBLE!"

@@ -9,7 +9,7 @@ from animation.AnimationManager import AnimationManager
 class Greg(Player):
 
     def __init__(self, x, y, handler):
-        health = 100
+        health = 1000
         damage = 15
         win_quote = "Broken like Katarina"
         lose_quote = "I don't even care"

@@ -6,7 +6,7 @@ from src.Cooldown import Cooldown
 class Kemul(Player):
 
     def __init__(self, x, y, handler):
-        health = 110
+        health = 1100
         damage = 20
         win_quote = "Chewbacca"
         lose_quote = "Chewbacca"

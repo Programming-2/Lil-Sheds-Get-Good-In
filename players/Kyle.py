@@ -12,7 +12,7 @@ import random
 class Kyle(Player):
 
     def __init__(self, x, y, handler):
-        health = 110
+        health = 1100
         damage = 30
         win_quote = "Are the platforms fixed yet?"
         lose_quote = "I\'d better try to fix that... emphasis on try"
