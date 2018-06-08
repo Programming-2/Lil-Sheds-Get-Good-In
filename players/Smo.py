@@ -15,7 +15,7 @@ class Smo(Player):
 
     def __init__(self, x, y, handler):
         health = 1100
-        damage = 10
+        damage = 50
         win_quote = "up to the board"
         lose_quote = "this will delay my victory"
         name = "Smo"
@@ -63,11 +63,11 @@ class Smo(Player):
             if self.handler.getPlayer1().name == "Smo":
                 if abs(self.rect.x - self.handler.getPlayer2().rect.x) <= self.special_range and abs(self.rect.y - self.handler.getPlayer2().rect.y) <= self. special_range:
                     if (self.target_health - 10) <= self.handler.getPlayer2().health:
-                        self.handler.player2.takeDamage(10)
+                        self.handler.player2.takeDamage(50)
             if self.handler.getPlayer2().name == "Smo":
                 if abs(self.rect.x - self.handler.getPlayer1().rect.x) <= self.special_range and abs(self.rect.y - self.handler.getPlayer1().rect.y) <= self.special_range:
                     if (self.target_health - 10) <= self.handler.getPlayer1().health:
-                        self.handler.player1.takeDamage(10)
+                        self.handler.player1.takeDamage(50)
             if self.special_duration.isDone():
                 self.GeneratePun()
                 self.special_cooldown.update()

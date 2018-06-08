@@ -8,7 +8,7 @@ from src.Cooldown import Cooldown
 class Collin(Player):
     def __init__(self, x, y, handler):
         health = 1200
-        damage = 12
+        damage = 60
         win_quote = "ROOOOOOSE"
         lose_quote = "at least I still have Kaitlin"
         name = "Collin"

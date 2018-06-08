@@ -7,7 +7,7 @@ class Kemul(Player):
 
     def __init__(self, x, y, handler):
         health = 1100
-        damage = 20
+        damage = 100
         win_quote = "Chewbacca"
         lose_quote = "Chewbacca"
         name = "Kemul"
@@ -41,7 +41,7 @@ class Kemul(Player):
                 self.caravan_x -= 20
                 screen.blit(self.caravan_sprite, [self.caravan_x, self.caravan_y])
                 if -15 < (self.handler.getOtherPlayer(self).rect.x - self.caravan_x) < 15 and -15 < (self.handler.getOtherPlayer(self).rect.y - self.caravan_y) < 15 and self.caravan_loaded:
-                    self.handler.getOtherPlayer(self).takeDamage(20)
+                    self.handler.getOtherPlayer(self).takeDamage(100)
                     self.caravan_loaded = False
             else:
                 self.special_active = False
