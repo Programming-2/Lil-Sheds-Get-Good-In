@@ -27,11 +27,6 @@ class Jarod(Player):
         self.released = True
         self.tick = 0
 
-    def special(self):
-        if self.special_cooldown.isDone():
-            self.movespeed += 1
-            self.special_cooldown.update()
-
     def attack(self, screen):
         self.rangedavailable = True
 
@@ -42,6 +37,9 @@ class Jarod(Player):
         super().update(screen)
 
         if not self.special_cooldown.isDone():
+            self.special_cooldown.update()
+        else:
+            self.movespeed += 1
             self.special_cooldown.update()
 
         if self.rangedavailable and not self.released:
