@@ -29,7 +29,7 @@ class JaccobBonkley(Player):
         self.special_active = False
         self.keyboard = pygame.image.load("media/Misc/Keyboard.png").convert_alpha()
         self.keyboard2 = pygame.image.load("media/Misc/Keyboard2.png").convert_alpha()
-        self.mr_smo = pygame.image.load("media/Players/TestSprite.png").convert_alpha()
+        self.mr_smo = pygame.image.load("media/Players/Smo/Smo.png").convert_alpha()
         self.num = 0
 
         self.walkSpriteList = [
@@ -118,8 +118,8 @@ class JaccobBonkley(Player):
                         else:
                             screen.blit(self.mr_smo, (self.num, self.rect.y - 15))
                             screen.blit(self.keyboardAnimation.get(), (self.rect.x - 70, self.rect.y - 50))
-                            if self.health != (self.current_health - 20):
-                                self.takeDamage(20)
+                            if self.health != (self.current_health - 100):
+                                self.takeDamage(100)
                                 self.special_duration = Cooldown(.1)
                     if self.facing == -1:
                         if self.num < (1080 - self.rect.x):
@@ -128,13 +128,14 @@ class JaccobBonkley(Player):
                         else:
                             screen.blit(self.mr_smo, (1150 - self.num, self.rect.y - 15))
                             screen.blit(self.keyboardAnimation2.get(), (self.rect.x + 70, self.rect.y - 50))
-                            if self.health != (self.current_health - 20):
-                                self.takeDamage(20)
+                            if self.health != (self.current_health - 100):
+                                self.takeDamage(100)
                                 self.special_duration = Cooldown(.1)
 
                 else:
                     self.special_active = False
                     self.handler.getPlayer1().stunned = False
                     self.handler.getPlayer2().stunned = False
+                    self.special_cooldown = Cooldown(3)
                     self.special_cooldown.update()
                     self.num = 0
