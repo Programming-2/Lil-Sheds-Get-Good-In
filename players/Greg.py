@@ -10,7 +10,7 @@ class Greg(Player):
 
     def __init__(self, x, y, handler):
         health = 1000
-        damage = 15
+        damage = 75
         win_quote = "Broken like Katarina"
         lose_quote = "I don't even care"
         name = "Greg"
@@ -28,8 +28,8 @@ class Greg(Player):
         self.specialframe1 = pygame.image.load("media/Players/Greg/GregSpecial1.png").convert_alpha()
         self.specialframe2 = pygame.image.load("media/Players/Greg/GregSpecial2.png").convert_alpha()
         self.specialnum = 1
-        self.damage_ranged = 40
-        self.damage_special = 25
+        self.damage_ranged = 200
+        self.damage_special = 125
         self.startgravity = self.gravity
         self.attacking = False
         self.attackcount = 0

@@ -150,7 +150,7 @@ class Will(Player):
             self.ranged_cooldown.current_cooldown = self.tickcounter / 60
             if self.ranged_cooldown.current_cooldown <= 1 and self.released:
                 attack = Attack(self, self.damage, self.handler)
-                attack.damage = 10
+                attack.damage = 50
                 attack.travel_speed = 10
                 attack.left_animation = self.attack_animation
                 attack.right_animation = self.attack_animation
@@ -160,7 +160,7 @@ class Will(Player):
                 self.tickcounter = 0
             elif self.ranged_cooldown.current_cooldown <= 2 and self.released:
                 attack = Attack(self, self.damage, self.handler)
-                attack.damage = 25
+                attack.damage = 125
                 attack.travel_speed = 15
                 attack.left_animation = self.attack_animation
                 attack.right_animation = self.attack_animation
@@ -170,7 +170,7 @@ class Will(Player):
                 self.tickcounter = 0
             elif self.ranged_cooldown.current_cooldown <= 3 and self.released:
                 attack = Attack(self, self.damage, self.handler)
-                attack.damage = 60
+                attack.damage = 300
                 attack.travel_speed = 20
                 attack.left_animation = self.attack_animation
                 attack.right_animation = self.attack_animation
@@ -180,7 +180,7 @@ class Will(Player):
                 self.tickcounter = 0
             elif self.ranged_cooldown.current_cooldown <= 4 and self.released:
                 attack = Attack(self, self.damage, self.handler)
-                attack.damage = 120
+                attack.damage = 480
                 attack.travel_speed = 25
                 attack.left_animation = self.attack_animation
                 attack.right_animation = self.attack_animation
@@ -190,7 +190,7 @@ class Will(Player):
                 self.tickcounter = 0
             elif self.ranged_cooldown.current_cooldown > 4 and self.released:
                 attack = Attack(self, self.damage, self.handler)
-                attack.damage = self.ranged_cooldown.current_cooldown * 40
+                attack.damage = self.ranged_cooldown.current_cooldown * 200
                 attack.travel_speed = self.ranged_cooldown.current_cooldown * 7
                 attack.left_animation = self.powerattack_animation_left
                 attack.right_animation = self.powerattack_animation_right

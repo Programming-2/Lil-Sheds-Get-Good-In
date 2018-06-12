@@ -8,7 +8,7 @@ class Shed(Player):
 
     def __init__(self, x, y, handler):
         health = 2000
-        damage = 15
+        damage = 75
         win_quote = "OH YEAHHHH!"
         lose_quote = "IMPOSSIBLE!"
         name = "Lil' Shed"

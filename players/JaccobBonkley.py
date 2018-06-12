@@ -11,7 +11,7 @@ class JaccobBonkley(Player):
 
     def __init__(self, x, y, handler):
         health = 700
-        damage = 20
+        damage = 100
         defense = .5
         movespeed = 10
         win_quote = "Spaghet saved me"
@@ -87,18 +87,18 @@ class JaccobBonkley(Player):
                     if self.facing == 1:
                         screen.blit(self.keyboardAnimation.get(), (self.rect.x + 70, self.rect.y - 50))
                         if self.handler.getPlayer1().name == "JaccobBonkley" and (self.handler.getPlayer2().rect.x - self.rect.x) <= 170 and (self.handler.getPlayer2().rect.x - self.rect.x) >= 0 and (self.handler.getPlayer2().rect.y - self.rect.y) <= 50:
-                            self.handler.player2.takeDamage(20)
+                            self.handler.player2.takeDamage(100)
                             self.special_active = False
                         if self.handler.getPlayer2().name == "JaccobBonkley" and (self.handler.getPlayer1().rect.x - self.rect.x) <= 170 and (self.handler.getPlayer1().rect.x - self.rect.x) >= 0 and (self.handler.getPlayer1().rect.y - self.rect.y) <= 50:
-                            self.handler.player1.takeDamage(20)
+                            self.handler.player1.takeDamage(100)
                             self.special_active = False
                     if self.facing == -1:
                         screen.blit(self.keyboardAnimation2.get(), (self.rect.x - 70, self.rect.y - 50))
                         if self.handler.getPlayer1().name == "JaccobBonkley" and (self.rect.x - self.handler.getPlayer2().rect.x) <= 170 and (self.rect.x - self.handler.getPlayer2().rect.x) >= 0 and (self.handler.getPlayer2().rect.y - self.rect.y) <= 50:
-                            self.handler.player2.takeDamage(20)
+                            self.handler.player2.takeDamage(100)
                             self.special_active = False
                         if self.handler.getPlayer2().name == "JaccobBonkley" and (self.rect.x - self.handler.getPlayer1().rect.x) <= 170 and (self.rect.x - self.handler.getPlayer1().rect.x) >= 0 and (self.handler.getPlayer1().rect.y - self.rect.y) <= 50:
-                            self.handler.player1.takeDamage(20)
+                            self.handler.player1.takeDamage(100)
                             self.special_active = False
 
                 else:

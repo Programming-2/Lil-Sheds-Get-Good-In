@@ -11,6 +11,12 @@ class PunDatabase:
             "An old man fell into a well, he couldn't see that well",
             "How do make a tissue dance? You put a little boogie in it",
             "The Energizer Bunny was charged with battery",
+            "You’re becoming a vegetarian? I think that’s a big missed steak",
+            "Velcros are just a big rip-off",
+            "I wanna make a joke about sodium, but Na",
+            "I’m reading a book about anti-gravity. It’s impossible to put down!",
+            "How did the picture end up in jail? It was framed!",
+            ""
             ""
         ]
 

@@ -8,7 +8,7 @@ class Reynaldo(Player):
 
     def __init__(self, x, y, handler):
         health = 1000
-        damage = 20
+        damage = 100
         win_quote = "Pog Champerino!!!!"
         lose_quote = "I was lagging!"
         name = "Reynaldo"
@@ -93,7 +93,7 @@ class Reynaldo(Player):
                 if pygame.Rect.colliderect(self.special_sprite_rect, self.rect):
                     self.special_stage = 3
                 if pygame.Rect.colliderect(self.handler.getOtherPlayer(self).rect, self.special_sprite_rect) and not self.special_hit:
-                    self.handler.getOtherPlayer(self).takeTrueDamage(40)
+                    self.handler.getOtherPlayer(self).takeTrueDamage(200)
                     self.special_hit = True
                 self.special_sprite_rect.x -= x_speed
                 self.special_sprite_rect.y -= y_speed

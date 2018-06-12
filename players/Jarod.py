@@ -10,7 +10,7 @@ class Jarod(Player):
 
     def __init__(self, x, y, handler):
         health = 1100
-        damage = 8
+        damage = 15
         win_quote = "yikes"
         lose_quote = "yikes"
         name = "Jarod"
@@ -28,7 +28,9 @@ class Jarod(Player):
         self.tick = 0
 
     def special(self):
-        pass
+        if self.special_cooldown.isDone():
+            self.movespeed += 1
+            self.special_cooldown.update()
 
     def attack(self, screen):
         self.rangedavailable = True
@@ -58,7 +60,7 @@ class Jarod(Player):
                 if self.tick % 4 == 0:
                     self.handler.getAttackList().add(CustomAttack(self, self.damage, self.handler, 12 * self.facing, random.randint(-6, 6)))
             elif self.ranged_cooldown.current_cooldown > 4:
-                if self.tick % 3 == 0:
+                if self.tick % 2 == 0:
                     self.handler.getAttackList().add(CustomAttack(self, self.damage, self.handler, 12 * self.facing, random.randint(-8, 8)))
 
         else:
