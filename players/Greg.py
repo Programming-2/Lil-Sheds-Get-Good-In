@@ -85,6 +85,12 @@ class Greg(Player):
                 self.rect.left = platform.rect.right
             self.xchange = 0
 
+    def duck(self):
+        self.gravity = 1
+
+    def unduck(self):
+        self.gravity = .25
+
     def update(self, screen):
         self.animation_manager.update()
         if not self.ranged_cooldown.isDone():
