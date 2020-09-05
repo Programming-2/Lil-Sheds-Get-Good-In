@@ -7,7 +7,7 @@ class Sound:
         try:
             self.sound = pygame.mixer.Sound("media/Audio/" + self.name + ".ogg")
             self.useSound = True
-        except pygame.error:
+        except FileNotFoundError:
             self.useSound = False
 
     def playSound(self):
